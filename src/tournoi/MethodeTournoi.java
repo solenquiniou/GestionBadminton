@@ -117,7 +117,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("1");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -142,7 +141,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("2");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -167,7 +165,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("3");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -191,7 +188,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("4");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -219,7 +215,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("5");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -244,7 +239,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("6");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -269,7 +263,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("7");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -293,7 +286,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("8");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -321,7 +313,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("9");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -346,7 +337,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("10");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -371,7 +361,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("11");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -395,7 +384,6 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
-                    System.out.println("12");
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);

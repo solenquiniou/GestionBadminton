@@ -268,7 +268,7 @@ public class Tournoi {
 			for(Paire paire2 : this.paires)
 			{
 				//les paires sont differentes, compatibles et libres
-				if(paire1!=paire2 && paire1.estCompatible(paire2) && !paire2.isDansMatch()){
+				if(paire1!=paire2 && paire1.estCompatible(paire2) && !paire1.isDansMatch() && !paire2.isDansMatch()){
 					matchs.add(new Match(paire1, paire2));
 					paire1.setDansMatch(true);
 					paire2.setDansMatch(true);
@@ -283,7 +283,7 @@ public class Tournoi {
 			for(Paire paire2 : this.paires)
 			{
 				//les paires sont differentes, compatibles et libres
-				if(paire1!=paire2 && !paire2.isDansMatch()){
+				if(paire1!=paire2 && !paire1.isDansMatch() && !paire2.isDansMatch()){
 					matchs.add(new Match(paire1, paire2));
 					paire1.setDansMatch(true);
 					paire2.setDansMatch(true);
