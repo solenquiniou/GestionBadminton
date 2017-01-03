@@ -72,7 +72,10 @@ public class SaisirScoreControlleur implements ActionListener{
 			return false;
 		}
 
-
+		if(this.tournoi.paireValide(this.numeroTerrain)){
+			JOptionPane.showMessageDialog(vue, "Vous avez modifier les paires et maintenant il y deux jois le même joueur dans ce match ;(");
+			return false;
+		}
 
 		try {
 			int test = score1;
