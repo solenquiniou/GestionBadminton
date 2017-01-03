@@ -360,9 +360,7 @@ public class Tournoi {
 	 * @param scoreP2    le score de la seconde paire
 	 */
 	public void setScore(int numTerrain, int scoreP1, int scoreP2) {
-		System.out.println(numTerrain+"  "+ scoreP1	+"  "+ scoreP2);
-		this.terrains.get(numTerrain).getMatch().getPaire1().setScore(scoreP1);
-		this.terrains.get(numTerrain).getMatch().getPaire2().setScore(scoreP2);
+		this.terrains.get(numTerrain).getMatch().modifierScores(scoreP1,scoreP2);
 		//enregistrement des anciens partenaires
 		this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur1().ajouterAnciensPart(this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur2());
 		this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur2().ajouterAnciensPart(this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur1());
