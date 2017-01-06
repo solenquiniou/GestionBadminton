@@ -139,6 +139,13 @@ public class Tournoi {
 	}
 
 	/**
+	 * Retourne la liste des tours
+	 *
+	 * @return la liste des tours
+	 */
+	public ArrayList<Tour> getTours() { return this.tour; }
+
+	/**
 	 * Initialise les terrains disponibles
 	 */
 	public void initialiserTerrains() {
