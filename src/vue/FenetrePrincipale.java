@@ -230,6 +230,14 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.gridy = 10;
 		westButtonPan.add(classement, gbcWest);
 
+		//Bouton à retirer: confirmation de tour
+		JButton validerTour = new JButton("Valider le tour");
+		validerTour.addActionListener(new VoirClassementControleur(tournoi));
+		validerTour.setPreferredSize(new Dimension(140, 40));
+		validerTour.addActionListener(new ValiderTourControlleur(this));
+		gbcWest.gridy = 11;
+		westButtonPan.add(validerTour, gbcWest);
+
 		westButtonPan.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.gray));
 
 
@@ -401,7 +409,7 @@ public class FenetrePrincipale extends JFrame {
 				//System.out.println("moins de joueur que de terrain?");
 			}
 		}
-		JSpinner score1 = new JSpinner();
+		JSpinner score1 = new JSpinner(new SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
 		JPanel equipeUn = new JPanel(new GridBagLayout());
 		j1.setPreferredSize(new Dimension(125, 25));
 		j2.setPreferredSize(new Dimension(125, 25));
@@ -452,7 +460,7 @@ public class FenetrePrincipale extends JFrame {
 		j2.addItemListener( new SelectonAutreJoueurMatch(j2, this,2,i));
 		j3.addItemListener( new SelectonAutreJoueurMatch(j3, this,3,i));
 		j4.addItemListener( new SelectonAutreJoueurMatch(j4, this,4,i));
-		JSpinner score2 = new JSpinner();
+		JSpinner score2 = new JSpinner(new SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
 		JPanel equipeDeux = new JPanel(new GridBagLayout());
 		j3.setPreferredSize(new Dimension(125, 25));
 		j4.setPreferredSize(new Dimension(125, 25));
