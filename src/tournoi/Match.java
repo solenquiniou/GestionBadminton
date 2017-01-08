@@ -15,6 +15,8 @@ public class Match {
 	private int score1;
 	private int score2;
 
+	private boolean enCours;
+
 	/** Constructeur de la classe Match
 		*
 		* @param laPaire1 la première paire du match
@@ -24,7 +26,8 @@ public class Match {
 	public Match(Paire laPaire1, Paire laPaire2){
 		this.paire1 = laPaire1;
 		this.paire2 = laPaire2;
-		this.vainqueur=null;
+		this.vainqueur = null;
+		this.enCours = true;
 	}
 
 	/** Retourne la première paire du match
@@ -80,6 +83,20 @@ public class Match {
 	public Paire getVainqueur(){
 		return this.vainqueur;
 	}
+
+	/** Redéfinit l'attribut "enCours"
+	 *
+	 * @param b l'etat du match (en cours ou non)
+	 *
+	 */
+	public void setEnCours(boolean b) { enCours = b;	}
+
+	/** Retourne si le match est en cours ou non
+	 *
+	 * @return si le match est en cours ou non
+	 *
+	 */
+	public boolean getEncours() { return enCours; }
 
 	/** Détermine le vainqueur d'un match
 	  * @param s1 le score de la paire 1

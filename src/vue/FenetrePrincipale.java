@@ -232,9 +232,8 @@ public class FenetrePrincipale extends JFrame {
 
 		//Bouton à retirer: confirmation de tour
 		JButton validerTour = new JButton("Valider le tour");
-		validerTour.addActionListener(new VoirClassementControleur(tournoi));
-		validerTour.setPreferredSize(new Dimension(140, 40));
 		validerTour.addActionListener(new ValiderTourControlleur(this));
+		validerTour.setPreferredSize(new Dimension(140, 40));
 		gbcWest.gridy = 11;
 		westButtonPan.add(validerTour, gbcWest);
 
@@ -479,6 +478,7 @@ public class FenetrePrincipale extends JFrame {
 		//Bouton valider
 		JButton valider = new JButton("Valider");
 		valider.addActionListener(new SaisirScoreControlleur(score1,score2,this,this.tournoi,i));
+		valider.addActionListener(new ValiderMatchControlleur(this, tournoi.getTerrain(i).getMatch(), j1, j2, score1, j3, j4, score2, valider));
 		gbc.gridy = 4;
 		terrain.add(valider, gbc);
 
