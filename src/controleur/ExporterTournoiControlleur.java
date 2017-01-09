@@ -1,8 +1,6 @@
 package controleur;
 
-import tournoi.Joueur;
-import tournoi.Tour;
-import tournoi.Tournoi;
+import tournoi.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +17,7 @@ public class ExporterTournoiControlleur implements ActionListener {
 
 
 
-    private final Tournoi tournoi;
+    private Tournoi tournoi;
 
     /** Constructeur de la classe ExporterTournoiControlleur
      *
@@ -60,12 +58,30 @@ public class ExporterTournoiControlleur implements ActionListener {
                 }
                 fichier.write("#");
                 fichier.newLine();
-                fichier.write("Numéro,Joueur1,Joueur2,Score,Joueur3,Joueur4,Score");
+                fichier.write("NuméroTour,NuméroTerrain,NomJoueur1,PrenomJoueur1,NomJoueur2,PrenomJoueur2,Score,NomJoueur3,PrenomJoueur3,NomJoueur4,PrenomJoueur4,Score");
                 fichier.newLine();
                 ArrayList<Tour> lesTours = tournoi.getTours();
                 for (int i = 0; i < lesTours.size(); i++)
                 {
-                    fichier.write(i+",");
+                    int numeroTour = i;
+                    ArrayList<Terrain> lesTerrains = lesTours.get(i).getMatches();
+                    for (int j = 0; j < lesTerrains.size(); j++)
+                    {
+                        Terrain leTerrain = lesTerrains.get(j);
+                        int numeroTerrain = leTerrain.getNumero();
+                        Match match = leTerrain.getMatch();
+                        Paire paire1 = match.getPaire1();
+                        Joueur Joueur1 = paire1.getJoueur1();
+                        Joueur Joueur2 = paire1.getJoueur2();
+                        int score1 = match.getScore1();
+                        Paire paire2 = match.getPaire2();
+                        Joueur Joueur3 = paire2.getJoueur1();
+                        Joueur Joueur4 = paire2.getJoueur2();
+                        int score2 = match.getScore2();
+                        fichier.write(numeroTour+","+numeroTerrain+","+Joueur1.getNom()+","+Joueur1.getPrenom()+","+Joueur2.getNom()+","+Joueur2.getPrenom()+","+score1+","+Joueur3.getNom()+","+Joueur3.getPrenom()+","+Joueur4.getNom()+","+Joueur4.getPrenom()+","+score2);
+                        fichier.newLine();
+                    }
+
                 }
                 fichier.close();
             }
