@@ -97,11 +97,12 @@ public class MethodeTournoi {
         Paire paireChoisie; //La paire qui a la perf la plus proche de la moyenne
         //La différence de score entre la perf moyenne et celle de la paire (on prend 20 parce qu'on est sûr que c'est
         //supérieur à la plus grosse différence possible
-        double differencePerfChoisie = 20.0;
+        double differencePerfChoisie;
 
         // Boucle n°1
         for (Joueur joueur1 : joueursPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -125,9 +126,9 @@ public class MethodeTournoi {
         }
 
         //Boucle n°2
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -149,9 +150,9 @@ public class MethodeTournoi {
         }
 
         //Boucle n°3
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -173,9 +174,9 @@ public class MethodeTournoi {
         }
 
         //Boucle n°4
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -197,9 +198,9 @@ public class MethodeTournoi {
 
         //Les paires de Prio-Non prio
         //Boucle n°5
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursNonPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -223,9 +224,9 @@ public class MethodeTournoi {
         }
 
         //Boucle n°6
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursNonPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -247,9 +248,9 @@ public class MethodeTournoi {
         }
 
         //Boucle n°7
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursNonPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -271,9 +272,9 @@ public class MethodeTournoi {
         }
 
         //Boucle n°8
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursNonPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -294,10 +295,10 @@ public class MethodeTournoi {
         }
 
         //Les paires de non Prio-Non prio
-
         // Boucle n°9
         for (Joueur joueur1 : joueursNonPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursNonPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -321,9 +322,9 @@ public class MethodeTournoi {
         }
 
         //Boucle n°10
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursNonPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursNonPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -345,9 +346,9 @@ public class MethodeTournoi {
         }
 
         //Boucle n°11
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursNonPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursNonPrios) {
                     if(!joueur1.equals(joueur2) &&
@@ -369,9 +370,9 @@ public class MethodeTournoi {
         }
 
         //Boucle n°12
-        differencePerfChoisie = 20.0;
         for (Joueur joueur1 : joueursNonPrios) {
             paireChoisie = null;
+            differencePerfChoisie = 20.0;
             if (!joueur1.getDansPaire()) {
                 for(Joueur joueur2 : joueursNonPrios) {
                     if(!joueur1.equals(joueur2) &&
