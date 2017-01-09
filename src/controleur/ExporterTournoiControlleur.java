@@ -1,6 +1,7 @@
 package controleur;
 
 import tournoi.Joueur;
+import tournoi.Tour;
 import tournoi.Tournoi;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.ArrayList;
 
 /** La classe ExporterTournoiControlleur permet d'exporter un tournoi
  * @author DROUARD Antoine, DERNONCOURT Cyril, LE BERT Lea, MARTINEAU Lucas
@@ -55,6 +57,15 @@ public class ExporterTournoiControlleur implements ActionListener {
                 for (Joueur j : tournoi.getNouveauxJoueurs()) {
                     fichier.write(tournoi.decouperJoueur(j));
                     fichier.newLine();
+                }
+                fichier.write("#");
+                fichier.newLine();
+                fichier.write("Numéro,Joueur1,Joueur2,Score,Joueur3,Joueur4,Score");
+                fichier.newLine();
+                ArrayList<Tour> lesTours = tournoi.getTours();
+                for (int i = 0; i < lesTours.size(); i++)
+                {
+                    fichier.write(i+",");
                 }
                 fichier.close();
             }
