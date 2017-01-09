@@ -84,6 +84,24 @@ public class Match {
 		return this.vainqueur;
 	}
 
+	/** Retourne le score de la première paire
+	 *
+	 * @return le score de la première paire
+	 *
+	 */
+	public int getScore1(){
+		return this.score1;
+	}
+
+	/** Retourne le score de la deuxième paire
+	 *
+	 * @return le score de la deuxième paire
+	 *
+	 */
+	public int getScore2(){
+		return this.score2;
+	}
+
 	/** Redéfinit l'attribut "enCours"
 	 *
 	 * @param b l'etat du match (en cours ou non)
