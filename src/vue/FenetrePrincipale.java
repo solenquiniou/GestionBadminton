@@ -522,6 +522,7 @@ public class FenetrePrincipale extends JFrame {
 		}
 
 		JScrollPane terrains = new JScrollPane(panTour);
+		terrains.getVerticalScrollBar().setUnitIncrement(20);
 
 		tournois.add(terrains, BorderLayout.CENTER);
 		onglets.removeTabAt(1);
