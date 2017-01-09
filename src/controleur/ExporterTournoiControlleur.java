@@ -14,9 +14,7 @@ import java.util.ArrayList;
  * @author DROUARD Antoine, DERNONCOURT Cyril, LE BERT Lea, MARTINEAU Lucas
  */
 public class ExporterTournoiControlleur implements ActionListener {
-
-
-
+    
     private Tournoi tournoi;
 
     /** Constructeur de la classe ExporterTournoiControlleur
