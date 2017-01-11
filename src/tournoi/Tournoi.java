@@ -345,8 +345,9 @@ public class Tournoi {
 			if (this.terrains.get(i).getMatch() != null) {
 
 			}
-			this.enregisterTour();
+
 		}
+		this.enregisterTour();
 		//On remet tous les joueurs en attente d'une paire
 		for (int i = 0; i < this.anciensJoueurs.size(); i++) {
 			(this.anciensJoueurs.get(i)).setDansPaire(false);
