@@ -43,6 +43,13 @@ public class AjouterJoueurControlleur implements ActionListener {
 			JOptionPane.showMessageDialog(vue,"Merci d'indiquer un nom et un prenom");
 			return false;
 		}
-	return true;
+
+		//On vérifie qu'il n'y ait pas de virgule dans le nom et le prenom pour ne pas poser de pb avec le csv
+		if (vue.getNom().getText().contains(",") || vue.getPrenom().getText().contains(",")) {
+			JOptionPane.showMessageDialog(vue,"Le prenom et le nom ne doivent pas contenir de virgule");
+			return false;
+		}
+
+		return true;
 	}
 }
