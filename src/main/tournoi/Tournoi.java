@@ -31,6 +31,7 @@ public class Tournoi {
 	private int nbrTerrains;
 	private String nom;
 	private ArrayList<Tour> tour;
+	private int nbTour;
 
 	public void setNbrTerrains(int nbrTerrains) {
 		this.nbrTerrains = nbrTerrains;
@@ -59,6 +60,7 @@ public class Tournoi {
 		this.nom = leNom;
 		initialiserTerrains();
 		this.tour = new ArrayList<Tour>();
+		nbTour = 0;
 	}
 
 	public Boolean tournoisVide(){
@@ -333,6 +335,11 @@ public class Tournoi {
 	public void nouveauTour() throws TournoiVideException {
 		this.creerPaires();
 		this.attribuerMatchs();
+		this.nbTour++;
+	}
+
+	public int getNbTour() {
+		return this.nbTour;
 	}
 
 	/**
@@ -348,6 +355,9 @@ public class Tournoi {
 
 		}
 		this.enregisterTour();
+
+
+
 		//On remet tous les joueurs en attente d'une paire
 		for (int i = 0; i < this.anciensJoueurs.size(); i++) {
 			(this.anciensJoueurs.get(i)).setDansPaire(false);

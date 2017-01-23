@@ -21,7 +21,7 @@ public class NouveauTourControleur implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try{
-            if(tournoi.getTours().size()>0){
+            if(tournoi.getNbTour()<0){
                 this.tournoi.finirTour();//enregistre le tour et nettoye les paires
             }
 
