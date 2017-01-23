@@ -5,44 +5,37 @@ import main.tournoi.Tournoi;
 import main.vue.FenetrePrincipale;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
- * Created by Pomme on 27/06/2016.
+ * Created by Lea on 29/12/2016.
  */
-public class InverserJoueurControlleur implements ActionListener{
-
-    private Tournoi tournoi;
+public class InverserJoueurControlleur implements ItemListener {
     private FenetrePrincipale vue;
-    String joueurCourant;
+    private Tournoi tournoi;
+    private  JComboBox jselect;
+    private Joueur jprec;//joueru precedament electionné
+    private int nuJ;
+    private int nuterr;
 
-    /**
-     * constructeur de main.controleur de changement de joueurs sur les terrains
-     * @param t le main.tournoi
-     * @param v la fenetre principale
-     */
-    public InverserJoueurControlleur(Tournoi t, FenetrePrincipale v, String jC){
-        tournoi = t;
-        vue = v;
-        joueurCourant = jC;
-    }
 
-    /**
-     * pour choisir un joueur à remplacer
-     * @param e on sélectionne un joueur dans le menu déroulant
-     */
+        public InverserJoueurControlleur(JComboBox jselect, FenetrePrincipale vue){
+            this.vue = vue;
+            this.tournoi = vue.getTournoi();
+            this.jselect = jselect;
+            this.jprec = (Joueur) jselect.getSelectedItem();
+
+        }
     @Override
-    public void actionPerformed(ActionEvent e) {
-        String joueur2 = (String)((JComboBox)e.getSource()).getSelectedItem();
-        Joueur idJ2 = tournoi.chercherJoueur(joueur2);
-        Joueur idJ1 = tournoi.chercherJoueur(joueurCourant);
-        System.out.println("j1 :\t"+joueurCourant +"\t"+idJ1);
-        System.out.println("j2 :\t"+joueur2 +"\t"+idJ2);
-        if(!tournoi.changerJoueurs(idJ1, idJ2))
-            JOptionPane.showMessageDialog(vue,"Erreur");
-        vue.setVerif(0);
-        vue.actualiserJoueurs();
-        //main.vue.actualiserTerrains();
-    }
+        public void itemStateChanged(ItemEvent event) {
+            if (event.getStateChange() == ItemEvent.SELECTED) {
+                Joueur jnouv = (Joueur) event.getItem();
+                ////  verifier que jnouv n'est pas  ()joueur 420
+                if(!(jnouv.getId()==420)){
+                    this.tournoi.changerJoueurs(this.jprec,jnouv);
+                }
+                vue.actualiserTerrains();
+            }
+        }
 }

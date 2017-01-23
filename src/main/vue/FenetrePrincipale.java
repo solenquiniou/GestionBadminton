@@ -439,11 +439,8 @@ public class FenetrePrincipale extends JFrame {
 				//System.out.println("moins de joueur que de terrain?");
 			}
 		}
-		//controlleurs de l'échange de joueur
-		j1.addItemListener( new SelectonAutreJoueurMatch(j1, this,1,i));
-		j2.addItemListener( new SelectonAutreJoueurMatch(j2, this,2,i));
-		j3.addItemListener( new SelectonAutreJoueurMatch(j3, this,3,i));
-		j4.addItemListener( new SelectonAutreJoueurMatch(j4, this,4,i));
+
+
 		JSpinner score2 = new JSpinner(new SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
 		JPanel equipeDeux = new JPanel(new GridBagLayout());
 		j3.setPreferredSize(new Dimension(125, 25));
@@ -472,10 +469,10 @@ public class FenetrePrincipale extends JFrame {
 		this.boxTerrains.add(j2);
 		this.boxTerrains.add(j3);
 		this.boxTerrains.add(j4);
-		/*j1.addItemListener(new ComboBoxSwapControlleur(this, j1));
-		j2.addItemListener(new ComboBoxSwapControlleur(this, j2));
-		j3.addItemListener(new ComboBoxSwapControlleur(this, j3));
-		j4.addItemListener(new ComboBoxSwapControlleur(this, j4));*/
+		j1.addItemListener(new InverserJoueurControlleur(j1,this));
+		j2.addItemListener(new InverserJoueurControlleur(j1,this));
+		j3.addItemListener(new InverserJoueurControlleur(j1,this));
+		j4.addItemListener(new InverserJoueurControlleur(j1,this));
 
 		return  terrain;}
 
