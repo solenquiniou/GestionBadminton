@@ -53,9 +53,6 @@ public class FenetrePrincipale extends JFrame {
 			e.printStackTrace();
 		}
 
-		//On assigne le menu � la fenetres
-		this.setJMenuBar(new Menu(tournoi, this));
-
 		//Les declarations de base
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
@@ -73,6 +70,8 @@ public class FenetrePrincipale extends JFrame {
 	public void setTournoi(Tournoi t){
 		this.tournoi=t;
 		this.setTitle("Match Point - " + t.getNom());
+		//On assigne le menu � la fenetres
+		this.setJMenuBar(new Menu(this));
 		((Menu) this.getJMenuBar()).enableSave();
 		this.afficherTournoi();
 	}
@@ -144,7 +143,7 @@ public class FenetrePrincipale extends JFrame {
 		JButton start;
 		start = new JButton("Lancer");
 		start.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 1;
+		gbcWest.gridy += 1;
 		westButtonPan.add(start, gbcWest);
 		start.addActionListener(new ChronometreStartControlleur(chronometre, start));
 
@@ -152,7 +151,7 @@ public class FenetrePrincipale extends JFrame {
 		JButton restart;
 		restart = new JButton("Redémarrer");
 		restart.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 2;
+		gbcWest.gridy += 1;
 		westButtonPan.add(restart, gbcWest);
 		restart.addActionListener(new ChronometreRestartControlleur(chronometre, start));
 
@@ -165,22 +164,8 @@ public class FenetrePrincipale extends JFrame {
 			}
 		});
 		ajouterJoueur.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 3;
+		gbcWest.gridy += 1;
 		westButtonPan.add(ajouterJoueur, gbcWest);
-
-		//Bouton pour importer des joueurs
-		JButton ImporterJoueurs = new JButton("Importer...");
-		ImporterJoueurs.addActionListener(new ImporterJoueursControlleur(tournoi, this));
-		ImporterJoueurs.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 4;
-		westButtonPan.add(ImporterJoueurs, gbcWest);
-
-		//Bouton pour exporter les joueurs
-		JButton ExporterJoueurs = new JButton("Exporter...");
-		ExporterJoueurs.addActionListener(new ExporterJoueursControlleur(tournoi));
-		ExporterJoueurs.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 5;
-		westButtonPan.add(ExporterJoueurs, gbcWest);
 
 		//Bouton Ajout match (ajout manuel d'un score entre deux joueurs :
 		JButton newMatch = new JButton("Nouveau match");
@@ -191,28 +176,28 @@ public class FenetrePrincipale extends JFrame {
 			}
 		});
 		newMatch.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 6;
+		gbcWest.gridy += 1;
 		westButtonPan.add(newMatch, gbcWest);
 
 		//Bouton reset tout les scores a zero
 		JButton reset = new JButton("reset scores");
 		reset.addActionListener(new ResetControlleur(this));
 		reset.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 7;
+		gbcWest.gridy += 1;
 		westButtonPan.add(reset, gbcWest);
 
 		//Bouton pour faire sortir/entrer les jouers du main.tournoi sans les supprimer
 		JButton setPaires = new JButton("Nouveau Tour");
 		setPaires.addActionListener(new NouveauTourControleur(this));
 		setPaires.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 9;
+		gbcWest.gridy += 1;
 		westButtonPan.add(setPaires, gbcWest);
 
 		//Bouton pour voir le classement
 		JButton classement = new JButton("Classement");
 		classement.addActionListener(new VoirClassementControleur(tournoi));
 		classement.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 10;
+		gbcWest.gridy += 1;
 		westButtonPan.add(classement, gbcWest);
 
 		//Bouton pour voir le classement
@@ -224,7 +209,7 @@ public class FenetrePrincipale extends JFrame {
 			}
 		});
 		nbTerr.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 11;
+		gbcWest.gridy += 1;
 		westButtonPan.add(nbTerr, gbcWest);
 
 
