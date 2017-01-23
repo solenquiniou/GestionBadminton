@@ -756,6 +756,7 @@ public class Tournoi {
 		return res;
 	}
 
+
 	/** Importe des joueurs a partir d'infichier
 	 * @param filepath path d'un fichier
 	 *
@@ -768,7 +769,6 @@ public class Tournoi {
 			}
 		}
 	}
-
 
 }
 

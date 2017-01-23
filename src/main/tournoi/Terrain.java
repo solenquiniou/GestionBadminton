@@ -76,18 +76,17 @@ public class Terrain{
 	  return s;
   }
 
-  public String j1(){
-    return this.match.getPaire1().getJoueur1().getNom() + this.match.getPaire1().getJoueur1().getNom();
+  public Joueur j1(){
+    return this.match.getPaire1().getJoueur1();
   }
-  public String j2(){
-    return this.match.getPaire1().getJoueur1().getNom() + this.match.getPaire1().getJoueur1().getNom();
+  public Joueur j2(){
+    return this.match.getPaire1().getJoueur2();
   }
-  public String j3(){
-    return this.match.getPaire1().getJoueur1().getNom() + this.match.getPaire1().getJoueur1().getNom();
+  public Joueur j3(){
+    return this.match.getPaire2().getJoueur1();
   }
-  public String j4(){
-    return this.match.getPaire1().getJoueur1().getNom() + this.match.getPaire1().getJoueur1().getNom();
+  public Joueur j4(){
+    return this.match.getPaire2().getJoueur2();
   }
-  
 
 }

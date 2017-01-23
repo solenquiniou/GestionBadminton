@@ -48,7 +48,7 @@ public class NouveauTournoiControleur implements ActionListener {
 		}
 		//On vérifie qu'on peut créer un main.tournoi avec les informations indiquées
 		catch(NomVideException e1){
-			JOptionPane.showMessageDialog(null, "Entrez un nom de main.tournoi", "Erreur", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Entrez un nom de tournoi", "Erreur", JOptionPane.ERROR_MESSAGE);
 		} 
 		catch(NbTerrainNeg e1){
 			JOptionPane.showMessageDialog(null, "Entrez un nombre de terrain positif", "Erreur", JOptionPane.ERROR_MESSAGE);
