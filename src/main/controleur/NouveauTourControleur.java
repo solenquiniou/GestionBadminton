@@ -21,6 +21,10 @@ public class NouveauTourControleur implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try{
+            if(tournoi.getNbTour()<0){
+                this.tournoi.finirTour();//enregistre le tour et nettoye les paires
+            }
+
             this.tournoi.nouveauTour();
             this.vue.actualiserTerrains();
             //this.main.vue.afficherTournoi();
@@ -32,3 +36,6 @@ public class NouveauTourControleur implements ActionListener {
 
     }
 }
+
+
+

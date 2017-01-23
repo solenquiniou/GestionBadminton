@@ -96,6 +96,15 @@ public class TestTournoi {
                 System.out.println(t.j1().toString() + "   +   " + t.j2().toString() + "   VS   " + t.j3().toString() + "   +   " + t.j4().toString());
             }
 
+
+            System.out.println(" \n Echange avec quelqu'un  de la paire opposée dans le mëme match\n");
+            prec = t1.getTerrain(2).j1();
+            nouv = t1.getTerrain(2).j3();
+            t1.changerJoueurs(prec, nouv);
+            for (Terrain t : t1.getTerrains()) {
+                System.out.println(t.j1().toString() + "   +   " + t.j2().toString() + "   VS   " + t.j3().toString() + "   +   " + t.j4().toString());
+            }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
 
