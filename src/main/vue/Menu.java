@@ -1,6 +1,7 @@
 package main.vue;
 
-import main.tournoi.Tournoi;
+import main.controleur.ExporterJoueursControlleur;
+import main.controleur.ImporterJoueursControlleur;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ public class Menu extends JMenuBar{
 	//Il n'est pas possible de proceder à certaines actions tant que le main.tournoi n'a pas été crée ou affiché
 	private ArrayList<JMenuItem> aAutoriser;
 
-	public Menu(final Tournoi t, final FenetrePrincipale fen){
+	public Menu(final FenetrePrincipale fen){
 		super();
 		//On cr�er le menu fichier
 		JMenu menuFichier = new JMenu("Fichier");
@@ -38,6 +39,19 @@ public class Menu extends JMenuBar{
 		JMenuItem ouvrir = new JMenuItem("Ouvrir...");
 		ouvrir.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 		menuFichier.add(ouvrir);
+		menuFichier.addSeparator();
+
+		//Importer des joueurs
+		JMenuItem importerJ = new JMenuItem("Importer des joueurs");
+		importerJ.addActionListener(new ImporterJoueursControlleur(fen));
+		importerJ.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+		menuFichier.add(importerJ);
+
+		//Exporter des joueurs
+		JMenuItem exporterJ = new JMenuItem("Exporter des joueurs");
+		exporterJ.addActionListener(new ExporterJoueursControlleur(fen));
+		exporterJ.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+		menuFichier.add(exporterJ);
 		menuFichier.addSeparator();
 
 		//On creer le bouton enregister

@@ -29,7 +29,7 @@ public class ChronometreStartControlleur implements ActionListener {
             bouton.setText("Lancer");
         } else {
             temps.start();
-            bouton.setText("Pauser");
+            bouton.setText("Stopper");
         }
     }
 }

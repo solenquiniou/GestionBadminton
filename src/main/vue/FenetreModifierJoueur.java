@@ -1,8 +1,8 @@
 package main.vue;
 
+import main.controleur.SupprimerJoueurBoutonControlleur;
 import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
-import main.controleur.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,7 +79,7 @@ public class FenetreModifierJoueur extends JFrame {
 		modifier.addActionListener(new ModifierJoueurBoutonControlleur(this, id));
 		JButton supprimer = new JButton("Supprimer le joueur");
 		supprimer.addActionListener(new SupprimerJoueurBoutonControlleur(this, id));
-		
+
 		JPanel corePanel = new JPanel();
 		corePanel.setLayout(new BorderLayout());
 		

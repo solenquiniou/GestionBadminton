@@ -3,6 +3,7 @@ package main.controleur;
 import main.tournoi.Tournoi;
 import main.vue.FenetrePrincipale;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +23,12 @@ public class ResetControlleur  implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        tournoi.resetAll();
+        Object[] options = { "OUI", "ANNULER" };
+        int choix = JOptionPane.showOptionDialog(null, "Êtes vous sûr de vouloir remettre les scores à zéro?", "Vérification",
+                                     JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        if(choix == 0) {
+            tournoi.resetAll();
+        }
         vue.actualiserJoueurs();
     }
 }

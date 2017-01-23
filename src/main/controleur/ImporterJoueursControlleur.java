@@ -28,8 +28,8 @@ public class ImporterJoueursControlleur implements ActionListener {
      * @param tournoi le main.tournoi où importer les joueurs
      * @param vue la main.vue qu'il faut rafraichir lors de l'ajout des joueurs
      */
-    public ImporterJoueursControlleur(Tournoi tournoi , FenetrePrincipale vue) {
-        this.tournoi = tournoi;
+    public ImporterJoueursControlleur(FenetrePrincipale vue) {
+        this.tournoi = vue.getTournoi();
         this.vue = vue;
     }
 

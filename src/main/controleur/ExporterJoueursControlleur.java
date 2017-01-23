@@ -2,6 +2,7 @@ package main.controleur;
 
 import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
+import main.vue.FenetrePrincipale;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,10 +21,10 @@ public class ExporterJoueursControlleur implements ActionListener {
 
     /** Constructeur de la classe ExporterJoueursControlleur
      *
-     * @param tournoi le main.tournoi où trouver les joueurs à exporter
+     * @param vue la vue principale
      */
-    public ExporterJoueursControlleur(Tournoi tournoi) {
-        this.tournoi = tournoi;
+    public ExporterJoueursControlleur(FenetrePrincipale vue) {
+        this.tournoi = vue.getTournoi();
     }
 
     @Override
