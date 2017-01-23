@@ -118,6 +118,7 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
+
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -142,6 +143,7 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
+
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -166,6 +168,7 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
+
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -189,6 +192,7 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
+
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -216,6 +220,7 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
+
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);
@@ -240,6 +245,7 @@ public class MethodeTournoi {
                     }
                 }
                 if (paireChoisie != null) {
+
                     res.add(new Paire(paireChoisie.getJoueur1(), paireChoisie.getJoueur2()));
                     paireChoisie.getJoueur1().setDansPaire(true);
                     paireChoisie.getJoueur2().setDansPaire(true);

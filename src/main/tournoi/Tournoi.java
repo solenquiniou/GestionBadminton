@@ -32,7 +32,9 @@ public class Tournoi {
 	private String nom;
 	private ArrayList<Tour> tour;
 
-
+	public void setNbrTerrains(int nbrTerrains) {
+		this.nbrTerrains = nbrTerrains;
+	}
 
 	/**
 	 * Constructeur d'un main.tournoi

@@ -215,6 +215,18 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.gridy = 10;
 		westButtonPan.add(classement, gbcWest);
 
+		//Bouton pour voir le classement
+		JButton nbTerr = new JButton("Nb Terrains");
+		nbTerr.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FenetreNbTerrain(getTournoi());
+			}
+		});
+		nbTerr.setPreferredSize(new Dimension(140, 40));
+		gbcWest.gridy = 11;
+		westButtonPan.add(nbTerr, gbcWest);
+
 
 
 		westButtonPan.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.gray));
