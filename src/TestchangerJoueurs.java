@@ -1,6 +1,6 @@
 import org.junit.Test;
-import tournoi.Terrain;
-import tournoi.Tournoi;
+import main.tournoi.Terrain;
+import main.tournoi.Tournoi;
 
 import static org.junit.Assert.assertEquals;
 
