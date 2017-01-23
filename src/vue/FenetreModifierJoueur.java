@@ -212,7 +212,7 @@ public class FenetreModifierJoueur extends JFrame {
 	{
 		int age = this.age.getSelectedIndex(); // 0 : -18 jeune / 1 : 18-35 senior / 2 : 35+ veteran
 		String nom = this.nom.getText(), prenom = this.prenom.getText();
-		boolean sexe = fem.isSelected();
+		boolean sexe = !fem.isSelected();
 		boolean nouve = nouv.isSelected();
 		int niveau = this.niveau.getSelectedIndex();
 		this.tournoi.modifierJoueur(id, nom, prenom, age, sexe, nouve, niveau);

@@ -7,6 +7,7 @@ import exception.TournoiVideException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.Matcher;
@@ -23,9 +24,7 @@ import java.util.regex.Pattern;
 public class Tournoi {
 
 	private ArrayList<Joueur> nouveauxJoueurs;
-	private ArrayList<Joueur> nouveauxJoueursClasses;
 	private ArrayList<Joueur> anciensJoueurs;
-	private ArrayList<Joueur> anciensJoueursClasses;
 	private ArrayList<Terrain> terrains;
 	private ArrayList<Paire> paires;
 	private int nbrTerrains;
@@ -125,7 +124,7 @@ public class Tournoi {
 	 *
 	 * @return la liste des terrains
 	 */
-	public ArrayList getTerrains() {
+	public ArrayList<Terrain> getTerrains() {
 		return this.terrains;
 	}
 	/**
@@ -309,7 +308,6 @@ public class Tournoi {
 			terrains.add(i, new Terrain(i,matchs.get(i)));
 		}
 
-
 		//On affiche les matchs pour voir si tout est en ordre
 		String res = "";
 		for (int i1 = 0; i1 < Math.min(this.terrains.size(), matchs.size()); i1++) {
@@ -445,56 +443,39 @@ public class Tournoi {
 	 * pour intervertir facilement deux joueurs qui jouent déjà
 	 * On selectionne le premier Joueur et on souhaite le remplacer par le deuxième. On regarde si le deuxième joue ou pas
 	 *
-	 * @param j1 le nom du premier joueur
-	 * @param j2 le no du deuxieme joueeur
+	 * @param jprec le joueur précedent
+	 * @param jnouv le nouveau joueur
 	 * @return true si l'opération est un succès, false sinon
 	 */
-	public Boolean changerJoueurs(Joueur j1, Joueur j2) {
-		if(j1.equals(j2)){
+	public Boolean changerJoueurs(Joueur jprec, Joueur jnouv) {
+		if(jprec.equals(jnouv)){
 			return false;
 		}
-		int idJ2 = j2.getId();
-		int idJ1 = j1.getId();
-		//On regarde si le joueur de remplacement est attribué a une paire
-		if(this.getJoueur(idJ2).getDansPaire()){
-			//si le deuxieme joeur est J1 dans sa paire
-			if(this.getPaireContenant(idJ2).getJoueur1()==this.getJoueur(idJ2)){
-				this.getPaireContenant(idJ2).setJoueur1(this.getJoueur(idJ1));
-				//si le premier joueur etai jouer 1
-				if(this.getPaireContenant(idJ1).getJoueur1()==this.getJoueur(idJ1)){
-					this.getPaireContenant(idJ1).setJoueur1(this.getJoueur(idJ2));
+		Paire pprec = this.getPaireContenant(jprec);
+		Paire pnouv = this.getPaireContenant(jnouv);
+		//si le nouveau joueur est J1 dans sa paire
+			if(pnouv.getJoueur1()==jnouv){
+				//Si l'ancien joueur est j1
+				if(pprec.getJoueur1() == jprec){
+					pprec.setJoueur1(jnouv);
+					pnouv.setJoueur1(jprec);
 				}
-				//si le premier joueur etai jouer 2
-				if(this.getPaireContenant(idJ1).getJoueur2()==this.getJoueur(idJ1)){
-					this.getPaireContenant(idJ1).setJoueur2(this.getJoueur(idJ2));
+				else{
+					pprec.setJoueur2(jnouv);
+					pnouv.setJoueur1(jprec);
 				}
-			}
-			//si  deuxieme joeur est J2 dans sa paire
-			if(this.getPaireContenant(idJ2).getJoueur2()==this.getJoueur(idJ2)){
-				this.getPaireContenant(idJ2).setJoueur2(this.getJoueur(idJ1));
-				//si le premier joueur etai jouer 1
-				if(this.getPaireContenant(idJ1).getJoueur1()==this.getJoueur(idJ1)){
-					this.getPaireContenant(idJ1).setJoueur1(this.getJoueur(idJ2));
+			}else//si  le nouveau joueur est j2
+				if(pprec.getJoueur1() == jprec){
+					pprec.setJoueur1(jnouv);
+					pnouv.setJoueur2(jprec);
 				}
-				//si le premier joueur etai jouer 2
-				if(this.getPaireContenant(idJ1).getJoueur2()==this.getJoueur(idJ1)){
-					this.getPaireContenant(idJ1).setJoueur2(this.getJoueur(idJ2));
+				else{
+					pprec.setJoueur2(jnouv);
+					pnouv.setJoueur2(jprec);
 				}
-			}
-		}
-		else{
-			//si le premier joueur etai j1
-			if(this.getPaireContenant(idJ1).getJoueur1()==this.getJoueur(idJ1)){
-				this.getPaireContenant(idJ1).setJoueur1(this.getJoueur(idJ2));
-				this.getJoueur(idJ2).setDansPaire(true);
-				this.getJoueur(idJ1).setDansPaire(false);
-			}
-			//si le premier joueur etai jouer 2
-			if(this.getPaireContenant(idJ1).getJoueur2()==this.getJoueur(idJ1)){
-				this.getPaireContenant(idJ1).setJoueur2(this.getJoueur(idJ2));
-				this.getJoueur(idJ2).setDansPaire(true);
-				this.getJoueur(idJ1).setDansPaire(false);
-			}
+			{
+
+
 
 		}
 		return true;
@@ -513,18 +494,18 @@ public class Tournoi {
 
 	/**
 	 * renvoie la paire contenant un joueur donné null sinon
-	 * @param idJ l'id du  joueur
+	 * @param j le joueur
 
 	 * @return null si le joueur n'est pas dans une paire la paire sinon
 	 */
-	public Paire getPaireContenant(int idJ){
+	public Paire getPaireContenant(Joueur j){
+		Paire ret = null;
 		for (int i = 0; i < this.paires.size(); i++) {
-			if (idJ == this.paires.get(i).getJoueur1().getId() || idJ == this.paires.get(i).getJoueur2().getId()) {
-				return this.paires.get(i);
+			if (j == this.paires.get(i).getJoueur1() || j == this.paires.get(i).getJoueur2()) {
+				ret =  this.paires.get(i);
 			}
 		}
-		return null;
-
+		return ret;
 	}
 
 	/**
@@ -774,6 +755,21 @@ public class Tournoi {
 
 		return res;
 	}
+
+	/** Importe des joueurs a partir d'infichier
+	 * @param filepath path d'un fichier
+	 *
+	 */
+	public void importer(String filepath ) throws IOException, ImportExportException {
+		ArrayList<Joueur> listeJoueur = csvReader(filepath);
+		for (Joueur j: listeJoueur) {
+			if (!getAnciensJoueurs().contains(j) && !getNouveauxJoueurs().contains(j)) {
+				ajouterJoueur(j);
+				ajouterJoueurTable();
+			}
+		}
+	}
+
 
 }
 
