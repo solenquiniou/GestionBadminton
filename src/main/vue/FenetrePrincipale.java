@@ -470,9 +470,9 @@ public class FenetrePrincipale extends JFrame {
 		this.boxTerrains.add(j3);
 		this.boxTerrains.add(j4);
 		j1.addItemListener(new InverserJoueurControlleur(j1,this));
-		j2.addItemListener(new InverserJoueurControlleur(j1,this));
-		j3.addItemListener(new InverserJoueurControlleur(j1,this));
-		j4.addItemListener(new InverserJoueurControlleur(j1,this));
+		j2.addItemListener(new InverserJoueurControlleur(j2,this));
+		j3.addItemListener(new InverserJoueurControlleur(j3,this));
+		j4.addItemListener(new InverserJoueurControlleur(j4,this));
 
 		return  terrain;}
 

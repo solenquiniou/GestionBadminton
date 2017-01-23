@@ -71,7 +71,7 @@ public class Terrain{
   public String toString(){
 	  String s = this.numero + " ";
 	  if(this.match==null){
-		  s+="OUI";
+		  s+="LIBRE";
 	  }
 	  return s;
   }

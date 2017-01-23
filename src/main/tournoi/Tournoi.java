@@ -27,6 +27,7 @@ public class Tournoi {
 	private ArrayList<Joueur> anciensJoueurs;
 	private ArrayList<Terrain> terrains;
 	private ArrayList<Paire> paires;
+	private ArrayList<Match> matchs;
 	private int nbrTerrains;
 	private String nom;
 	private ArrayList<Tour> tour;
@@ -50,6 +51,7 @@ public class Tournoi {
 		this.anciensJoueurs = new ArrayList<Joueur>();
 		this.terrains = new ArrayList<>();
 		this.paires = new ArrayList<>();
+		this.matchs = new ArrayList<Match>();
 		this.nbrTerrains = nbrTerrains;
 		this.nom = leNom;
 		initialiserTerrains();
@@ -250,7 +252,7 @@ public class Tournoi {
 		trierPaires();
 		//On créer une liste de matchs avec les paires couplées par niveau
 		int i;
-		ArrayList<Match> matchs = new ArrayList<Match>();
+		this.matchs = new ArrayList<Match>();
 		// prise en compte de qui a deja jouer avec qui
 		for(Paire paire1 : this.paires)
 		{
@@ -310,9 +312,6 @@ public class Tournoi {
 	 */
 	public void nouveauTour() throws TournoiVideException {
 		this.creerPaires();
-		for (Paire paire: paires) {
-
-		}
 		this.attribuerMatchs();
 	}
 
@@ -421,6 +420,21 @@ public class Tournoi {
 		Pattern pattern = Pattern.compile("Hugo");
 		Matcher matcher = pattern.matcher("Hugo Eti�vant");
 	}
+	/**
+	 *Retourne le terrqin auquel un joueur est associé
+	 * @param j le  joueur
+	 * @return tle terrain, null si le joueur ne joue pas a ce tour
+	 */
+	public Terrain getTerrainJoueur(Joueur j){
+		Terrain ret = null;
+		for (Terrain t : this.terrains)
+		{
+			if(t.j1()==j||t.j2()==j||t.j3()==j||t.j4()==j){
+				ret = t;
+			}
+		}
+		return ret;
+	}
 
 	/**
 	 * pour intervertir facilement deux joueurs qui jouent déjà
@@ -434,6 +448,8 @@ public class Tournoi {
 		if(jprec.equals(jnouv)){
 			return false;
 		}
+		Terrain tprec = getTerrainJoueur(jprec);
+		Terrain tnouv = getTerrainJoueur(jprec);
 		Paire pprec = this.getPaireContenant(jprec);
 		Paire pnouv = this.getPaireContenant(jnouv);
 		//si le nouveau joueur est J1 dans sa paire
