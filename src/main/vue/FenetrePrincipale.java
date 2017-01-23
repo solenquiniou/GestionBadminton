@@ -113,7 +113,7 @@ public class FenetrePrincipale extends JFrame {
 					case 4:
 						return String.class;
 					default:
-						return String.class;
+						return Integer.class;
 				}
 			}
 		};
@@ -215,12 +215,7 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.gridy = 10;
 		westButtonPan.add(classement, gbcWest);
 
-		//Bouton à retirer: confirmation de tour
-		JButton validerTour = new JButton("Valider le tour");
-		validerTour.addActionListener(new ValiderTourControlleur(this));
-		validerTour.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 11;
-		westButtonPan.add(validerTour, gbcWest);
+
 
 		westButtonPan.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.gray));
 

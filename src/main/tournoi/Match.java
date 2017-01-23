@@ -90,7 +90,6 @@ public class Match {
 	 *
 	 */
 	public int getScore1(){
-		System.out.println("getScore1 classe Match : "+this.score1);
 		return this.score1;
 	}
 
@@ -124,10 +123,8 @@ public class Match {
 		*/
 	public void determinerVainqueur(int s1,int s2){
 		this.score1 = s1;
-		System.out.println("determinerVainqueur classe Match : "+this.score1);
 		this.score2 = s2;
 		if(s1>s2){
-			System.out.println("s1>s2");
 			this.vainqueur = paire1;
 		}else if (s1<s2){
 			this.vainqueur = paire2;
@@ -165,7 +162,6 @@ public class Match {
 						paire2.setScore(diff);
 					}
 				}
-			System.out.println("modifierScores classe Match : "+this.score1);
 			}
 
 	/** Redéfinition de la méthode toString()

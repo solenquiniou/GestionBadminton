@@ -14,10 +14,10 @@ public class ComparateurMatchPrio implements Comparator<Match> {
      */
     @Override
     public int compare(Match p1, Match p2) {
-        if (p1.prio() > p2.prio()) {
+        if (p1.prio() < p2.prio()) {
             return 1;
         } else {
-            if (p1.prio() < p2.prio()) {
+            if (p1.prio() > p2.prio()) {
                 return -1;
             } else {
                 return 0;
