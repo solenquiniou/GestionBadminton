@@ -1,5 +1,6 @@
 package main.controleur;
 
+import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
 import main.vue.FenetrePrincipale;
 
@@ -34,11 +35,11 @@ public class InverserJoueurControlleur implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String joueur2 = (String)((JComboBox)e.getSource()).getSelectedItem();
-        int idJ2 = tournoi.chercherJoueur(joueur2);
-        int idJ1 = tournoi.chercherJoueur(joueurCourant);
+        Joueur idJ2 = tournoi.chercherJoueur(joueur2);
+        Joueur idJ1 = tournoi.chercherJoueur(joueurCourant);
         System.out.println("j1 :\t"+joueurCourant +"\t"+idJ1);
         System.out.println("j2 :\t"+joueur2 +"\t"+idJ2);
-       // if(!main.tournoi.changerJoueurs(idJ1, idJ2))
+        if(!tournoi.changerJoueurs(idJ1, idJ2))
             JOptionPane.showMessageDialog(vue,"Erreur");
         vue.setVerif(0);
         vue.actualiserJoueurs();

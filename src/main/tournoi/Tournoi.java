@@ -183,24 +183,7 @@ public class Tournoi {
 		}
 	}
 
-	/**
-	 * Appelée pour démarrer un tour,
-	 * Comprend un mélange des listes de joueurs,
-	 * La création des paires,
-	 * La création des matchs à partir des paires
-	 *
-	 * @throws TournoiVideException s'il n'y a pas de joueurs
-	 */
-	public void demarrerTour() throws TournoiVideException {
-		trierAnciensJoueurs();
-		trierNouveauxJoueurs();
-		this.creerPaires();
-		for (int i = 0; i < this.terrains.size(); i++) {
-			(this.terrains.get(i)).setMatch(null);
-		}
-		this.attribuerMatchs();
 
-	}
 
 	/**
 	 *Tri des nouveau joueurs par scores
@@ -514,19 +497,20 @@ public class Tournoi {
 	 * @param nomPrenom le nom plus un espace plus le prénom du joueur recherché
 	 * @return l'id du joueur recherché ou -1 si non trouvé
 	 */
-	public int chercherJoueur(String nomPrenom) {
+	public Joueur chercherJoueur(String nomPrenom) {
+		Joueur ret = null;
 		for (int i = 0; i < anciensJoueurs.size(); i++) {
 			Joueur j = anciensJoueurs.get(i);
 			if ((j.getNom() + " " + j.getPrenom()).equals(nomPrenom))
-				return j.getId();
+				ret = j;
 		}
 		for (int i = 0; i < nouveauxJoueurs.size(); i++) {
 			Joueur j = nouveauxJoueurs.get(i);
 			if ((j.getNom() + " " + j.getPrenom()).equals(nomPrenom))
-				return j.getId();
+				ret =  j;
 		}
 		// Le joueur n'existe pas car les ID sont >=0
-		return -1;
+		return ret;
 	}
 
 	/**

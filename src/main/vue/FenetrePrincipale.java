@@ -202,16 +202,6 @@ public class FenetrePrincipale extends JFrame {
 		westButtonPan.add(reset, gbcWest);
 
 		//Bouton pour faire sortir/entrer les jouers du main.tournoi sans les supprimer
-		JButton status = new JButton("Présence/Absence");
-		status.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) { fenetreStatJoeur();
-				}});
-		status.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 8;
-		westButtonPan.add(status, gbcWest);
-
-		//Bouton pour faire sortir/entrer les jouers du main.tournoi sans les supprimer
 		JButton setPaires = new JButton("Nouveau Tour");
 		setPaires.addActionListener(new NouveauTourControleur(this));
 		setPaires.setPreferredSize(new Dimension(140, 40));
@@ -273,7 +263,7 @@ public class FenetrePrincipale extends JFrame {
 	public void fenetreAjoutMatch(){
 		new FenetreAjoutMatch("Entrer nouveau Match",tournoi,this);
 	}
-	public void fenetreStatJoeur(){ new FenetreStatJoueur("Modifier diponibiliter Joueur",this);}
+
 
 
 

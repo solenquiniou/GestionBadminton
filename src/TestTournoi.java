@@ -87,7 +87,7 @@ public class TestTournoi {
             for (Terrain t : t1.getTerrains()) {
                 System.out.println(t.j1().toString() + "   +   " + t.j2().toString() + "   VS   " + t.j3().toString() + "   +   " + t.j4().toString());
             }
-
+            System.out.println(" \n Echange avec quelqu'un qui ne joue pas\n");
             //echange avec quelqu'un qui ne joue pas
             prec = t1.getTerrain(2).j1();
             nouv = t1.chercherJoueur("MASSON Loïc");
