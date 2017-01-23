@@ -5,11 +5,11 @@ import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
 import main.vue.FenetrePrincipale;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.*;
 
 /** La classe ImporterJoueursControlleur permet d'importer tous les joueurs contenus dans un fichier CSV
  * respectant cet ordre à chaque ligne :
@@ -48,9 +48,12 @@ public class ImporterJoueursControlleur implements ActionListener {
                 for (Joueur j: listeJoueur) {
                     if (!tournoi.getAnciensJoueurs().contains(j) && !tournoi.getNouveauxJoueurs().contains(j)) {
                         tournoi.ajouterJoueur(j);
+
                         vue.ajouterJoueurTable();
                     }
                 }
+
+
             } catch (java.io.FileNotFoundException e2) {
                 JOptionPane.showMessageDialog(null, "Le fichier demandé n'a pas été trouvé", "Erreur", JOptionPane.ERROR_MESSAGE);
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e4) {

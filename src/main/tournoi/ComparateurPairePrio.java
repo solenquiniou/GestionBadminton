@@ -14,9 +14,9 @@ public class ComparateurPairePrio implements Comparator<Paire> {
      */
     @Override
     public int compare(Paire p1, Paire p2) {
-        if(p1.prio()>p2.prio()){return 1;}
+        if(p1.prio()<p2.prio()){return 1;}
         else{
-            if(p1.prio()<p2.prio()){return -1;}
+            if(p1.prio()>p2.prio()){return -1;}
             else{
                 return 0;
 

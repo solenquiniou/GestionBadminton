@@ -113,7 +113,7 @@ public class FenetrePrincipale extends JFrame {
 					case 4:
 						return String.class;
 					default:
-						return String.class;
+						return Integer.class;
 				}
 			}
 		};
@@ -202,16 +202,6 @@ public class FenetrePrincipale extends JFrame {
 		westButtonPan.add(reset, gbcWest);
 
 		//Bouton pour faire sortir/entrer les jouers du main.tournoi sans les supprimer
-		JButton status = new JButton("Présence/Absence");
-		status.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) { fenetreStatJoeur();
-				}});
-		status.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 8;
-		westButtonPan.add(status, gbcWest);
-
-		//Bouton pour faire sortir/entrer les jouers du main.tournoi sans les supprimer
 		JButton setPaires = new JButton("Nouveau Tour");
 		setPaires.addActionListener(new NouveauTourControleur(this));
 		setPaires.setPreferredSize(new Dimension(140, 40));
@@ -225,12 +215,7 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.gridy = 10;
 		westButtonPan.add(classement, gbcWest);
 
-		//Bouton à retirer: confirmation de tour
-		JButton validerTour = new JButton("Valider le tour");
-		validerTour.addActionListener(new ValiderTourControlleur(this));
-		validerTour.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy = 11;
-		westButtonPan.add(validerTour, gbcWest);
+
 
 		westButtonPan.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.gray));
 
@@ -273,7 +258,7 @@ public class FenetrePrincipale extends JFrame {
 	public void fenetreAjoutMatch(){
 		new FenetreAjoutMatch("Entrer nouveau Match",tournoi,this);
 	}
-	public void fenetreStatJoeur(){ new FenetreStatJoueur("Modifier diponibiliter Joueur",this);}
+
 
 
 
@@ -449,11 +434,8 @@ public class FenetrePrincipale extends JFrame {
 				//System.out.println("moins de joueur que de terrain?");
 			}
 		}
-		//controlleurs de l'échange de joueur
-		j1.addItemListener( new SelectonAutreJoueurMatch(j1, this,1,i));
-		j2.addItemListener( new SelectonAutreJoueurMatch(j2, this,2,i));
-		j3.addItemListener( new SelectonAutreJoueurMatch(j3, this,3,i));
-		j4.addItemListener( new SelectonAutreJoueurMatch(j4, this,4,i));
+
+
 		JSpinner score2 = new JSpinner(new SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
 		JPanel equipeDeux = new JPanel(new GridBagLayout());
 		j3.setPreferredSize(new Dimension(125, 25));
@@ -482,10 +464,10 @@ public class FenetrePrincipale extends JFrame {
 		this.boxTerrains.add(j2);
 		this.boxTerrains.add(j3);
 		this.boxTerrains.add(j4);
-		/*j1.addItemListener(new ComboBoxSwapControlleur(this, j1));
-		j2.addItemListener(new ComboBoxSwapControlleur(this, j2));
-		j3.addItemListener(new ComboBoxSwapControlleur(this, j3));
-		j4.addItemListener(new ComboBoxSwapControlleur(this, j4));*/
+		j1.addItemListener(new InverserJoueurControlleur(j1,this));
+		j2.addItemListener(new InverserJoueurControlleur(j2,this));
+		j3.addItemListener(new InverserJoueurControlleur(j3,this));
+		j4.addItemListener(new InverserJoueurControlleur(j4,this));
 
 		return  terrain;}
 
