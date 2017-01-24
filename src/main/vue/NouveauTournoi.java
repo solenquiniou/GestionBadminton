@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class NouveauTournoi extends JDialog {
 	public NouveauTournoi(FenetrePrincipale o){
@@ -17,7 +19,9 @@ public class NouveauTournoi extends JDialog {
 		container.setLayout(new BorderLayout());
 		
 		//on cr�er les �l�ments
-		JTextField nom = new JTextField();
+		Date aujd = new Date();
+		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy");
+		JTextField nom = new JTextField("Tournoi du "+formater.format(aujd));
 		//On crée un Jspinner ayant pour valeur de base 1, un minimum de 1, un maximum de Integer.MAX_VALUE et un pas de 1
 		JSpinner nbTerrains = new JSpinner(new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1));
 		JLabel nomLabel = new JLabel("Nom : ", SwingConstants.RIGHT);
