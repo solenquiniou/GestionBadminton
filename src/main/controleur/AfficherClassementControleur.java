@@ -1,5 +1,6 @@
 package main.controleur;
 
+import main.tournoi.Tournoi;
 import main.vue.FenetreClassement;
 
 import javax.swing.*;
@@ -11,15 +12,20 @@ public class AfficherClassementControleur implements ActionListener
 {
     private FenetreClassement vue;
     private JComboBox cat;
+    private Tournoi tournoi;
 
     public AfficherClassementControleur(FenetreClassement fenetreClassement, JComboBox categorie)
     {
-        vue = fenetreClassement;
-        cat = categorie;
-    }
+            vue = fenetreClassement;
+            cat = categorie;
 
+
+    }
     public void actionPerformed(ActionEvent e)
     {
-        this.vue.afficherJoueur((String) cat.getSelectedItem());
+
+            this.vue.afficherJoueur((String) cat.getSelectedItem());
+
     }
+
 }
