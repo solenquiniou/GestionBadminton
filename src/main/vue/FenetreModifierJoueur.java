@@ -23,6 +23,8 @@ public class FenetreModifierJoueur extends JFrame {
 	private JCheckBox nouv;
 	private JCheckBox present;
 
+	static private FenetreModifierJoueur derniereFenetre;
+
 	/**
 	 * constructeur de la fenêtre d'ajout d'un joueur
 	 * @param titre le titre à donner à la fenêtre
@@ -34,6 +36,9 @@ public class FenetreModifierJoueur extends JFrame {
 		this.tournoi = tournoi;
 		this.vue = vue;
 		this.id = id;
+
+		if (this.derniereFenetre != null)
+			this.derniereFenetre.dispose();
 
 		Joueur joueur = this.tournoi.getJoueur(id);
 
@@ -132,6 +137,8 @@ public class FenetreModifierJoueur extends JFrame {
 		this.setTitle(titre);
 		this.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()-corePanel.getWidth())/2,(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-corePanel.getHeight())/2);
 		this.setResizable(false);
+
+		derniereFenetre = this;
 	}
 
 	/**
