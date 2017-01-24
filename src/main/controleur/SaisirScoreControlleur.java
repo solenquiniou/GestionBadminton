@@ -1,12 +1,11 @@
 package main.controleur;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
-
 import main.tournoi.Tournoi;
 import main.vue.FenetrePrincipale;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SaisirScoreControlleur implements ActionListener{
 	
@@ -66,42 +65,33 @@ public class SaisirScoreControlleur implements ActionListener{
 	 * @return true si les scores sont valables false sinon
      */
 	private boolean verifier(){
+		boolean ret_val = true;
 		if(this.tournoi.terrainVide(this.numeroTerrain)){
 			JOptionPane.showMessageDialog(vue, "Il manque un joueur");
-			return false;
+			ret_val= false;
 		}
 
 		if(!this.tournoi.paireValide(this.numeroTerrain)){
 			JOptionPane.showMessageDialog(vue, "Vous avez modifier les paires et maintenant il y deux fois le même joueur dans ce match ;(");
-			return false;
+			ret_val= false;
 		}
 
-		try {
-			int test = score1;
-			if(test<0){
-				JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
-				return false;
-			}
-				
-		}
-		catch (NumberFormatException e){
-			JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
-			return false;
-		}
-		try {
-			int test = score1;
-			if(test<0){
-				JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
-				return false;
-			}
 
-		}
-		catch (NumberFormatException e){
+		int test = score1;
+		if(test<0){
 			JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
-			return false;
+			ret_val= false;
 		}
-		
-		return true;
+
+
+		test = score2;
+		if(test<0){
+			JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
+			ret_val= false;
+		}
+
+
+		return ret_val;
 	}
 
 }

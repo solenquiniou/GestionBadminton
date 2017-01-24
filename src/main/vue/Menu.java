@@ -17,7 +17,9 @@ public class Menu extends JMenuBar{
 
 	public Menu(final FenetrePrincipale fen){
 		super();
-		//On cr�er le menu fichier
+		//////////////////////////////
+		//Dans le menu Fichier///////
+		/////////////////////////////
 		JMenu menuFichier = new JMenu("Fichier");
 		JMenu menuEdition = new JMenu("Édition");
 		//On inctancie la liste des item à auatoriser
@@ -78,15 +80,15 @@ public class Menu extends JMenuBar{
 		exporter.setEnabled(false);
 		this.aAutoriser.add(exporter);
 
-		//Dans le menu édition
-
-
-
+		//////////////////////////////
+		//Dans le menu édition///////
+		/////////////////////////////
+		//ajouter joueur
 		JMenuItem ajouterJoueur = new JMenuItem("Nouveau joueur");
 		ajouterJoueur.setAccelerator(KeyStroke.getKeyStroke('J', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-		ajouterJoueur.addActionListener(new ActionListener(){
+		ajouterJoueur.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 				fen.fenetreAjout();
 			}
 
@@ -94,6 +96,20 @@ public class Menu extends JMenuBar{
 		ajouterJoueur.setEnabled(false);
 		menuEdition.add(ajouterJoueur);
 		this.aAutoriser.add(ajouterJoueur);
+
+		///editer nb terrain
+		JMenuItem nbTerrain = new JMenuItem("Changer Nombre de Terrains");
+		nbTerrain.setAccelerator(KeyStroke.getKeyStroke('T', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+		nbTerrain.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FenetreNbTerrain(fen.getTournoi());
+			}
+		});
+		nbTerrain.setEnabled(false);
+		menuEdition.add(nbTerrain);
+		this.aAutoriser.add(nbTerrain);
+
 
 	}
 	public void enableSave(){

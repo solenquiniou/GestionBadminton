@@ -155,6 +155,12 @@ public class FenetrePrincipale extends JFrame {
 		westButtonPan.add(restart, gbcWest);
 		restart.addActionListener(new ChronometreRestartControlleur(chronometre, start));
 
+		//JPanel d'espace
+		JPanel espace =new JPanel();
+		espace.setPreferredSize(new Dimension(140, 40));
+		gbcWest.gridy += 1;
+		westButtonPan.add(espace, gbcWest);
+
 		//Ajout d'un joueur
 		JButton ajouterJoueur = new JButton("Ajouter un joueur");
 		ajouterJoueur.addActionListener(new ActionListener() {
@@ -167,8 +173,16 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.gridy += 1;
 		westButtonPan.add(ajouterJoueur, gbcWest);
 
+
+		//Nouveau Tour
+		JButton setPaires = new JButton("Nouveau Tour");
+		setPaires.addActionListener(new NouveauTourControleur(this));
+		setPaires.setPreferredSize(new Dimension(140, 40));
+		gbcWest.gridy += 1;
+		westButtonPan.add(setPaires, gbcWest);
+
 		//Bouton Ajout match (ajout manuel d'un score entre deux joueurs :
-		JButton newMatch = new JButton("Nouveau match");
+		JButton newMatch = new JButton("Ajouter un match");
 		newMatch.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,6 +193,12 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.gridy += 1;
 		westButtonPan.add(newMatch, gbcWest);
 
+		//JPanel d'espace
+		JPanel espace2 =new JPanel();
+		espace2.setPreferredSize(new Dimension(140, 40));
+		gbcWest.gridy += 1;
+		westButtonPan.add(espace2, gbcWest);
+
 		//Bouton reset tout les scores a zero
 		JButton reset = new JButton("reset scores");
 		reset.addActionListener(new ResetControlleur(this));
@@ -186,34 +206,12 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.gridy += 1;
 		westButtonPan.add(reset, gbcWest);
 
-		//Bouton pour faire sortir/entrer les jouers du main.tournoi sans les supprimer
-		JButton setPaires = new JButton("Nouveau Tour");
-		setPaires.addActionListener(new NouveauTourControleur(this));
-		setPaires.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy += 1;
-		westButtonPan.add(setPaires, gbcWest);
-
 		//Bouton pour voir le classement
 		JButton classement = new JButton("Classement");
 		classement.addActionListener(new VoirClassementControleur(tournoi,this));
 		classement.setPreferredSize(new Dimension(140, 40));
 		gbcWest.gridy += 1;
 		westButtonPan.add(classement, gbcWest);
-
-		//Bouton pour voir le classement
-		JButton nbTerr = new JButton("Nb Terrains");
-		nbTerr.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new FenetreNbTerrain(getTournoi());
-			}
-		});
-		nbTerr.setPreferredSize(new Dimension(140, 40));
-		gbcWest.gridy += 1;
-		westButtonPan.add(nbTerr, gbcWest);
-
-
-
 		westButtonPan.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.gray));
 
 

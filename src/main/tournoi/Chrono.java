@@ -114,6 +114,7 @@ public class Chrono extends JPanel {
                          Clip clip = AudioSystem.getClip();
                          clip.open(audioInputStream);
                          clip.start();
+                         clip.start();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Erreur:"+e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
