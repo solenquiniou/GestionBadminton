@@ -22,6 +22,10 @@ public class AjouterMatchControlleur implements ActionListener {
     private int score2;
     private Paire paire1;
     private Paire paire2;
+    private String j1;
+    private String j2;
+    private String j3;
+    private String j4;
 
 
     /**
@@ -35,19 +39,22 @@ public class AjouterMatchControlleur implements ActionListener {
         this.sp_score1 = s1;
         this.sp_score2 = s2;
         this.tournoi = vue.getTournoi();
+         j1 = "none";
+         j2 = "none";
+         j3 = "none";
+         j4 = "none";
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         score1 = (int)sp_score1.getValue();
         score2 = (int)sp_score2.getValue();
+        j1 = ((String) vue.getJoueur1().getSelectedItem());
+        j2 = ((String) vue.getJoueur2().getSelectedItem());
+        j3 = ((String) vue.getJoueur3().getSelectedItem());
+        j4 = ((String) vue.getJoueur4().getSelectedItem());
 
         //rappatriement des joueurs
         if (verifier()) {
-            String j1 = ((String) vue.getJoueur1().getSelectedItem());
-            String j2 = ((String) vue.getJoueur2().getSelectedItem());
-            String j3 = ((String) vue.getJoueur3().getSelectedItem());
-            String j4 = ((String) vue.getJoueur4().getSelectedItem());
-
             Joueur j11 = tournoi.chercherJoueur(j1);
             Joueur j21 = tournoi.chercherJoueur(j2);
             Joueur j12 = tournoi.chercherJoueur(j3);
@@ -57,12 +64,10 @@ public class AjouterMatchControlleur implements ActionListener {
             paire1 = new Paire(j11, j12);
             paire2 = new Paire(j21,j22);
 
-           
             tournoi.ajouterMatch(paire1, paire2, score1, score2);
             vue.getVue().actualiserJoueurs();
             //fermeture de la fenètre
             vue.dispose();
-
         }
     }
 
@@ -71,32 +76,32 @@ public class AjouterMatchControlleur implements ActionListener {
      * @return true si les scores sont valables false sinon
      */
     private boolean verifier(){
-        try {
-            int test = score1;
-            if(test<0){
-                JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
-                return false;
-            }
+        boolean ret_val = true;
 
-        }
-        catch (NumberFormatException e){
+        int test = score1;
+        if(test<0){
             JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
-            return false;
+            ret_val= false;
         }
-        try {
-            int test = score2;
-            if(test<0){
-                JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
-                return false;
-            }
 
-        }
-        catch (NumberFormatException e){
+
+        test = score2;
+        if(test<0){
             JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
-            return false;
+            ret_val= false;
+        }
+        if(j1 == "none" ||j2 == "none" ||j3 == "none" ||j4 == "none" ){
+            JOptionPane.showMessageDialog(vue, "il manque un joueur");
+            ret_val= false;
+        }
+        if(j1 == j2 ||j1 == j3 ||j1 == j4||j2 == j3 ||j2 == j4 ||j3 == j4 ){
+            JOptionPane.showMessageDialog(vue, "Il y a deux fois le même Joueur");
+            ret_val= false;
         }
 
-        return true;
+
+
+        return ret_val;
     }
 
 }
