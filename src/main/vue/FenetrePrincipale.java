@@ -195,7 +195,7 @@ public class FenetrePrincipale extends JFrame {
 
 		//Bouton pour voir le classement
 		JButton classement = new JButton("Classement");
-		classement.addActionListener(new VoirClassementControleur(tournoi));
+		classement.addActionListener(new VoirClassementControleur(tournoi,this));
 		classement.setPreferredSize(new Dimension(140, 40));
 		gbcWest.gridy += 1;
 		westButtonPan.add(classement, gbcWest);
