@@ -34,13 +34,14 @@ import javax.xml.transform.OutputKeys;
 public class ExporterTournoiControlleur implements ActionListener {
     
     private Tournoi tournoi;
+    private FenetrePrincipale fenetre;
 
     /** Constructeur de la classe ExporterTournoiControlleur
      *
      * @param fen la fenêtre principale où trouver les tours joués
      */
     public ExporterTournoiControlleur(FenetrePrincipale fen) {
-        this.tournoi = fen.getTournoi();
+        this.fenetre = fen; this.tournoi = fen.getTournoi();
     }
 
     @Override
@@ -49,7 +50,7 @@ public class ExporterTournoiControlleur implements ActionListener {
         //Ouverture de la fenetre "enregistrer sous"
         Frame fr = new Frame("Choississez un répertoire");
         FileDialog dial = new FileDialog(fr, "Enregistrer sous", FileDialog.SAVE);
-        dial.setFile(".xml"); //Pré-écrit l'extension .xml dans la fenêtre de dialogue
+        dial.setFile(fenetre.getTitle()+".xml"); //Pré-écrit l'extension .xml dans la fenêtre de dialogue
         dial.setVisible(true);
         fr.setVisible(false);
 
