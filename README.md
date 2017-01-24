@@ -28,8 +28,10 @@ Genénérer un tour en cliquant sur nouveau tour dans le menu de gauche. Vous po
 -   Enregister sous (Ctrl+MAJ+S) : BIENTOT DISPONIBLE - enregitre un tournoi en cours
 -   Exporter Classement (Ctrl+E) : BIENTOT DISPONIBLE - 
     exporte le classement sous csv avec le nom et le score de tout les joueurs.
--   
+
+
 ##### Edition
+
 -   Nouveau Joueur (Ctrl+J) : ajouter un joueur
 -   Changer Nombre Terrain (Ctrl+T) : 
     changer le nombre de terrains. Le changement sera effectif au prochain tour
