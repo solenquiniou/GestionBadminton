@@ -251,7 +251,12 @@ public class FenetrePrincipale extends JFrame {
 		new FenetreAjoutJoueur("Ajouter un joueur",tournoi,this);
 	}
 	public void fenetreAjoutMatch(){
-		new FenetreAjoutMatch("Entrer nouveau Match",tournoi,this);
+		if(tournoi.nbJoueur()>0){
+			new FenetreAjoutMatch("Entrer nouveau Match",tournoi,this);
+		}else{
+			JOptionPane.showMessageDialog(this, "Il n'y a aucun joueur");
+		}
+
 	}
 
 
