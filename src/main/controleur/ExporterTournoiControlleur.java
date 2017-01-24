@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
+
+import main.vue.FenetrePrincipale;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -35,10 +37,10 @@ public class ExporterTournoiControlleur implements ActionListener {
 
     /** Constructeur de la classe ExporterTournoiControlleur
      *
-     * @param tournoi le main.tournoi où trouver les tours joués
+     * @param fen la fenêtre principale où trouver les tours joués
      */
-    public ExporterTournoiControlleur(Tournoi tournoi) {
-        this.tournoi = tournoi;
+    public ExporterTournoiControlleur(FenetrePrincipale fen) {
+        this.tournoi = fen.getTournoi();
     }
 
     @Override

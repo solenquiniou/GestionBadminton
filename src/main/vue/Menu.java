@@ -1,6 +1,7 @@
 package main.vue;
 
 import main.controleur.ExporterJoueursControlleur;
+import main.controleur.ExporterTournoiControlleur;
 import main.controleur.ImporterJoueursControlleur;
 
 import javax.swing.*;
@@ -65,21 +66,7 @@ public class Menu extends JMenuBar{
 		JMenuItem enregistrerSous = new JMenuItem("Enregistrer sous...");
 		enregistrerSous.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()+KeyEvent.SHIFT_MASK));
 		enregistrerSous.setEnabled(false);
-		enregistrerSous.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				//On affiche le s�l�ctionneur de r�pertoire
-				Frame fr = new Frame("Choississez un r�pertoire");
-				FileDialog dial = new FileDialog(fr, "Nouveau Tournoi", FileDialog.SAVE);
-				dial.setVisible(true);
-				fr.setVisible(false);
-				try{
-					//t.save(dial.getDirectory(),dial.getFile());
-				}catch(NullPointerException e1){
-
-				}
-			}
-		});
+		enregistrerSous.addActionListener(new ExporterTournoiControlleur(fen));
 		menuFichier.add(enregistrerSous);
 		this.aAutoriser.add(enregistrerSous);
 
