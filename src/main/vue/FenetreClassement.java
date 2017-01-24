@@ -17,7 +17,7 @@ public class FenetreClassement extends JFrame
     private JTable listeJoueurs;
     private JComboBox categorie;
 
-
+    static private FenetreClassement derniereFenetre;
     /**
      * constructeur de la fenêtre classement
      * @param titre le titre à donner à la fenêtre
@@ -26,6 +26,9 @@ public class FenetreClassement extends JFrame
     public FenetreClassement(String titre, Tournoi t)
     {
         this.tournoi = t;
+
+        if (this.derniereFenetre != null)
+            this.derniereFenetre.dispose();
 
         JPanel joueurs = new JPanel();
         joueurs.setLayout(new GridLayout(1, 2));
@@ -79,6 +82,8 @@ public class FenetreClassement extends JFrame
         this.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()-tailleX)/2,(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-tailleY)/2);
         this.setSize(tailleX,tailleY);
         this.setResizable(false);
+
+        derniereFenetre = this;
     }
 
     public void afficherJoueur(String s)
