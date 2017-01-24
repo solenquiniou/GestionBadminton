@@ -346,15 +346,17 @@ public class Tournoi {
 	 * Appelée pour finir un tour et mettre à jour les scores
 	 */
 	public void finirTour() {
+		Tour newTour = new Tour();
 		//On vérifie le score des équipes pour chaque terrain
 		for (int i = 0; i < this.terrains.size(); i++) {
 			//Il faut vérifier qu'un match a bien eu lieu dur le terrain
 			if (this.terrains.get(i).getMatch() != null) {
-
+				newTour.addTerr(this.terrains.get(i));
 			}
 
 		}
-		this.enregisterTour();
+		this.tour.add(newTour);//enregistre
+
 
 
 
@@ -509,15 +511,6 @@ public class Tournoi {
 		return true;
 
 	}
-	/**
-	 * Change un joueur
-	 * @param idJ l'id du  joueur
-
-	 * @return null si le joueur n'est pas dans une paire la paire sinon
-	 */
-	public void setJoueurDansPaire(int idJ) {
-
-	}
 
 
 	/**
@@ -648,11 +641,7 @@ public class Tournoi {
 		return this.paires;
 	}
 
-	/** Enregistre la liste des terrains actuel dans la liste des tours passés
-	 */
-	public void enregisterTour() {
-		this.tour.add(new Tour(this.terrains));
-	}
+
 
 	/** Retourne la liste des joueurs qu'on peut trouver dans le CSV
 	 * @param fileDirectory le chemin pour accèder au CSV
