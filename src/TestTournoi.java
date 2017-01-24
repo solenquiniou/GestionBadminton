@@ -1,6 +1,10 @@
-import main.tournoi.*;
-
+import main.tournoi.Joueur;
+import main.tournoi.Paire;
+import main.tournoi.Terrain;
+import main.tournoi.Tournoi;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 
 /**
@@ -10,12 +14,57 @@ public class TestTournoi {
     Tournoi t1 = null;
 
     @Test
+    public void TestsetScore() {
+        try {
+            t1 = new Tournoi(3, "kjh");
+            t1.importer("LeCsv.csv");
+            t1.nouveauTour();
+            t1.setScore(0, 1, 2);
+            t1.setScore(1, 7, 2);
+            t1.setScore(2, 1, 5);
+            System.out.println("Verif Scores set dans les matchs");
+            assertEquals(1, t1.getTerrains().get(0).getMatch().getScore1());
+            assertEquals(2, t1.getTerrains().get(0).getMatch().getScore2());
+            assertEquals(7, t1.getTerrains().get(1).getMatch().getScore1());
+            assertEquals(2, t1.getTerrains().get(1).getMatch().getScore2());
+            assertEquals(1, t1.getTerrains().get(2).getMatch().getScore1());
+            assertEquals(5, t1.getTerrains().get(2).getMatch().getScore2());
+            System.out.println("Verif Scores set dans les paires");
+            assertEquals(-1, t1.getTerrains().get(0).getMatch().getPaire1().getScore());
+            assertEquals(1, t1.getTerrains().get(0).getMatch().getPaire2().getScore());
+            assertEquals(5, t1.getTerrains().get(1).getMatch().getPaire1().getScore());
+            assertEquals(-5, t1.getTerrains().get(1).getMatch().getPaire2().getScore());
+            assertEquals(-4, t1.getTerrains().get(2).getMatch().getPaire1().getScore());
+            assertEquals(4, t1.getTerrains().get(2).getMatch().getPaire2().getScore());
+            System.out.println("Verif Scores set sur les joueurs");
+            assertEquals(-1, t1.getTerrains().get(0).getMatch().getPaire1().getJoueur1().getScore());
+            assertEquals(-1, t1.getTerrains().get(0).getMatch().getPaire1().getJoueur2().getScore());
+            assertEquals( 1, t1.getTerrains().get(0).getMatch().getPaire2().getJoueur1().getScore());
+            assertEquals( 1, t1.getTerrains().get(0).getMatch().getPaire2().getJoueur2().getScore());
+            assertEquals( 5, t1.getTerrains().get(1).getMatch().getPaire1().getJoueur1().getScore());
+            assertEquals( 5, t1.getTerrains().get(1).getMatch().getPaire1().getJoueur2().getScore());
+            assertEquals(-5, t1.getTerrains().get(1).getMatch().getPaire2().getJoueur1().getScore());
+            assertEquals(-5, t1.getTerrains().get(1).getMatch().getPaire2().getJoueur2().getScore());
+            assertEquals(-4, t1.getTerrains().get(2).getMatch().getPaire1().getJoueur1().getScore());
+            assertEquals(-4, t1.getTerrains().get(2).getMatch().getPaire1().getJoueur2().getScore());
+            assertEquals( 4, t1.getTerrains().get(2).getMatch().getPaire2().getJoueur1().getScore());
+            assertEquals( 4, t1.getTerrains().get(2).getMatch().getPaire2().getJoueur2().getScore());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
     public void TestImport() {
         try {
+            System.out.println("Vide avat l'export");
             t1 = new Tournoi(4, "kjh");
-            //assert(true, t1.tournoisVide();
+            assertEquals(true, t1.tournoisVide());
             t1.importer("LeCsv.csv");
-            //assert(false, t1.tournoisVide());
+            System.out.println("Plus vide après l'export");
+            assertEquals(false, t1.tournoisVide());
 
         } catch (Exception e) {
             e.getMessage();
@@ -31,7 +80,7 @@ public class TestTournoi {
             t1.importer("LeCsv.csv");
             System.out.println(t1.getAllJoueurs().toString());
             //Verif algo paire
-            //t1.creerPaires();   mis en private après validation
+            //t1.creerPaires(); méthode mis en private après validation donc plus testable
             for (Paire p : t1.getPaires()) {
                 System.out.println(p.getJoueur1().toString() + "  +  " + p.getJoueur2().toString());
             }//ok
@@ -111,6 +160,9 @@ public class TestTournoi {
         }
 
     }
+
+
+
 
 }
 
