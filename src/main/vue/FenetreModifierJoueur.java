@@ -21,6 +21,7 @@ public class FenetreModifierJoueur extends JFrame {
 	private JRadioButton fem;
 	private JRadioButton hom;
 	private JCheckBox nouv;
+	private JCheckBox present;
 
 	/**
 	 * constructeur de la fenêtre d'ajout d'un joueur
@@ -34,106 +35,102 @@ public class FenetreModifierJoueur extends JFrame {
 		this.vue = vue;
 		this.id = id;
 
-		//Les différents champs de saisie
 		Joueur joueur = this.tournoi.getJoueur(id);
 
+		JPanel corePanel = new JPanel(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+
+		//Ajout du nom
 		nom = new JTextField(joueur.getNom());
+		nom.setPreferredSize( new Dimension( 200, 24 ) );
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		corePanel.add(nom, gbc);
+
+		//Ajout du prenom
 		prenom = new JTextField(joueur.getPrenom());
+		prenom.setPreferredSize( new Dimension( 200, 24 ) );
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		corePanel.add(prenom, gbc);
 
-		//Il faut bien laisser les niveaux dans cet ordre pour correspondre avec l'ajout du joueur
-		// (0 : Indéfini / 1 : Débutant / 2 : Intermédiaire / 3 : Confirmé)
-		niveau = new JComboBox(new String[]{"Indéfini", "Débutant", "Intermédiaire", "Confirmé"});
-		niveau.setSelectedIndex(joueur.getNiveau());
-
-		//Il faut bien laisser les âges dans cet ordre pour correspondre avec l'ajout du joueur
-		// (0 : Indéfini / 1 : -18 jeune / 2 : 18-35 senior / 3 : 35+ veteran)
+		//Ajout de l'âge
+		//Il faut bien laisser les âges dans cet ordre pour correspondre avec l'ajout du joueur (0 : Indéfini / 1 : -18 jeune / 2 : 18-35 senior / 3 : 35+ veteran)
 		age = new JComboBox(new String[]{"Indéfini", "-18 ans (Jeune)", "18-35 ans (Senior)", "35 ans et + (Veteran)"});
 		age.setSelectedIndex(joueur.getAge());
-		fem = new JRadioButton("Femme");
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+		corePanel.add(age, gbc);
+
+		//Ajout du sexe
 		hom = new JRadioButton("Homme");
-		if(joueur.getSexe())
-		{
+		fem = new JRadioButton("Femme");
+		if(!joueur.getSexe()) {
 			hom.setSelected(false);
 			fem.setSelected(true);
-		}
-		else
-		{
+		} else {
 			hom.setSelected(true);
 			fem.setSelected(false);
 		}
-
 		ButtonGroup grSexe = new ButtonGroup();
 		grSexe.add(hom);
 		grSexe.add(fem);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		corePanel.add(hom, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		corePanel.add(fem, gbc);
+
+		//Ajout du niveau
+		//Il faut bien laisser les niveaux dans cet ordre pour correspondre avec l'ajout du joueur (0 : Indéfini / 1 : Débutant / 2 : Intermédiaire / 3 : Confirmé)
+		niveau = new JComboBox(new String[]{"Indéfini", "Débutant", "Intermédiaire", "Confirmé"});
+		niveau.setSelectedIndex(joueur.getNiveau());
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		corePanel.add(niveau, gbc);
+
+		//Ajout de nouveau
 		nouv = new JCheckBox("Nouveau");
-		if(joueur.getNouveau())
-		{
+		if(joueur.getNouveau()) {
 			nouv.setSelected(true);
-		}
-		else
-		{
+		} else {
 			nouv.setSelected(false);
 		}
-		
-		JButton modifier = new JButton("Modifier le joueur");
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		corePanel.add(nouv, gbc);
+
+		//Ajout presence
+		present = new JCheckBox("Présent");
+		if(joueur.peutJouer()) {
+			present.setSelected(true);
+		} else {
+			present.setSelected(false);
+		}
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		corePanel.add(present, gbc);
+
+		//Ajout des boutons de validation de modif et de supression de joueur
+		JButton modifier = new JButton("Valider les modifications");
 		modifier.addActionListener(new ModifierJoueurBoutonControlleur(this, id));
+		gbc.gridx = 1;
+		gbc.gridy = 4;
+		corePanel.add(modifier, gbc);
 		JButton supprimer = new JButton("Supprimer le joueur");
 		supprimer.addActionListener(new SupprimerJoueurBoutonControlleur(this, id));
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		corePanel.add(supprimer, gbc);
 
-		JPanel corePanel = new JPanel();
-		corePanel.setLayout(new BorderLayout());
-		
-		JPanel gauche = new JPanel();
-		
-		gauche.setLayout(new GridLayout(3,2));
-		gauche.add(new JLabel("Nom :"));
-		gauche.add(nom);
-		
-		JPanel panelSexe = new JPanel();
-		panelSexe.setLayout(new GridLayout(2,1));
-		panelSexe.add(hom);
-		panelSexe.add(fem);
-		
-		gauche.add(new JLabel("Sexe :"));
-		gauche.add(panelSexe);
-		
-		gauche.add(new JLabel("Niveau :"));
-		gauche.add(niveau);
-		
-		corePanel.add(gauche,BorderLayout.WEST);
-		
-		JPanel droite = new JPanel();
-		
-		droite.setLayout(new GridLayout(3,2));
-		droite.add(new JLabel("Prenom :"));
-		droite.add(prenom);
-		
-		JPanel panelAnc = new JPanel();
-		panelAnc.setLayout(new GridLayout(2,1));
-		panelAnc.add(nouv);
-		
-		droite.add(new JLabel("Anciennete :"));
-		droite.add(panelAnc);
-		
-		droite.add(new JLabel("Age :"));
-		droite.add(age);
-		
-		corePanel.add(droite,BorderLayout.EAST);
 
-		JPanel panelBouton = new JPanel();
-		panelBouton.setLayout(new GridLayout(2,1));
-		panelBouton.add(modifier);
-		panelBouton.add(supprimer);
-
-		corePanel.add(panelBouton,BorderLayout.SOUTH);
-		
 		this.setContentPane(corePanel);
 		this.pack();
 		this.setVisible(true);
 		this.setTitle(titre);
-		int tailleX = 600, tailleY = 200;
-		this.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()-tailleX)/2,(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-tailleY)/2);
-		this.setSize(tailleX,tailleY);
+		this.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()-corePanel.getWidth())/2,(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-corePanel.getHeight())/2);
 		this.setResizable(false);
 	}
 
@@ -216,6 +213,11 @@ public class FenetreModifierJoueur extends JFrame {
 		boolean nouve = nouv.isSelected();
 		int niveau = this.niveau.getSelectedIndex();
 		this.tournoi.modifierJoueur(id, nom, prenom, age, sexe, nouve, niveau);
+		if(present.isSelected()) {
+			this.tournoi.getJoueur(id).setPeutJouer(true);
+		} else {
+			this.tournoi.getJoueur(id).setPeutJouer(false);
+		}
 		this.vue.actualiserJoueurs();
 		dispose();
 	}
