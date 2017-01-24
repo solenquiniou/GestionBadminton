@@ -69,7 +69,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	public void setTournoi(Tournoi t){
 		this.tournoi=t;
-		this.setTitle("Match Point - " + t.getNom());
+		this.setTitle(t.getNom());
 		//On assigne le menu � la fenetres
 		this.setJMenuBar(new Menu(this));
 		((Menu) this.getJMenuBar()).enableSave();

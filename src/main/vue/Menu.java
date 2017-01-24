@@ -28,7 +28,7 @@ public class Menu extends JMenuBar{
 		nouveauTournoi.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				FenetrePrincipale fen = new FenetrePrincipale("Match Point");
+				FenetrePrincipale fen = new FenetrePrincipale("");
 				NouveauTournoi tourn = new NouveauTournoi(fen);
 			}
 		});

@@ -8,8 +8,11 @@ import java.util.ArrayList;
 public class Tour {
     private ArrayList<Terrain> matches;
 
-    public Tour(ArrayList<Terrain> matches) {
-        this.matches = matches;
+    public Tour() {
+        matches = new ArrayList<Terrain>();
+    }
+    public void    addTerr(Terrain t){
+        this.matches.add(t);
     }
 
     public ArrayList<Terrain> getMatches() {
