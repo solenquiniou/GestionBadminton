@@ -32,7 +32,7 @@ import javax.xml.transform.OutputKeys;
  * @author DROUARD Antoine, DERNONCOURT Cyril, LE BERT Lea, MARTINEAU Lucas
  */
 public class ExporterTournoiControlleur implements ActionListener {
-    
+
     private Tournoi tournoi;
     private FenetrePrincipale fenetre;
 
@@ -50,12 +50,15 @@ public class ExporterTournoiControlleur implements ActionListener {
         //Ouverture de la fenetre "enregistrer sous"
         Frame fr = new Frame("Choississez un répertoire");
         FileDialog dial = new FileDialog(fr, "Enregistrer sous", FileDialog.SAVE);
-        dial.setFile("a.xml"); //Pré-écrit l'extension .xml dans la fenêtre de dialogue
+        dial.setFile(fenetre.getTitle()+".xml"); //Pré-écrit l'extension .xml dans la fenêtre de dialogue
         dial.setVisible(true);
         fr.setVisible(false);
 
-        Element joueur, prenom, nom, sexe, anciennete, age, niveau, joueursDejaJoues, joueurPart, prenomPart, nomPart;
-        int score;
+        Element joueur, prenom, nom, sexe, anciennete, age, niveau, tour, terrain, nomJoueur1, prenomJoueur1, nomJoueur2, prenomJoueur2, nomJoueur3, prenomJoueur3, nomJoueur4, prenomJoueur4, elScore1, elScore2;
+        Match match;
+        Paire paire1, paire2;
+        Joueur joueur1, joueur2, joueur3, joueur4;
+        int score1, score2;
 
         try
         {
@@ -68,7 +71,6 @@ public class ExporterTournoiControlleur implements ActionListener {
                 document.appendChild(racine);
                 Element joueurs = document.createElement("listeJoueurs");
                 racine.appendChild(joueurs);
-
 
                 for (Joueur j : tournoi.getAllJoueurs())
                 {
@@ -119,29 +121,76 @@ public class ExporterTournoiControlleur implements ActionListener {
                             break;
                     }
 
-
-                    joueursDejaJoues = document.createElement("joueursDejaJoues");
-
-                    for (Joueur part : j.getAnciensPart()) {
-                        joueurPart = document.createElement("joueurPart");
-                        prenomPart = document.createElement("prenomPart");
-                        prenomPart.appendChild(document.createTextNode(part.getPrenom()));
-
-                        nomPart = document.createElement("nomPart");
-                        nomPart.appendChild(document.createTextNode(part.getNom()));
-
-                        joueurPart.appendChild(prenomPart);
-                        joueurPart.appendChild(nomPart);
-                        joueursDejaJoues.appendChild(joueurPart);
-                    }
-
                     joueur.appendChild(prenom);
                     joueur.appendChild(nom);
                     joueur.appendChild(sexe);
                     joueur.appendChild(anciennete);
                     joueur.appendChild(age);
                     joueur.appendChild(niveau);
-                    joueur.appendChild(joueursDejaJoues);
+                }
+                Element matches = document.createElement("listeTours");
+                racine.appendChild(matches);
+                ArrayList<Tour> lesTours = tournoi.getTours();
+                for (Tour t : lesTours)
+                {
+                    tour = document.createElement("tour");
+                    matches.appendChild(tour);
+                    ArrayList<Terrain> lesTerrains = t.getMatches();
+                    for (Terrain te : lesTerrains)
+                    {
+                        match = te.getMatch();
+                        paire1 = match.getPaire1();
+                        joueur1 = paire1.getJoueur1();
+                        joueur2 = paire1.getJoueur2();
+                        score1 = match.getScore1();
+                        paire2 = match.getPaire2();
+                        joueur3 = paire2.getJoueur1();
+                        joueur4 = paire2.getJoueur2();
+                        score2 = match.getScore2();
+                        terrain = document.createElement("terrain");
+                        tour.appendChild(terrain);
+                        nomJoueur1 = document.createElement("nomJoueur1");
+                        nomJoueur1.appendChild(document.createTextNode(joueur1.getNom()));
+                        terrain.appendChild(nomJoueur1);
+
+                        prenomJoueur1 = document.createElement("prenomJoueur1");
+                        prenomJoueur1.appendChild(document.createTextNode(joueur1.getPrenom()));
+                        terrain.appendChild(prenomJoueur1);
+
+                        nomJoueur2 = document.createElement("nomJoueur2");
+                        nomJoueur2.appendChild(document.createTextNode(joueur2.getNom()));
+                        terrain.appendChild(nomJoueur2);
+
+                        prenomJoueur2 = document.createElement("prenomJoueur2");
+                        prenomJoueur2.appendChild(document.createTextNode(joueur2.getPrenom()));
+                        terrain.appendChild(prenomJoueur2);
+
+                        elScore1 = document.createElement("score1");
+                        elScore1.appendChild(document.createTextNode(String.valueOf(score1)));
+                        terrain.appendChild(elScore1);
+
+                        nomJoueur3 = document.createElement("nomJoueur3");
+                        nomJoueur3.appendChild(document.createTextNode(joueur3.getNom()));
+                        terrain.appendChild(nomJoueur3);
+
+                        prenomJoueur3 = document.createElement("prenomJoueur3");
+                        prenomJoueur3.appendChild(document.createTextNode(joueur3.getPrenom()));
+                        terrain.appendChild(prenomJoueur3);
+
+                        nomJoueur4 = document.createElement("nomJoueur4");
+                        nomJoueur4.appendChild(document.createTextNode(joueur4.getNom()));
+                        terrain.appendChild(nomJoueur4);
+
+                        prenomJoueur4 = document.createElement("prenomJoueur4");
+                        prenomJoueur4.appendChild(document.createTextNode(joueur4.getPrenom()));
+                        terrain.appendChild(prenomJoueur4);
+
+                        elScore2 = document.createElement("score2");
+                        elScore2.appendChild(document.createTextNode(String.valueOf(score2)));
+                        terrain.appendChild(elScore2);
+
+                    }
+
                 }
 
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -168,10 +217,4 @@ public class ExporterTournoiControlleur implements ActionListener {
         }
 
     }
-
-
-
-
-
-
 }
