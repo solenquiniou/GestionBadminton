@@ -1,9 +1,10 @@
 package main.controleur;
 
-import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import main.tournoi.Chrono;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by anton on 05/11/16.
@@ -14,7 +15,7 @@ public class ChronometreStartControlleur implements ActionListener {
 
     /**
      * constructeur de la fenêtre classement
-     * @param titre le titre à donner à la fenêtre
+     * @param b le titre à donner à la fenêtre
      * @param t le main.tournoi dans lequel on veut voir le classement
      */
     public ChronometreStartControlleur(Chrono t, JButton b)

@@ -1,13 +1,13 @@
 package main.tournoi;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import java.io.File;
 
 /**
  *
@@ -106,6 +106,18 @@ public class Chrono extends JPanel {
                     repaint();
                 } else {
                     timer.stop();
+                    //signial sonore
+                    String soundName = "src/main/resources/son.wav";
+                    AudioInputStream audioInputStream = null;
+                    try {
+                        audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+                         Clip clip = AudioSystem.getClip();
+                         clip.open(audioInputStream);
+                         clip.start();
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Erreur:"+e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
+                    //fin signial sonore
                 }
             }
         };
