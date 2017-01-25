@@ -20,9 +20,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 /** La classe ImporterTournoiControlleur permet d'importer un tournoi
  * @author DROUARD Antoine, DERNONCOURT Cyril, LE BERT Lea, MARTINEAU Lucas
  */
-public class ImporterTournoiControlleur implements ActionListener {
-}
-
+public class ImporterTournoiControlleur implements ActionListener
+{
     private Tournoi tournoi;
     private FenetrePrincipale fenetre;
 
@@ -30,7 +29,8 @@ public class ImporterTournoiControlleur implements ActionListener {
      *
      * @param fen la fenêtre principale où insérer les tours joués
      */
-    public ImporterTournoiControlleur(FenetrePrincipale fen) {
+    public ImporterTournoiControlleur(FenetrePrincipale fen)
+    {
         this.fenetre = fen;
         this.tournoi = fen.getTournoi();
     }
@@ -38,67 +38,84 @@ public class ImporterTournoiControlleur implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e)
     {
-
-
         Frame fr = new Frame("Choississez un répertoire");
         FileDialog dial = new FileDialog(fr, "Importer un tournoi", FileDialog.LOAD);
         dial.setFile("*.xml");
         dial.setVisible(true);
         fr.setVisible(false);
-        if (dial.getFile() != null) {
-            String xmlFile = dial.getDirectory().concat(dial.getFile());
-            System.out.println(xmlFile);
-            /*
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        if (dial.getFile() != null)
+        {
+            try
+            {
+                String xmlFile = dial.getDirectory().concat(dial.getFile());
 
-            try {
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
                 DocumentBuilder builder = factory.newDocumentBuilder();
 
+                Document document = builder.parse(new File(xmlFile));
 
-                Document document = builder.parse(new File("repertoire.xml"));
+                Element tournoi = document.getDocumentElement();
 
-
-                Element racine = document.getDocumentElement();
-
-                //Affichage de l'élément racine
-                System.out.println("\n*************RACINE************");
-                System.out.println(racine.getNodeName());
-
-
-                NodeList racineNoeuds = racine.getChildNodes();
-                int nbRacineNoeuds = racineNoeuds.getLength();
-
-                for (int i = 0; i < nbRacineNoeuds; i++) {
-                    if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                        Element personne = (Element) racineNoeuds.item(i);
-
-                        //Affichage d'une personne
-                        System.out.println("\n*************PERSONNE************");
-                        System.out.println("sexe : " + personne.getAttribute("sexe"));
-
-
-                        Element nom = (Element) personne.getElementsByTagName("nom").item(0);
-                        Element prenom = (Element) personne.getElementsByTagName("prenom").item(0);
-
-                        //Affichage du nom et du prénom
-                        System.out.println("nom : " + nom.getTextContent());
-                        System.out.println("prénom : " + prenom.getTextContent());
-
-
-                        NodeList telephones = personne.getElementsByTagName("telephone");
-                        int nbTelephonesElements = telephones.getLength();
-
-                        for (int j = 0; j < nbTelephonesElements; j++) {
-                            Element telephone = (Element) telephones.item(j);
-
-                            //Affichage du téléphone
-                            System.out.println(telephone.getAttribute("type") + " : " + telephone.getTextContent());
-                        }
+                NodeList tournoiNoeuds = tournoi.getChildNodes(); // Récupère listeJoueurs et listeTours
+                int nbTournoiNoeuds = tournoiNoeuds.getLength(); // compte le nombre de noeuds de la racine (ici 2)
+                ArrayList<Node> listesJoueursMatchesNodes= new ArrayList<Node>();
+                for (int i = 0; i<nbTournoiNoeuds; i++)
+                {
+                    if(tournoiNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE)
+                    {
+                        listesJoueursMatchesNodes.add(tournoiNoeuds.item(i));
                     }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
+
+                NodeList listeJoueursNoeuds = listesJoueursMatchesNodes.get(0).getChildNodes(); // Récupère tous les "joueur" du XML
+                int nbJoueurs = listeJoueursNoeuds.getLength(); // compte le nombre de "joueur" dans le XML
+                ArrayList<Node> listesJoueursNodes= new ArrayList<Node>();
+                for (int i = 0; i<nbJoueurs; i++)
+                {
+                    if(listeJoueursNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE)
+                    {
+                        listesJoueursNodes.add(listeJoueursNoeuds.item(i));
+                    }
+                }
+
+                NodeList listeMatchesNoeuds = listesJoueursMatchesNodes.get(1).getChildNodes(); // Récupère tous les "tour" du XML
+                int nbTour = listeMatchesNoeuds.getLength(); // compte le nombre de "tour" dans le XML
+                ArrayList<Node> listesTourNodes= new ArrayList<Node>();
+                for (int i = 0; i < nbTour; i++)
+                {
+                    if(listeMatchesNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE)
+                    {
+                        listesTourNodes.add(listeMatchesNoeuds.item(i));
+                    }
+                }
+
+                for(Node joueurNode : listesJoueursNodes)
+                {
+                    NodeList listeInfoNode = joueurNode.getChildNodes(); // Récupère toutes les informations d'un joueur du XML
+                    int nbInfo = listeInfoNode.getLength(); // compte le nombre de "tour" dans le XML
+                    for (int i = 0; i < nbInfo; i++)
+                    {
+                        if(listeInfoNode.item(i).getNodeType() == Node.ELEMENT_NODE)
+                        {
+                            Element info = (Element) listeInfoNode.item(i);
+                            System.out.println(info.getTextContent());
+                        }
+                    }
+                    System.out.println("___________________________________");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
         }
+    }
+
+    public Joueur creerJoueur()
+    {
+        
     }
 }
