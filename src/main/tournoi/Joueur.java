@@ -73,6 +73,15 @@ public class Joueur {
 
 		nbJoueursCrees++;
 	}
+
+	/**
+	*	Remet a zero le nombre de joueur
+	* 	A utiliser lorsque l'on cree un nouveau tournoi
+	 */
+	public static void resetNbJoueur() {
+		Joueur.nbJoueursCrees = 0;
+	}
+
 	// Tests
 		public Joueur(int id, boolean sexe, boolean nouv){
 			this(id, "Bon", "Jean", (20+id), sexe, nouv, (id%3),true);
