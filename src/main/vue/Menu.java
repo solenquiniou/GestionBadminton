@@ -31,8 +31,13 @@ public class Menu extends JMenuBar{
 		nouveauTournoi.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				FenetrePrincipale fen = new FenetrePrincipale("");
-				NouveauTournoi tourn = new NouveauTournoi(fen);
+				Object[] options = { "OUI", "ANNULER" };
+				int choix = JOptionPane.showOptionDialog(null, "Le tournoi en cours sera abandoné. Êtes vous sur de vouloir en commencer un nouveau?", "Vérification",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+				if(choix == 0) {
+					NouveauTournoi tourn = new NouveauTournoi(fen);
+				}
+
 			}
 		});
 		menuFichier.add(nouveauTournoi);
