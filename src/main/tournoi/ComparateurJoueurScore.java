@@ -3,7 +3,7 @@ package main.tournoi;
 import java.util.Comparator;
 
 /**
- * Created by E154981H on 09/11/16.
+ * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 09/11/16.
  */
 public class ComparateurJoueurScore implements Comparator<Joueur> {
 

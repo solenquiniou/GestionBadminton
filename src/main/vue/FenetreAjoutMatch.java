@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 /**
- * Created by lea on 09/10/16.
+ *
  * @author DERNONCOURT Cyril , DROUARD Antoine, LE BERT Lea, MARTINEAU Lucas
  */
 public class FenetreAjoutMatch extends JFrame {
@@ -47,14 +47,14 @@ public class FenetreAjoutMatch extends JFrame {
      * @param tournoi le main.tournoi dans lequel on veut ajouter un joueur
      * @param vue     la main.vue qui crée la fenêtre
      */
-    public FenetreAjoutMatch(String titre, Tournoi tournoi, FenetrePrincipale vue) {
+    public FenetreAjoutMatch(String titre, Tournoi tournoi) {
 
         super(titre);
 
         if (derniereFenetre == null) {
 
             this.tournoi = tournoi;
-            this.vue = vue;
+
             JPanel corePanel = new JPanel();
 
             corePanel.setLayout(new BorderLayout());

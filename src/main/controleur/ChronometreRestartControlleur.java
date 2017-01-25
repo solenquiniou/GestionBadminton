@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by anton on 05/11/16.
+ * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 05/11/16.
  */
 public class ChronometreRestartControlleur implements ActionListener {
     private Chrono temps;

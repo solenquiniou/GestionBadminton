@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by E154981H on 23/01/17.
+ * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 23/01/17.
  */
 public class ChangerNbrTerrainControlleur implements ActionListener {
     private Tournoi tournoi;

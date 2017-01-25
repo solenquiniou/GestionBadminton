@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by E154981H on 14/11/16.
+ * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 14/11/16.
  */
 public class NouveauTourControleur implements ActionListener {
     private FenetrePrincipale vue;

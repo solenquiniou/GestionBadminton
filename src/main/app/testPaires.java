@@ -4,7 +4,7 @@ import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
 
 /**
- * Created by E154981H on 21/11/16.
+ * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 21/11/16.
  */
 public class testPaires {
     public static void main(String[] args) {
