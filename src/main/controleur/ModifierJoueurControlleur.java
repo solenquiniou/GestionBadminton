@@ -23,10 +23,13 @@ public class ModifierJoueurControlleur implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int row = jt.getSelectedRow();
-		this.id = (int) jt.getValueAt(row, 0);
-		new FenetreModifierJoueur("Modifier Joueur",this.fp.getTournoi(),this.fp,this.id);
-		
+		if (e.getClickCount() == 2 && !e.isConsumed()) {
+			e.consume();
+
+			int row = jt.getSelectedRow();
+			this.id = (int) jt.getValueAt(row, 0);
+			new FenetreModifierJoueur("Modifier Joueur",this.fp.getTournoi(),this.fp,this.id);
+		}
 	}
 
 	@Override

@@ -116,8 +116,15 @@ public class FenetrePrincipale extends JFrame {
 						return Integer.class;
 				}
 			}
+
+			//Pour ne pas pouvoir editer une valeur en doublecliquant
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
 		};
 		listeJoueurs = new JTable(listeJoueursModele);
+		listeJoueurs.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "deleteRow");
+
 		//modif d'un joueur en cliquant sur le joueur
 		listeJoueurs.addMouseListener(new ModifierJoueurControlleur(this,listeJoueurs));
 		//Nous ajoutons notre tableau à notre contentPane dans un scroll
