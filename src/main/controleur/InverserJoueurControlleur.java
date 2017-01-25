@@ -9,7 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 /**
- * Created by Lea on 29/12/2016.
+ * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 29/12/2016.
  */
 public class InverserJoueurControlleur implements ItemListener {
     private FenetrePrincipale vue;

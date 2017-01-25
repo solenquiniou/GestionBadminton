@@ -49,14 +49,6 @@ public class Terrain{
     this.match=match;
   }
 
-  /**Retourne le numéro d'un terrain
-   *
-   * @return numero le numéro d'un terrain
-   *
-   */
-  public int getNumero(){
-    return this.numero;
-  }
 
   /**Retourne le match d'un terrain
    *

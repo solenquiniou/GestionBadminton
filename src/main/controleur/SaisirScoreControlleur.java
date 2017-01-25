@@ -16,7 +16,6 @@ public class SaisirScoreControlleur implements ActionListener{
 	private Tournoi tournoi;
 	private int numeroTerrain;
 	private FenetrePrincipale vue;
-	private JPanel terrain;
 	private boolean maj;
 
 	/**

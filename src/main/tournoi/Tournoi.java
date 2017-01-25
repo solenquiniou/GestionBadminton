@@ -10,8 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+
 
 
 /**Tournoi est la classe représentant un Tournoi.
@@ -394,6 +394,9 @@ public class Tournoi {
 		this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur2().ajouterAnciensPart(this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur1());
 		this.terrains.get(numTerrain).getMatch().getPaire2().getJoueur1().ajouterAnciensPart(this.terrains.get(numTerrain).getMatch().getPaire2().getJoueur2());
 		this.terrains.get(numTerrain).getMatch().getPaire2().getJoueur2().ajouterAnciensPart(this.terrains.get(numTerrain).getMatch().getPaire2().getJoueur1());
+		this.terrains.get(numTerrain).getMatch().getPaire2().ajouterMatchJoue();
+		this.terrains.get(numTerrain).getMatch().getPaire1().ajouterMatchJoue();
+
 	}
 
 	/**
@@ -603,23 +606,6 @@ public class Tournoi {
 
 
 		}
-	}
-	public void statusJoueur(Joueur j){
-		j.setPeutJouer(!j.peutJouer());
-	}
-
-	/**
-	 * @return le nouveau avec le meilleur score
-	 */
-	public Joueur meilleurNouveau(){
-		return (Joueur)this.getClassementNouveaux().get(0);
-		//todo revoir ces deux methodes
-	}
-	/**
-	 * @return l' ancien avec le pire score
-	 */
-	public Joueur meilleurAncien(){
-		return (Joueur)this.getClassementAnciens().get(this.getClassementAnciens().size()-1);
 	}
 
 	/**

@@ -2,14 +2,13 @@ package main.controleur;
 
 import main.tournoi.Joueur;
 import main.tournoi.Match;
-import main.vue.FenetrePrincipale;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by anton on 08/01/17.
+ * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 08/01/17.
  */
 public class ValiderMatchControlleur implements ActionListener{
     private Match match;
@@ -22,7 +21,7 @@ public class ValiderMatchControlleur implements ActionListener{
     private JButton buttonValider;
 
 
-    public ValiderMatchControlleur(FenetrePrincipale vue, Match match, JComboBox<Joueur> j1, JComboBox<Joueur> j2, JSpinner e1, JComboBox<Joueur> j3, JComboBox<Joueur> j4, JSpinner e2, JButton valider) {
+    public ValiderMatchControlleur(Match match, JComboBox<Joueur> j1, JComboBox<Joueur> j2, JSpinner e1, JComboBox<Joueur> j3, JComboBox<Joueur> j4, JSpinner e2, JButton valider) {
         this.match = match;
         this.comboJ1 = j1;
         this.comboJ2 = j2;

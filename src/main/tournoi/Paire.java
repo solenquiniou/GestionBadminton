@@ -139,49 +139,6 @@ public class Paire {
 	}
 
 
-	/** Facilite l'inversion de deux joueurs dans des paires différentes
-	 *
-	 * @param joueur1 1 si c'est le premier joueur, autre si c'est le second
-	 * @param autre l'autre paire avec laquelle échanger un joueur
-	 * @param joueur2 1 si c'est le premier joueur, autre si c'est le second
-     */
-	public void intervertir(int joueur1, Paire autre, int joueur2){
-
-		// Les joueurs originaux ne jouent plus ensemble
-		this.joueur1.getAnciensPart().remove(this.joueur2);
-		this.joueur2.getAnciensPart().remove(this.joueur1);
-		autre.joueur1.getAnciensPart().remove(this.joueur2);
-		autre.joueur2.getAnciensPart().remove(this.joueur1);
-
-		if (joueur1==1){
-			Joueur tmp1 = this.getJoueur1();
-			if (joueur2==1){
-				this.setJoueur1(autre.getJoueur1());
-				autre.setJoueur1(tmp1);
-			}
-			else{
-				this.setJoueur2(autre.getJoueur1());
-				autre.setJoueur2(tmp1);
-			}
-		}
-		else{
-			Joueur tmp1 = this.getJoueur2();
-			if (joueur2==1){
-				this.setJoueur1(autre.getJoueur1());
-				autre.setJoueur1(tmp1);
-			}
-			else{
-				this.setJoueur2(autre.getJoueur1());
-				autre.setJoueur2(tmp1);
-			}
-		}
-		// On remet à jour les partenaires
-		this.joueur1.ajouterAnciensPart(this.joueur2);
-		this.joueur2.ajouterAnciensPart(this.joueur1);
-		autre.joueur1.ajouterAnciensPart(this.joueur2);
-		autre.joueur2.ajouterAnciensPart(this.joueur1);
-	}
-
 
 	public void ajouterMatchJoue(){
 		this.joueur1.ajouterMatchJoue();
