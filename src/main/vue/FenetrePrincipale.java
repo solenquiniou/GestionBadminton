@@ -282,7 +282,7 @@ public class FenetrePrincipale extends JFrame {
 		}
 		//On rentre les joueurs nouveaux dans les cases restantes
 		for(int i = 0; i < classN.size(); i++){
-			Joueur j = (Joueur)classN.get(i);
+			Joueur j = classN.get(i);
 			listeJoueurs.setValueAt(j.getId(),i+classA.size(),0);
 			listeJoueurs.setValueAt(j.getNom(),i+classA.size(),1);
 			listeJoueurs.setValueAt(j.getPrenom(),i+classA.size(),2);
@@ -308,11 +308,11 @@ public class FenetrePrincipale extends JFrame {
 	public void actualiserNoms(){
 		joueurs = new String[tournoi.getNouveauxJoueurs().size()+tournoi.getAnciensJoueurs().size()+1];
 		for (int i = 0; i < tournoi.getNouveauxJoueurs().size(); i++){
-			Joueur j = (Joueur)tournoi.getNouveauxJoueurs().get(i);
+			Joueur j = tournoi.getNouveauxJoueurs().get(i);
 			joueurs[i] = j.getNom()+" "+j.getPrenom();
 		}
 		for (int i = 0;i<tournoi.getAnciensJoueurs().size();i++){
-			Joueur j = (Joueur)tournoi.getAnciensJoueurs().get(i);
+			Joueur j = tournoi.getAnciensJoueurs().get(i);
 			joueurs[i+tournoi.getNouveauxJoueurs().size()] = j.getNom()+" "+j.getPrenom();
 		}
 		joueurs[tournoi.getNouveauxJoueurs().size()+tournoi.getAnciensJoueurs().size()] = "Pas de joueur";

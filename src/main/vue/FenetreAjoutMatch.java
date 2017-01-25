@@ -75,7 +75,7 @@ public class FenetreAjoutMatch extends JFrame {
             }
             //On rentre les joueurs nouveaux dans les cases restantes
             for (int i = 0; i < classN.size(); i++) {
-                Joueur j = (Joueur) classN.get(i);
+                Joueur j = classN.get(i);
                 joueurs[classA.size() + i] = "" + j.getNom() + " " + j.getPrenom();
 
             }

@@ -114,7 +114,7 @@ public class Menu extends JMenuBar{
 	}
 	public void enableSave(){
 		for(int i = 0; i<this.aAutoriser.size();i++){
-			((JMenuItem)this.aAutoriser.get(i)).setEnabled(true);
+			(this.aAutoriser.get(i)).setEnabled(true);
 		}
 	}
 
