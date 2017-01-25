@@ -251,7 +251,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 	public void fenetreAjoutMatch(){
 		if(tournoi.nbJoueur()>0){
-			new FenetreAjoutMatch("Entrer nouveau Match",tournoi,this);
+			new FenetreAjoutMatch("Entrer nouveau Match",tournoi);
 		}else{
 			JOptionPane.showMessageDialog(this, "Il n'y a aucun joueur");
 		}
@@ -454,7 +454,7 @@ public class FenetrePrincipale extends JFrame {
 		//Bouton valider
 		JButton valider = new JButton("Valider");
 		valider.addActionListener(new SaisirScoreControlleur(score1,score2,this,this.tournoi,i));
-		valider.addActionListener(new ValiderMatchControlleur(this, tournoi.getTerrain(i).getMatch(), j1, j2, score1, j3, j4, score2, valider));
+		valider.addActionListener(new ValiderMatchControlleur(tournoi.getTerrain(i).getMatch(), j1, j2, score1, j3, j4, score2, valider));
 		gbc.gridy = 4;
 		terrain.add(valider, gbc);
 

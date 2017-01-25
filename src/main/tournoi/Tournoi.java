@@ -1,5 +1,6 @@
 package main.tournoi;
 
+import com.opencsv.CSVWriter;
 import main.exception.ImportExportException;
 import main.exception.NbTerrainNeg;
 import main.exception.NomVideException;
@@ -7,6 +8,7 @@ import main.exception.TournoiVideException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -771,6 +773,33 @@ public class Tournoi {
 				ajouterJoueur(j);
 			}
 		}
+	}
+
+	/**
+	 * Exporte les classements dans un fichier CSV
+	 * * @param filepath path d'un fichier
+	 */
+	public void exportClassement(String filepath) throws IOException {
+		CSVWriter writer = new CSVWriter(new FileWriter(filepath), ',');
+		ArrayList<Joueur> all = getAllJoueurs();
+		Collections.sort(all,new  ComparateurJoueurScore());
+		String[] entries;
+		String ligne;
+		for (Joueur j : all){
+			ligne = j.getNom()+","+j.getPrenom()+","+j.getScore();
+		}
+
+
+
+		// feed in your array (or convert your data to an array)
+
+
+
+
+		//writer.writeNext(entries);
+		writer.close();
+
+
 	}
 
 }
