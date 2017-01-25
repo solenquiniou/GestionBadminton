@@ -27,7 +27,7 @@ public class AjouterJoueurControlleur implements ActionListener {
 		if (verifier()){
 			vue.ajouterJoueur();
 			//Comme ça on pourra réouvrir la fenêtre
-			vue.setDerniereFenetre(null);
+			FenetreAjoutJoueur.setDerniereFenetre(null);
 			JOptionPane.showMessageDialog(vue,"Joueur ajouté !");
 		}
 

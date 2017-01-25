@@ -30,8 +30,8 @@ public class FenetreAjoutJoueur extends JFrame {
 	 * Permet de remplacer la derniere fenêtre
 	 * @param fenetre la fenêtre à remplacer
 	 */
-	public void setDerniereFenetre(FenetreAjoutJoueur fenetre) {
-		this.derniereFenetre = fenetre;
+	public static void setDerniereFenetre(FenetreAjoutJoueur fenetre) {
+		derniereFenetre = fenetre;
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class FenetreAjoutJoueur extends JFrame {
      */
 	public FenetreAjoutJoueur(String titre, Tournoi tournoi, FenetrePrincipale vue){
 
-		if (this.derniereFenetre == null) {
+		if (derniereFenetre == null) {
 
 			this.tournoi = tournoi;
 			this.vue = vue;
@@ -146,10 +146,10 @@ public class FenetreAjoutJoueur extends JFrame {
 			this.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()-corePanel.getWidth())/2,(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-corePanel.getHeight())/2);
 			this.setResizable(false);
 
-			this.derniereFenetre = this;
+			derniereFenetre = this;
 
 		} else {
-			this.derniereFenetre.toFront();
+			derniereFenetre.toFront();
 		}
 	}
 
@@ -248,7 +248,7 @@ public class FenetreAjoutJoueur extends JFrame {
 	protected void processWindowEvent(WindowEvent e) {
 		super.processWindowEvent(e);
 		if(e.getID() == WindowEvent.WINDOW_CLOSING) {
-			this.derniereFenetre = null;
+			derniereFenetre = null;
 		}
 	}
 

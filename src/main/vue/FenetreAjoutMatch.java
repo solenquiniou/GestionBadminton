@@ -37,8 +37,8 @@ public class FenetreAjoutMatch extends JFrame {
      * Permet de remplacer la derniere fenêtre
      * @param fenetre la fenêtre à remplacer
      */
-    public void setDerniereFenetre(FenetreAjoutMatch fenetre) {
-        this.derniereFenetre = fenetre;
+    public static void setDerniereFenetre(FenetreAjoutMatch fenetre) {
+        derniereFenetre = fenetre;
     }
     /**
      * constructeur de la fenêtre d'ajout d'un joueur
@@ -51,7 +51,7 @@ public class FenetreAjoutMatch extends JFrame {
 
         super(titre);
 
-        if (this.derniereFenetre == null) {
+        if (derniereFenetre == null) {
 
             this.tournoi = tournoi;
             this.vue = vue;
@@ -145,10 +145,10 @@ public class FenetreAjoutMatch extends JFrame {
             this.setSize(tailleX, tailleY);
             this.setResizable(false);
 
-            this.derniereFenetre = this;
+            derniereFenetre = this;
 
         } else {
-            this.derniereFenetre.toFront();
+            derniereFenetre.toFront();
         }
     }
 
@@ -181,7 +181,7 @@ public class FenetreAjoutMatch extends JFrame {
     protected void processWindowEvent(WindowEvent e) {
         super.processWindowEvent(e);
         if(e.getID() == WindowEvent.WINDOW_CLOSING) {
-            this.derniereFenetre = null;
+            derniereFenetre = null;
         }
     }
 

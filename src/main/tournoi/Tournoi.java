@@ -330,7 +330,7 @@ public class Tournoi {
 		Boolean test = true;
 		ArrayList<Joueur> listJ = getAllJoueurs();
 		for (Joueur j :listJ){
-			if(j.getPrio() == true){
+			if(j.getPrio()){
 				test = false;
 			}
 		}

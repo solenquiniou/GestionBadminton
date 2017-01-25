@@ -68,7 +68,7 @@ public class AjouterMatchControlleur implements ActionListener {
             vue.getVue().actualiserJoueurs();
 
             //Comme ça on pourra réouvrir la fenêtre
-            vue.setDerniereFenetre(null);
+            FenetreAjoutMatch.setDerniereFenetre(null);
 
             //fermeture de la fenètre
             vue.dispose();

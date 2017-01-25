@@ -37,8 +37,8 @@ public class FenetreModifierJoueur extends JFrame {
 		this.vue = vue;
 		this.id = id;
 
-		if (this.derniereFenetre != null)
-			this.derniereFenetre.dispose();
+		if (derniereFenetre != null)
+			derniereFenetre.dispose();
 
 		Joueur joueur = this.tournoi.getJoueur(id);
 

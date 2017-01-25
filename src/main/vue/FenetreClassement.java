@@ -27,8 +27,8 @@ public class FenetreClassement extends JFrame
     {
         this.tournoi = t;
 
-        if (this.derniereFenetre != null)
-            this.derniereFenetre.dispose();
+        if (derniereFenetre != null)
+            derniereFenetre.dispose();
 
         JPanel joueurs = new JPanel();
         joueurs.setLayout(new GridLayout(1, 2));
