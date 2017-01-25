@@ -34,6 +34,13 @@ public class FenetreAjoutMatch extends JFrame {
     }
 
     /**
+     * Permet de remplacer la derniere fenêtre
+     * @param fenetre la fenêtre à remplacer
+     */
+    public void setDerniereFenetre(FenetreAjoutMatch fenetre) {
+        this.derniereFenetre = fenetre;
+    }
+    /**
      * constructeur de la fenêtre d'ajout d'un joueur
      *
      * @param titre   le titre à donner à la fenêtre

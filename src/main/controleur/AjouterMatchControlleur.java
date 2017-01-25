@@ -66,6 +66,10 @@ public class AjouterMatchControlleur implements ActionListener {
 
             tournoi.ajouterMatch(paire1, paire2, score1, score2);
             vue.getVue().actualiserJoueurs();
+
+            //Comme ça on pourra réouvrir la fenêtre
+            vue.setDerniereFenetre(null);
+
             //fermeture de la fenètre
             vue.dispose();
         }

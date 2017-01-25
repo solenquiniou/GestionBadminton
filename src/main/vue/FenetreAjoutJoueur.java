@@ -27,6 +27,14 @@ public class FenetreAjoutJoueur extends JFrame {
 	static private FenetreAjoutJoueur derniereFenetre;
 
 	/**
+	 * Permet de remplacer la derniere fenetre
+	 * @param fenetre
+	 */
+	public void setDerniereFenetre(FenetreAjoutJoueur fenetre) {
+		this.derniereFenetre = fenetre;
+	}
+
+	/**
 	 * constructeur de la fenêtre d'ajout d'un joueur
 	 * @param titre le titre à donner à la fenêtre
 	 * @param tournoi le main.tournoi dans lequel on veut ajouter un joueur
