@@ -1,7 +1,13 @@
 package main.controleur;
 
-import main.tournoi.Joueur;
-import main.tournoi.Tournoi;
+import main.tournoi.*;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
+
 import main.vue.FenetrePrincipale;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -10,11 +16,6 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.ArrayList;
 
 /** La classe ImporterTournoiControlleur permet d'importer un tournoi
  * @author DROUARD Antoine, DERNONCOURT Cyril, LE BERT Lea, MARTINEAU Lucas
@@ -89,6 +90,7 @@ public class ImporterTournoiControlleur implements ActionListener
                     }
                 }
 
+                ArrayList<String> infosDuJoueur = new ArrayList<String>();
                 for(Node joueurNode : listesJoueursNodes)
                 {
                     NodeList listeInfoNode = joueurNode.getChildNodes(); // Récupère toutes les informations d'un joueur du XML
@@ -98,12 +100,46 @@ public class ImporterTournoiControlleur implements ActionListener
                         if(listeInfoNode.item(i).getNodeType() == Node.ELEMENT_NODE)
                         {
                             Element info = (Element) listeInfoNode.item(i);
-                            System.out.println(info.getTextContent());
+                            infosDuJoueur.add(info.getTextContent());
                         }
                     }
-                    System.out.println("___________________________________");
+
+                    ajouterJoueur(infosDuJoueur.get(1), infosDuJoueur.get(0), infosDuJoueur.get(4), infosDuJoueur.get(2), infosDuJoueur.get(3), infosDuJoueur.get(5));
+                    infosDuJoueur.clear();
                 }
 
+                ArrayList<String> terrains = new ArrayList<>();
+                for(Node tourNode : listesTourNodes) {
+                    NodeList terrainsNodes = tourNode.getChildNodes(); // Récupère les terrains d'un tour
+                    int nbTerrain = terrainsNodes.getLength(); // compte le nombre de "tour" dans le XML
+                    for (int i = 0; i < nbTerrain; i++)
+                    {
+                        System.out.println(i);
+                        if(terrainsNodes.item(i).getNodeType() == Node.ELEMENT_NODE)
+                        {
+                            Element info = (Element) terrainsNodes.item(i);
+                            System.out.println(info);
+                        }
+                    }
+                }
+                    /*
+                    NodeList listeInfoNode = joueurNode.getChildNodes(); // Récupère toutes les informations d'un joueur du XML
+                    int nbInfo = listeInfoNode.getLength(); // compte le nombre de "tour" dans le XML
+                    for (Node joueurNode : listesJoueursNodes) {
+                        NodeList listeInfoNode = joueurNode.getChildNodes(); // Récupère toutes les informations d'un joueur du XML
+                        int nbInfo = listeInfoNode.getLength(); // compte le nombre de "tour" dans le XML
+                        for (int i = 0; i < nbInfo; i++) {
+                            if (listeInfoNode.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                                Element info = (Element) listeInfoNode.item(i);
+                                infosDuJoueur.add(info.getTextContent());
+                            }
+                        }
+
+                        ajouterJoueur(infosDuJoueur.get(1), infosDuJoueur.get(0), infosDuJoueur.get(4), infosDuJoueur.get(2), infosDuJoueur.get(3), infosDuJoueur.get(5));
+                        infosDuJoueur.clear();
+                    }
+                }
+                */
 
             }
             catch (Exception ex)
@@ -113,8 +149,37 @@ public class ImporterTournoiControlleur implements ActionListener
         }
     }
 
-    public Joueur creerJoueur()
+    public void ajouterJoueur(String nom, String prenom, String age, String sexe, String nouveau, String niveau)
     {
-       return null;
+        int ageJoueur = 0, niveauJoueur = 0;
+        boolean sexeJoueur, ancienneteJoueur;
+
+        if (age.equals("-18 ans"))
+            ageJoueur = 1;
+        else if (age.equals("18-35 ans"))
+            ageJoueur = 2;
+        else if (age.equals("35+ ans"))
+            ageJoueur = 3;
+
+
+        if (niveau.equals("Débutant"))
+            niveauJoueur = 1;
+        else if (niveau.equals("Intermédiaire"))
+            niveauJoueur = 2;
+        else if (niveau.equals("Confirmé"))
+            niveauJoueur = 3;
+
+        sexeJoueur = (sexe.equals("Homme"));
+
+        ancienneteJoueur = (nouveau.equals("Nouveau"));
+
+        Joueur j = new Joueur(Joueur.nbJoueursCrees, nom, prenom, ageJoueur, sexeJoueur, ancienneteJoueur, niveauJoueur, true);
+
+        if (!tournoi.getAnciensJoueurs().contains(j) && !tournoi.getNouveauxJoueurs().contains(j))
+        {
+            tournoi.ajouterJoueur(j);
+            fenetre.ajouterJoueurTable();
+        }
     }
+
 }
