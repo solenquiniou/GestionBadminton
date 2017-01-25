@@ -1,13 +1,7 @@
 package main.controleur;
 
-import main.tournoi.*;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.ArrayList;
-
+import main.tournoi.Joueur;
+import main.tournoi.Tournoi;
 import main.vue.FenetrePrincipale;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -16,6 +10,11 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
 
 /** La classe ImporterTournoiControlleur permet d'importer un tournoi
  * @author DROUARD Antoine, DERNONCOURT Cyril, LE BERT Lea, MARTINEAU Lucas
@@ -116,6 +115,6 @@ public class ImporterTournoiControlleur implements ActionListener
 
     public Joueur creerJoueur()
     {
-        
+       return null;
     }
 }

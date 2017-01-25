@@ -4,6 +4,7 @@ import main.controleur.*;
 import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
 import main.tournoi.Chrono;
+import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -39,16 +40,12 @@ public class FenetrePrincipale extends JFrame {
 
 		//On charge le look and feel du syst�me de l'utilisateur (� la place de GTK) auquel il est habitu�
 		try {
-			UIManager. setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+			UIManager.setLookAndFeel(new SyntheticaPlainLookAndFeel());
+			//UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 			SwingUtilities. updateComponentTreeUI(this);
 			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e) {
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Problème rencontré: " + e.getMessage());
 			e.printStackTrace();
 		}
 
