@@ -66,26 +66,26 @@ public class SaisirScoreControlleur implements ActionListener{
 	private boolean verifier(){
 		boolean ret_val = true;
 		if(this.tournoi.terrainVide(this.numeroTerrain)){
-			JOptionPane.showMessageDialog(vue, "Il manque un joueur");
+			JOptionPane.showMessageDialog(vue, "Il manque un joueur","Erreur",JOptionPane.ERROR_MESSAGE);
 			ret_val= false;
 		}
 
 		if(!this.tournoi.paireValide(this.numeroTerrain)){
-			JOptionPane.showMessageDialog(vue, "Vous avez modifier les paires et maintenant il y deux fois le même joueur dans ce match ;(");
+			JOptionPane.showMessageDialog(vue, "Vous avez modifier les paires et maintenant il y deux fois le même joueur dans ce match ;( ","Erreur",JOptionPane.ERROR_MESSAGE);
 			ret_val= false;
 		}
 
 
 		int test = score1;
 		if(test<0){
-			JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
+			JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.","Erreur",JOptionPane.ERROR_MESSAGE);
 			ret_val= false;
 		}
 
 
 		test = score2;
 		if(test<0){
-			JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
+			JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.","Erreur",JOptionPane.ERROR_MESSAGE);
 			ret_val= false;
 		}
 

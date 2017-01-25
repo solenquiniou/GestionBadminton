@@ -31,7 +31,7 @@ public class NouveauTourControleur implements ActionListener {
 
         }
         catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Il n'y a pas de joueurs!! " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erreur: " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
 
     }

@@ -1,11 +1,10 @@
 package main.controleur;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import main.vue.FenetreAjoutJoueur;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AjouterJoueurControlleur implements ActionListener {
 	
@@ -40,13 +39,13 @@ public class AjouterJoueurControlleur implements ActionListener {
 	public boolean verifier(){
 		// On vérifie qu'il y a un nom et un prénom
 		if (vue.getNom().getText().equals("") || vue.getPrenom().getText().equals("")){
-			JOptionPane.showMessageDialog(vue,"Merci d'indiquer un nom et un prenom");
+			JOptionPane.showMessageDialog(vue,"Merci d'indiquer un nom et un prenom","Erreur",JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		//On vérifie qu'il n'y ait pas de virgule dans le nom et le prenom pour ne pas poser de pb avec le csv
 		if (vue.getNom().getText().contains(",") || vue.getPrenom().getText().contains(",")) {
-			JOptionPane.showMessageDialog(vue,"Le prenom et le nom ne doivent pas contenir de virgule");
+			JOptionPane.showMessageDialog(vue,"Le prenom et le nom ne doivent pas contenir de virgule","Erreur",JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
