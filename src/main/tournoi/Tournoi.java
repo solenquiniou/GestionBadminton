@@ -63,6 +63,7 @@ public class Tournoi {
 		initialiserTerrains();
 		this.tour = new ArrayList<Tour>();
 		nbTour = 0;
+		Joueur.resetNbJoueur();
 	}
 
 	public Boolean tournoisVide(){

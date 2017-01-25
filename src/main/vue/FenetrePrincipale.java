@@ -57,7 +57,7 @@ public class FenetrePrincipale extends JFrame {
 		this.setLocation(0, 0);
 		this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
 		this.setVisible(true);
-		this.setJMenuBar(new Menu(this));
+		this.setJMenuBar(new MenuDebut(this));
 	}
 
 	/**
