@@ -19,7 +19,6 @@ public class FenetrePrincipale extends JFrame {
 
 	//La fen�tre principale � un main.tournoi surlequel elle peut agir
 	private Tournoi tournoi;
-	private JScrollPane panJoueurs;
 	private DefaultTableModel listeJoueursModele;
 	private JTable listeJoueurs;
 	String[] joueurs;
@@ -118,11 +117,11 @@ public class FenetrePrincipale extends JFrame {
 		};
 		listeJoueurs = new JTable(listeJoueursModele);
 		//modif d'un joueur en cliquant sur le joueur
-		listeJoueurs.addMouseListener(new ModifierJoueurControlleur(this,listeJoueursModele,listeJoueurs));
+		listeJoueurs.addMouseListener(new ModifierJoueurControlleur(this,listeJoueurs));
 		//Nous ajoutons notre tableau à notre contentPane dans un scroll
 		//Sinon les titres des colonnes ne s'afficheront pas !
 		listeJoueurs.setAutoCreateRowSorter(true);
-		panJoueurs = new JScrollPane(listeJoueurs);
+		JScrollPane panJoueurs = new JScrollPane(listeJoueurs);
 
 		joueurs.add(panJoueurs,BorderLayout.CENTER);
 
@@ -345,7 +344,7 @@ public class FenetrePrincipale extends JFrame {
 		this.verif = verif;
 	}
 
-	public ArrayList<JComboBox> getBoxTerrains() { return this.boxTerrains; };
+	public ArrayList<JComboBox> getBoxTerrains() { return this.boxTerrains; }
 
 	public JPanel nouveauTerrain(int i){
 		JPanel terrain = new JPanel(new GridBagLayout());

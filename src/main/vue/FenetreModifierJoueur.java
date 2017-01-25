@@ -12,8 +12,6 @@ public class FenetreModifierJoueur extends JFrame {
 
 	private Tournoi tournoi;
 	FenetrePrincipale vue;
-	private int id;
-
 	private JTextField nom;
 	private JTextField prenom;
 	private JComboBox niveau;
@@ -35,7 +33,6 @@ public class FenetreModifierJoueur extends JFrame {
 
 		this.tournoi = tournoi;
 		this.vue = vue;
-		this.id = id;
 
 		if (derniereFenetre != null)
 			derniereFenetre.dispose();

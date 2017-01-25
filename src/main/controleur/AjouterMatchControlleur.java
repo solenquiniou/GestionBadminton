@@ -20,8 +20,7 @@ public class AjouterMatchControlleur implements ActionListener {
     private Tournoi tournoi;
     private int score1;
     private int score2;
-    private Paire paire1;
-    private Paire paire2;
+
     private String j1;
     private String j2;
     private String j3;
@@ -61,8 +60,8 @@ public class AjouterMatchControlleur implements ActionListener {
             Joueur j22 = tournoi.chercherJoueur(j4);
 
             //creation des paires
-            paire1 = new Paire(j11, j12);
-            paire2 = new Paire(j21,j22);
+            Paire paire1 = new Paire(j11, j12);
+            Paire paire2 = new Paire(j21,j22);
 
             tournoi.ajouterMatch(paire1, paire2, score1, score2);
             vue.getVue().actualiserJoueurs();

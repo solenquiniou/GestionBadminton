@@ -22,7 +22,7 @@ public class FenetreAjoutJoueur extends JFrame {
 	private JRadioButton fem;
 	private JRadioButton hom;
 	private JCheckBox nouv;
-	private JCheckBox present;
+
 
 	static private FenetreAjoutJoueur derniereFenetre;
 
@@ -125,7 +125,7 @@ public class FenetreAjoutJoueur extends JFrame {
 			corePanel.add(nouv, gbc);
 
 			//Ajout presence
-			present = new JCheckBox("Présent");
+			JCheckBox present = new JCheckBox("Présent");
 			present.setSelected(true);
 			gbc.gridx = 1;
 			gbc.gridy = 2;

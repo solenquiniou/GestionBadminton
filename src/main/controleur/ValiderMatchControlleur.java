@@ -12,8 +12,6 @@ import java.awt.event.ActionListener;
  * Created by anton on 08/01/17.
  */
 public class ValiderMatchControlleur implements ActionListener{
-
-    private FenetrePrincipale vue;
     private Match match;
     private JComboBox<Joueur> comboJ1;
     private JComboBox<Joueur> comboJ2;
@@ -25,7 +23,6 @@ public class ValiderMatchControlleur implements ActionListener{
 
 
     public ValiderMatchControlleur(FenetrePrincipale vue, Match match, JComboBox<Joueur> j1, JComboBox<Joueur> j2, JSpinner e1, JComboBox<Joueur> j3, JComboBox<Joueur> j4, JSpinner e2, JButton valider) {
-        this.vue = vue;
         this.match = match;
         this.comboJ1 = j1;
         this.comboJ2 = j2;

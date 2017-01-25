@@ -1,7 +1,5 @@
 package main.app;
 
-import main.exception.NbTerrainNeg;
-import main.exception.NomVideException;
 import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
 

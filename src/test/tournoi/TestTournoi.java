@@ -1,3 +1,5 @@
+package test.tournoi;
+
 import main.tournoi.Joueur;
 import main.tournoi.Paire;
 import main.tournoi.Terrain;

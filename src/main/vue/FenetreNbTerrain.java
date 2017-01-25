@@ -13,11 +13,9 @@ import java.awt.event.ActionListener;
  * Created by E154981H on 23/01/17.
  */
 public class FenetreNbTerrain extends JDialog {
-    private Tournoi tournoi;
 
-    public FenetreNbTerrain(Tournoi t) {
-        this.tournoi = t;
 
+    public FenetreNbTerrain(Tournoi tournoi) {
         JPanel container = new JPanel();
         container.setLayout(new BorderLayout());
 
@@ -63,7 +61,7 @@ public class FenetreNbTerrain extends JDialog {
         JPanel buttonContainer = new JPanel(new BorderLayout());
         JButton valider = new JButton("Valider");
         //On assigne un main.controleur au bouton pour g�n�rer la cr�ation du main.tournoi
-        valider.addActionListener(new ChangerNbrTerrainControlleur(this.tournoi,nbTerrains,this));
+        valider.addActionListener(new ChangerNbrTerrainControlleur(tournoi,nbTerrains,this));
 
         //On assigne un main.controleur au bouton annuler pour fermer la fenetre
         JButton annuler = new JButton("Annuler");

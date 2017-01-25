@@ -14,7 +14,6 @@ import java.awt.event.ItemListener;
 public class InverserJoueurControlleur implements ItemListener {
     private FenetrePrincipale vue;
     private Tournoi tournoi;
-    private  JComboBox jselect;
     private Joueur jprec;//joueru precedament electionné
     private int nuJ;
     private int nuterr;
@@ -23,7 +22,6 @@ public class InverserJoueurControlleur implements ItemListener {
         public InverserJoueurControlleur(JComboBox jselect, FenetrePrincipale vue){
             this.vue = vue;
             this.tournoi = vue.getTournoi();
-            this.jselect = jselect;
             this.jprec = (Joueur) jselect.getSelectedItem();
 
         }

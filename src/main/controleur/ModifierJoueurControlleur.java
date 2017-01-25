@@ -1,26 +1,23 @@
 package main.controleur;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import main.vue.FenetreModifierJoueur;
 import main.vue.FenetrePrincipale;
+
+import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 
 
 public class ModifierJoueurControlleur implements MouseListener {
 	
-	private DefaultTableModel dtm;
+
 	private FenetrePrincipale fp;
 	private JTable jt;
 	private int id;
 	
-	public ModifierJoueurControlleur(FenetrePrincipale fp, DefaultTableModel dtm, JTable jt){
-		this.dtm = dtm;
-		this.fp = fp;
+	public ModifierJoueurControlleur(FenetrePrincipale fd, JTable jt){
+		this.fp = fd;
 		this.jt = jt;
 	}
 
