@@ -3,6 +3,7 @@ package main.vue;
 import main.controleur.ExporterJoueursControlleur;
 import main.controleur.ExporterTournoiControlleur;
 import main.controleur.ImporterJoueursControlleur;
+import main.controleur.ImporterTournoiControlleur;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,6 +41,7 @@ public class Menu extends JMenuBar{
 
 		//Ouvrir un fichier
 		JMenuItem ouvrir = new JMenuItem("Ouvrir...");
+		ouvrir.addActionListener(new ImporterTournoiControlleur(fen));
 		ouvrir.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 		menuFichier.add(ouvrir);
 		menuFichier.addSeparator();
