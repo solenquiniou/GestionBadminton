@@ -119,8 +119,8 @@ public class FenetreAjoutMatch extends JFrame {
             try {
                 score1.commitEdit();
                 score2.commitEdit();
-            } catch (Exception pe) {
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
             valider.addActionListener(new AjouterMatchControlleur(this, score1, score2));

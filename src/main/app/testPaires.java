@@ -35,11 +35,7 @@ public class testPaires {
             System.out.println("Tour 2 :");
             tourn.nouveauTour();
             System.out.println("Tour 3 :");
-
-        } catch (NomVideException e) {
-            e.printStackTrace();
-        } catch (NbTerrainNeg nbTerrainNeg) {
-            nbTerrainNeg.printStackTrace();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

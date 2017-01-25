@@ -141,10 +141,6 @@ public class Joueur {
 		this.niveau = niveau;
 	}
 
-	public int compare(Joueur j1, Joueur j2) {
-		return 1;
-	}
-
 	/**
 	 * pour ajouter un joueur dans les partenaires
 	 * @param j le joueur à ajouter dans les partenaires
@@ -363,32 +359,7 @@ public class Joueur {
 	public void ajouterMatchJoue() {
 		this.nbMatchJoues++;
 	}
-	
-	public String readyToBeSaved(){
-		String anc ="";
-		for(int i = 0;i<this.anciensPart.size();i++){
-			anc += "\n<id>"+((Joueur) this.anciensPart.get(i)).getId()+"</id>";
-		}
-		anc=anc.replaceAll("(?m)^", "\t");
-		anc=anc.replaceAll("(?m)^", "\t");
-		return "\n<joueur> \n"
-				+ "	<id>"+this.id+"</id>\n"
-				+ "	<nom>"+this.nom+"</nom>\n"
-				+ "	<prenom>"+this.prenom+"</prenom>\n"
-				+ "	<age>"+this.age+"</age>\n"
-				+ "	<sexe>"+this.sexe+"</sexe>\n"
-				+ "	<nouveau>"+this.nouveau+"</nouveau>\n"
-				+ "	<score>"+this.score+"</score>\n"
-				+ "	<joue>"+this.joue+"</joue>\n"
-				+ "	<dansPaire>"+this.dansPaire+"</dansPaire>\n"
-				+ "	<perf>"+this.perf+"</perf>\n"
-				+ "	<niveau>"+this.niveau+"</niveau>\n"
-				+ "	<anciensPart>"+anc+"\n	</anciensPart>\n"
-				+ "	<prio>"+this.prio+"</prio>\n"
-				+ "	<nbMatchJoues>"+this.nbMatchJoues+"</nbMatchJoues>\n"
-				+ "	<peutJouer>"+this.peutJouer+"</peutJouer>\n"
-			+ "</joueur>";
-	}
+
 	public void modifierJoueur(String nom2, String prenom2, int age2, boolean sexe2, boolean nouveau2,
 			int niveau2) {
 		this.setNom(nom2);

@@ -454,11 +454,6 @@ public class Tournoi {
 		return res;
 	}
 
-
-	public void parserMPF(String str) {
-		Pattern pattern = Pattern.compile("Hugo");
-		Matcher matcher = pattern.matcher("Hugo Eti�vant");
-	}
 	/**
 	 *Retourne le terrqin auquel un joueur est associé
 	 * @param j le  joueur
@@ -571,10 +566,6 @@ public class Tournoi {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public void parseTournoi(String tournoiXML) {
-
 	}
 
 	public void modifierJoueur(int id, String nom, String prenom, int age, boolean sexe,

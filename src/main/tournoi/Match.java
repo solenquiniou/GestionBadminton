@@ -194,9 +194,6 @@ public class Match {
 	public int prio(){
 		return (paire1.prio() + paire2.prio());
 	}
-	
-	public String readyToBeSaved(){
-		return "";
-	}
+
 
 }
