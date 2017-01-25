@@ -23,7 +23,7 @@ import javax.xml.transform.OutputKeys;
 
 
 
-/** La classe ExporterTournoiControlleur permet d'exporter un main.tournoi
+/** La classe ExporterTournoiControlleur permet d'exporter un tournoi
  * @author DROUARD Antoine, DERNONCOURT Cyril, LE BERT Lea, MARTINEAU Lucas
  */
 public class ExporterTournoiControlleur implements ActionListener {
