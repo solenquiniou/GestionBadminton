@@ -94,11 +94,7 @@ public class AjouterMatchControlleur implements ActionListener {
             JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.");
             ret_val= false;
         }
-        if(j1 == "none" ||j2 == "none" ||j3 == "none" ||j4 == "none" ){
-            JOptionPane.showMessageDialog(vue, "il manque un joueur");
-            ret_val= false;
-        }
-        if(j1 == j2 ||j1 == j3 ||j1 == j4||j2 == j3 ||j2 == j4 ||j3 == j4 ){
+        if(j1.equals(j2) ||j1.equals(j3) ||j1.equals(j4)||j2.equals(j3) ||j2.equals(j4) ||j3.equals(j4) ){
             JOptionPane.showMessageDialog(vue, "Il y a deux fois le même Joueur");
             ret_val= false;
         }
