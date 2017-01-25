@@ -123,11 +123,7 @@ public class Tournoi {
 	public ArrayList<Joueur> getAllJoueurs() {
 		ArrayList<Joueur> allJoueurs = new ArrayList<Joueur>();
 
-			allJoueurs.addAll(this.nouveauxJoueurs);
-			allJoueurs.addAll(this.nouveauxJoueurs);
-
-
-
+		allJoueurs.addAll(this.nouveauxJoueurs);
 		allJoueurs.addAll(this.anciensJoueurs);
 		return allJoueurs;
 	}
