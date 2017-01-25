@@ -159,7 +159,7 @@ public class FenetreModifierJoueur extends JFrame {
 
 	/**
 	 *
-	 * @returnle champ de saisie du prénom
+	 * @return le champ de saisie du prénom
      */
 	public JTextField getPrenom() {
 		return prenom;

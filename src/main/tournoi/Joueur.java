@@ -344,7 +344,7 @@ public class Joueur {
 	
 	/** Redéfinition de l'attribut "dansPaire"
 	 * 
-	 * @param dansPaire
+	 * @param dansPaire le fait que le joueur soit dans une paire ou non
 	 */
 	public void setDansPaire(boolean dansPaire) {
 		this.dansPaire = dansPaire;

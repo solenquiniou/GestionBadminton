@@ -25,7 +25,6 @@ public class ImporterJoueursControlleur implements ActionListener {
 
     /** Constructeur de la classe ImporterJoueursControlleur
      *
-     * @param tournoi le main.tournoi où importer les joueurs
      * @param vue la main.vue qu'il faut rafraichir lors de l'ajout des joueurs
      */
     public ImporterJoueursControlleur(FenetrePrincipale vue) {

@@ -27,8 +27,8 @@ public class FenetreAjoutJoueur extends JFrame {
 	static private FenetreAjoutJoueur derniereFenetre;
 
 	/**
-	 * Permet de remplacer la derniere fenetre
-	 * @param fenetre
+	 * Permet de remplacer la derniere fenêtre
+	 * @param fenetre la fenêtre à remplacer
 	 */
 	public void setDerniereFenetre(FenetreAjoutJoueur fenetre) {
 		this.derniereFenetre = fenetre;
@@ -171,7 +171,7 @@ public class FenetreAjoutJoueur extends JFrame {
 
 	/**
 	 *
-	 * @returnle champ de saisie du prénom
+	 * @return le champ de saisie du prénom
      */
 	public JTextField getPrenom() {
 		return prenom;
