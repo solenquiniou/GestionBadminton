@@ -48,17 +48,11 @@ public class FenetreAjoutJoueur extends JFrame {
 				public void focusGained(FocusEvent e) {
 					if (nom.getText().trim().equals("Nom"))
 						nom.setText("");
-					else {
-						//ne rien faire
-					}
 				}
 
 				public void focusLost(FocusEvent e) {
 					if (nom.getText().trim().equals(""))
 						nom.setText("Nom");
-					else {
-						//ne rien faire
-					}
 				}
 			});
 			gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -73,17 +67,11 @@ public class FenetreAjoutJoueur extends JFrame {
 				public void focusGained(FocusEvent e) {
 					if (prenom.getText().trim().equals("Prénom"))
 						prenom.setText("");
-					else {
-						//ne rien faire
-					}
 				}
 
 				public void focusLost(FocusEvent e) {
 					if (prenom.getText().trim().equals(""))
 						prenom.setText("Prénom");
-					else {
-						//ne rien faire
-					}
 				}
 			});
 			gbc.gridx = 1;
