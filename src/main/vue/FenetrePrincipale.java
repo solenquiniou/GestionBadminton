@@ -84,6 +84,10 @@ public class FenetrePrincipale extends JFrame {
 		return this.tournoi;
 	}
 
+	public  JTable getListeJoueurs() {
+		return this.listeJoueurs;
+	}
+
 	/**
 	 * initialise l'affichage de la fenêtre
 	 */

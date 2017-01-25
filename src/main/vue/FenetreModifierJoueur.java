@@ -5,6 +5,7 @@ import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -209,6 +210,9 @@ public class FenetreModifierJoueur extends JFrame {
 	/**
 	 * pour ajouter un joueur dans le main.tournoi et dans la liste de la fenetre principale
 	 */
+	/**
+	 * pour ajouter un joueur dans le main.tournoi et dans la liste de la fenetre principale
+	 */
 	public void modifierJoueur(int id)
 	{
 		int age = this.age.getSelectedIndex(); // 0 : -18 jeune / 1 : 18-35 senior / 2 : 35+ veteran
@@ -228,53 +232,18 @@ public class FenetreModifierJoueur extends JFrame {
 
 	public void supprimerJoueur(int id)
 	{
-		Joueur jou = this.tournoi.getJoueur(id);
-		boolean trouve = false;
-		int i = 0;
-		Joueur aSupprimer = new Joueur(id, true, true);
-
-		if(jou.getNouveau())
-		{
-			ArrayList nouveauxJoueurs = this.tournoi.getNouveauxJoueurs();
-			int tailleNouveauxJoueurs = nouveauxJoueurs.size();
-
-			while(!trouve && i < tailleNouveauxJoueurs)
-			{
-				Joueur j = (Joueur) nouveauxJoueurs.get(i);
-				int a = j.getId();
-				if (a == id)
-				{
-					aSupprimer = j;
-					trouve = true;
-				}
-				i++;
+		JTable table = this.vue.getListeJoueurs();
+		int i;
+		boolean supprimer = false;
+		for (i = 0; i < this.vue.getListeJoueurs().getRowCount(); i++) {
+			if((int)(table.getModel()).getValueAt(i,0) == id) {
+				((DefaultTableModel)table.getModel()).removeRow(i);
+				supprimer = true;
 			}
 		}
-
-		else
-		{
-			ArrayList anciensJoueurs = this.tournoi.getAnciensJoueurs();
-			int tailleAnciensJoueurs = anciensJoueurs.size();
-
-			while(!trouve && i < tailleAnciensJoueurs)
-			{
-				Joueur j = (Joueur) anciensJoueurs.get(i);
-				int a = j.getId();
-				if (a == id)
-				{
-					aSupprimer = j;
-					trouve = true;
-				}
-				i++;
-			}
-		}
-
-		this.tournoi.supprimerJoueur(aSupprimer);
-		this.vue.supprimerJoueurTable();
-		this.vue.actualiserJoueurs();
-		this.vue.actualiserNoms();
+		if (supprimer)
+			this.tournoi.supprimerJoueur(tournoi.getJoueur(id));
 		dispose();
-
 	}
 
 
