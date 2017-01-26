@@ -484,7 +484,7 @@ public class FenetrePrincipale extends JFrame {
 		tournois.setLayout(new BorderLayout());
 		JPanel panTour = new JPanel();
 
-		panTour.setLayout(new GridLayout((int)Math.floor(this.tournoi.getNbrTerrains()/((int) Math.floor(this.getBounds().width/450))), (int) Math.floor(this.getBounds().width/450), 10, 10));
+		panTour.setLayout(new GridLayout((int)Math.floor(this.tournoi.getNbrTerrains()/((int) Math.floor(this.getBounds().width/600))), (int) Math.floor(this.getBounds().width/600), 10, 10));
 		//On parcours les terrains pour les afficher
 
 		ArrayList<Joueur> joueursActifs = new ArrayList<>();
