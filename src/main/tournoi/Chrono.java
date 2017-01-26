@@ -149,24 +149,32 @@ public class Chrono extends JPanel {
                     couleur = new Color(0, 255, 0);
                     cg.setColor(couleur);
                 } else {
-                    couleur = new Color(couleur.getRed()+1, couleur.getGreen(), couleur.getBlue());
-                    cg.setColor(couleur);
+                    if (couleur.getRed() <= 254) {
+                        couleur = new Color(couleur.getRed()+1, couleur.getGreen(), couleur.getBlue());
+                        cg.setColor(couleur);
+                    }
                 }
             } else {                    //r+=2
-                couleur = new Color(couleur.getRed()+2, couleur.getGreen(), couleur.getBlue());
-                cg.setColor(couleur);
+                if (couleur.getRed() <= 253) {
+                    couleur = new Color(couleur.getRed()+2, couleur.getGreen(), couleur.getBlue());
+                    cg.setColor(couleur);
+                }
             }
         } else {                        //baisser g
             if (tempsRestant < 45) {    //g-=1
                 if (tempsRestant != 0) {
-                    couleur = new Color(couleur.getRed(), couleur.getGreen()-1, couleur.getBlue());
-                    cg.setColor(couleur);
+                    if (couleur.getGreen() >= 1) {
+                        couleur = new Color(couleur.getRed(), couleur.getGreen()-1, couleur.getBlue());
+                        cg.setColor(couleur);
+                    }
                 } else {
                     cg.setColor(couleur);
                 }
             } else {                    //g-=2
-                couleur = new Color(couleur.getRed(), couleur.getGreen()-2, couleur.getBlue());
-                cg.setColor(couleur);
+                if (couleur.getGreen() >= 2) {
+                    couleur = new Color(couleur.getRed(), couleur.getGreen()-2, couleur.getBlue());
+                    cg.setColor(couleur);
+                }
             }
         }
         //System.out.println("Temps: " + tempsRestant + " R: " + couleur.getRed() + " G: " + couleur.getGreen() + " B: " + couleur.getBlue());
