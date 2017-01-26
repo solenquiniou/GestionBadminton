@@ -28,6 +28,7 @@ public class ChronometreRestartControlleur implements ActionListener {
         if(temps.getActif()) {
             temps.stop();
             temps.setTempsRestant(300);
+            temps.repaint();
             start.setText("Lancer");
         } else {
             temps.setTempsRestant(300);

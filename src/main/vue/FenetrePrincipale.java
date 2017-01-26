@@ -45,7 +45,7 @@ public class FenetrePrincipale extends JFrame {
 			SwingUtilities. updateComponentTreeUI(this);
 			//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, "Problème rencontré: " + e.getMessage());
+			JOptionPane.showMessageDialog(null,this, "Problème rencontré: " + e.getMessage(),JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 
@@ -262,7 +262,7 @@ public class FenetrePrincipale extends JFrame {
 		if(tournoi.nbJoueur()>0){
 			new FenetreAjoutMatch("Entrer nouveau Match",tournoi);
 		}else{
-			JOptionPane.showMessageDialog(this, "Il n'y a aucun joueur");
+			JOptionPane.showMessageDialog(null, "Il n'y a aucun joueur","erreur",JOptionPane.ERROR_MESSAGE);
 		}
 
 	}

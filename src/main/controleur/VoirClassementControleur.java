@@ -40,11 +40,11 @@ public class VoirClassementControleur implements ActionListener
 
     public Boolean verif(){
         if (tournoi.nbJoueur()<1){
-            JOptionPane.showMessageDialog(vue, "Il n'y a pas encore de Joueurs");
+            JOptionPane.showMessageDialog(vue, "Il n'y a pas encore de Joueurs","Erreur",JOptionPane.ERROR_MESSAGE);
             return false;
         }
         if (tournoi.getNbTour()<1){
-            JOptionPane.showMessageDialog(vue,"Le tournoi n'a pas commencé!!");
+            JOptionPane.showMessageDialog(vue,"Le tournoi n'a pas commencé!!","Erreur",JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
