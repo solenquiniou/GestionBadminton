@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tournoi>
+  <listeJoueurs>
+    <joueur>
+      <prenom>Pascal</prenom>
+      <nom>ANDRE</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Sidney</prenom>
+      <nom>BARDY</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Arnaud</prenom>
+      <nom>BAUMARD</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Tangi</prenom>
+      <nom>BERTRAND</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Clementine</prenom>
+      <nom>CHEVRIER</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Jeremy</prenom>
+      <nom>CHIBOUST</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Audrey</prenom>
+      <nom>COQUET</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Vanessa</prenom>
+      <nom>EPIARD</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Shaimad</prenom>
+      <nom>GADALLAH</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Sophiane</prenom>
+      <nom>GUENINECHE</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Mathieu</prenom>
+      <nom>HELIAS</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Yoann</prenom>
+      <nom>HERVE</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Alexis</prenom>
+      <nom>LANDAIS</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Audrey</prenom>
+      <nom>LE MORVAN</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Helena</prenom>
+      <nom>LEMERCIER</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Pierrick</prenom>
+      <nom>LIMOUSIN</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Geoffrey</prenom>
+      <nom>LOBJOIS</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Jean-Yves</prenom>
+      <nom>MARTIN</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Maryse</prenom>
+      <nom>MONNIER</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Herve</prenom>
+      <nom>PETIT</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Solen</prenom>
+      <nom>QUINIOU</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Emile</prenom>
+      <nom>SAURAT</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Nouveau</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Maxime</prenom>
+      <nom>BILY</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Hermann</prenom>
+      <nom>BOAGNO</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age/>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Franck</prenom>
+      <nom>CORNUAULT</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Jeremy</prenom>
+      <nom>ETIENNE</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Luc</prenom>
+      <nom>FOUIN</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Aurelien</prenom>
+      <nom>FRANCOIS</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Gwenael</prenom>
+      <nom>HOUSSIN</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Nicolas</prenom>
+      <nom>KOUDOTA</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Alexandre</prenom>
+      <nom>MARTIN</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Ghislain</prenom>
+      <nom>MENARD</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Yann</prenom>
+      <nom>MISSER</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Ewan</prenom>
+      <nom>PROUST</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Clément</prenom>
+      <nom>Rabeau</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age/>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Philippe</prenom>
+      <nom>REDIEN</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Solene</prenom>
+      <nom>SAMSON</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Benjamin</prenom>
+      <nom>SOURISSE</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Gabrielle</prenom>
+      <nom>THOLLON</nom>
+      <sexe>Femme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Simon</prenom>
+      <nom>TOURRAINE</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Elodie</prenom>
+      <nom/>
+      <sexe>Femme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age>35+ ans</age>
+      <niveau/>
+    </joueur>
+    <joueur>
+      <prenom>Loïc</prenom>
+      <nom>MASSON</nom>
+      <sexe>Homme</sexe>
+      <anciennete>Ancien</anciennete>
+      <age/>
+      <niveau/>
+    </joueur>
+  </listeJoueurs>
+  <listeTours>
+    <tour>
+      <terrain>
+        <nomJoueur1>ANDRE</nomJoueur1>
+        <prenomJoueur1>Pascal</prenomJoueur1>
+        <nomJoueur2>SAMSON</nomJoueur2>
+        <prenomJoueur2>Solene</prenomJoueur2>
+        <score1>0</score1>
+        <nomJoueur3>BARDY</nomJoueur3>
+        <prenomJoueur3>Sidney</prenomJoueur3>
+        <nomJoueur4>THOLLON</nomJoueur4>
+        <prenomJoueur4>Gabrielle</prenomJoueur4>
+        <score2>5</score2>
+      </terrain>
+      <terrain>
+        <nomJoueur1>BAUMARD</nomJoueur1>
+        <prenomJoueur1>Arnaud</prenomJoueur1>
+        <nomJoueur2/>
+        <prenomJoueur2>Elodie</prenomJoueur2>
+        <score1>0</score1>
+        <nomJoueur3>BERTRAND</nomJoueur3>
+        <prenomJoueur3>Tangi</prenomJoueur3>
+        <nomJoueur4>BILY</nomJoueur4>
+        <prenomJoueur4>Maxime</prenomJoueur4>
+        <score2>8</score2>
+      </terrain>
+      <terrain>
+        <nomJoueur1>CHEVRIER</nomJoueur1>
+        <prenomJoueur1>Clementine</prenomJoueur1>
+        <nomJoueur2>BOAGNO</nomJoueur2>
+        <prenomJoueur2>Hermann</prenomJoueur2>
+        <score1>0</score1>
+        <nomJoueur3>CHIBOUST</nomJoueur3>
+        <prenomJoueur3>Jeremy</prenomJoueur3>
+        <nomJoueur4>CORNUAULT</nomJoueur4>
+        <prenomJoueur4>Franck</prenomJoueur4>
+        <score2>3</score2>
+      </terrain>
+      <terrain>
+        <nomJoueur1>COQUET</nomJoueur1>
+        <prenomJoueur1>Audrey</prenomJoueur1>
+        <nomJoueur2>ETIENNE</nomJoueur2>
+        <prenomJoueur2>Jeremy</prenomJoueur2>
+        <score1>0</score1>
+        <nomJoueur3>EPIARD</nomJoueur3>
+        <prenomJoueur3>Vanessa</prenomJoueur3>
+        <nomJoueur4>FOUIN</nomJoueur4>
+        <prenomJoueur4>Luc</prenomJoueur4>
+        <score2>8</score2>
+      </terrain>
+    </tour>
+  </listeTours>
+</tournoi>

@@ -260,7 +260,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 	public void fenetreAjoutMatch(){
 		if(tournoi.nbJoueur()>0){
-			new FenetreAjoutMatch("Entrer nouveau Match",tournoi);
+			new FenetreAjoutMatch("Entrer nouveau Match",tournoi,this);
 		}else{
 			JOptionPane.showMessageDialog(null, "Il n'y a aucun joueur","erreur",JOptionPane.ERROR_MESSAGE);
 		}

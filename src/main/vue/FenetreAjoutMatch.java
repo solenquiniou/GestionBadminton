@@ -47,10 +47,9 @@ public class FenetreAjoutMatch extends JFrame {
      * @param tournoi le main.tournoi dans lequel on veut ajouter un joueur
      * @param vue     la main.vue qui crée la fenêtre
      */
-    public FenetreAjoutMatch(String titre, Tournoi tournoi) {
-
+    public FenetreAjoutMatch(String titre, Tournoi tournoi,FenetrePrincipale vue) {
         super(titre);
-
+        this.vue = vue;
         if (derniereFenetre == null) {
 
             this.tournoi = tournoi;
