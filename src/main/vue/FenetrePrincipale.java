@@ -330,7 +330,7 @@ public class FenetrePrincipale extends JFrame {
 	 * pour insérer un joueur dans la liste des joueurs (onglet joueurs)
 	 */
 	public void ajouterJoueurTable(){
-		Object[]tJ = {"","",""};
+		Object[]tJ = {};
 		this.listeJoueursModele.addRow(tJ);
 		this.actualiserJoueurs();
 		this.actualiserNoms();
