@@ -1,5 +1,6 @@
 package main.vue;
 
+import main.controleur.ModifierJoueurBoutonControlleur;
 import main.controleur.SupprimerJoueurBoutonControlleur;
 import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
@@ -7,7 +8,6 @@ import main.tournoi.Tournoi;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class FenetreModifierJoueur extends JFrame {
 
@@ -29,8 +29,9 @@ public class FenetreModifierJoueur extends JFrame {
 	 * @param titre le titre à donner à la fenêtre
 	 * @param tournoi le main.tournoi dans lequel on veut ajouter un joueur
 	 * @param vue la main.vue qui crée la fenêtre
+	 * @param joueur le joueur a modifier
      */
-	public FenetreModifierJoueur(String titre, Tournoi tournoi, FenetrePrincipale vue, int id){
+	public FenetreModifierJoueur(String titre, Tournoi tournoi, FenetrePrincipale vue, Joueur joueur){
 
 		this.tournoi = tournoi;
 		this.vue = vue;
@@ -38,7 +39,6 @@ public class FenetreModifierJoueur extends JFrame {
 		if (derniereFenetre != null)
 			derniereFenetre.dispose();
 
-		Joueur joueur = this.tournoi.getJoueur(id);
 
 		JPanel corePanel = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -118,12 +118,12 @@ public class FenetreModifierJoueur extends JFrame {
 
 		//Ajout des boutons de validation de modif et de supression de joueur
 		JButton modifier = new JButton("Valider les modifications");
-		modifier.addActionListener(new ModifierJoueurBoutonControlleur(this, id));
+		modifier.addActionListener(new ModifierJoueurBoutonControlleur(this, joueur.getId()));
 		gbc.gridx = 1;
 		gbc.gridy = 4;
 		corePanel.add(modifier, gbc);
 		JButton supprimer = new JButton("Supprimer le joueur");
-		supprimer.addActionListener(new SupprimerJoueurBoutonControlleur(this, id));
+		supprimer.addActionListener(new SupprimerJoueurBoutonControlleur(this, joueur.getId()));
 		gbc.gridx = 0;
 		gbc.gridy = 4;
 		corePanel.add(supprimer, gbc);

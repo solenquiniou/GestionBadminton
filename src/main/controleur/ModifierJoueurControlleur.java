@@ -1,5 +1,6 @@
 package main.controleur;
 
+import main.tournoi.Joueur;
 import main.vue.FenetreModifierJoueur;
 import main.vue.FenetrePrincipale;
 
@@ -27,8 +28,8 @@ public class ModifierJoueurControlleur implements MouseListener {
 			e.consume();
 
 			int row = jt.getSelectedRow();
-			this.id = (int) jt.getValueAt(row, 0);
-			new FenetreModifierJoueur("Modifier Joueur",this.fp.getTournoi(),this.fp,this.id);
+			Joueur j = fp.getTournoi().chercherJoueur( jt.getValueAt(row, 0)+" "+jt.getValueAt(row, 1));
+			new FenetreModifierJoueur("Modifier Joueur",this.fp.getTournoi(),this.fp,j);
 		}
 	}
 

@@ -1,4 +1,6 @@
-package main.vue;
+package main.controleur;
+
+import main.vue.FenetreModifierJoueur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

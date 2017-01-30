@@ -205,6 +205,14 @@ public class Joueur {
 		return this.nouveau;
 	}
 
+	/** Retourne l'ancienneté d'un joueur en string lisible pour l'affichage
+	 *
+	 * @return nouveau 0 : joueur ancien / 1 : joueur nouveau
+	 */
+	public String getAncienntée(){
+		return (this.nouveau) ? "Nouveau" : "Ancien";
+	}
+
 	/** Retourne si le joueur joue ou non
 	 *
 	 * @return joue 0 : ne joue pas / 1 : joue

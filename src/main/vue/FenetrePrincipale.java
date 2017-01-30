@@ -96,24 +96,24 @@ public class FenetrePrincipale extends JFrame {
 		//Notre onglet pour les joueur
 		JPanel joueurs = new JPanel();
 		joueurs.setLayout(new BorderLayout());
-		String  title[] = {"ID","Nom", "Prénom", "Score","Present"};
+		String  title[] = {"Nom", "Prénom", "Score","Ancienneté","Present"};
 		listeJoueursModele = new DefaultTableModel(title,0){
 			@Override
 			//bien redefinir les types des colones pour que l'autosort marche
 			public Class getColumnClass(int column) {
 				switch (column) {
 					case 0:
-						return Integer.class;
+						return String.class;
 					case 1:
 						return String.class;
 					case 2:
-						return String.class;
-					case 3:
 						return Integer.class;
+					case 3:
+						return String.class;
 					case 4:
 						return String.class;
 					default:
-						return Integer.class;
+						return String.class;
 				}
 			}
 
@@ -122,10 +122,10 @@ public class FenetrePrincipale extends JFrame {
 				return false;
 			}
 		};
-		listeJoueurs = new JTable(listeJoueursModele);
+		JTable listeJoueurs = new JTable(listeJoueursModele);
+		//supression par la touche suppr
 		listeJoueurs.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "deleteRow");
-
-		//modif d'un joueur en cliquant sur le joueur
+		//modif d'un joueur en doublecliquant sur le joueur
 		listeJoueurs.addMouseListener(new ModifierJoueurControlleur(this,listeJoueurs));
 		//Nous ajoutons notre tableau à notre contentPane dans un scroll
 		//Sinon les titres des colonnes ne s'afficheront pas !
@@ -276,28 +276,19 @@ public class FenetrePrincipale extends JFrame {
 	 */
 
 	public void actualiserJoueurs(){
-		ArrayList<Joueur> classA = tournoi.getAnciensJoueurs();
-		ArrayList<Joueur> classN = tournoi.getNouveauxJoueurs();
+		this.listeJoueursModele.setRowCount(0);
+		ArrayList<Joueur> allJoueur = tournoi.getAllJoueurs();
 		//On rentre les joueurs anciens dans les X premières cases
-		for(int i =0; i < classA.size(); i++){
-			Joueur j = classA.get(i);
-			listeJoueurs.setValueAt(j.getId(),i,0);
-			listeJoueurs.setValueAt(j.getNom(),i,1);
-			listeJoueurs.setValueAt(j.getPrenom(),i,2);
-			listeJoueurs.setValueAt(""+j.getScore(),i,3);
-			listeJoueurs.setValueAt(""+j.statut(),i,4);
-
+		for (Joueur j : allJoueur)
+		{
+			ajouterJoueurTable(j);
 		}
-		//On rentre les joueurs nouveaux dans les cases restantes
-		for(int i = 0; i < classN.size(); i++){
-			Joueur j = classN.get(i);
-			listeJoueurs.setValueAt(j.getId(),i+classA.size(),0);
-			listeJoueurs.setValueAt(j.getNom(),i+classA.size(),1);
-			listeJoueurs.setValueAt(j.getPrenom(),i+classA.size(),2);
-			listeJoueurs.setValueAt(""+j.getScore(),i+classA.size(),3);
-			listeJoueurs.setValueAt(""+j.statut(),i+classA.size(),4);
 
-		}
+	}
+	public void ajouterJoueurTable(Joueur j)
+	{
+		Object[] tJ = {j.getNom(), j.getPrenom(), j.getScore(), j.getAncienntée(), j.statut()};
+		this.listeJoueursModele.addRow(tJ);
 	}
 
 
