@@ -49,12 +49,12 @@ public class ExporterJoueursControlleur implements ActionListener {
 
                     //On parcourt tous les anciensJoueurs de main.tournoi, on les découpe et on les écrit dans le fichier
                     for (Joueur j : tournoi.getAnciensJoueurs()) {
-                        fichier.write(tournoi.decouperJoueur(j));
+                        fichier.write(Tournoi.decouperJoueur(j));
                         fichier.newLine();
                     }
                     //On parcourt tous les NoueauxJoueurs de main.tournoi, on les découpe et on les écrit dans le fichier
                     for (Joueur j : tournoi.getNouveauxJoueurs()) {
-                        fichier.write(tournoi.decouperJoueur(j));
+                        fichier.write(Tournoi.decouperJoueur(j));
                         fichier.newLine();
                     }
                     fichier.close();

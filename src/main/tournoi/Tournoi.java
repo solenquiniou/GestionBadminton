@@ -712,7 +712,7 @@ public class Tournoi {
 	 * @param joueur le joueur à découper
 	 * @return La chaine de caractère correspondant à une ligne CSV représentant le joueur découpé
 	 */
-	public String decouperJoueur(Joueur joueur) {
+	public static String decouperJoueur(Joueur joueur) {
 		// Ordre d'une ligne du fichier CSV
 		// Prénom,Nom,Sexe,Ancienneté,Âge,Niveau
 		// [0] : prenom / [1] : nom / [2] : sexe (0 : "Femme" / 1 : "Homme")

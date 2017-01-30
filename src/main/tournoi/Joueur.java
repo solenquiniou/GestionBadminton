@@ -45,7 +45,7 @@ public class Joueur {
 		* @param nom le nom du joueur
 		* @param prenom le prénom du joueur
 		* @param age l'âge du joueur (0 : -18 jeune / 1 : 18-35 senior / 2 : 35+ veteran)
-		* @param sexe le sexe du joueur (0 : homme / 1 : femme)
+		* @param sexe le sexe du joueur (0 : femme / 1 : homme)
 		* @param nouveau (0 : joueur ancien / 1 : joueur nouveau)
 		* @param niveau le niveau du joueur (0 : débutant / 1 : intermédiaire / 2 : confirmé)
 		* @param peutJouer si le joueur peut jouer
