@@ -108,6 +108,8 @@ public class Chrono extends JPanel {
                     timer.stop();
                     //signial sonore
                     String soundName = "src/main/resources/son.wav";
+                    //String soundName = "src/main/resources/son2.wav";
+                    //String soundName = "src/main/resources/Referee-Whistle-3.wav";
                     AudioInputStream audioInputStream = null;
                     try {
                         audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
