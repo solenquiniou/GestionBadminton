@@ -781,20 +781,14 @@ public class Tournoi {
 		ArrayList<Joueur> all = getAllJoueurs();
 		Collections.sort(all,new  ComparateurJoueurScore());
 		String[] entries;
-		String ligne;
+		entries = ("Nom,Prenom,Score,Ancienntée").split(",");
+		writer.writeNext(entries);
 		for (Joueur j : all){
-			ligne = j.getNom()+","+j.getPrenom()+","+j.getScore();
+			entries = (j.getNom()+","+j.getPrenom()+","+j.getScore()+","+j.getAnciennte()).split(",");
+			writer.writeNext(entries);
 		}
-
-
-
-		// feed in your array (or convert your data to an array)
-
-
-
-
-		//writer.writeNext(entries);
 		writer.close();
+
 
 
 	}

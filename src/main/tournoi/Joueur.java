@@ -209,7 +209,7 @@ public class Joueur {
 	 *
 	 * @return nouveau 0 : joueur ancien / 1 : joueur nouveau
 	 */
-	public String getAncienntée(){
+	public String getAnciennte(){
 		return (this.nouveau) ? "Nouveau" : "Ancien";
 	}
 

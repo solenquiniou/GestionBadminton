@@ -1,9 +1,6 @@
 package main.vue;
 
-import main.controleur.ExporterJoueursControlleur;
-import main.controleur.ExporterTournoiControlleur;
-import main.controleur.ImporterJoueursControlleur;
-import main.controleur.ImporterTournoiControlleur;
+import main.controleur.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,11 +78,11 @@ public class Menu extends JMenuBar{
 
 
 		//On creer le bouton exporter
-		JMenuItem exporter = new JMenuItem("Exporter le classement...");
-		exporter.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-		menuFichier.add(exporter);
-		exporter.setEnabled(false);
-		this.aAutoriser.add(exporter);
+		JMenuItem exporterC = new JMenuItem("Exporter le classement...");
+		exporterC.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+		exporterC.addActionListener(new ExporterClassementControlleur(fen));
+		menuFichier.add(exporterC);
+		this.aAutoriser.add(exporterC);
 
 		//////////////////////////////
 		//Dans le menu édition///////

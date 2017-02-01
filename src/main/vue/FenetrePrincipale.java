@@ -287,7 +287,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 	public void ajouterJoueurTable(Joueur j)
 	{
-		Object[] tJ = {j.getNom(), j.getPrenom(), j.getScore(), j.getAncienntée(), j.statut()};
+		Object[] tJ = {j.getNom(), j.getPrenom(), j.getScore(), j.getAnciennte(), j.statut()};
 		this.listeJoueursModele.addRow(tJ);
 	}
 

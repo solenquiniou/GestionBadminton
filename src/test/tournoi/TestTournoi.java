@@ -177,5 +177,27 @@ public class TestTournoi {
         assertEquals(Tournoi.decouperJoueur(j3), "testPrenom3,testNom3,Femme,Ancien,18-35 ans,Intermédiaire");
         assertEquals(Tournoi.decouperJoueur(j4), "testPrenom4,testNom4,Femme,Ancien,35+ ans,Confirmé");
     }
+
+    @Test
+    public void exportClassementtest() {
+        try {
+            //init
+            t1 = new Tournoi(4, "kjh");
+            t1.importer("LeCsv.csv");
+            t1.nouveauTour();
+            t1.setScore(1, 2, 3);
+            t1.setScore(2,2,3);
+            t1.setScore(3,2,3);
+            t1.setScore(0,2,3);
+            //test
+            t1.exportClassement("rank.csv");
+
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+
+    }
 }
 
