@@ -107,15 +107,14 @@ public class Chrono extends JPanel {
                 } else {
                     timer.stop();
                     //signial sonore
-                    String soundName = "src/main/resources/son.wav";
+                    //String soundName = "src/main/resources/son.wav";
                     //String soundName = "src/main/resources/son2.wav";
-                    //String soundName = "src/main/resources/Referee-Whistle-3.wav";
+                    String soundName = "src/main/resources/Referee-Whistle-3.wav";
                     AudioInputStream audioInputStream = null;
                     try {
                         audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
                          Clip clip = AudioSystem.getClip();
                          clip.open(audioInputStream);
-                         clip.start();
                          clip.start();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Erreur:"+e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);

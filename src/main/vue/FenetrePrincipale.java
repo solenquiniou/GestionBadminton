@@ -1,10 +1,10 @@
 package main.vue;
 
+import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 import main.controleur.*;
+import main.tournoi.Chrono;
 import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
-import main.tournoi.Chrono;
-import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -123,8 +123,10 @@ public class FenetrePrincipale extends JFrame {
 			}
 		};
 		JTable listeJoueurs = new JTable(listeJoueursModele);
+		listeJoueurs.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);//selection multiple
 		//supression par la touche suppr
-		listeJoueurs.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "deleteRow");
+		//listeJoueurs.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "deleteRow");
+		listeJoueurs.addKeyListener(new DeleteKeyListener(this,listeJoueurs));
 		//modif d'un joueur en doublecliquant sur le joueur
 		listeJoueurs.addMouseListener(new ModifierJoueurControlleur(this,listeJoueurs));
 		//Nous ajoutons notre tableau à notre contentPane dans un scroll
@@ -141,7 +143,7 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.anchor = GridBagConstraints.NORTH;*/
 
 		//Ajout du chronometre
-		Chrono chronometre = new Chrono(300);
+		Chrono chronometre = new Chrono(10);
 		gbcWest.gridx = 0;
 		gbcWest.gridy = 0;
 		westButtonPan.add(chronometre, gbcWest);
