@@ -28,6 +28,7 @@ public class FenetrePrincipale extends JFrame {
 	private ArrayList<JComboBox> boxTerrains = new ArrayList<>();
 	private JPanel tournois;
 	private JTabbedPane onglets;
+	private Chrono chronometre;
 
 	private int verif;
 
@@ -143,7 +144,7 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.anchor = GridBagConstraints.NORTH;*/
 
 		//Ajout du chronometre
-		Chrono chronometre = new Chrono(10);
+		chronometre = new Chrono(70);
 		gbcWest.gridx = 0;
 		gbcWest.gridy = 0;
 		westButtonPan.add(chronometre, gbcWest);
@@ -508,5 +509,8 @@ public class FenetrePrincipale extends JFrame {
 		onglets.setSelectedIndex(1);
 	}
 
+	public Chrono getChrono() {
+		return chronometre;
+	}
 
 }

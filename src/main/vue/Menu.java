@@ -114,6 +114,19 @@ public class Menu extends JMenuBar{
 		menuEdition.add(nbTerrain);
 		this.aAutoriser.add(nbTerrain);
 
+		///editer la durée du chrono
+		JMenuItem dureeChrono = new JMenuItem("Changer la durée du chrono");
+		dureeChrono.setAccelerator(KeyStroke.getKeyStroke('H', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+		dureeChrono.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FenetreDureeChrono(fen.getChrono());
+			}
+		});
+		dureeChrono.setEnabled(false);
+		menuEdition.add(dureeChrono);
+		this.aAutoriser.add(dureeChrono);
+
 
 	}
 	public void enableSave(){

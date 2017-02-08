@@ -27,11 +27,11 @@ public class ChronometreRestartControlleur implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(temps.getActif()) {
             temps.stop();
-            temps.setTempsRestant(300);
+            temps.setTempsRestant((int)temps.getTemps());
             temps.repaint();
             start.setText("Lancer");
         } else {
-            temps.setTempsRestant(300);
+            temps.setTempsRestant((int)temps.getTemps());
             temps.repaint();
         }
     }

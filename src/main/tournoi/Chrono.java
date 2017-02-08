@@ -48,10 +48,13 @@ public class Chrono extends JPanel {
     /**
      * temps : temps initial
      */
-    private int temps;
+    private double temps;
 
-    //* actif : si le chrono est en cours */
+    /* actif : si le chrono est en cours */
     private boolean actif = false;
+
+    /* previous : variable aidant à la création du dégradé de couleur */
+    private double previous = 0;
 
     /**
      * Construction du chronometre
@@ -102,20 +105,44 @@ public class Chrono extends JPanel {
         ActionListener action = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 if (tempsRestant > 0) {
+                    if(tempsRestant >= temps/2) {       //augmenter r
+                        if(tempsRestant == temps) {
+                            couleur = new Color(0, 255, 0);
+                        } else {
+                            previous += 255 / (temps / 2);
+                            if (previous >= 1) {
+                                try {
+                                    couleur = new Color(couleur.getRed() + (int)previous, couleur.getGreen(), couleur.getBlue());
+                                } catch(Exception e) {
+                                    System.out.println("Catch ligne 159 - Temps: " + tempsRestant + " R: " + couleur.getRed() + " G: " + couleur.getGreen() + " B: " + couleur.getBlue());
+                                }
+                                previous -= (int)previous;
+                            }
+                        }
+                    } else {                        //baisser g
+                        previous += 255/(temps/2);
+                        if (previous >= 1) {
+                            try {
+                                couleur = new Color(couleur.getRed(), couleur.getGreen()-(int)previous, couleur.getBlue());
+                            } catch(Exception e) {
+                                System.out.println("Catch ligne 187 - Temps: " + tempsRestant + " R: " + couleur.getRed() + " G: " + couleur.getGreen() + " B: " + couleur.getBlue());
+                            }
+                            previous -= (int)previous;
+                        }
+                    }
                     tempsRestant--;
                     repaint();
                 } else {
                     timer.stop();
                     //signial sonore
-                    //String soundName = "src/main/resources/son.wav";
-                    //String soundName = "src/main/resources/son2.wav";
-                    String soundName = "src/main/resources/Referee-Whistle-3.wav";
+                    String soundName = "src/main/resources/son.wav";
                     AudioInputStream audioInputStream = null;
                     try {
                         audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-                         Clip clip = AudioSystem.getClip();
-                         clip.open(audioInputStream);
-                         clip.start();
+                        Clip clip = AudioSystem.getClip();
+                        clip.open(audioInputStream);
+                        clip.start();
+                        clip.start();
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Erreur:"+e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
@@ -144,42 +171,9 @@ public class Chrono extends JPanel {
     public void drawCircle(Graphics cg, int xCenter, int yCenter, int r) {
         cg.setColor(Color.white);
         cg.fillOval(xCenter - r, yCenter - r, 2 * r, 2 * r);
-        if(tempsRestant >= 150) {       //augmenter r
-            if (tempsRestant >= 255) {  //r+=1
-                if(tempsRestant == 300) {
-                    couleur = new Color(0, 255, 0);
-                    cg.setColor(couleur);
-                } else {
-                    if (couleur.getRed() <= 254) {
-                        couleur = new Color(couleur.getRed()+1, couleur.getGreen(), couleur.getBlue());
-                        cg.setColor(couleur);
-                    }
-                }
-            } else {                    //r+=2
-                if (couleur.getRed() <= 253) {
-                    couleur = new Color(couleur.getRed()+2, couleur.getGreen(), couleur.getBlue());
-                    cg.setColor(couleur);
-                }
-            }
-        } else {                        //baisser g
-            if (tempsRestant < 45) {    //g-=1
-                if (tempsRestant != 0) {
-                    if (couleur.getGreen() >= 1) {
-                        couleur = new Color(couleur.getRed(), couleur.getGreen()-1, couleur.getBlue());
-                        cg.setColor(couleur);
-                    }
-                } else {
-                    cg.setColor(couleur);
-                }
-            } else {                    //g-=2
-                if (couleur.getGreen() >= 2) {
-                    couleur = new Color(couleur.getRed(), couleur.getGreen()-2, couleur.getBlue());
-                    cg.setColor(couleur);
-                }
-            }
-        }
+        cg.setColor(couleur);
         //System.out.println("Temps: " + tempsRestant + " R: " + couleur.getRed() + " G: " + couleur.getGreen() + " B: " + couleur.getBlue());
-        cg.fillArc(xCenter - r, yCenter - r, 2 * r, 2 * r, 90, -(360 - tempsRestant * 360 / temps));
+        cg.fillArc(xCenter - r, yCenter - r, 2 * r, 2 * r, 90, -(360 - tempsRestant * 360 / (int)temps));
         cg.setColor(Color.black);
         cg.setFont(f);
 
@@ -208,8 +202,16 @@ public class Chrono extends JPanel {
         this.tempsRestant = tempsRestant;
     }
 
-    public int getTemps() {
+    public double getTemps() {
         return temps;
+    }
+
+    public int getTempsMin() {
+        return (int)(temps/60);
+    }
+
+    public int getTempsSec() {
+        return (int)(temps%60);
     }
 
     public void setTemps(int temps) {
