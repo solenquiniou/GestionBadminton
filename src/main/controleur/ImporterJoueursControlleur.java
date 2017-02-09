@@ -43,15 +43,9 @@ public class ImporterJoueursControlleur implements ActionListener {
         if (dial.getFile() != null) {
             String cvsFile = dial.getDirectory().concat(dial.getFile());
             try {
-                ArrayList<Joueur> listeJoueur = tournoi.csvReader(cvsFile);
-                for (Joueur j: listeJoueur) {
-                    if (!tournoi.getAnciensJoueurs().contains(j) && !tournoi.getNouveauxJoueurs().contains(j)) {
-                        tournoi.ajouterJoueur(j);
 
-                        vue.ajouterJoueurTable();
-                    }
-                }
-
+                tournoi.importJoueurs(cvsFile);
+                vue.actualiserJoueurs();
 
             } catch (java.io.FileNotFoundException e2) {
                 JOptionPane.showMessageDialog(null, "Le fichier demandé n'a pas été trouvé", "Erreur", JOptionPane.ERROR_MESSAGE);

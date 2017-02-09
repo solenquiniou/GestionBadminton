@@ -19,7 +19,7 @@ public class TestTournoi {
     public void TestsetScore() {
         try {
             t1 = new Tournoi(3, "kjh");
-            t1.importer("LeCsv.csv");
+            t1.importJoueurs("LeCsv.csv");
             t1.nouveauTour();
             t1.setScore(0, 1, 2);
             t1.setScore(1, 7, 2);
@@ -64,7 +64,7 @@ public class TestTournoi {
             System.out.println("Vide avat l'export");
             t1 = new Tournoi(4, "kjh");
             assertEquals(true, t1.tournoisVide());
-            t1.importer("LeCsv.csv");
+            t1.importJoueurs("LeCsv.csv");
             System.out.println("Plus vide après l'export");
             assertEquals(false, t1.tournoisVide());
 
@@ -79,7 +79,7 @@ public class TestTournoi {
     public void TestAlgoPaire() {
         try {
             t1 = new Tournoi(4, "kjh");
-            t1.importer("LeCsv.csv");
+            t1.importJoueurs("LeCsv.csv");
             System.out.println(t1.getAllJoueurs().toString());
             //Verif algo paire
             //t1.creerPaires(); méthode mis en private après validation donc plus testable
@@ -97,7 +97,7 @@ public class TestTournoi {
     public void TestAttribuerMatch() {
         try {
             t1 = new Tournoi(4, "kjh");
-            t1.importer("LeCsv.csv");
+            t1.importJoueurs("LeCsv.csv");
             System.out.println(t1.getAllJoueurs().toString());
             //Verif algo paire
             t1.nouveauTour();
@@ -115,7 +115,7 @@ public class TestTournoi {
     public void TestChangerJoueurs() {
         try {
             t1 = new Tournoi(4, "kjh");
-            t1.importer("LeCsv.csv");
+            t1.importJoueurs("LeCsv.csv");
             t1.nouveauTour();
             //initial
             for (Terrain t : t1.getTerrains()) {
@@ -183,7 +183,7 @@ public class TestTournoi {
         try {
             //init
             t1 = new Tournoi(4, "kjh");
-            t1.importer("LeCsv.csv");
+            t1.importJoueurs("LeCsv.csv");
             t1.nouveauTour();
             t1.setScore(1, 2, 3);
             t1.setScore(2,2,3);

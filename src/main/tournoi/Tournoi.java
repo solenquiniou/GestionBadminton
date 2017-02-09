@@ -1,12 +1,12 @@
 package main.tournoi;
 
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import main.exception.ImportExportException;
 import main.exception.NbTerrainNeg;
 import main.exception.NomVideException;
 import main.exception.TournoiVideException;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -631,81 +631,87 @@ public class Tournoi {
 	 * @param fileDirectory le chemin pour accèder au CSV
 	 * @return une ArrayList avec tous les joueurs
 	 */
-	public ArrayList<Joueur> csvReader(String fileDirectory) throws java.io.IOException, ImportExportException {
-		ArrayList<Joueur> listeRetour = new ArrayList<>();
+	public void importJoueurs(String fileDirectory) throws java.io.IOException, ImportExportException {
+		ArrayList<Joueur> listeJoueurs = new ArrayList<>();
 
-		BufferedReader br = new BufferedReader(new FileReader(fileDirectory));
+        CSVReader reader = new CSVReader(new FileReader(fileDirectory));
 
-		ArrayList<String> resultatRead = new ArrayList<>();
-		br.readLine();
-		for (String line = br.readLine(); line != null; line = br.readLine()) {
-			if (!line.isEmpty())  //On vérifie que la ligne n'est pas vide
-				resultatRead.add(line);
-		}
+        reader.readNext(); // Pour ne pas avoir les en-têtes
 
-		br.close();
+        String [] nextLine;
+        while ((nextLine = reader.readNext()) != null) {
 
-		String joueurCourant[];
-		boolean sexe, nouveau;
-		int age;
-		int niveau;
+            String joueurCourant[];
+            boolean sexe, nouveau;
+            int age;
+            int niveau;
 
-		String nom, prenom;
-		for (String ligne : resultatRead) {
-			// Ordre d'une ligne du fichier CSV
-			// [0] : prenom / [1] : nom / [2] : sexe (0 : femme / 1 : homme)
-			// [3] ancienneté (0 : Ancien/ 1 : Nouveau)
-			// [4] âge (0 : vide /1 : "-18 ans" /2 : "18-35 ans" / 3 : "35+ ans")
-			// [5] : niveau  (0 : vide /1 : "Débutant" / 2 : "Intermédiaire" / 3 : "Confirmé")
-			joueurCourant = ligne.split(",",-1); // le "-1" sert à récupérer une chaine même si elle est vide
+            String nom, prenom;
+            // Ordre d'une ligne du fichier CSV
+            // [0] : prenom / [1] : nom / [2] : sexe (0 : femme / 1 : homme)
+            // [3] ancienneté (0 : Ancien/ 1 : Nouveau)
+            // [4] âge (0 : vide /1 : "-18 ans" /2 : "18-35 ans" / 3 : "35+ ans")
+            // [5] : niveau  (0 : vide /1 : "Débutant" / 2 : "Intermédiaire" / 3 : "Confirmé")
+            joueurCourant = nextLine; // le "-1" sert à récupérer une chaine même si elle est vide
 
-			prenom = joueurCourant[0];
-			nom = joueurCourant[1];
+            prenom = joueurCourant[0];
+            nom = joueurCourant[1];
 
-			//Lecture du sexe
-			if (!joueurCourant[2].equals("Femme") && !joueurCourant[2].equals("Homme")) //Si la troisième valeur n'est ni Homme ni Femme
-				throw new ImportExportException("Problème avec un genre");
-			sexe = (joueurCourant[2].equals("Homme")); // Si la troisième valeur est Homme, sexe = true, sinon sexe = false
+            //Lecture du sexe
+            if (!joueurCourant[2].equals("Femme") && !joueurCourant[2].equals("Homme")) //Si la troisième valeur n'est ni Homme ni Femme
+                throw new ImportExportException("Problème avec un genre");
+            sexe = (joueurCourant[2].equals("Homme")); // Si la troisième valeur est Homme, sexe = true, sinon sexe = false
 
-			//Lecture de l'ancienneté
-			if (!joueurCourant[3].equals("Ancien") && !joueurCourant[3].equals("Nouveau")) //Si la quatrième valeur n'est ni Ancien ni Nouveau
-				throw new ImportExportException("Problème avec l'ancienneté");
-			nouveau = (joueurCourant[3].equals("Nouveau")); // Si la quatrième valeur est Nouveau, nouveau = true, sinon nouveau = false
+            //Lecture de l'ancienneté
+            if (!joueurCourant[3].equals("Ancien") && !joueurCourant[3].equals("Nouveau")) //Si la quatrième valeur n'est ni Ancien ni Nouveau
+                throw new ImportExportException("Problème avec l'ancienneté");
+            nouveau = (joueurCourant[3].equals("Nouveau")); // Si la quatrième valeur est Nouveau, nouveau = true, sinon nouveau = false
 
-			age = 0; //Utilse si l'âge est indéfini
+            age = 0; //Utilse si l'âge est indéfini
 
-			//Lecture de l'âge
-			//Si la cinquième valeur n'est ni -18 ni 18-35 ni 35+ ni une chaine vide
-			if (!joueurCourant[4].isEmpty()) {
-				if (!joueurCourant[4].equals("-18 ans") && !joueurCourant[4].equals("18-35 ans") && !joueurCourant[4].equals("35+ ans")) {
-					throw new ImportExportException("Problème avec l'âge");
-				}
-				if (joueurCourant[4].equals("-18 ans"))
-					age = 1;
-				else if (joueurCourant[4].equals("18-35 ans"))
-					age = 2;
-				else if (joueurCourant[4].equals("35+ ans"))
-					age = 3;
-			}
+            //Lecture de l'âge
+			//Si le joueur possède plus de 4 attributs (et donc 5 ou 6), il a un possiblement un age de défini
+            if (joueurCourant.length > 4 && !joueurCourant[4].isEmpty()) {
+				//Si la cinquième valeur n'est ni -18 ni 18-35 ni 35+ on lance une erreur
+                if (!joueurCourant[4].equals("-18 ans") && !joueurCourant[4].equals("18-35 ans") && !joueurCourant[4].equals("35+ ans")) {
+                    throw new ImportExportException("Problème avec l'âge");
+                }
+                if (joueurCourant[4].equals("-18 ans"))
+                    age = 1;
+                else if (joueurCourant[4].equals("18-35 ans"))
+                    age = 2;
+                else if (joueurCourant[4].equals("35+ ans"))
+                    age = 3;
+            }
 
-			niveau = 0; // Utile si le niveau est indéfini
+            niveau = 0; // Utile si le niveau est indéfini
 
-			//Lecture du niveau
-			//Si la sixième valeur n'est ni débutant ni confirmé ni intermédiaire ni une chaine vide
-			if (!joueurCourant[5].isEmpty()) {
+            //Lecture du niveau
+			//Si le joueur possède plus de 5 attributs (et donc les 6), il a un niveau de défini
+			if (joueurCourant.length > 5 && !joueurCourant[5].isEmpty()) {
+				//Si la sixième valeur n'est ni débutant ni confirmé ni intermédiaire on lance une erreur
 				if (!joueurCourant[5].equals("Débutant") && !joueurCourant[5].equals("Confirmé") && !joueurCourant[5].equals("Intermédiaire")) //Si la troisième valeur n'est ni Ancien ni Nouveau
-					throw new ImportExportException("Problème avec le niveau");
-				if (joueurCourant[5].equals("Débutant"))
-					niveau = 1;
-				else if (joueurCourant[5].equals("Intermédiaire"))
-					niveau = 2;
-				else if (joueurCourant[5].equals("Confirmé"))
-					niveau = 3;
-			}
+                    throw new ImportExportException("Problème avec le niveau");
+                if (joueurCourant[5].equals("Débutant"))
+                    niveau = 1;
+                else if (joueurCourant[5].equals("Intermédiaire"))
+                    niveau = 2;
+                else if (joueurCourant[5].equals("Confirmé"))
+                    niveau = 3;
+            }
 
-			listeRetour.add(new Joueur(Joueur.nbJoueursCrees, nom, prenom, age, sexe, nouveau, niveau, true));
+            listeJoueurs.add(new Joueur(Joueur.nbJoueursCrees, nom, prenom, age, sexe, nouveau, niveau, true));
 		}
-		return listeRetour;
+
+        reader.close();
+
+        for (Joueur j: listeJoueurs) {
+            if (!this.getAnciensJoueurs().contains(j) && !this.getNouveauxJoueurs().contains(j)) {
+                this.ajouterJoueur(j);
+            }
+        }
+
+
 	}
 
 	/** Découpe un joueur pour obtenir une chaine de caractère correspondant à une ligne CSV
@@ -721,16 +727,12 @@ public class Tournoi {
 		// [5] : niveau  (0 : "" /1 : "Débutant" / 2 : "Intermédiaire" / 3 : "Confirmé")
 		String res = "";
 		res += joueur.getPrenom() + "," + joueur.getNom() + ",";
-		if (joueur.getSexe())
-			res += "Homme,";
-		else
-			res += "Femme,";
 
-		if (joueur.getNouveau()) {
-			res += "Nouveau,";
-		} else {
-			res += "Ancien,";
-		}
+		//Si joueur.getSexe() : Homme / sinon : femme
+		res += (joueur.getSexe()) ? "Homme," : "Femme,";
+
+		//Si joueur.getNouveau() : Nouveau / sinon : Ancien
+		res+= (joueur.getNouveau()) ? "Nouveau," : "Ancien,";
 
 		int age = joueur.getAge();
 		if (age == 0) {
@@ -758,20 +760,6 @@ public class Tournoi {
 		return res;
 	}
 
-
-	/** Importe des joueurs a partir d'infichier
-	 * @param filepath path d'un fichier
-	 *
-	 */
-	public void importer(String filepath ) throws IOException, ImportExportException {
-		ArrayList<Joueur> listeJoueur = csvReader(filepath);
-		for (Joueur j: listeJoueur) {
-			if (!getAnciensJoueurs().contains(j) && !getNouveauxJoueurs().contains(j)) {
-				ajouterJoueur(j);
-			}
-		}
-	}
-
 	/**
 	 * Exporte les classements dans un fichier CSV
 	 * * @param filepath path d'un fichier
@@ -781,7 +769,7 @@ public class Tournoi {
 		ArrayList<Joueur> all = getAllJoueurs();
 		Collections.sort(all,new  ComparateurJoueurScore());
 		String[] entries;
-		entries = ("Nom,Prenom,Score,Ancienntée").split(",");
+		entries = ("Nom,Prenom,Score,Ancienneté").split(",");
 		writer.writeNext(entries);
 		for (Joueur j : all){
 			entries = (j.getNom()+","+j.getPrenom()+","+j.getScore()+","+j.getAnciennte()).split(",");
@@ -792,6 +780,21 @@ public class Tournoi {
 
 
 	}
+
+	public void exportJoueurs(String filepath) throws IOException {
+		CSVWriter writer = new CSVWriter(new FileWriter(filepath), ',');
+		ArrayList<Joueur> all = getAllJoueurs();
+		String[] entries = ("Prénom,Nom,Sexe,Ancienneté,Âge,Niveau").split(",");
+		writer.writeNext(entries);
+		for (Joueur j : all){
+            String[] joueurDecoupe = decouperJoueur(j).split(",", -1);
+			entries = (joueurDecoupe[0]+","+joueurDecoupe[1]+","+joueurDecoupe[2]+
+                    ","+joueurDecoupe[3]+","+joueurDecoupe[4]+","+joueurDecoupe[5]).split(",");
+			writer.writeNext(entries);
+		}
+		writer.close();
+	}
+
 
 }
 
