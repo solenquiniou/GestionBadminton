@@ -7,6 +7,9 @@ import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -404,16 +407,22 @@ public class FenetrePrincipale extends JFrame {
 		gbcUn.gridx = 2;
 		equipeUn.add(score1, gbcUn);
 		gbc.gridy = 1;
+
+		//padding bas pour centrer la separation
+		Border border = equipeUn.getBorder();
+		Border margin = new EmptyBorder(0,0,10,0);
+		equipeUn.setBorder(new CompoundBorder(border, margin));
 		terrain.add(equipeUn, gbc);
 
 		//Le terrain
-		JPanel espace = new JPanel();
-		ImageIcon icon = new ImageIcon(getClass().getResource("/main/resources/images/terrainS.png"));
-		JLabel labelimg = new JLabel();
-		labelimg.setIcon(icon);
-		espace.add(labelimg);
-		gbc.gridy = 2;
-		terrain.add(espace, gbc);
+		//JPanel espace = new JPanel();
+		//espace.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.gray));
+		//ImageIcon icon = new ImageIcon(getClass().getResource("/main/resources/images/terrainS2.png"));
+		//JLabel labelimg = new JLabel();
+		//labelimg.setIcon(icon);
+		//espace.add(labelimg);
+		//gbc.gridy = 2;
+		//terrain.add(espace, gbc);
 
 		//Equipe 2 et leur score
 		JComboBox j3 = new JComboBox();
@@ -452,6 +461,11 @@ public class FenetrePrincipale extends JFrame {
 		gbcDeux.gridx = 2;
 		equipeDeux.add(score2);
 		gbc.gridy = 3;
+		//border et padding
+		equipeDeux.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.gray));
+		border = equipeDeux.getBorder();
+		margin = new EmptyBorder(10,0,0,0);
+		equipeDeux.setBorder(new CompoundBorder(border, margin));
 		terrain.add(equipeDeux, gbc);
 
 		//Bouton valider
@@ -466,12 +480,21 @@ public class FenetrePrincipale extends JFrame {
 		this.boxTerrains.add(j2);
 		this.boxTerrains.add(j3);
 		this.boxTerrains.add(j4);
-		j1.addItemListener(new InverserJoueurControlleur(j1,this));
+		j1.addItemListener(new InverserJoueurControlleur(j1, this));
 		j2.addItemListener(new InverserJoueurControlleur(j2,this));
 		j3.addItemListener(new InverserJoueurControlleur(j3,this));
-		j4.addItemListener(new InverserJoueurControlleur(j4,this));
+		j4.addItemListener(new InverserJoueurControlleur(j4, this));
 
-		return  terrain;}
+		//design: gestion des vordures et des paddings
+		terrain.setBorder(BorderFactory.createLineBorder(Color.gray));
+		border = terrain.getBorder();
+		margin = new EmptyBorder(10,10,10,10);
+		terrain.setBorder(new CompoundBorder(border, margin));
+		JPanel terrainContainer = new JPanel();
+
+
+		terrainContainer.add(terrain);
+		return  terrainContainer;}
 
 	public void actualiserTerrains() {
 		tournois = new JPanel();
