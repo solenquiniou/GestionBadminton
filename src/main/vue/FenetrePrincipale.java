@@ -144,7 +144,7 @@ public class FenetrePrincipale extends JFrame {
 		gbcWest.anchor = GridBagConstraints.NORTH;*/
 
 		//Ajout du chronometre
-		chronometre = new Chrono(70);
+		chronometre = new Chrono(300);
 		gbcWest.gridx = 0;
 		gbcWest.gridy = 0;
 		westButtonPan.add(chronometre, gbcWest);
