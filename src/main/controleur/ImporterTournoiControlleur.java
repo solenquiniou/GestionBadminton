@@ -79,6 +79,23 @@ public class ImporterTournoiControlleur implements ActionListener
                     }
                 }
 
+                ArrayList<String> infosDuJoueur = new ArrayList<String>();
+                for(Node joueurNode : listesJoueursNodes)
+                {
+                    NodeList listeInfoNode = joueurNode.getChildNodes(); // Récupère toutes les informations d'un joueur du XML
+                    int nbInfo = listeInfoNode.getLength(); // compte le nombre d'informations sur le joueur dans le XML
+                    for (int i = 0; i < nbInfo; i++)
+                    {
+                        if(listeInfoNode.item(i).getNodeType() == Node.ELEMENT_NODE)
+                        {
+                            Element info = (Element) listeInfoNode.item(i);
+                            infosDuJoueur.add(info.getTextContent());
+                        }
+                    }
+                    ajouterJoueur(infosDuJoueur);
+                    infosDuJoueur.clear();
+                }
+
                 NodeList listeMatchesNoeuds = listesJoueursMatchesNodes.get(1).getChildNodes(); // Récupère tous les "tour" du XML
                 int nbTour = listeMatchesNoeuds.getLength(); // compte le nombre de "tour" dans le XML
                 ArrayList<Node> listesTourNodes= new ArrayList<Node>();
@@ -90,57 +107,33 @@ public class ImporterTournoiControlleur implements ActionListener
                     }
                 }
 
-                ArrayList<String> infosDuJoueur = new ArrayList<String>();
-                for(Node joueurNode : listesJoueursNodes)
-                {
-                    NodeList listeInfoNode = joueurNode.getChildNodes(); // Récupère toutes les informations d'un joueur du XML
-                    int nbInfo = listeInfoNode.getLength(); // compte le nombre de "tour" dans le XML
-                    for (int i = 0; i < nbInfo; i++)
-                    {
-                        if(listeInfoNode.item(i).getNodeType() == Node.ELEMENT_NODE)
-                        {
-                            Element info = (Element) listeInfoNode.item(i);
-                            infosDuJoueur.add(info.getTextContent());
-                        }
-                    }
-
-                    ajouterJoueur(infosDuJoueur.get(1), infosDuJoueur.get(0), infosDuJoueur.get(4), infosDuJoueur.get(2), infosDuJoueur.get(3), infosDuJoueur.get(5));
-                    infosDuJoueur.clear();
-                }
-
                 ArrayList<String> terrains = new ArrayList<>();
-                for(Node tourNode : listesTourNodes) {
+                for(Node tourNode : listesTourNodes)
+                {
                     NodeList terrainsNodes = tourNode.getChildNodes(); // Récupère les terrains d'un tour
-                    int nbTerrain = terrainsNodes.getLength(); // compte le nombre de "tour" dans le XML
+                    int nbTerrain = terrainsNodes.getLength(); // compte le nombre de "terrain" dans le XML
                     for (int i = 0; i < nbTerrain; i++)
                     {
-                        System.out.println(i);
-                        if(terrainsNodes.item(i).getNodeType() == Node.ELEMENT_NODE)
+                        if (terrainsNodes.item(i).getNodeType() == Node.ELEMENT_NODE)
                         {
-                            Element info = (Element) terrainsNodes.item(i);
-                            System.out.println(info);
-                        }
-                    }
-                }
-                    /*
-                    NodeList listeInfoNode = joueurNode.getChildNodes(); // Récupère toutes les informations d'un joueur du XML
-                    int nbInfo = listeInfoNode.getLength(); // compte le nombre de "tour" dans le XML
-                    for (Node joueurNode : listesJoueursNodes) {
-                        NodeList listeInfoNode = joueurNode.getChildNodes(); // Récupère toutes les informations d'un joueur du XML
-                        int nbInfo = listeInfoNode.getLength(); // compte le nombre de "tour" dans le XML
-                        for (int i = 0; i < nbInfo; i++) {
-                            if (listeInfoNode.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                                Element info = (Element) listeInfoNode.item(i);
-                                infosDuJoueur.add(info.getTextContent());
+                            System.out.println("               Début");
+                            NodeList listeInfoTerrainNode = terrainsNodes.item(i).getChildNodes(); // Récupère toutes les informations d'un terrain du XML
+                            int nbInfoTerrain = listeInfoTerrainNode.getLength(); // compte le nombre d'informations sur le terrain dans le XML
+                            for (int z = 0; z < nbInfoTerrain; z++)
+                            {
+                                if(listeInfoTerrainNode.item(z).getNodeType() == Node.ELEMENT_NODE)
+                                {
+                                    Element info3 = (Element) listeInfoTerrainNode.item(z);
+                                    terrains.add(info3.getTextContent());
+                                }
                             }
+                            System.out.println(terrains);
+                            terrains.clear();
+                            System.out.println("               Fin");
+                            System.out.println("\n\n\n\n");
                         }
-
-                        ajouterJoueur(infosDuJoueur.get(1), infosDuJoueur.get(0), infosDuJoueur.get(4), infosDuJoueur.get(2), infosDuJoueur.get(3), infosDuJoueur.get(5));
-                        infosDuJoueur.clear();
                     }
                 }
-                */
-
             }
             catch (Exception ex)
             {
@@ -149,8 +142,13 @@ public class ImporterTournoiControlleur implements ActionListener
         }
     }
 
-    public void ajouterJoueur(String nom, String prenom, String age, String sexe, String nouveau, String niveau)
+
+
+    public void ajouterJoueur(ArrayList<String> lesInfosDuJoueur)
     {
+        String nom = lesInfosDuJoueur.get(1), prenom = lesInfosDuJoueur.get(0),  age = lesInfosDuJoueur.get(4),  sexe = lesInfosDuJoueur.get(2),  nouveau = lesInfosDuJoueur.get(3),  niveau = lesInfosDuJoueur.get(5);
+
+
         int ageJoueur = 0, niveauJoueur = 0;
         boolean sexeJoueur, ancienneteJoueur;
 
