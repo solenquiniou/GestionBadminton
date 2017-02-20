@@ -23,12 +23,12 @@ public class FenetreDureeChrono extends JDialog {
         gbc.gridwidth = 2;
         corePanel.add(label, gbc);
 
-        JSpinner minutes = new JSpinner(new SpinnerNumberModel(chrono.getTempsMin(), 0, 9000, 1));
+        JSpinner minutes = new JSpinner(new SpinnerNumberModel(chrono.getTempsMin(), 0, 60, 1));
         gbc.gridwidth = 1;
         gbc.gridy = 1;
         corePanel.add(minutes, gbc);
 
-        JSpinner secondes = new JSpinner(new SpinnerNumberModel(chrono.getTempsSec(), 0, 9000, 1));
+        JSpinner secondes = new JSpinner(new SpinnerNumberModel(chrono.getTempsSec(), 0, 59, 1));
         gbc.gridx = 1;
         corePanel.add(secondes, gbc);
 
