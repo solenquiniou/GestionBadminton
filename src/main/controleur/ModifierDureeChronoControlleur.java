@@ -14,20 +14,21 @@ public class ModifierDureeChronoControlleur implements ActionListener {
 
     private FenetreDureeChrono fenetre;
     private Chrono chrono;
-    private int min;
-    private int sec;
+    private JSpinner min;
+    private JSpinner sec;
 
     public ModifierDureeChronoControlleur(FenetreDureeChrono vue, Chrono chronometre, JSpinner minutes, JSpinner secondes) {
         fenetre = vue;
         chrono = chronometre;
-        min = (int)minutes.getValue();
-        sec = (int)secondes.getValue();
+        min = minutes;
+        sec = secondes;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("min: " + min + " sec: " + sec + " total: " + (min*60+sec));
-        chrono.setTemps(min*60 + sec);
+        chrono.setTempsRestant((int)min.getValue()*60 + (int)sec.getValue());
+        chrono.setTemps((int)min.getValue()*60 + (int)sec.getValue());
+        chrono.repaint();
         fenetre.dispose();
     }
 }
