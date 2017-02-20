@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.WindowEvent;
+import java.time.LocalDate;
 
 public class FenetreAjoutJoueur extends JFrame {
 
@@ -18,7 +19,9 @@ public class FenetreAjoutJoueur extends JFrame {
 	private JTextField nom;
 	private JTextField prenom;
 	private JComboBox niveau;
-	private JComboBox age;
+	private JSpinner annee;
+	private JSpinner mois;
+	private JSpinner jour;
 	private JRadioButton fem;
 	private JRadioButton hom;
 	private JCheckBox nouv;
@@ -87,13 +90,18 @@ public class FenetreAjoutJoueur extends JFrame {
 			gbc.gridy = 0;
 			corePanel.add(prenom, gbc);
 
-			//Ajout de l'âge
-			//Il faut bien laisser les âges dans cet ordre pour correspondre avec l'ajout du joueur (0 : Indéfini / 1 : -18 jeune / 2 : 18-35 senior / 3 : 35+ veteran)
-			age = new JComboBox(new String[]{"Indéfini", "-18 ans (Jeune)", "18-35 ans (Senior)", "35 ans et + (Veteran)"});
-			age.setSelectedIndex(0);
+			//Ajout de la date
+			JPanel date = new JPanel();
+			LocalDate auj = LocalDate.now();
+			annee = new JSpinner(new SpinnerNumberModel(LocalDate.now().getYear(),1900,LocalDate.now().getYear(),1));
+			mois = new JSpinner(new SpinnerNumberModel(1,1,12,1));
+			jour = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+			date.add(annee);
+			date.add(mois);
+			date.add(jour);
 			gbc.gridx = 1;
 			gbc.gridy = 3;
-			corePanel.add(age, gbc);
+			corePanel.add(date, gbc);
 
 			//Ajout du sexe
 			hom = new JRadioButton("Homme");
@@ -191,18 +199,13 @@ public class FenetreAjoutJoueur extends JFrame {
 	}
 
 	/**
-	 *
-	 * @return l'outil de séléction de l'âge
-     */
-	public JComboBox getAge() {
-		return age;
-	}
-
-	/**
 	 * réinitialise l'age
 	 */
 	public void setAge(){
-		this.age.setSelectedIndex(0);
+		LocalDate auj = LocalDate.now();
+		this.jour.setValue(1);
+		this.mois.setValue(1);
+		this.annee.setValue(auj.getYear());
 	}
 
 	public JRadioButton getFem() {
@@ -227,13 +230,15 @@ public class FenetreAjoutJoueur extends JFrame {
 	 */
 	public void ajouterJoueur(){
 		int id = Joueur.nbJoueursCrees;
-		int age = this.age.getSelectedIndex(); // 0 : -18 jeune / 1 : 18-35 senior / 2 : 35+ veteran
+		LocalDate datej = LocalDate.now();
+		datej.of((Integer) this.annee.getValue(), (Integer) this.mois.getValue(), (Integer) this.jour.getValue()) ;
+
 		String nom = this.nom.getText(), prenom = this.prenom.getText();
 		boolean sexe = hom.isSelected();
 		boolean nouveau = nouv.isSelected();
 		int niveau = this.niveau.getSelectedIndex();
 		boolean pres =  this.present.isSelected();
-		Joueur j = new Joueur(id, nom, prenom, age, sexe, nouveau, niveau, pres);
+		Joueur j = new Joueur(id, nom, prenom, datej, sexe, nouveau, niveau, pres);
 		this.setNom("");
 		this.setPrenom("");
 		this.setAge();

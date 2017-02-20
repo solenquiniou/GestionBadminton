@@ -1,5 +1,7 @@
 package main.tournoi;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 /**Joueur est la classe représentant un joueur du main.tournoi.
@@ -18,6 +20,7 @@ public class Joueur {
 	// 2 : 18-35 senior
 	// 3 : 35+ veteran
 	private int age;
+	private LocalDate dateN;
 	// 0 : femme
 	// 1 : homme
 	private boolean sexe;
@@ -44,19 +47,20 @@ public class Joueur {
 		* @param id l'id du joueur
 		* @param nom le nom du joueur
 		* @param prenom le prénom du joueur
-		* @param age l'âge du joueur (0 : -18 jeune / 1 : 18-35 senior / 2 : 35+ veteran)
+		* @param date date de naissance
 		* @param sexe le sexe du joueur (0 : femme / 1 : homme)
 		* @param nouveau (0 : joueur ancien / 1 : joueur nouveau)
 		* @param niveau le niveau du joueur (0 : débutant / 1 : intermédiaire / 2 : confirmé)
 		* @param peutJouer si le joueur peut jouer
 		*
 		*/
-	public Joueur(int id, String nom, String prenom, int age, boolean sexe,
+	public Joueur(int id, String nom, String prenom, LocalDate date, boolean sexe,
 			boolean nouveau, int niveau, boolean peutJouer){
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.age = age;
+		this.dateN = date;
+		this.age = calculAge();
 		this.sexe = sexe;
 		this.nouveau = nouveau;
 		this.score = 0;
@@ -75,6 +79,36 @@ public class Joueur {
 	}
 
 	/**
+	 *	Calcule la catégorie d' age a la quelle appartient le joueur a partir de sa date
+	 *numero de la categorie
+	 * 0 : indéfini
+	 * 1 : -18 jeune
+	 * 2 : 18-35 senior
+	 * 3 : 35+ veteran
+	 */
+	public int calculAge(){
+		LocalDate aujourdui = LocalDate.now();
+		int ageEcart = (int) ChronoUnit.DAYS.between(this.dateN,aujourdui)/365;
+		int age = 0;
+		if(this.dateN.equals(aujourdui)){
+			age =0;
+		}
+		else if (ageEcart <= 18){
+			age = 1;
+		}
+		else if (ageEcart <= 35){
+			age = 2;
+		}else if (ageEcart <= 35){
+			age =3;
+		}
+		return age;
+	}
+
+	public String getNaissance(){
+		return this.dateN.getDayOfMonth()+"/"+this.dateN.getMonthValue()+"/"+this.dateN.getYear();
+	}
+
+	/**
 	*	Remet a zero le nombre de joueur
 	* 	A utiliser lorsque l'on cree un nouveau tournoi
 	 */
@@ -83,8 +117,8 @@ public class Joueur {
 	}
 
 	// Tests
-		public Joueur(int id, boolean sexe, boolean nouv){
-			this(id, "Bon", "Jean", (20+id), sexe, nouv, (id%3),true);
+		public Joueur(int id, boolean sexe, boolean nouv) {
+			this(id, "Bon", "Jean", LocalDate.now().minusYears(20 + id), sexe, nouv, (id%3),true);
 		}
 
 	/**
@@ -179,6 +213,10 @@ public class Joueur {
 	 */
 	public int getAge(){
 		return this.age;
+	}
+
+	public LocalDate getDateN() {
+		return dateN;
 	}
 
 	/** Retourne le sexe d'un joueur
@@ -369,19 +407,29 @@ public class Joueur {
 	public int getNbMatchJoues() {
 		return nbMatchJoues;
 	}
+
+
+	/** Set la date de naissance et actualise l'age en conséquence
+	 */
+	public void setDateN(LocalDate dateN) {
+		this.dateN = dateN;
+		this.age = calculAge();
+	}
+
 	/** Ajoute un Match aux matchs joués d'un joueur
 	 * 
 	 * 
 	 */
+
 	public void ajouterMatchJoue() {
 		this.nbMatchJoues++;
 	}
 
-	public void modifierJoueur(String nom2, String prenom2, int age2, boolean sexe2, boolean nouveau2,
+	public void modifierJoueur(String nom2, String prenom2, LocalDate date2, boolean sexe2, boolean nouveau2,
 			int niveau2) {
 		this.setNom(nom2);
 		this.setPrenom(prenom2);
-		this.setAge(age2);
+		this.setDateN(date2);
 		this.setSexe(sexe2);
 		this.setNouveau(nouveau2);
 		this.setNiveau(niveau2);

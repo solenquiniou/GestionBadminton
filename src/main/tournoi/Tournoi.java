@@ -2,18 +2,17 @@ package main.tournoi;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
-import main.exception.ImportExportException;
-import main.exception.NbTerrainNeg;
-import main.exception.NomVideException;
-import main.exception.TournoiVideException;
+import main.exception.*;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
-
-
+import java.util.Locale;
 
 
 /**Tournoi est la classe représentant un Tournoi.
@@ -570,11 +569,11 @@ public class Tournoi {
 		this.nom = nom;
 	}
 
-	public void modifierJoueur(int id, String nom, String prenom, int age, boolean sexe,
-							   boolean nouveau, int niveau) {
+	public void modifierJoueur(int id, String nom, String prenom, LocalDate date, boolean sexe,
+							   boolean nouveau, int niveau){
 		Joueur j = null;
 		j = this.getJoueur(id);
-		j.modifierJoueur(nom, prenom, age, sexe, nouveau, niveau);
+		j.modifierJoueur(nom, prenom, date, sexe, nouveau, niveau);
 	}
 
 	public boolean paireValide(int nuterrain){
@@ -643,14 +642,14 @@ public class Tournoi {
 
             String joueurCourant[];
             boolean sexe, nouveau;
-            int age;
+            LocalDate date;
             int niveau;
 
             String nom, prenom;
             // Ordre d'une ligne du fichier CSV
             // [0] : prenom / [1] : nom / [2] : sexe (0 : femme / 1 : homme)
             // [3] ancienneté (0 : Ancien/ 1 : Nouveau)
-            // [4] âge (0 : vide /1 : "-18 ans" /2 : "18-35 ans" / 3 : "35+ ans")
+            // [4] date de naissance
             // [5] : niveau  (0 : vide /1 : "Débutant" / 2 : "Intermédiaire" / 3 : "Confirmé")
             joueurCourant = nextLine; // le "-1" sert à récupérer une chaine même si elle est vide
 
@@ -667,22 +666,19 @@ public class Tournoi {
                 throw new ImportExportException("Problème avec l'ancienneté");
             nouveau = (joueurCourant[3].equals("Nouveau")); // Si la quatrième valeur est Nouveau, nouveau = true, sinon nouveau = false
 
-            age = 0; //Utilse si l'âge est indéfini
+			date = LocalDate.now(); //Utilse si l'âge est indéfini
 
             //Lecture de l'âge
 			//Si le joueur possède plus de 4 attributs (et donc 5 ou 6), il a un possiblement un age de défini
             if (joueurCourant.length > 4 && !joueurCourant[4].isEmpty()) {
-				//Si la cinquième valeur n'est ni -18 ni 18-35 ni 35+ on lance une erreur
-                if (!joueurCourant[4].equals("-18 ans") && !joueurCourant[4].equals("18-35 ans") && !joueurCourant[4].equals("35+ ans")) {
-                    throw new ImportExportException("Problème avec l'âge");
-                }
-                if (joueurCourant[4].equals("-18 ans"))
-                    age = 1;
-                else if (joueurCourant[4].equals("18-35 ans"))
-                    age = 2;
-                else if (joueurCourant[4].equals("35+ ans"))
-                    age = 3;
-            }
+
+				//parsage en date
+				try {
+					date = parseDate(joueurCourant[4]);
+				} catch (DateParsingExeption dateParsingExeption) {
+					dateParsingExeption.printStackTrace();
+				}
+			}
 
             niveau = 0; // Utile si le niveau est indéfini
 
@@ -700,7 +696,7 @@ public class Tournoi {
                     niveau = 3;
             }
 
-            listeJoueurs.add(new Joueur(Joueur.nbJoueursCrees, nom, prenom, age, sexe, nouveau, niveau, true));
+			listeJoueurs.add(new Joueur(Joueur.nbJoueursCrees, nom, prenom, date, sexe, nouveau, niveau, true));
 		}
 
         reader.close();
@@ -723,7 +719,7 @@ public class Tournoi {
 		// Prénom,Nom,Sexe,Ancienneté,Âge,Niveau
 		// [0] : prenom / [1] : nom / [2] : sexe (0 : "Femme" / 1 : "Homme")
 		// [3] ancienneté (0 : "Ancien"/ 1 : "Nouveau")
-		// [4] âge (0 : "" /1 : "-18 ans" /2 : "18-35 ans" / 3 : "35+ ans")
+		// [4] date
 		// [5] : niveau  (0 : "" /1 : "Débutant" / 2 : "Intermédiaire" / 3 : "Confirmé")
 		String res = "";
 		res += joueur.getPrenom() + "," + joueur.getNom() + ",";
@@ -734,16 +730,8 @@ public class Tournoi {
 		//Si joueur.getNouveau() : Nouveau / sinon : Ancien
 		res+= (joueur.getNouveau()) ? "Nouveau," : "Ancien,";
 
-		int age = joueur.getAge();
-		if (age == 0) {
-			res += ",";
-		} else if (age == 1) {
-			res += "-18 ans,";
-		} else if (age == 2) {
-			res += "18-35 ans,";
-		} else {
-			res += "35+ ans,";
-		}
+
+		res+=joueur.getNaissance();
 
 		int niveau = joueur.getNiveau();
 
@@ -793,6 +781,19 @@ public class Tournoi {
 			writer.writeNext(entries);
 		}
 		writer.close();
+	}
+
+	public LocalDate parseDate(String datestr) throws DateParsingExeption {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		formatter = formatter.withLocale(Locale.FRANCE);
+		try{
+			date = LocalDate.parse(datestr, formatter);
+		}catch(DateTimeParseException ex){
+			throw new DateParsingExeption("Problème avec l'âge");
+
+		}
+		return date;
 	}
 
 

@@ -1,13 +1,8 @@
 package main.controleur;
 
-import main.tournoi.*;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.ArrayList;
-
+import main.exception.DateParsingExeption;
+import main.tournoi.Joueur;
+import main.tournoi.Tournoi;
 import main.vue.FenetrePrincipale;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -16,6 +11,12 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /** La classe ImporterTournoiControlleur permet d'importer un tournoi
  * @author DROUARD Antoine, DERNONCOURT Cyril, LE BERT Lea, MARTINEAU Lucas
@@ -144,20 +145,14 @@ public class ImporterTournoiControlleur implements ActionListener
 
 
 
-    public void ajouterJoueur(ArrayList<String> lesInfosDuJoueur)
-    {
-        String nom = lesInfosDuJoueur.get(1), prenom = lesInfosDuJoueur.get(0),  age = lesInfosDuJoueur.get(4),  sexe = lesInfosDuJoueur.get(2),  nouveau = lesInfosDuJoueur.get(3),  niveau = lesInfosDuJoueur.get(5);
+    public void ajouterJoueur(ArrayList<String> lesInfosDuJoueur) throws DateParsingExeption {
+        String nom = lesInfosDuJoueur.get(1), prenom = lesInfosDuJoueur.get(0),  datestr = lesInfosDuJoueur.get(4),  sexe = lesInfosDuJoueur.get(2),  nouveau = lesInfosDuJoueur.get(3),  niveau = lesInfosDuJoueur.get(5);
 
 
-        int ageJoueur = 0, niveauJoueur = 0;
+        int  niveauJoueur = 0;
         boolean sexeJoueur, ancienneteJoueur;
 
-        if (age.equals("-18 ans"))
-            ageJoueur = 1;
-        else if (age.equals("18-35 ans"))
-            ageJoueur = 2;
-        else if (age.equals("35+ ans"))
-            ageJoueur = 3;
+        LocalDate date = tournoi.parseDate(datestr);
 
 
         if (niveau.equals("Débutant"))
@@ -171,7 +166,7 @@ public class ImporterTournoiControlleur implements ActionListener
 
         ancienneteJoueur = (nouveau.equals("Nouveau"));
 
-        Joueur j = new Joueur(Joueur.nbJoueursCrees, nom, prenom, ageJoueur, sexeJoueur, ancienneteJoueur, niveauJoueur, true);
+        Joueur j = new Joueur(Joueur.nbJoueursCrees, nom, prenom, date, sexeJoueur, ancienneteJoueur, niveauJoueur, true);
 
         if (!tournoi.getAnciensJoueurs().contains(j) && !tournoi.getNouveauxJoueurs().contains(j))
         {

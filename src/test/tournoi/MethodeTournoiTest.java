@@ -6,6 +6,7 @@ import main.tournoi.Paire;
 import main.tournoi.Tournoi;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -28,22 +29,25 @@ public class MethodeTournoiTest{
 
         Joueur[] joueurs = new Joueur[16];
 
-        joueurs[0]  = new Joueur(0,  "Joueur0",  "Prénom0",  14, true,  true,  1, true);
-        joueurs[1]  = new Joueur(1,  "Joueur1",  "Prénom1",  15, true,  false, 1, true);
-        joueurs[2]  = new Joueur(2,  "Joueur2",  "Prénom2",  16, true,  true,  1, true);
-        joueurs[3]  = new Joueur(3,  "Joueur3",  "Prénom3",  12, true,  true,  3, true);
-        joueurs[4]  = new Joueur(4,  "Joueur4",  "Prénom4",  15, true,  true,  3, true);
-        joueurs[5]  = new Joueur(5,  "Joueur5",  "Prénom5",  16, true,  false, 3, true);
-        joueurs[6]  = new Joueur(6,  "Joueur6",  "Prénom6",  20, true,  true,  3, true);
-        joueurs[7]  = new Joueur(7,  "Joueur7",  "Prénom7",  21, true,  true,  3, true);
-        joueurs[8]  = new Joueur(8,  "Joueur8",  "Prénom8",  22, false, true,  3, true);
-        joueurs[9]  = new Joueur(9,  "Joueur9",  "Prénom9",  23, false, false, 3, true);
-        joueurs[10] = new Joueur(10, "Joueur10", "Prénom10", 24, false, true,  3, true);
-        joueurs[11] = new Joueur(11, "Joueur11", "Prénom11", 25, false, true,  3, true);
-        joueurs[12] = new Joueur(12, "Joueur12", "Prénom12", 27, false, true,  3, true);
-        joueurs[13] = new Joueur(13, "Joueur13", "Prénom13", 29, false, false, 3, true);
-        joueurs[14] = new Joueur(14, "Joueur14", "Prénom14", 35, false, true,  3, true);
-        joueurs[15] = new Joueur(15, "Joueur15", "Prénom15", 44, false, true,  3, true);
+        LocalDate date = LocalDate.now();
+
+
+        joueurs[0]  = new Joueur(0,  "Joueur0",  "Prénom0",  date.of(2017-14, 2, 1), true,  true,  1, true);
+        joueurs[1]  = new Joueur(1,  "Joueur1",  "Prénom1",  date.of(2017-15, 2, 1), true,  false, 1, true);
+        joueurs[2]  = new Joueur(2,  "Joueur2",  "Prénom2",  date.of(2017-16, 2, 1), true,  true,  1, true);
+        joueurs[3]  = new Joueur(3,  "Joueur3",  "Prénom3",  date.of(2017-12, 2, 1), true,  true,  3, true);
+        joueurs[4]  = new Joueur(4,  "Joueur4",  "Prénom4",  date.of(2017-15, 2, 1), true,  true,  3, true);
+        joueurs[5]  = new Joueur(5,  "Joueur5",  "Prénom5",  date.of(2017-16, 2, 1), true,  false, 3, true);
+        joueurs[6]  = new Joueur(6,  "Joueur6",  "Prénom6",  date.of(2017-20, 2, 1), true,  true,  3, true);
+        joueurs[7]  = new Joueur(7,  "Joueur7",  "Prénom7",  date.of(2017-21, 2, 1), true,  true,  3, true);
+        joueurs[8]  = new Joueur(8,  "Joueur8",  "Prénom8",  date.of(2017-22, 2, 1), false, true,  3, true);
+        joueurs[9]  = new Joueur(9,  "Joueur9",  "Prénom9",  date.of(2017-22, 2, 1), false, false, 3, true);
+        joueurs[10] = new Joueur(10, "Joueur10", "Prénom10", date.of(2017-23, 2, 1), false, true,  3, true);
+        joueurs[11] = new Joueur(11, "Joueur11", "Prénom11", date.of(2017-25, 2, 1), false, true,  3, true);
+        joueurs[12] = new Joueur(12, "Joueur12", "Prénom12", date.of(2017-27, 2, 1), false, true,  3, true);
+        joueurs[13] = new Joueur(13, "Joueur13", "Prénom13", date.of(2017-29, 2, 1), false, false, 3, true);
+        joueurs[14] = new Joueur(14, "Joueur14", "Prénom14", date.of(2017-35, 2, 1), false, true,  3, true);
+        joueurs[15] = new Joueur(15, "Joueur15", "Prénom15", date.of(2017-44, 2, 1), false, true,  3, true);
 
         ArrayList<Joueur> ArrayJoueurs = new ArrayList<>();
         ArrayJoueurs.addAll(Arrays.asList(joueurs));

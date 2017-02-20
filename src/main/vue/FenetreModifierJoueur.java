@@ -8,6 +8,7 @@ import main.tournoi.Tournoi;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.time.LocalDate;
 
 public class FenetreModifierJoueur extends JFrame {
 
@@ -16,7 +17,9 @@ public class FenetreModifierJoueur extends JFrame {
 	private JTextField nom;
 	private JTextField prenom;
 	private JComboBox niveau;
-	private JComboBox age;
+	private JSpinner annee;
+	private JSpinner mois;
+	private JSpinner jour;
 	private JRadioButton fem;
 	private JRadioButton hom;
 	private JCheckBox nouv;
@@ -60,11 +63,14 @@ public class FenetreModifierJoueur extends JFrame {
 
 		//Ajout de l'âge
 		//Il faut bien laisser les âges dans cet ordre pour correspondre avec l'ajout du joueur (0 : Indéfini / 1 : -18 jeune / 2 : 18-35 senior / 3 : 35+ veteran)
-		age = new JComboBox(new String[]{"Indéfini", "-18 ans (Jeune)", "18-35 ans (Senior)", "35 ans et + (Veteran)"});
-		age.setSelectedIndex(joueur.getAge());
-		gbc.gridx = 1;
-		gbc.gridy = 3;
-		corePanel.add(age, gbc);
+		JPanel date = new JPanel();
+		annee = new JSpinner(new SpinnerNumberModel(LocalDate.now().getYear(),1900,LocalDate.now().getYear(),1));
+		mois = new JSpinner(new SpinnerNumberModel(1,1,12,1));
+		jour = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+		date.add(annee);
+		date.add(mois);
+		date.add(jour);
+		corePanel.add(date, gbc);
 
 		//Ajout du sexe
 		hom = new JRadioButton("Homme");
@@ -175,20 +181,8 @@ public class FenetreModifierJoueur extends JFrame {
 		return niveau;
 	}
 
-	/**
-	 *
-	 * @return l'outil de séléction de l'âge
-     */
-	public JComboBox getAge() {
-		return age;
-	}
 
-	/**
-	 * réinitialise l'age
-	 */
-	public void setAge(){
-		this.age.setSelectedIndex(0);
-	}
+
 
 	public JRadioButton getFem() {
 		return fem;
@@ -215,12 +209,13 @@ public class FenetreModifierJoueur extends JFrame {
 	 */
 	public void modifierJoueur(int id)
 	{
-		int age = this.age.getSelectedIndex(); // 0 : -18 jeune / 1 : 18-35 senior / 2 : 35+ veteran
+		LocalDate date = LocalDate.now();
+		date.of((Integer) this.annee.getValue(), (Integer) this.mois.getValue(), (Integer) this.jour.getValue()) ; // 0 : -18 jeune / 1 : 18-35 senior / 2 : 35+ veteran
 		String nom = this.nom.getText(), prenom = this.prenom.getText();
 		boolean sexe = !fem.isSelected();
 		boolean nouve = nouv.isSelected();
 		int niveau = this.niveau.getSelectedIndex();
-		this.tournoi.modifierJoueur(id, nom, prenom, age, sexe, nouve, niveau);
+		this.tournoi.modifierJoueur(id, nom, prenom, date, sexe, nouve, niveau);
 		if(present.isSelected()) {
 			this.tournoi.getJoueur(id).setPeutJouer(true);
 		} else {
