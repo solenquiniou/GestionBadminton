@@ -1,13 +1,13 @@
 package main.tournoi;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-/**Joueur est la classe représentant un joueur du main.tournoi.
- *
+/**
+ * Joueur est la classe représentant un joueur du main.tournoi.
  * @author OUAKRIM Yanis, RICHARD Nicolas, ORHON Paul, RIALET Yohann, NIVELAIS Quentin
- *
  * @version 0.1
  */
 public class Joueur {
@@ -67,8 +67,8 @@ public class Joueur {
 		this.joue = false;
 		this.setDansPaire(false);
 		this.niveau = niveau;
-		this.perf = this.calculerPerf();
 		//on calcule la performance en fonction de l'age, du sexe et du niveau
+		this.perf = this.calculerPerf();
 		
 		this.prio = true;
 		this.anciensPart = new ArrayList<>();
@@ -88,19 +88,20 @@ public class Joueur {
 	 */
 	public int calculAge(){
 		LocalDate aujourdui = LocalDate.now();
-		int ageEcart = (int) ChronoUnit.DAYS.between(this.dateN,aujourdui)/365;
-		int age = 0;
-		if(this.dateN.equals(aujourdui)){
-			age =0;
-		}
-		else if (ageEcart <= 18){
+
+		int ageEcart = Period.between(this.dateN, aujourdui).getYears();
+
+		int age;
+
+		if(this.dateN.equals(aujourdui))
+			age = 0;
+		else if (ageEcart <= 18)
 			age = 1;
-		}
-		else if (ageEcart <= 35){
+		else if (ageEcart <= 35)
 			age = 2;
-		}else if (ageEcart <= 35){
-			age =3;
-		}
+		else
+			age = 3;
+
 		return age;
 	}
 
