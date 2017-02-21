@@ -56,6 +56,7 @@ public class ExporterTournoiControlleur implements ActionListener {
         Paire paire1, paire2;
         Joueur joueur1, joueur2, joueur3, joueur4;
         int score1, score2;
+        String dateDeNaissance;
 
         try
         {
@@ -77,7 +78,7 @@ public class ExporterTournoiControlleur implements ActionListener {
                     nom = document.createElement("nom");
                     sexe = document.createElement("sexe");
                     anciennete = document.createElement("anciennete");
-                    age = document.createElement("age");
+                    age = document.createElement("dateDeNaissance");
                     niveau = document.createElement("niveau");
                     prenom.appendChild(document.createTextNode(j.getPrenom()));
                     nom.appendChild(document.createTextNode(j.getNom()));
@@ -99,7 +100,7 @@ public class ExporterTournoiControlleur implements ActionListener {
                     {
                         anciennete.appendChild(document.createTextNode("Ancien"));
                     }
-
+/*
                     switch (j.getAge()) {
                         case 1:  age.appendChild(document.createTextNode("-18 ans"));
                         case 2:  age.appendChild(document.createTextNode("18-35 ans"));
@@ -107,8 +108,11 @@ public class ExporterTournoiControlleur implements ActionListener {
                             break;
                         default: age.appendChild(document.createTextNode(""));
                             break;
-                    }
-
+                    }*/
+                    if((dateDeNaissance = j.getNaissance()) == null)
+                        age.appendChild(document.createTextNode(""));
+                    else
+                        age.appendChild(document.createTextNode(dateDeNaissance));
                     switch (j.getNiveau()) {
                         case 1:  niveau.appendChild(document.createTextNode("Débutant"));
                         case 2:  niveau.appendChild(document.createTextNode("Intermédiaire"));
