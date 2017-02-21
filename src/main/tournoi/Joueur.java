@@ -2,7 +2,7 @@ package main.tournoi;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -110,13 +110,25 @@ public class Joueur {
 		return age;
 	}
 
+	/**
+	 * Retourne la date de naissance du joueur ou null si le joueur n'a pas de date de naissance de spécifié
+	 * @return
+     */
 	public String getNaissance(){
-		return this.dateN.getDayOfMonth()+"/"+this.dateN.getMonthValue()+"/"+this.dateN.getYear();
+
+ 		String res = null;
+
+		if (this.dateN != null) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			res =  this.dateN.format(formatter);
+		}
+
+		return res;
 	}
 
 	/**
-	*	Remet a zero le nombre de joueur
-	* 	A utiliser lorsque l'on cree un nouveau tournoi
+	 *	Remet a zero le nombre de joueur
+	 * 	A utiliser lorsque l'on cree un nouveau tournoi
 	 */
 	public static void resetNbJoueur() {
 		Joueur.nbJoueursCrees = 0;

@@ -666,7 +666,7 @@ public class Tournoi {
                 throw new ImportExportException("Problème avec l'ancienneté");
             nouveau = (joueurCourant[3].equals("Nouveau")); // Si la quatrième valeur est Nouveau, nouveau = true, sinon nouveau = false
 
-			date = LocalDate.now(); //Utilse si l'âge est indéfini
+			date = null; //Utile si l'âge est indéfini
 
             //Lecture de l'âge
 			//Si le joueur possède plus de 4 attributs (et donc 5 ou 6), il a un possiblement un age de défini
@@ -721,31 +721,33 @@ public class Tournoi {
 		// [3] ancienneté (0 : "Ancien"/ 1 : "Nouveau")
 		// [4] date
 		// [5] : niveau  (0 : "" /1 : "Débutant" / 2 : "Intermédiaire" / 3 : "Confirmé")
-		String res = "";
-		res += joueur.getPrenom() + "," + joueur.getNom() + ",";
+		StringBuilder res = new StringBuilder();
+
+		res.append(joueur.getPrenom() + "," + joueur.getNom() + ",");
 
 		//Si joueur.getSexe() : Homme / sinon : femme
-		res += (joueur.getSexe()) ? "Homme," : "Femme,";
+		res.append((joueur.getSexe()) ? "Homme," : "Femme,");
 
 		//Si joueur.getNouveau() : Nouveau / sinon : Ancien
-		res+= (joueur.getNouveau()) ? "Nouveau," : "Ancien,";
+		res.append((joueur.getNouveau()) ? "Nouveau," : "Ancien,");
 
+		if (joueur.getNaissance() != null)
+			res.append(joueur.getNaissance());
 
-		res+=joueur.getNaissance();
+		res.append(","); // S'il n'y a pas de date alors on ajoute seulement une virgule
 
 		int niveau = joueur.getNiveau();
 
-		if (niveau == 0) {
-			res += "";
-		} else if (niveau == 1) {
-			res +="Débutant";
-		} else if (niveau == 2) {
-			res += "Intermédiaire";
-		} else {
-			res += "Confirmé";
-		}
+		if (niveau == 0)
+			res.append("");
+		else if (niveau == 1)
+			res.append("Débutant");
+		else if (niveau == 2)
+			res.append("Intermédiaire");
+		else
+			res.append("Confirmé");
 
-		return res;
+		return res.toString();
 	}
 
 	/**
@@ -784,8 +786,8 @@ public class Tournoi {
 	}
 
 	public LocalDate parseDate(String datestr) throws DateParsingExeption {
-		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate date;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
 		formatter = formatter.withLocale(Locale.FRANCE);
 		try{
 			date = LocalDate.parse(datestr, formatter);
