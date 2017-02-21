@@ -91,6 +91,7 @@ public class ImporterTournoiControlleur implements ActionListener
                         {
                             Element info = (Element) listeInfoNode.item(i);
                             infosDuJoueur.add(info.getTextContent());
+
                         }
                     }
                     ajouterJoueur(infosDuJoueur);
@@ -108,9 +109,11 @@ public class ImporterTournoiControlleur implements ActionListener
                     }
                 }
 
+                int tourCourant = 1;
                 ArrayList<String> terrains = new ArrayList<>();
                 for(Node tourNode : listesTourNodes)
                 {
+                    System.out.println("Tour : "+ tourCourant++);
                     NodeList terrainsNodes = tourNode.getChildNodes(); // Récupère les terrains d'un tour
                     int nbTerrain = terrainsNodes.getLength(); // compte le nombre de "terrain" dans le XML
                     for (int i = 0; i < nbTerrain; i++)
@@ -128,10 +131,10 @@ public class ImporterTournoiControlleur implements ActionListener
                                     terrains.add(info3.getTextContent());
                                 }
                             }
-                            System.out.println(terrains);
+                            System.out.println("                            "+terrains);
                             terrains.clear();
                             System.out.println("               Fin");
-                            System.out.println("\n\n\n\n");
+                            System.out.println("\n\n");
                         }
                     }
                 }
@@ -147,13 +150,15 @@ public class ImporterTournoiControlleur implements ActionListener
 
     public void ajouterJoueur(ArrayList<String> lesInfosDuJoueur) throws DateParsingExeption {
         String nom = lesInfosDuJoueur.get(1), prenom = lesInfosDuJoueur.get(0),  datestr = lesInfosDuJoueur.get(4),  sexe = lesInfosDuJoueur.get(2),  nouveau = lesInfosDuJoueur.get(3),  niveau = lesInfosDuJoueur.get(5);
-
+        LocalDate date = null;
 
         int  niveauJoueur = 0;
         boolean sexeJoueur, ancienneteJoueur;
 
-        LocalDate date = tournoi.parseDate(datestr);
-
+        if(datestr.equals(""))
+            date = null;
+        else
+            date = tournoi.parseDate(datestr);
 
         if (niveau.equals("Débutant"))
             niveauJoueur = 1;
@@ -167,7 +172,6 @@ public class ImporterTournoiControlleur implements ActionListener
         ancienneteJoueur = (nouveau.equals("Nouveau"));
 
         Joueur j = new Joueur(Joueur.nbJoueursCrees, nom, prenom, date, sexeJoueur, ancienneteJoueur, niveauJoueur, true);
-
         if (!tournoi.getAnciensJoueurs().contains(j) && !tournoi.getNouveauxJoueurs().contains(j))
         {
             tournoi.ajouterJoueur(j);

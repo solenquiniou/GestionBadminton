@@ -1,13 +1,13 @@
 package main.tournoi;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**Joueur est la classe représentant un joueur du main.tournoi.
- *
+/**
+ * Joueur est la classe représentant un joueur du main.tournoi.
  * @author OUAKRIM Yanis, RICHARD Nicolas, ORHON Paul, RIALET Yohann, NIVELAIS Quentin
- *
  * @version 0.1
  */
 public class Joueur {
@@ -71,8 +71,8 @@ public class Joueur {
 		this.joue = false;
 		this.setDansPaire(false);
 		this.niveau = niveau;
-		this.perf = this.calculerPerf();
 		//on calcule la performance en fonction de l'age, du sexe et du niveau
+		this.perf = this.calculerPerf();
 		
 		this.prio = true;
 		this.anciensPart = new ArrayList<>();
@@ -92,29 +92,47 @@ public class Joueur {
 	 */
 	public int calculAge(){
 		LocalDate aujourdui = LocalDate.now();
-		int ageEcart = (int) ChronoUnit.DAYS.between(this.dateN,aujourdui)/365;
-		int age = 0;
-		if(this.dateN.equals(aujourdui)){
-			age =0;
+
+
+
+		int age;
+
+		if(this.dateN == null)
+			age = 0;
+		else {
+			int ageEcart = Period.between(this.dateN, aujourdui).getYears();
+
+			if (ageEcart <= 18)
+				age = 1;
+			else if (ageEcart <= 35)
+				age = 2;
+			else
+				age = 3;
 		}
-		else if (ageEcart <= 18){
-			age = 1;
-		}
-		else if (ageEcart <= 35){
-			age = 2;
-		}else if (ageEcart <= 35){
-			age =3;
-		}
+
+
 		return age;
 	}
 
+	/**
+	 * Retourne la date de naissance du joueur ou null si le joueur n'a pas de date de naissance de spécifié
+	 * @return
+     */
 	public String getNaissance(){
-		return this.dateN.getDayOfMonth()+"/"+this.dateN.getMonthValue()+"/"+this.dateN.getYear();
+
+ 		String res = null;
+
+		if (this.dateN != null) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			res =  this.dateN.format(formatter);
+		}
+
+		return res;
 	}
 
 	/**
-	*	Remet a zero le nombre de joueur
-	* 	A utiliser lorsque l'on cree un nouveau tournoi
+	 *	Remet a zero le nombre de joueur
+	 * 	A utiliser lorsque l'on cree un nouveau tournoi
 	 */
 	public static void resetNbJoueur() {
 		Joueur.nbJoueursCrees = 0;
