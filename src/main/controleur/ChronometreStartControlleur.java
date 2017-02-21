@@ -14,9 +14,9 @@ public class ChronometreStartControlleur implements ActionListener {
     private JButton bouton;
 
     /**
-     * constructeur de la fenêtre classement
-     * @param b le titre à donner à la fenêtre
-     * @param t le main.tournoi dans lequel on veut voir le classement
+     * constructeur du controleur qui permet de lancer le chronometre
+     * @param t le chrono
+     * @param b le bouton auquel ce controleur est appliqué
      */
     public ChronometreStartControlleur(Chrono t, JButton b)
     {

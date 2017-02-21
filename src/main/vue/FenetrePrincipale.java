@@ -36,6 +36,7 @@ public class FenetrePrincipale extends JFrame {
 	private int verif;
 
 	/**
+	 * Constructeur de la classe FenetrePrincipale
 	 *
 	 * @param titre le titre que l'on souhaite donner à la fenêtre
 	 */
@@ -65,7 +66,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 
 	/**
-	 *
+	 * Méthode permetant de définir le tournoi
 	 * @param t le main.tournoi avec lequel la fenêtre va interagir
 	 */
 	public void setTournoi(Tournoi t){
@@ -78,14 +79,17 @@ public class FenetrePrincipale extends JFrame {
 	}
 
 	/**
-	 *
+	 * Méthode retournant le tournoi
 	 * @return le main.tournoi
 	 */
-
 	public Tournoi getTournoi(){
 		return this.tournoi;
 	}
 
+	/**
+	 * Méthode retournant la liste des joueurs
+	 * @return la liste des joueurs
+     */
 	public  JTable getListeJoueurs() {
 		return this.listeJoueurs;
 	}
@@ -143,8 +147,6 @@ public class FenetrePrincipale extends JFrame {
 		//panel west qui contiens les boutons
 		JPanel westButtonPan = new JPanel(new GridBagLayout());
 		GridBagConstraints gbcWest = new GridBagConstraints();
-		/*gbcWest.weighty = 1;
-		gbcWest.anchor = GridBagConstraints.NORTH;*/
 
 		//Ajout du chronometre
 		chronometre = new Chrono(300);
@@ -229,7 +231,6 @@ public class FenetrePrincipale extends JFrame {
 		westButtonPan.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.gray));
 
 
-
 		////Onglet Tournoi
 		tournois = new JPanel();
 		tournois.setLayout(new BorderLayout());
@@ -237,9 +238,7 @@ public class FenetrePrincipale extends JFrame {
 		//On ajoute tous les onglets
 		onglets.addTab("Joueurs", joueurs);
 		onglets.addTab("Tournois", tournois);
-
 		onglets.setOpaque(true);
-
 
 
 		JPanel principal = new JPanel();
@@ -291,6 +290,11 @@ public class FenetrePrincipale extends JFrame {
 		}
 
 	}
+
+	/**
+	 * Méthode permetant d'ajouter un joueur à la liste des joueurs
+	 * @param j le joueur à ajouter
+     */
 	public void ajouterJoueurTable(Joueur j)
 	{
 		Object[] tJ = {j.getNom(), j.getPrenom(), j.getScore(), j.getAnciennte(), j.statut()};
@@ -345,13 +349,11 @@ public class FenetrePrincipale extends JFrame {
 		this.actualiserNoms();
 	}
 
-
-	public void setVerif(int verif) {
-		this.verif = verif;
-	}
-
-	public ArrayList<JComboBox> getBoxTerrains() { return this.boxTerrains; }
-
+	/**
+	 * Méthode qui crée l'interface d'un terrain dans l'onglet terrain
+	 * @param i le numéro du terrain
+	 * @return le jpanel correspondant à l'interface du terrain i
+     */
 	public JPanel nouveauTerrain(int i){
 		JPanel terrain = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -415,14 +417,14 @@ public class FenetrePrincipale extends JFrame {
 		terrain.add(equipeUn, gbc);
 
 		//Le terrain
-		//JPanel espace = new JPanel();
-		//espace.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.gray));
-		//ImageIcon icon = new ImageIcon(getClass().getResource("/main/resources/images/terrainS2.png"));
-		//JLabel labelimg = new JLabel();
-		//labelimg.setIcon(icon);
-		//espace.add(labelimg);
-		//gbc.gridy = 2;
-		//terrain.add(espace, gbc);
+		/*JPanel espace = new JPanel();
+		espace.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.gray));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/main/resources/images/terrainS2.png"));
+		JLabel labelimg = new JLabel();
+		labelimg.setIcon(icon);
+		espace.add(labelimg);
+		gbc.gridy = 2;
+		terrain.add(espace, gbc);*/
 
 		//Equipe 2 et leur score
 		JComboBox j3 = new JComboBox();
@@ -446,7 +448,6 @@ public class FenetrePrincipale extends JFrame {
 			}
 		}
 
-
 		JSpinner score2 = new JSpinner(new SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
 		JPanel equipeDeux = new JPanel(new GridBagLayout());
 		j3.setPreferredSize(new Dimension(125, 25));
@@ -461,7 +462,8 @@ public class FenetrePrincipale extends JFrame {
 		gbcDeux.gridx = 2;
 		equipeDeux.add(score2);
 		gbc.gridy = 3;
-		//border et padding
+
+		//Border et padding
 		equipeDeux.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.gray));
 		border = equipeDeux.getBorder();
 		margin = new EmptyBorder(10,0,0,0);
@@ -492,10 +494,13 @@ public class FenetrePrincipale extends JFrame {
 		terrain.setBorder(new CompoundBorder(border, margin));
 		JPanel terrainContainer = new JPanel();
 
-
 		terrainContainer.add(terrain);
-		return  terrainContainer;}
+		return  terrainContainer;
+	}
 
+	/**
+	 * Méthode permettant d'actualiser le terrain
+     */
 	public void actualiserTerrains() {
 		tournois = new JPanel();
 		tournois.setLayout(new BorderLayout());
