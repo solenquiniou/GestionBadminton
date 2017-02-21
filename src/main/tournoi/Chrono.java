@@ -50,10 +50,14 @@ public class Chrono extends JPanel {
      */
     private double temps;
 
-    /* actif : si le chrono est en cours */
+    /**
+     * actif : si le chrono est en cours
+     */
     private boolean actif = false;
 
-    /* previous : variable aidant à la création du dégradé de couleur */
+    /**
+     * previous : variable aidant à la création du dégradé de couleur
+     */
     private double previous = 0;
 
     /**
@@ -62,16 +66,6 @@ public class Chrono extends JPanel {
      * @param N : le nombre de secondes initial
      */
     public Chrono(int N) {
-        timer = createTimer();
-        timer.start();
-        setOpaque(false);
-        setPreferredSize(new Dimension(144, 144));
-        this.setTempsRestant(N);
-        this.setTemps(N);
-    }
-
-    public Chrono(int N, Color couleur) {
-        this.couleur = couleur;
         timer = createTimer();
         timer.start();
         setOpaque(false);
@@ -186,43 +180,52 @@ public class Chrono extends JPanel {
         }
     }
 
-    public Timer getTimer() {
-        return timer;
-    }
-
-    public void setTimer(Timer timer) {
-        this.timer = timer;
-    }
-
-    public int getTempsRestant() {
-        return tempsRestant;
-    }
-
+    /**
+     * Méthode permetant de modifier la valeur du temps restant
+     * @param tempsRestant : la nouvelle valeur souhaité pour la variable
+     */
     public void setTempsRestant(int tempsRestant) {
         this.tempsRestant = tempsRestant;
     }
 
+    /**
+     * Méthode qui retourne la durée actuelle du chrono
+     * @return la valeur en question
+     */
     public double getTemps() {
         return temps;
     }
 
+    /**
+     * Méthode qui retourne la durée actuelle du chrono en minute
+     * @return la valeur en question
+     */
     public int getTempsMin() {
         return (int)(temps/60);
     }
 
+    /**
+     * Méthode qui retourne la durée actuelle du chrono en seconde
+     * @return la valeur en question
+     */
     public int getTempsSec() {
         return (int)(temps%60);
     }
 
+    /**
+     * Méthode permetant de modifier la valeur de la durée du chrono
+     * @param temps : la nouvelle valeur souhaité pour la variable
+     */
     public void setTemps(int temps) {
         this.temps = temps;
     }
 
+    /**
+     * Méthode qui retourne si le chronometre est en actif ou en pause
+     * @return la valeur en question
+     */
     public boolean getActif() {
         return actif;
     }
 
-    public void setActif(boolean b) {
-        this.actif = b;
-    }
 }

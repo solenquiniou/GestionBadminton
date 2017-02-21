@@ -17,6 +17,14 @@ public class ModifierDureeChronoControlleur implements ActionListener {
     private JSpinner min;
     private JSpinner sec;
 
+    /**
+     * constructeur du controleur qui permet de recommmencer le chronometre
+     *
+     * @param vue le chrono
+     * @param chronometre le bouton auquel ce controleur est appliqué
+     * @param minutes La durée max actuelle du chrono en minute
+     * @param secondes La durée max actuelle du chrono en seconde
+     */
     public ModifierDureeChronoControlleur(FenetreDureeChrono vue, Chrono chronometre, JSpinner minutes, JSpinner secondes) {
         fenetre = vue;
         chrono = chronometre;
