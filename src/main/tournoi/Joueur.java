@@ -92,9 +92,6 @@ public class Joueur {
 	 */
 	public int calculAge(){
 		LocalDate aujourdui = LocalDate.now();
-
-
-
 		int age;
 
 		if(this.dateN == null)
@@ -109,8 +106,6 @@ public class Joueur {
 			else
 				age = 3;
 		}
-
-
 		return age;
 	}
 

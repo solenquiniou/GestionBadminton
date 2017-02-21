@@ -7,7 +7,6 @@ import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -225,9 +224,7 @@ public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 	}
 
 
-	public JRadioButton getHom() {
-		return hom;
-	}
+
 
 	/**
 	 *
@@ -237,45 +234,18 @@ public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 		return nouv;
 	}
 
-	/**
-	 * pour ajouter un joueur dans le main.tournoi et dans la liste de la fenetre principale
-	 */
-	/**
-	 * pour ajouter un joueur dans le main.tournoi et dans la liste de la fenetre principale
-	 */
-	public void modifierJoueur(int id)
-	{
-		LocalDate date = LocalDate.now();
-		date.of((Integer)getAnnee().getSelectedItem(),  getMois().getSelectedIndex() +1, (Integer) getJour().getSelectedItem()) ;
-		String nom = this.nom.getText(), prenom = this.prenom.getText();
-		boolean sexe = !fem.isSelected();
-		boolean nouve = nouv.isSelected();
-		int niveau = this.niveau.getSelectedIndex();
-		this.tournoi.modifierJoueur(id, nom, prenom, date, sexe, nouve, niveau);
-		if(present.isSelected()) {
-			this.tournoi.getJoueur(id).setPeutJouer(true);
-		} else {
-			this.tournoi.getJoueur(id).setPeutJouer(false);
-		}
-		this.vue.actualiserJoueurs();
-		dispose();
+	public FenetrePrincipale getfenetrePrincipale() {
+		return vue;
 	}
 
-	public void supprimerJoueur(int id)
-	{
-		JTable table = this.vue.getListeJoueurs();
-		int i;
-		boolean supprimer = false;
-		for (i = 0; i < this.vue.getListeJoueurs().getRowCount(); i++) {
-			if((int)(table.getModel()).getValueAt(i,0) == id) {
-				((DefaultTableModel)table.getModel()).removeRow(i);
-				supprimer = true;
-			}
-		}
-		if (supprimer)
-			this.tournoi.supprimerJoueur(tournoi.getJoueur(id));
-		dispose();
+	public JCheckBox getPresent() {
+		return present;
 	}
+
+	public Tournoi getTournoi() {
+		return tournoi;
+	}
+
 
 
 	@Override

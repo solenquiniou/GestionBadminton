@@ -1,10 +1,11 @@
 package main.controleur;
 
+import main.vue.FenetreModifierJoueur;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
-import main.vue.FenetreModifierJoueur;
 
 
 public class SupprimerJoueurBoutonControlleur implements ActionListener
@@ -21,6 +22,18 @@ public class SupprimerJoueurBoutonControlleur implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-       fmj.supprimerJoueur(this.id);
+
+        JTable table = fmj.getfenetrePrincipale().getListeJoueurs();
+        int i;
+        boolean supprimer = false;
+        for (i = 0; i < fmj.getfenetrePrincipale().getListeJoueurs().getRowCount(); i++) {
+            if((int)(table.getModel()).getValueAt(i,0) == id) {
+                ((DefaultTableModel)table.getModel()).removeRow(i);
+                supprimer = true;
+            }
+        }
+        if (supprimer)
+            fmj.getTournoi().supprimerJoueur(fmj.getTournoi().getJoueur(id));
+        fmj.dispose();
     }
 }
