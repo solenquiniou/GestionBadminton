@@ -89,18 +89,23 @@ public class Joueur {
 	public int calculAge(){
 		LocalDate aujourdui = LocalDate.now();
 
-		int ageEcart = Period.between(this.dateN, aujourdui).getYears();
+
 
 		int age;
 
-		if(this.dateN.equals(aujourdui))
+		if(this.dateN == null)
 			age = 0;
-		else if (ageEcart <= 18)
-			age = 1;
-		else if (ageEcart <= 35)
-			age = 2;
-		else
-			age = 3;
+		else {
+			int ageEcart = Period.between(this.dateN, aujourdui).getYears();
+
+			if (ageEcart <= 18)
+				age = 1;
+			else if (ageEcart <= 35)
+				age = 2;
+			else
+				age = 3;
+		}
+
 
 		return age;
 	}
