@@ -1,5 +1,6 @@
 package main.vue;
 
+import main.controleur.DateInfefinieControlleur;
 import main.controleur.ModifierJoueurBoutonControlleur;
 import main.controleur.SupprimerJoueurBoutonControlleur;
 import main.tournoi.Joueur;
@@ -9,21 +10,25 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class FenetreModifierJoueur extends JFrame {
+public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 
 	private Tournoi tournoi;
 	FenetrePrincipale vue;
 	private JTextField nom;
 	private JTextField prenom;
 	private JComboBox niveau;
-	private JSpinner annee;
-	private JSpinner mois;
-	private JSpinner jour;
 	private JRadioButton fem;
 	private JRadioButton hom;
 	private JCheckBox nouv;
 	private JCheckBox present;
+	private JComboBox annee;
+	private JComboBox mois;
+	private JComboBox jour;
+	private JCheckBox dateIndefinie;
+
+
 
 	static private FenetreModifierJoueur derniereFenetre;
 
@@ -62,14 +67,45 @@ public class FenetreModifierJoueur extends JFrame {
 		corePanel.add(prenom, gbc);
 
 		//Ajout de l'âge
-		//Il faut bien laisser les âges dans cet ordre pour correspondre avec l'ajout du joueur (0 : Indéfini / 1 : -18 jeune / 2 : 18-35 senior / 3 : 35+ veteran)
+
 		JPanel date = new JPanel();
-		annee = new JSpinner(new SpinnerNumberModel(LocalDate.now().getYear(),1900,LocalDate.now().getYear(),1));
-		mois = new JSpinner(new SpinnerNumberModel(1,1,12,1));
-		jour = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-		date.add(annee);
-		date.add(mois);
+		ArrayList anneeCombobox = new ArrayList<Integer>() {
+			{
+				for (int i = LocalDate.now().getYear(); i > 1900; i--) {
+					add(i);
+				}
+			}
+		};
+		annee = new JComboBox(anneeCombobox.toArray());
+		mois = new JComboBox(new String[]{"janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "juill.", "août", "sept.", "oct.", "nov.", "déc."});
+		ArrayList jourCombobox = new ArrayList<Integer>() {
+			{
+				for (int i = 1; i <= 31; i++) {
+					add(i);
+				}
+			}
+		};
+		jour = new JComboBox(jourCombobox.toArray());
+		dateIndefinie = new JCheckBox("indefini");
+		dateIndefinie.addActionListener(new DateInfefinieControlleur(dateIndefinie, this));
 		date.add(jour);
+		date.add(mois);
+		date.add(annee);
+		date.add(dateIndefinie);
+		if (joueur.getDateN()==null)
+		{
+			dateIndefinie.setSelected(true);
+			annee.setEnabled(false);
+			jour.setEnabled(false);
+			mois.setEnabled(false);
+		}else{
+			annee.setSelectedIndex(LocalDate.now().getYear() - joueur.getDateN().getYear());
+			mois.setSelectedIndex(joueur.getDateN().getMonth().getValue()-1);
+			jour.setSelectedIndex(joueur.getDateN().getDayOfMonth()-1);
+
+		}
+		gbc.gridx = 1;
+		gbc.gridy = 3;
 		corePanel.add(date, gbc);
 
 		//Ajout du sexe
@@ -210,7 +246,7 @@ public class FenetreModifierJoueur extends JFrame {
 	public void modifierJoueur(int id)
 	{
 		LocalDate date = LocalDate.now();
-		date.of((Integer) this.annee.getValue(), (Integer) this.mois.getValue(), (Integer) this.jour.getValue()) ; // 0 : -18 jeune / 1 : 18-35 senior / 2 : 35+ veteran
+		date.of((Integer)getAnnee().getSelectedItem(),  getMois().getSelectedIndex() +1, (Integer) getJour().getSelectedItem()) ;
 		String nom = this.nom.getText(), prenom = this.prenom.getText();
 		boolean sexe = !fem.isSelected();
 		boolean nouve = nouv.isSelected();
@@ -242,4 +278,23 @@ public class FenetreModifierJoueur extends JFrame {
 	}
 
 
+	@Override
+	public JComboBox getAnnee() {
+		return this.annee;
+	}
+
+	@Override
+	public JComboBox getMois() {
+		return this.mois;
+	}
+
+	@Override
+	public JComboBox getJour() {
+		return this.jour;
+	}
+
+	@Override
+	public JCheckBox getDateIndefinie() {
+		return this.dateIndefinie;
+	}
 }

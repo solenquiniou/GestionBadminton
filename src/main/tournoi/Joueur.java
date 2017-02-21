@@ -60,7 +60,11 @@ public class Joueur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateN = date;
-		this.age = calculAge();
+		if (this.dateN == null) {
+			this.age = 0;
+		}else
+			this.age = calculAge();
+
 		this.sexe = sexe;
 		this.nouveau = nouveau;
 		this.score = 0;

@@ -1,14 +1,21 @@
 package main.controleur;
 
+import main.tournoi.Joueur;
 import main.vue.FenetreAjoutJoueur;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 
 public class AjouterJoueurControlleur implements ActionListener {
 	
 	private FenetreAjoutJoueur vue;
+	private JComboBox annee;
+	private JComboBox mois;
+	private JComboBox jour;
+	private LocalDate datej = null;
 
 	/**
 	 * constructeur du main.controleur
@@ -16,6 +23,9 @@ public class AjouterJoueurControlleur implements ActionListener {
      */
 	public AjouterJoueurControlleur(FenetreAjoutJoueur vue){
 		this.vue = vue;
+		this.annee = vue.getAnnee();
+		this.jour = vue.getJour();
+		this.mois = vue.getMois();
 	}
 
 	/**
@@ -24,7 +34,7 @@ public class AjouterJoueurControlleur implements ActionListener {
      */
 	public void actionPerformed(ActionEvent e) {
 		if (verifier()){
-			vue.ajouterJoueur();
+			ajouterJoueur();
 			//Comme ça on pourra réouvrir la fenêtre
 			FenetreAjoutJoueur.setDerniereFenetre(null);
 			JOptionPane.showMessageDialog(vue,"Joueur ajouté !");
@@ -49,6 +59,53 @@ public class AjouterJoueurControlleur implements ActionListener {
 			return false;
 		}
 
+		try{
+			datej.of((Integer) this.annee.getSelectedItem(), this.mois.getSelectedIndex() + 1, (Integer) this.jour.getSelectedItem()) ;
+		}catch(DateTimeException ex){
+			JOptionPane.showMessageDialog(null, "Erreur: " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+
 		return true;
 	}
+
+
+	/**
+	 * pour ajouter un joueur dans le main.tournoi et dans la liste de la fenetre principale
+	 */
+	public void ajouterJoueur(){
+		int id = Joueur.nbJoueursCrees;
+		if(!vue.getDateIndefinie().isSelected()) {
+			datej = datej.of((Integer) this.annee.getSelectedItem(), this.mois.getSelectedIndex() + 1, (Integer) this.jour.getSelectedItem()) ;
+		}
+			String nom = vue.getNom().getText(), prenom = vue.getPrenom().getText();
+
+			boolean sexe = vue.getHom().isSelected();
+			boolean nouveau = vue.getNouv().isSelected();
+			int niveau = vue.getNiveau().getSelectedIndex();
+			boolean pres = vue.getPresent().isSelected();
+			Joueur j = new Joueur(id, nom, prenom, datej, sexe, nouveau, niveau, pres);
+			vue.setNom("");
+			vue.setPrenom("");
+			this.setAge();
+			vue.getTournoi().ajouterJoueur(j);
+			vue.getFenetrePrincipale().ajouterJoueurTable();
+
+
+
+
+
+	}
+	/**
+	 * réinitialise l'age
+	 */
+	public void setAge(){
+		LocalDate auj = LocalDate.now();
+		this.jour.setSelectedIndex(0);
+		this.mois.setSelectedIndex(0);
+		this.annee.setSelectedIndex(0);
+	}
+
+
 }

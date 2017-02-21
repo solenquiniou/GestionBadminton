@@ -1,7 +1,7 @@
 package main.vue;
 
 import main.controleur.AjouterJoueurControlleur;
-import main.tournoi.Joueur;
+import main.controleur.DateInfefinieControlleur;
 import main.tournoi.Tournoi;
 
 import javax.swing.*;
@@ -10,22 +10,23 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.WindowEvent;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class FenetreAjoutJoueur extends JFrame {
+public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 
 	private Tournoi tournoi;
 	FenetrePrincipale vue;
-
 	private JTextField nom;
 	private JTextField prenom;
 	private JComboBox niveau;
-	private JSpinner annee;
-	private JSpinner mois;
-	private JSpinner jour;
 	private JRadioButton fem;
 	private JRadioButton hom;
 	private JCheckBox nouv;
 	private JCheckBox present;
+	private JComboBox annee;
+	private JComboBox mois;
+	private JComboBox jour;
+	private JCheckBox dateIndefinie;
 
 
 	static private FenetreAjoutJoueur derniereFenetre;
@@ -45,7 +46,7 @@ public class FenetreAjoutJoueur extends JFrame {
 	 * @param vue la main.vue qui crée la fenêtre
      */
 	public FenetreAjoutJoueur(String titre, Tournoi tournoi, FenetrePrincipale vue){
-
+		super();
 		if (derniereFenetre == null) {
 
 			this.tournoi = tournoi;
@@ -92,13 +93,32 @@ public class FenetreAjoutJoueur extends JFrame {
 
 			//Ajout de la date
 			JPanel date = new JPanel();
-			LocalDate auj = LocalDate.now();
-			annee = new JSpinner(new SpinnerNumberModel(LocalDate.now().getYear(),1900,LocalDate.now().getYear(),1));
-			mois = new JSpinner(new SpinnerNumberModel(1,1,12,1));
-			jour = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-			date.add(annee);
-			date.add(mois);
+			ArrayList anneeCombobox = new ArrayList<Integer>() {
+				{
+					for (int i = LocalDate.now().getYear(); i > 1900; i--) {
+						add(i);
+					}
+				}
+			};
+			annee = new JComboBox(anneeCombobox.toArray());
+			mois = new JComboBox(new String[]{"janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "juill.", "août", "sept.", "oct.", "nov.", "déc."});
+			ArrayList jourCombobox = new ArrayList<Integer>() {
+				{
+					for (int i = 1; i <= 31; i++) {
+						add(i);
+					}
+				}
+			};
+			jour = new JComboBox(jourCombobox.toArray());
+			dateIndefinie = new JCheckBox("indefini");
+			dateIndefinie.addActionListener(new DateInfefinieControlleur(dateIndefinie, this));
 			date.add(jour);
+			date.add(mois);
+			date.add(annee);
+			date.add(dateIndefinie);
+
+
+
 			gbc.gridx = 1;
 			gbc.gridy = 3;
 			corePanel.add(date, gbc);
@@ -161,7 +181,6 @@ public class FenetreAjoutJoueur extends JFrame {
 			derniereFenetre.toFront();
 		}
 	}
-
 	/**
 	 *
 	 * @return le champ de saisi du nom
@@ -171,11 +190,20 @@ public class FenetreAjoutJoueur extends JFrame {
 	}
 
 	/**
+
+	/**
 	 *
 	 * @param str la chaine de caractère à écrire dans le champ de saisie du nom
      */
 	public void setNom(String str){
 		this.nom.setText(str);
+	}
+	/**
+	 *
+	 * @return le champs de présence
+	 */
+	public JCheckBox getPresent() {
+		return present;
 	}
 
 	/**
@@ -199,19 +227,11 @@ public class FenetreAjoutJoueur extends JFrame {
 	}
 
 	/**
-	 * réinitialise l'age
-	 */
-	public void setAge(){
-		LocalDate auj = LocalDate.now();
-		this.jour.setValue(1);
-		this.mois.setValue(1);
-		this.annee.setValue(auj.getYear());
+	 *
+	 * @return le tournoi
+	 */public Tournoi getTournoi() {
+		return tournoi;
 	}
-
-	public JRadioButton getFem() {
-		return fem;
-	}
-
 
 	public JRadioButton getHom() {
 		return hom;
@@ -224,27 +244,12 @@ public class FenetreAjoutJoueur extends JFrame {
 	public JCheckBox getNouv() {
 		return nouv;
 	}
-
 	/**
-	 * pour ajouter un joueur dans le main.tournoi et dans la liste de la fenetre principale
+	 *
+	 * @return la fenetre principale
 	 */
-	public void ajouterJoueur(){
-		int id = Joueur.nbJoueursCrees;
-		LocalDate datej = LocalDate.now();
-		datej.of((Integer) this.annee.getValue(), (Integer) this.mois.getValue(), (Integer) this.jour.getValue()) ;
-
-		String nom = this.nom.getText(), prenom = this.prenom.getText();
-		boolean sexe = hom.isSelected();
-		boolean nouveau = nouv.isSelected();
-		int niveau = this.niveau.getSelectedIndex();
-		boolean pres =  this.present.isSelected();
-		Joueur j = new Joueur(id, nom, prenom, datej, sexe, nouveau, niveau, pres);
-		this.setNom("");
-		this.setPrenom("");
-		this.setAge();
-		tournoi.ajouterJoueur(j);
-		vue.ajouterJoueurTable();
-
+	public FenetrePrincipale getFenetrePrincipale() {
+		return vue;
 	}
 
 	/**
@@ -257,6 +262,26 @@ public class FenetreAjoutJoueur extends JFrame {
 		if(e.getID() == WindowEvent.WINDOW_CLOSING) {
 			derniereFenetre = null;
 		}
+	}
+
+	@Override
+	public JComboBox getAnnee() {
+		return this.annee;
+	}
+
+	@Override
+	public JComboBox getMois() {
+		return this.mois;
+	}
+
+	@Override
+	public JComboBox getJour() {
+		return this.jour;
+	}
+
+	@Override
+	public JCheckBox getDateIndefinie() {
+		return this.dateIndefinie;
 	}
 
 }
