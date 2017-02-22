@@ -8,7 +8,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
-
+/**
+ * Fenêtre l' affichage du classement. On peut choisir de visualiser tout les joueurs, ou seulement les anciens/nouveaus joueurs.
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
+ */
 public class FenetreClassement extends JFrame
 {
     private Tournoi tournoi;
@@ -16,6 +20,7 @@ public class FenetreClassement extends JFrame
 
 
     static private FenetreClassement derniereFenetre;
+
     /**
      * constructeur de la fenêtre classement
      * @param titre le titre à donner à la fenêtre
@@ -84,14 +89,18 @@ public class FenetreClassement extends JFrame
         derniereFenetre = this;
     }
 
-    public void afficherJoueur(String s)
+    /**
+     *  Affiche les joueurs en fonction de ce qui est séléctioné dans la combobox.
+     * @param selection Groupes de joueures séléctionnées
+     */
+    public void afficherJoueur(String selection)
     {
         ArrayList<Joueur> listeAllJoueurs = new ArrayList<Joueur>();
         ArrayList<Joueur> listeNouveaux = new ArrayList<Joueur>();
         ArrayList<Joueur> listeAnciens = new ArrayList<Joueur>();
         listeJoueursModele.setRowCount(0);
 
-        if(s.equals("Tous"))
+        if(selection.equals("Tous"))
         {
             listeAllJoueurs = tournoi.getAllJoueurs();
             Collections.sort(listeAllJoueurs, new ComparateurJoueurScore());
@@ -101,7 +110,7 @@ public class FenetreClassement extends JFrame
             }
         }
 
-        if(s.equals("Nouveaux"))
+        if(selection.equals("Nouveaux"))
         {
             listeNouveaux = tournoi.getClassementNouveaux();
             for (Joueur j : listeNouveaux)
@@ -110,7 +119,7 @@ public class FenetreClassement extends JFrame
             }
         }
 
-        if(s.equals("Anciens"))
+        if(selection.equals("Anciens"))
         {
             listeAnciens = tournoi.getClassementAnciens();
             for (Joueur j : listeAnciens)
@@ -120,14 +129,18 @@ public class FenetreClassement extends JFrame
         }
     }
 
-    public void ajouterJoueurTable(Joueur j)
+    /**
+     *  Ajoute les joueurs a la table
+     * @param joueur  le joueur a ajouter
+     */
+    public void ajouterJoueurTable(Joueur joueur)
     {
         String ancien = "Ancien";
-        if(j.getNouveau())
+        if(joueur.getNouveau())
         {
             ancien = "Nouveau";
         }
-        Object[] tJ = {j.getNom(), j.getPrenom(), j.getScore(), ancien};
+        Object[] tJ = {joueur.getNom(), joueur.getPrenom(), joueur.getScore(), ancien};
         this.listeJoueursModele.addRow(tJ);
     }
 

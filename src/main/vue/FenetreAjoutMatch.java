@@ -10,15 +10,14 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 /**
- *
- * @author DERNONCOURT Cyril , DROUARD Antoine, LE BERT Lea, MARTINEAU Lucas
+ * Fenêtre permettant l'ajout de' un Match de manière manuelle. On y séléctionne manuellement les joueurs et leurs scores
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
  */
 public class FenetreAjoutMatch extends JFrame {
 
     private Tournoi tournoi;
     private FenetrePrincipale vue;
-    private JTextField nom;
-    private JTextField prenom;
     JComboBox joueur1;
     JComboBox joueur2;
     JComboBox joueur3;
@@ -29,10 +28,6 @@ public class FenetreAjoutMatch extends JFrame {
 
     static private FenetreAjoutMatch derniereFenetre;
 
-    public FenetrePrincipale getVue() {
-        return vue;
-    }
-
     /**
      * Permet de remplacer la derniere fenêtre
      * @param fenetre la fenêtre à remplacer
@@ -41,7 +36,7 @@ public class FenetreAjoutMatch extends JFrame {
         derniereFenetre = fenetre;
     }
     /**
-     * constructeur de la fenêtre d'ajout d'un joueur
+     * constructeur de la fenêtre d'ajout d'un match
      *
      * @param titre   le titre à donner à la fenêtre
      * @param tournoi le main.tournoi dans lequel on veut ajouter un joueur
@@ -151,25 +146,52 @@ public class FenetreAjoutMatch extends JFrame {
         }
     }
 
+    /**
+     *
+     * @return le tournoi
+     */
     public Tournoi getTournoi() {
         return tournoi;
     }
 
-
+    /**
+     *
+     * @return le menu déroulant du joueur1
+     */
     public JComboBox getJoueur1() {
         return joueur1;
     }
 
+    /**
+     *
+     * @return le menu déroulant du joueur2
+     */
     public JComboBox getJoueur2() {
         return joueur2;
     }
 
+    /**
+     *
+     * @return le menu déroulant du joueur3
+     */
     public JComboBox getJoueur3() {
         return joueur3;
     }
 
+    /**
+     *
+     * @return le menu déroulant du joueur4
+     */
     public JComboBox getJoueur4() {
         return joueur4;
+    }
+
+    /**
+     *
+     * @return la fenètre principale associée
+     */
+    public FenetrePrincipale getVue() {
+        return vue;
     }
 
     /**
@@ -183,6 +205,7 @@ public class FenetreAjoutMatch extends JFrame {
             derniereFenetre = null;
         }
     }
+
 
 }
 

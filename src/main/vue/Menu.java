@@ -8,11 +8,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
+/**
+ * Barre de menu du haut pendant le tournois (une fois que le tournoi est créé) Contient les fonctionalitée qui ne sont pas beaucoup utilisées au cours des tournois
+ * L'import/export de joueur, la sauvegarde et l'ouverture de tournoi, la modification du nombre de terrains et du temps du chronomètre
+ * @author OUAKRIM Yanis, RICHARD Nicolas, ORHON Paul, RIALET Yohann, NIVELAIS Quentin
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
+ */
 public class Menu extends JMenuBar{
 	//Il n'est pas possible de proceder à certaines actions tant que le main.tournoi n'a pas été crée ou affiché
 	private ArrayList<JMenuItem> aAutoriser;
 
+	/**
+	 * Constructeur du menu
+	 * @param fen fenëtre principale associée
+	 */
 	public Menu(final FenetrePrincipale fen){
 		super();
 		//////////////////////////////
@@ -44,29 +54,23 @@ public class Menu extends JMenuBar{
 		//Ouvrir un fichier
 		JMenuItem ouvrir = new JMenuItem("Ouvrir...");
 		ouvrir.addActionListener(new ImporterTournoiControlleur(fen));
-		ouvrir.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+		ouvrir.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 		menuFichier.add(ouvrir);
 		menuFichier.addSeparator();
 
 		//Importer des joueurs
 		JMenuItem importerJ = new JMenuItem("Importer des joueurs");
 		importerJ.addActionListener(new ImporterJoueursControlleur(fen));
-		importerJ.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+		importerJ.setAccelerator(KeyStroke.getKeyStroke('I', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 		menuFichier.add(importerJ);
 
 		//Exporter des joueurs
 		JMenuItem exporterJ = new JMenuItem("Exporter des joueurs");
 		exporterJ.addActionListener(new ExporterJoueursControlleur(fen));
-		exporterJ.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+		exporterJ.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 		menuFichier.add(exporterJ);
 		menuFichier.addSeparator();
 
-		//On creer le bouton enregister
-		JMenuItem enregistrer = new JMenuItem("Enregistrer");
-		enregistrer.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
-		menuFichier.add(enregistrer);
-		this.aAutoriser.add(enregistrer);
-		enregistrer.setEnabled(false);
 
 		//On creer le bouton enregister sous
 		JMenuItem enregistrerSous = new JMenuItem("Enregistrer sous...");

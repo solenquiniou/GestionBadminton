@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 25/01/17.
+ * Barre de menu du avant que le tournoi ne soit crée. Les fonctionalitées a l'ouverture d'un tournoi déja existant
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
  */
 public class MenuDebut extends  JMenuBar {
         //Il n'est pas possible de proceder à certaines actions tant que le main.tournoi n'a pas été crée ou affiché

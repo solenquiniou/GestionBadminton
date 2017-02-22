@@ -9,11 +9,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * Fenêtre de création d'un tournoi. On entre son nom qui par défaut est la date du jour et le nombre de terraint voulu (1 par défaut)
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
+ */
 public class NouveauTournoi extends JDialog {
-	public NouveauTournoi(FenetrePrincipale o){
+	/**
+	 * Constructeur de la classe FenetrePrincipale
+	 * @param vuePrinc La vue principale
+	 */
+	public NouveauTournoi(FenetrePrincipale vuePrinc){
 		//On cr�er la fenetre
-		super(o);
+		super(vuePrinc);
 		//On initialise le content pane ainsi que sa structure
 		JPanel container = new JPanel();
 		container.setLayout(new BorderLayout());
@@ -65,7 +73,7 @@ public class NouveauTournoi extends JDialog {
 		JPanel buttonContainer = new JPanel(new BorderLayout());
 		JButton valider = new JButton("Valider");
 		//On assigne un main.controleur au bouton pour g�n�rer la cr�ation du main.tournoi
-		valider.addActionListener(new NouveauTournoiControleur(o, nom, nbTerrains, this));
+		valider.addActionListener(new NouveauTournoiControleur(vuePrinc, nom, nbTerrains, this));
 		
 		//On assigne un main.controleur au bouton annuler pour fermer la fenetre
 		JButton annuler = new JButton("Annuler");

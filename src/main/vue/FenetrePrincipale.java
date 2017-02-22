@@ -14,30 +14,30 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
+/**
+ * Fenêtre permettant l'ajout des joueurs. Implémente l'interface gestion joueur pour forcer l'existance des getteurs nécessaires au controlleurs de dates
+ * @author OUAKRIM Yanis, RICHARD Nicolas, ORHON Paul, RIALET Yohann, NIVELAIS Quentin
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
+ */
 public class FenetrePrincipale extends JFrame {
 
 	//La fen�tre principale � un main.tournoi surlequel elle peut agir
 	private Tournoi tournoi;
-	private DefaultTableModel listeJoueursModele;
+	private DefaultTableModel listeJoueursModele;//pour l'affichage des joueurs
 	private JTable listeJoueurs;
-	String[] joueurs;
-	private JPanel[] terrains;
-	private BufferedImage image;
+	private String[] joueurs;
 	private ArrayList<JComboBox> boxTerrains = new ArrayList<>();
 	private JPanel tournois;
 	private JTabbedPane onglets;
 	private Chrono chronometre;
-
 	private int verif;
 
 	/**
 	 * Constructeur de la classe FenetrePrincipale
-	 *
 	 * @param titre le titre que l'on souhaite donner à la fenêtre
 	 */
 	public FenetrePrincipale(String titre) {
@@ -67,7 +67,7 @@ public class FenetrePrincipale extends JFrame {
 
 	/**
 	 * Méthode permetant de définir le tournoi
-	 * @param t le main.tournoi avec lequel la fenêtre va interagir
+	 * @param t le tournoi avec lequel la fenêtre va interagir
 	 */
 	public void setTournoi(Tournoi t){
 		this.tournoi=t;
@@ -80,7 +80,7 @@ public class FenetrePrincipale extends JFrame {
 
 	/**
 	 * Méthode retournant le tournoi
-	 * @return le main.tournoi
+	 * @return le tournoi
 	 */
 	public Tournoi getTournoi(){
 		return this.tournoi;
@@ -130,10 +130,9 @@ public class FenetrePrincipale extends JFrame {
 				return false;
 			}
 		};
-		JTable listeJoueurs = new JTable(listeJoueursModele);
+		listeJoueurs = new JTable(listeJoueursModele);
 		listeJoueurs.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);//selection multiple
 		//supression par la touche suppr
-		//listeJoueurs.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "deleteRow");
 		listeJoueurs.addKeyListener(new DeleteKeyListener(this,listeJoueurs));
 		//modif d'un joueur en doublecliquant sur le joueur
 		listeJoueurs.addMouseListener(new ModifierJoueurControlleur(this,listeJoueurs));
@@ -263,6 +262,10 @@ public class FenetrePrincipale extends JFrame {
 	public void fenetreAjout(){
 		new FenetreAjoutJoueur("Ajouter un joueur",tournoi,this);
 	}
+
+	/**
+	 * pour créer une fenêtre d'ajout de match
+	 */
 	public void fenetreAjoutMatch(){
 		if(tournoi.nbJoueur()>0){
 			new FenetreAjoutMatch("Entrer nouveau Match",tournoi,this);
@@ -272,14 +275,9 @@ public class FenetrePrincipale extends JFrame {
 
 	}
 
-
-
-
-
 	/**
-	 * pour actualiser l'affichage de sjoueurs dans l'onglet joueur
+	 * pour actualiser l'affichage de joueurs dans l'onglet joueur
 	 */
-
 	public void actualiserJoueurs(){
 		this.listeJoueursModele.setRowCount(0);
 		ArrayList<Joueur> allJoueur = tournoi.getAllJoueurs();
@@ -337,24 +335,12 @@ public class FenetrePrincipale extends JFrame {
 		this.actualiserNoms();
 	}
 
-
-	/**
-	 * pour supprimer un joueur dans la liste des joueurs (onglet joueurs)
-	 */
-	public void supprimerJoueurTable()
-	{
-		int i = listeJoueursModele.getRowCount();
-		this.listeJoueursModele.removeRow(i - 1);
-		this.actualiserJoueurs();
-		this.actualiserNoms();
-	}
-
 	/**
 	 * Méthode qui crée l'interface d'un terrain dans l'onglet terrain
-	 * @param i le numéro du terrain
-	 * @return le jpanel correspondant à l'interface du terrain i
+	 * @param nuterr le numéro du terrain
+	 * @return le jpanel correspondant à l'interface du terrain nuterr
      */
-	public JPanel nouveauTerrain(int i){
+	public JPanel nouveauTerrain(int nuterr){
 		JPanel terrain = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 
@@ -368,7 +354,7 @@ public class FenetrePrincipale extends JFrame {
 		});
 
 		//Terrain n° X
-		int o = i + 1;
+		int o = nuterr + 1;
 		JLabel numTer = new JLabel("Terrain "+o);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -381,13 +367,13 @@ public class FenetrePrincipale extends JFrame {
 			j1 = new JComboBox(joueurDansCombo.toArray());
 			j2 = new JComboBox(joueurDansCombo.toArray());
 			try {
-				if((i*2) <= tournoi.getAllJoueurs().size()) {
-					j1.setSelectedItem(tournoi.getTerrain(i).getMatch().getPaire1().getJoueur1());//depuis terrain je recupere match qui donne les paires qui donne les joueurs
+				if((nuterr*2) <= tournoi.getAllJoueurs().size()) {
+					j1.setSelectedItem(tournoi.getTerrain(nuterr).getMatch().getPaire1().getJoueur1());//depuis terrain je recupere match qui donne les paires qui donne les joueurs
 				} else {
 					j1.setSelectedIndex(0);
 				}
-				if((i*2)+1 <= tournoi.getAllJoueurs().size()) {
-					j2.setSelectedItem(tournoi.getTerrain(i).getMatch().getPaire1().getJoueur2());
+				if((nuterr*2)+1 <= tournoi.getAllJoueurs().size()) {
+					j2.setSelectedItem(tournoi.getTerrain(nuterr).getMatch().getPaire1().getJoueur2());
 				} else {
 					j2.setSelectedIndex(0);
 				}
@@ -416,15 +402,6 @@ public class FenetrePrincipale extends JFrame {
 		equipeUn.setBorder(new CompoundBorder(border, margin));
 		terrain.add(equipeUn, gbc);
 
-		//Le terrain
-		/*JPanel espace = new JPanel();
-		espace.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.gray));
-		ImageIcon icon = new ImageIcon(getClass().getResource("/main/resources/images/terrainS2.png"));
-		JLabel labelimg = new JLabel();
-		labelimg.setIcon(icon);
-		espace.add(labelimg);
-		gbc.gridy = 2;
-		terrain.add(espace, gbc);*/
 
 		//Equipe 2 et leur score
 		JComboBox j3 = new JComboBox();
@@ -433,13 +410,13 @@ public class FenetrePrincipale extends JFrame {
 			j3 = new JComboBox(joueurDansCombo.toArray());
 			j4 = new JComboBox(joueurDansCombo.toArray());
 			try {
-				if((i*2)+2 <= tournoi.getAllJoueurs().size()) {
-					j3.setSelectedItem(tournoi.getTerrain(i).getMatch().getPaire2().getJoueur1());
+				if((nuterr*2)+2 <= tournoi.getAllJoueurs().size()) {
+					j3.setSelectedItem(tournoi.getTerrain(nuterr).getMatch().getPaire2().getJoueur1());
 				} else {
 					j3.setSelectedIndex(0);
 				}
-				if((i*2)+3 <= tournoi.getAllJoueurs().size()) {
-					j4.setSelectedItem(tournoi.getTerrain(i).getMatch().getPaire2().getJoueur2());
+				if((nuterr*2)+3 <= tournoi.getAllJoueurs().size()) {
+					j4.setSelectedItem(tournoi.getTerrain(nuterr).getMatch().getPaire2().getJoueur2());
 				} else {
 					j4.setSelectedIndex(0);
 				}
@@ -472,8 +449,8 @@ public class FenetrePrincipale extends JFrame {
 
 		//Bouton valider
 		JButton valider = new JButton("Valider");
-		valider.addActionListener(new SaisirScoreControlleur(score1,score2,this,this.tournoi,i));
-		valider.addActionListener(new ValiderMatchControlleur(tournoi.getTerrain(i).getMatch(), j1, j2, score1, j3, j4, score2, valider));
+		valider.addActionListener(new SaisirScoreControlleur(score1,score2,this,this.tournoi,nuterr));
+		valider.addActionListener(new MatchPasEnabledControlleur(tournoi.getTerrain(nuterr).getMatch(), j1, j2, score1, j3, j4, score2, valider));
 		gbc.gridy = 4;
 		terrain.add(valider, gbc);
 
@@ -499,7 +476,7 @@ public class FenetrePrincipale extends JFrame {
 	}
 
 	/**
-	 * Méthode permettant d'actualiser le terrain
+	 * Méthode permettant d'actualiser le terrain en fonction des terrains du modèle
      */
 	public void actualiserTerrains() {
 		tournois = new JPanel();
@@ -537,6 +514,10 @@ public class FenetrePrincipale extends JFrame {
 		onglets.setSelectedIndex(1);
 	}
 
+	/**
+	 *
+	 * @return le chronomètre
+	 */
 	public Chrono getChrono() {
 		return chronometre;
 	}

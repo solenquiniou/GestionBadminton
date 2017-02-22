@@ -7,11 +7,16 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 23/01/17.
+ * Fenêtre permettant de changer la durée du chronomètre
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
  */
 public class FenetreDureeChrono extends JDialog {
 
-
+    /**
+     * constructeur de la fenêtre durée chrono
+     * @param chrono le chronomètre
+     */
     public FenetreDureeChrono(Chrono chrono) {
 
         JPanel corePanel = new JPanel(new GridBagLayout());

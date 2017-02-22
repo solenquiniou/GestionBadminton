@@ -11,7 +11,12 @@ import java.awt.event.FocusListener;
 import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * Fenêtre permettant l'ajout des joueurs. Implémente l'interface gestion joueur pour forcer l'existance des getteurs nécessaires au controlleurs de dates
+ * @author OUAKRIM Yanis, RICHARD Nicolas, ORHON Paul, RIALET Yohann, NIVELAIS Quentin
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
+ */
 public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 
 	private Tournoi tournoi;
@@ -27,7 +32,6 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 	private JComboBox mois;
 	private JComboBox jour;
 	private JCheckBox dateIndefinie;
-
 
 	static private FenetreAjoutJoueur derniereFenetre;
 
@@ -46,9 +50,7 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 	 * @param vue la main.vue qui crée la fenêtre
      */
 	public FenetreAjoutJoueur(String titre, Tournoi tournoi, FenetrePrincipale vue){
-		super();
 		if (derniereFenetre == null) {
-
 			this.tournoi = tournoi;
 			this.vue = vue;
 			JPanel corePanel = new JPanel(new GridBagLayout());
@@ -67,7 +69,7 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 					if (nom.getText().trim().equals(""))
 						nom.setText("Nom");
 				}
-			});
+				});
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			gbc.gridx = 0;
 			gbc.gridy = 0;
@@ -93,6 +95,7 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 
 			//Ajout de la date
 			JPanel date = new JPanel();
+			//année
 			ArrayList anneeCombobox = new ArrayList<Integer>() {
 				{
 					for (int i = LocalDate.now().getYear(); i > 1900; i--) {
@@ -101,7 +104,9 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 				}
 			};
 			annee = new JComboBox(anneeCombobox.toArray());
-			mois = new JComboBox(new String[]{"janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "juill.", "août", "sept.", "oct.", "nov.", "déc."});
+			//mois
+			mois = new JComboBox(new String[]{"janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."});
+			//jour
 			ArrayList jourCombobox = new ArrayList<Integer>() {
 				{
 					for (int i = 1; i <= 31; i++) {
@@ -116,8 +121,6 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 			date.add(mois);
 			date.add(annee);
 			date.add(dateIndefinie);
-
-
 
 			gbc.gridx = 1;
 			gbc.gridy = 3;
@@ -181,6 +184,7 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 			derniereFenetre.toFront();
 		}
 	}
+
 	/**
 	 *
 	 * @return le champ de saisi du nom
@@ -190,14 +194,13 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 	}
 
 	/**
-
-	/**
-	 *
+	 * Met a jour le champs du nom
 	 * @param str la chaine de caractère à écrire dans le champ de saisie du nom
      */
 	public void setNom(String str){
 		this.nom.setText(str);
 	}
+
 	/**
 	 *
 	 * @return le champs de présence
@@ -215,13 +218,17 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 	}
 
 	/**
-	 *
+	 * Met a jour le champs du prénom
 	 * @param str la chaine de caractère à écrire dans le champ de saisie du nom
      */
 	public void setPrenom(String str){
 		this.prenom.setText(str);
 	}
 
+	/**
+	 *
+	 * @return Le combobox du niveau
+	 */
 	public JComboBox getNiveau() {
 		return niveau;
 	}
@@ -229,10 +236,15 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 	/**
 	 *
 	 * @return le tournoi
-	 */public Tournoi getTournoi() {
+	 */
+	public Tournoi getTournoi() {
 		return tournoi;
 	}
 
+	/**
+	 *
+	 * @return le RadioButton homme
+	 */
 	public JRadioButton getHom() {
 		return hom;
 	}
@@ -244,6 +256,7 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 	public JCheckBox getNouv() {
 		return nouv;
 	}
+
 	/**
 	 *
 	 * @return la fenetre principale
@@ -264,21 +277,37 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 		}
 	}
 
+	/**
+	 *
+	 * @return le menu déroulant qui donne l'année
+	 */
 	@Override
 	public JComboBox getAnnee() {
 		return this.annee;
 	}
 
+	/**
+	 *
+	 * @return le menu déroulant qui donne le mois
+	 */
 	@Override
 	public JComboBox getMois() {
 		return this.mois;
 	}
 
+	/**
+	 *
+	 * @return le menu déroulant qui donne le jour
+	 */
 	@Override
 	public JComboBox getJour() {
 		return this.jour;
 	}
 
+	/**
+	 *
+	 * @return la case indiquant si on veut donner sa date de naissance ou non
+	 */
 	@Override
 	public JCheckBox getDateIndefinie() {
 		return this.dateIndefinie;

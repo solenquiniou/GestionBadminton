@@ -10,11 +10,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 23/01/17.
+ * Fenêtre permettant l'ajout des joueurs. Implémente l'interface gestion joueur pour forcer l'existance des getteurs nécessaires au controlleurs de dates
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
  */
 public class FenetreNbTerrain extends JDialog {
 
-
+    /**
+     * constructeur de la fenêtre de modification du nombre de terrains
+     * @param tournoi le main.tournoi dans lequel on veut ajouter un joueur
+     */
     public FenetreNbTerrain(Tournoi tournoi) {
         JPanel container = new JPanel();
         container.setLayout(new BorderLayout());
@@ -25,12 +30,12 @@ public class FenetreNbTerrain extends JDialog {
         JSpinner nbTerrains = new JSpinner(new SpinnerNumberModel(tournoi.getNbrTerrains(),1,Integer.MAX_VALUE,1));
         JLabel nbTerrainsLabel = new JLabel("Nombre de terrains : ", SwingConstants.RIGHT);
 
-        //On les ajoute � des panels de position
+        //On les ajoute a des panels de position
         JPanel etiquettes = new JPanel();
         etiquettes.setLayout(new GridLayout(2,1));
         etiquettes.add(nbTerrainsLabel);
 
-        //On creer un panel de marge � droite
+        //On creer un panel de marge a droite
         JPanel margeDroite = new JPanel();
         margeDroite.setPreferredSize(new Dimension(60, 30));
 

@@ -10,7 +10,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * Fenêtre permettant la modification des joueurs. Implémente l'interface gestion joueur pour forcer l'existance des getteurs nécessaires au controleurs de dates
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
+ */
 public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 
 	private Tournoi tournoi;
@@ -32,7 +36,7 @@ public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 	static private FenetreModifierJoueur derniereFenetre;
 
 	/**
-	 * constructeur de la fenêtre d'ajout d'un joueur
+	 * constructeur de la fenêtre de modification d'un joueur
 	 * @param titre le titre à donner à la fenêtre
 	 * @param tournoi le main.tournoi dans lequel on veut ajouter un joueur
 	 * @param vue la main.vue qui crée la fenêtre
@@ -76,7 +80,7 @@ public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 			}
 		};
 		annee = new JComboBox(anneeCombobox.toArray());
-		mois = new JComboBox(new String[]{"janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "juill.", "août", "sept.", "oct.", "nov.", "déc."});
+		mois = new JComboBox(new String[]{"janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."});
 		ArrayList jourCombobox = new ArrayList<Integer>() {
 			{
 				for (int i = 1; i <= 31; i++) {
@@ -189,7 +193,7 @@ public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 	}
 
 	/**
-	 *
+	 * Mettre a jour le champs du nom
 	 * @param str la chaine de caractère à écrire dans le champ de saisie du nom
      */
 	public void setNom(String str){
@@ -205,26 +209,28 @@ public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 	}
 
 	/**
-	 *
+	 * MEttre a jour le champs de saisis du prénom
 	 * @param str la chaine de caractère à écrire dans le champ de saisie du nom
      */
 	public void setPrenom(String str){
 		this.prenom.setText(str);
 	}
 
+	/**
+	 *
+	 * @return le champ de saisie du niveau
+	 */
 	public JComboBox getNiveau() {
 		return niveau;
 	}
 
-
-
-
+	/**
+	 *
+	 * @return le boutton de selecton de femmes
+	 */
 	public JRadioButton getFem() {
 		return fem;
 	}
-
-
-
 
 	/**
 	 *
@@ -234,35 +240,62 @@ public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 		return nouv;
 	}
 
+	/**
+	 *
+	 * @return la case qui indique l'ancienneté
+	 */
 	public FenetrePrincipale getfenetrePrincipale() {
 		return vue;
 	}
 
+	/**
+	 *
+	 * @return la case qui indique l'ancienneté
+	 */
 	public JCheckBox getPresent() {
 		return present;
 	}
 
+	/**
+	 *
+	 * @return la case qui indique l'ancienneté
+	 */
 	public Tournoi getTournoi() {
 		return tournoi;
 	}
 
 
-
+	/**
+	 *
+	 * @return le champs qui indique l'année de naissance
+	 */
 	@Override
 	public JComboBox getAnnee() {
 		return this.annee;
 	}
 
+	/**
+	 *
+	 * @return le champs qui indique le mois de naissance
+	 */
 	@Override
 	public JComboBox getMois() {
 		return this.mois;
 	}
 
+	/**
+	 *
+	 * @return le champs qui indique le jour de naissance
+	 */
 	@Override
 	public JComboBox getJour() {
 		return this.jour;
 	}
 
+	/**
+	 *
+	 * @return le champs qui indique si la date de naissance est renseignée ou non
+	 */
 	@Override
 	public JCheckBox getDateIndefinie() {
 		return this.dateIndefinie;
