@@ -22,7 +22,6 @@ import java.util.ArrayList;
  */
 public class ImporterTournoiControlleur implements ActionListener
 {
-    private Tournoi tournoi;
     private FenetrePrincipale fenetre;
 
     /** Constructeur de la classe ImporterTournoiControlleur
@@ -32,7 +31,6 @@ public class ImporterTournoiControlleur implements ActionListener
     public ImporterTournoiControlleur(FenetrePrincipale fen)
     {
         this.fenetre = fen;
-        this.tournoi = fen.getTournoi();
     }
 
     @Override
@@ -48,16 +46,19 @@ public class ImporterTournoiControlleur implements ActionListener
             try
             {
                 String xmlFile = dial.getDirectory().concat(dial.getFile());
-
+                String nomFichier = (dial.getFile().split(".xml"))[0];
+                nomFichier = nomFichier.replace('-','/');
+                nomFichier = nomFichier.replace('_',' ');
+                Tournoi tournoi = new Tournoi(fenetre.getTournoi().getNbrTerrains(),nomFichier);
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
                 DocumentBuilder builder = factory.newDocumentBuilder();
 
                 Document document = builder.parse(new File(xmlFile));
 
-                Element tournoi = document.getDocumentElement();
+                Element elementTournoi = document.getDocumentElement();
 
-                NodeList tournoiNoeuds = tournoi.getChildNodes(); // Récupère listeJoueurs et listeTours
+                NodeList tournoiNoeuds = elementTournoi.getChildNodes(); // Récupère listeJoueurs et listeTours
                 int nbTournoiNoeuds = tournoiNoeuds.getLength(); // compte le nombre de noeuds de la racine (ici 2)
                 ArrayList<Node> listesJoueursMatchesNodes= new ArrayList<Node>();
                 for (int i = 0; i<nbTournoiNoeuds; i++)
@@ -93,7 +94,7 @@ public class ImporterTournoiControlleur implements ActionListener
 
                         }
                     }
-                    ajouterJoueur(infosDuJoueur);
+                    ajouterJoueur(infosDuJoueur, tournoi);
                     infosDuJoueur.clear();
                 }
 
@@ -129,26 +130,28 @@ public class ImporterTournoiControlleur implements ActionListener
                                     terrain.add(info3.getTextContent());
                                 }
                             }
-                            ajouterTerrain(tour,terrain, terrainCourant);
+                            ajouterTerrain(tournoi, tour,terrain, terrainCourant);
                             terrain.clear();
                         }
                     }
+                    tournoi.ajouterTour(tour);
                     terrainCourant = 1;
                 }
+                fenetre.setTournoi(tournoi);
+                fenetre.actualiserJoueurs();
             }
             catch (Exception ex)
             {
                 ex.printStackTrace();
             }
         }
-        fenetre.actualiserJoueurs();
     }
 
 
 
-    public void ajouterJoueur(ArrayList<String> lesInfosDuJoueur) throws DateParsingExeption {
+    public void ajouterJoueur(ArrayList<String> lesInfosDuJoueur, Tournoi tournoi) throws DateParsingExeption {
         String nom = lesInfosDuJoueur.get(1), prenom = lesInfosDuJoueur.get(0),  datestr = lesInfosDuJoueur.get(4),  sexe = lesInfosDuJoueur.get(2),  nouveau = lesInfosDuJoueur.get(3),  niveau = lesInfosDuJoueur.get(5);
-        LocalDate date = null;
+        LocalDate date;
 
         int  niveauJoueur = 0;
         boolean sexeJoueur, ancienneteJoueur;
@@ -178,7 +181,7 @@ public class ImporterTournoiControlleur implements ActionListener
     }
 
 
-    public void ajouterTerrain(Tour t, ArrayList<String> terr, int numTerrain)
+    public void ajouterTerrain(Tournoi tournoi, Tour t, ArrayList<String> terr, int numTerrain)
     {
         String nomPrenomJ1 = terr.get(0)+" "+terr.get(1);
         String nomPrenomJ2 = terr.get(2)+" "+terr.get(3);
