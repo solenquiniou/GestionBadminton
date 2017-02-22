@@ -777,6 +777,11 @@ public class Tournoi {
 		return date;
 	}
 
+	public void ajouterTour(Tour t)
+	{
+		this.tour.add(t);
+	}
+
 
 }
 
