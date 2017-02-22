@@ -3,7 +3,7 @@ package main.tournoi;
 import java.util.ArrayList;
 
 /**
- * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 07/12/16.
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Lucas, MARTINEAU Lucas
  */
 public class Tour {
     private ArrayList<Terrain> matches;

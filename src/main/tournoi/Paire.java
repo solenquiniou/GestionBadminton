@@ -1,121 +1,85 @@
-
 package main.tournoi;
 
-/**Paire est la classe représentant une paire de joueurs.
- *
- * @author OUAKRIM Yanis, RICHARD Nicolas, ORHON Paul, RIALET Yohann, NIVELAIS Quentin
- *
- * @version 0.1
+/**
+ * Paire est la classe représentant une paire de joueurs.
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Lucas, MARTINEAU Lucas
+ * @version 1.1
  */
 public class Paire {
+
 	private Joueur joueur1;
 	private Joueur joueur2;
-	private int id;
-	private int tour;
 	private int score;
-	private int perf;
 	private boolean dansMatch;
 
-
-	/** Constructeur de la classe Paire
-		*
-		* @param j1 le premier joueur de la paire
-		* @param j2 le deuxième joueur de la paire
-		* @param id l'id de la paire
-		* @param tour le tour de jeu de la paire
-		*
-		*/
-	public Paire(Joueur j1, Joueur j2, int id, int tour){
+	/**
+	 * Constructeur de la classe Paire
+	 * @param j1 le premier joueur de la paire
+	 * @param j2 le deuxième joueur de la paire
+	 */
+	public Paire(Joueur j1, Joueur j2){
 		this.joueur1 = j1;
 		this.joueur2 = j2;
-		this.id = id;
-		this.tour = tour;
-		this.perf = j1.getPerf()+j2.getPerf();
+
+		//On déclare que les deux joueurs ne jouent pas
 		this.joueursJouent(false);
 		this.dansMatch = false;
 	}
-	public Paire(Joueur j1, Joueur j2){
-		this(j1, j2, 0, 0);
-	}
 
-	/** Retourne la performance de la paire (celles des joueurs additionnées)
-		*
-		* @return La performance de la paire
-		*/
-	public int getPerf(){
-		return this.perf;
-	}
-	
-	/** Retourne le premier joueur de la paire
-		*
-		* @return joueur1 le premier joueur de la paire
-		*/
+	/**
+	 * Retourne le premier joueur de la paire
+	 * @return joueur1 le premier joueur de la paire
+	 */
 	public Joueur getJoueur1(){
 		return this.joueur1;
 	}
 
-	/** Retourne le deuxième joueur de la paire
-		*
-		* @return joueur2 le deuxième joueur de la paire
-		*/
+	/**
+	 * Retourne le deuxième joueur de la paire
+	 * @return joueur2 le deuxième joueur de la paire
+	 */
 	public Joueur getJoueur2(){
 		return this.joueur2;
 	}
 
-	/** Retourne l'id de la paire
-		*
-		* @return id l'id de la paire
-		*/
-	public int getId(){
-		return this.id;
-	}
-
-	/** Retourne le tour de la paire
-		*
-		* @return tour le tour de la paire
-		*/
-	public int getTour(){
-		return this.tour;
-	}
-
-	/** Redéfinition de l'attribut "joueur1"
-		*
-		* @param j1 le premier joueur de la paire
-		*/
+	/**
+	 * Redéfinition de l'attribut "joueur1"
+	 * @param j1 le premier joueur de la paire
+	 */
 	public void setJoueur1(Joueur j1){
 		this.joueur1 = j1;
 	}
 
-	/** Redéfinition de l'attribut "joueur2"
-		*
-		* @param j2 le deuxième joueur de la paire
-		*/
+	/**
+	 * Redéfinition de l'attribut "joueur2"
+	 * @param j2 le deuxième joueur de la paire
+	 */
 	public void setJoueur2(Joueur j2){
 		this.joueur2 = j2;
 	}
 
-	/** Redéfinition de l'attribut "tour"
-		*
-		* @param leNumeroTour le tour de la paire
-		*/
-	public void setTour(int leNumeroTour){
-		this.tour = leNumeroTour;
-	}
-
-	/** Redéfinition de la méthode toString()
-		*
-		* @return txt l'affichage d'une paire
-		*/
+	/**
+	 * Redéfinition de la méthode toString() pour afficher :
+	 * "<Joueur1> et <Joueur2>"
+	 * @return l'affichage de la paire
+	 */
 	@Override
 	public String toString(){
-		String txt = this.joueur1.toString() + " et " + this.joueur2.toString() + " Perf : " + this.perf;
-		return txt;
+		return this.joueur1.toString() + " et " + this.joueur2.toString();
 	}
 
+	/**
+	 * Retourne si la paire est dans un match
+	 * @return true si la paire est dans un match, false sinon
+     */
 	public boolean isDansMatch() {
 		return dansMatch;
 	}
 
+	/**
+	 * Redéfini si la paire est dans un match
+	 * @param dansMatch qui vaut true si la paire est dans un match, false si elle ne l'est pas
+     */
 	public void setDansMatch(boolean dansMatch) {
 		this.dansMatch = dansMatch;
 	}
@@ -131,32 +95,26 @@ public class Paire {
 	}
 
 	/**
-	 *
-	 * @return vrai si les deux joueurs jouent, faux sinon
+	 * Incrémente le nombre de match joué des deux joueurs de la paires
      */
-	public boolean getJoueursJouent(){
-		return (this.joueur1.getJoue() && this.joueur2.getJoue());
-	}
-
-
-
 	public void ajouterMatchJoue(){
 		this.joueur1.ajouterMatchJoue();
 		this.joueur2.ajouterMatchJoue();
 	}
 
-	/** Retourne le score de la paire
-		*
-		* @return score le score de la paire
-		*/
+	/**
+	 * Retourne le score de la paire
+	 * @return score le score de la paire
+	 */
 	public int getScore() {
 		return this.score;
 	}
 
-	/** Redéfinition de l'attribut "score"
-		* et mise a jour des scores des jouerus de la paire
-		* @param score le score de la paire
-		*/
+	/**
+	 * Redéfinition de l'attribut "score"
+	 * et mise a jour des scores des jouerus de la paire
+	 * @param score le score de la paire
+	 */
 	public void setScore(int score) {
 		this.score = score;
 		//on incrémente le score a partir du score que le joueur avais deja a la base
@@ -166,9 +124,12 @@ public class Paire {
 
 
 	/**
-	 *
+	 * <p>
+	 * Calcule la priorité de la paire en fonction de la priorité
+	 * des deux joueurs (+1 par joueur prioritaire)
+	 * </p>
+	 * Cette priorité est donc comprise entre 0 et 2
 	 * @return un int qui estime la prioritée de la paire
-	 * +1 par membres prio
      */
 	public int prio(){
 		int prio = 0;
@@ -179,11 +140,12 @@ public class Paire {
 		return prio;
 	}
 	
-	/** Redéfinition de la méthode equals()
-		*
-		* @param o l'objet à comparer
-		* @return true si les deux paires sont égales false sinon
-		*/
+	/**
+	 * Redéfinition de la méthode equals() pour savoir si deux paires sont égales.
+	 * Deux paires sont considérées comme égales si les deux joueurs des deux paires sont égaux
+	 * @param o l'objet à comparer
+	 * @return true si les deux paires sont égales false sinon
+	 */
 	@Override
 	public boolean equals(Object o){
 		if (o instanceof Paire){
@@ -195,10 +157,12 @@ public class Paire {
 		}
 	}
 
-	/** Retourne si la paire est compatible avec un autre (en paramètre)
-	 * On considère qu'elle est compatibles si un des joueurs n'a pas joué avec aucun des deux autres joueru de la paire antagoniste
-	 * @param paire2 la paire a tester
-	 * @return booléen 0 : n'est pas compatible / 1 : est compatible
+	/**
+	 * Retourne si la paire est compatible avec un autre (en paramètre)
+	 * On considère que deux paires sont compatibles si un des joueurs n'a pas
+	 * joué avec aucun des deux autres joueurs de la paire antagoniste
+	 * @param paire2 la paire à tester
+	 * @return booléen false si les paires ne sont pas compatibles, true si elles le sont
 	 */
 	public boolean estCompatible(Paire paire2){
 		//On vérifie si les joueurs ont déjà joué ensemble

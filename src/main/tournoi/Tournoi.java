@@ -14,12 +14,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
-
-/**Tournoi est la classe représentant un Tournoi.
- *
+/**
+ * Tournoi est la classe représentant un Tournoi.
  * @author OUAKRIM Yanis, RICHARD Nicolas, ORHON Paul, RIALET Yohann, NIVELAIS Quentin
- *
- * @version 0.1
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Lucas, MARTINEAU Lucas
+ * @version 1.1
  */
 
 public class Tournoi {
@@ -40,7 +39,6 @@ public class Tournoi {
 
 	/**
 	 * Constructeur d'un main.tournoi
-	 *
 	 * @param nbrTerrains le nompbre de terrains disponibles pour le main.tournoi
 	 * @param leNom       le nom du main.tournoi
 	 * @throws NomVideException s'il n'y a pas de nom
@@ -52,15 +50,15 @@ public class Tournoi {
 		} else if (nbrTerrains < 1) {
 			throw new NbTerrainNeg("Nombre de terrain n�gatif");
 		}
-		this.nouveauxJoueurs = new ArrayList<Joueur>();
-		this.anciensJoueurs = new ArrayList<Joueur>();
+		this.nouveauxJoueurs = new ArrayList<>();
+		this.anciensJoueurs = new ArrayList<>();
 		this.terrains = new ArrayList<>();
 		this.paires = new ArrayList<>();
-		this.matchs = new ArrayList<Match>();
+		this.matchs = new ArrayList<>();
 		this.nbrTerrains = nbrTerrains;
 		this.nom = leNom;
 		initialiserTerrains();
-		this.tour = new ArrayList<Tour>();
+		this.tour = new ArrayList<>();
 		nbTour = 0;
 		Joueur.resetNbJoueur();
 	}
@@ -76,7 +74,6 @@ public class Tournoi {
 
 	/**
 	 * Retourne le joueur avec son id
-	 *
 	 * @return le joueur avec son id
 	 */
 
@@ -99,7 +96,6 @@ public class Tournoi {
 
 	/**
 	 * Retourne la liste de nouveaux joueurs
-	 *
 	 * @return la liste des nouveaux adhérents joueurs
 	 */
 	public ArrayList<Joueur> getNouveauxJoueurs() {
@@ -108,7 +104,6 @@ public class Tournoi {
 
 	/**
 	 * Retourne la liste des anciens joueurs
-	 *
 	 * @return la liste des anciens adhérents joueurs
 	 */
 	public ArrayList<Joueur> getAnciensJoueurs() {
@@ -117,11 +112,10 @@ public class Tournoi {
 
 	/**
 	 * Retourne la liste des anciens joueurs
-	 *
 	 * @return la liste des anciens adhérents joueurs
 	 */
 	public ArrayList<Joueur> getAllJoueurs() {
-		ArrayList<Joueur> allJoueurs = new ArrayList<Joueur>();
+		ArrayList<Joueur> allJoueurs = new ArrayList<>();
 
 		allJoueurs.addAll(this.nouveauxJoueurs);
 		allJoueurs.addAll(this.anciensJoueurs);
@@ -134,16 +128,15 @@ public class Tournoi {
 
 	/**
 	 * Retourne la liste des terrains
-	 *
 	 * @return la liste des terrains
 	 */
 	public ArrayList<Terrain> getTerrains() {
 		return this.terrains;
 	}
+
 	/**
 	 * Retourne la liste des terrains
 	 * @param i l'index du terrain voulu
-	 *
 	 * @return un terrain a un index
 	 */
 	public Terrain getTerrain(int i) {
@@ -152,7 +145,6 @@ public class Tournoi {
 
 	/**
 	 * Retourne la liste des tours
-	 *
 	 * @return la liste des tours
 	 */
 	public ArrayList<Tour> getTours() { return this.tour; }
@@ -168,7 +160,6 @@ public class Tournoi {
 
 	/**
 	 * Retourne le nombre de terrains
-	 *
 	 * @return le nombre de terrains disponibles
 	 */
 	public int getNbrTerrains() {
@@ -177,7 +168,6 @@ public class Tournoi {
 
 	/**
 	 * Ajoute un joueur à la liste des joueurs d'un main.tournoi
-	 *
 	 * @param joueur Le joueur que l'on souhaite ajouter
 	 */
 	public void ajouterJoueur(Joueur joueur) {
@@ -207,8 +197,6 @@ public class Tournoi {
 
 	/**
 	 * Tri des Anciens joueurs en fonction du score
-	 *
-
 	 */
 	private void trierAnciensJoueurs() {
 		Collections.sort(this.anciensJoueurs,new ComparateurJoueurScore());
@@ -220,7 +208,6 @@ public class Tournoi {
 	 * On cherche d'abord à faire jouer ceux qui ont le moins participé
 	 * On cherche ensuite à faire jouer les joueurs qui n'ont pas joué au tour d'avant (les prios)
 	 * On fait ensuite jouer les autres joueurs
-	 *
 	 * @throws TournoiVideException s'il n'y a pas de joueurs
 	 */
 	private void creerPaires() throws TournoiVideException {
@@ -244,7 +231,6 @@ public class Tournoi {
 	/**
 	 * Tris des paires par ordre de pref
 	 */
-
 	private void trierPaires() {
 		Collections.sort(this.paires, new ComparateurPairePrio());
 	}
@@ -260,7 +246,6 @@ public class Tournoi {
 	 */
 	private void attribuerMatchs() {
 		trierPaires();
-
 
 		//On créer une liste de matchs avec les paires couplées par niveau
 		int i;
@@ -321,6 +306,7 @@ public class Tournoi {
 
 
 	}
+
 	/**
 	 * Regarde si aucun des joueurs ne sont plus rios
 	 */
@@ -363,9 +349,6 @@ public class Tournoi {
 		}
 		this.tour.add(newTour);//enregistre
 
-
-
-
 		//On remet tous les joueurs en attente d'une paire
 		for (int i = 0; i < this.anciensJoueurs.size(); i++) {
 			(this.anciensJoueurs.get(i)).setDansPaire(false);
@@ -380,7 +363,6 @@ public class Tournoi {
 
 	/**
 	 * pour rentrer les scores d'un match lors qu'il est cré de manière automatique
-	 *
 	 * @param numTerrain le terrain sur lequel s'est déroulé le match
 	 * @param scoreP1    le score de la première paire
 	 * @param scoreP2    le score de la seconde paire
@@ -399,7 +381,6 @@ public class Tournoi {
 
 	/**
 	 * pour rentrer les scores d'un match lorsqu'il est ajouté de manière manuelle
-	 *
 	 * @param paire   la première paire (celle de droite dans la main.vue)
 	 * @param paire2  la deuxième paire (celle de gauche dans la main.vue)
 	 * @param scoreP1 le score de la première paire
@@ -423,7 +404,9 @@ public class Tournoi {
 	public ArrayList getClassementAnciens() {
 		this.trierAnciensJoueurs();
 		return this.anciensJoueurs;
-	}/**
+	}
+
+	/**
 	 *Test si il y a des jouerurs sur le terrain
 	 *@return true si Le terrain est associé a un match (si il y a des joueurs dedans  faux sinon
 	 */
@@ -433,7 +416,6 @@ public class Tournoi {
 
 	/**
 	 * Renvoie le classement des nouveaux joueurs
-	 *
 	 * @return le classement des nouveaux adhérents joueurs
 	 */
 	public ArrayList getClassementNouveaux() {
@@ -443,7 +425,6 @@ public class Tournoi {
 
 	/**
 	 * Redéfinition la méthode public toString
-	 *
 	 * @return L'état de toutes les paires à un moment donné
 	 */
 	@Override
@@ -474,7 +455,6 @@ public class Tournoi {
 	/**
 	 * pour intervertir facilement deux joueurs qui jouent déjà
 	 * On selectionne le premier Joueur et on souhaite le remplacer par le deuxième. On regarde si le deuxième joue ou pas
-	 *
 	 * @param jprec le joueur précedent
 	 * @param jnouv le nouveau joueur
 	 * @return true si l'opération est un succès, false sinon
@@ -520,7 +500,6 @@ public class Tournoi {
 	/**
 	 * renvoie la paire contenant un joueur donné null sinon
 	 * @param j le joueur
-
 	 * @return null si le joueur n'est pas dans une paire la paire sinon
 	 */
 	public Paire getPaireContenant(Joueur j){
@@ -535,7 +514,6 @@ public class Tournoi {
 
 	/**
 	 * pour obtenir l'id d'un joueur à partir de son nom et de son prénom
-	 *
 	 * @param nomPrenom le nom plus un espace plus le prénom du joueur recherché
 	 * @return l'id du joueur recherché ou -1 si non trouvé
 	 */
@@ -710,7 +688,8 @@ public class Tournoi {
 
 	}
 
-	/** Découpe un joueur pour obtenir une chaine de caractère correspondant à une ligne CSV
+	/**
+	 * Découpe un joueur pour obtenir une chaine de caractère correspondant à une ligne CSV
 	 * @param joueur le joueur à découper
 	 * @return La chaine de caractère correspondant à une ligne CSV représentant le joueur découpé
 	 */
@@ -752,7 +731,7 @@ public class Tournoi {
 
 	/**
 	 * Exporte les classements dans un fichier CSV
-	 * * @param filepath path d'un fichier
+	 * @param filepath path d'un fichier
 	 */
 	public void exportClassement(String filepath) throws IOException {
 		CSVWriter writer = new CSVWriter(new FileWriter(filepath), ',');

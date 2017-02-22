@@ -3,8 +3,9 @@ package main.tournoi;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/** La classe contient la/les méthodes statiques utiles pour le main.tournoi, notamment la génération de Paires
- * Created by Martineau on 11/12/2016.
+/**
+ * La classe contient la/les méthodes statiques utiles pour le main.tournoi, notamment la génération de Paires
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Lucas, MARTINEAU Lucas
  */
 public class MethodeTournoi {
 
@@ -15,7 +16,6 @@ public class MethodeTournoi {
      * On cherche ensuite à faire jouer les joueurs qui n'ont pas joué au tour d'avant (les prios)
      * On fait ensuite jouer les autres joueurs
      */
-
     public static ArrayList<Paire> creerPaire(ArrayList<Joueur> allJoueurs) {
         /*
          *(Prio, Prio + !jouéEnsemble + !ancienneté) Boucle 1
