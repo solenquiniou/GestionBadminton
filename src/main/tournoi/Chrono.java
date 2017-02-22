@@ -10,13 +10,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 /**
- *
+ * La classe décrit un chronomètre
  * @classe Chronometre
- *
  * @extends JPanel
- *
- * @description Classe qui définit un chronometre
- *
  */
 public class Chrono extends JPanel {
 
@@ -62,7 +58,6 @@ public class Chrono extends JPanel {
 
     /**
      * Construction du chronometre
-     *
      * @param N : le nombre de secondes initial
      */
     public Chrono(int N) {
@@ -92,8 +87,7 @@ public class Chrono extends JPanel {
 
     /**
      * Methode qui crée un Timer
-     *
-     * @return le timer
+     * @return le timer crée
      */
     private Timer createTimer() {
         ActionListener action = new ActionListener() {
@@ -108,18 +102,18 @@ public class Chrono extends JPanel {
                                 try {
                                     couleur = new Color(couleur.getRed() + (int)previous, couleur.getGreen(), couleur.getBlue());
                                 } catch(Exception e) {
-                                    System.out.println("Catch ligne 159 - Temps: " + tempsRestant + " R: " + couleur.getRed() + " G: " + couleur.getGreen() + " B: " + couleur.getBlue());
+                                    e.printStackTrace();
                                 }
                                 previous -= (int)previous;
                             }
                         }
-                    } else {                        //baisser g
+                    } else {  //baisser g
                         previous += 255/(temps/2);
                         if (previous >= 1) {
                             try {
                                 couleur = new Color(couleur.getRed(), couleur.getGreen()-(int)previous, couleur.getBlue());
                             } catch(Exception e) {
-                                System.out.println("Catch ligne 187 - Temps: " + tempsRestant + " R: " + couleur.getRed() + " G: " + couleur.getGreen() + " B: " + couleur.getBlue());
+                                e.printStackTrace();
                             }
                             previous -= (int)previous;
                         }
@@ -128,9 +122,9 @@ public class Chrono extends JPanel {
                     repaint();
                 } else {
                     timer.stop();
-                    //signial sonore
+                    //signal sonore
                     String soundName = "src/main/resources/son.wav";
-                    AudioInputStream audioInputStream = null;
+                    AudioInputStream audioInputStream;
                     try {
                         audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
                         Clip clip = AudioSystem.getClip();
@@ -140,7 +134,7 @@ public class Chrono extends JPanel {
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Erreur:"+e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
-                    //fin signial sonore
+                    //fin signal sonore
                 }
             }
         };
@@ -149,6 +143,7 @@ public class Chrono extends JPanel {
 
     /**
      * Redéfinition de la méthode paintCompnent
+     * @param g
      */
     public void paintComponent(Graphics g) {
         this.drawCircle(g, 70, 70, 60);
@@ -156,9 +151,8 @@ public class Chrono extends JPanel {
 
     /**
      * Fonction qui permet de dessiner le chronometre
-     *
      * @param cg      : element graphique
-     * @param xCenter : abscice du centre du cercle
+     * @param xCenter : abscisse du centre du cercle
      * @param yCenter : ordonnee du centre du cercle
      * @param r       : rayon du cercle
      */
@@ -166,7 +160,6 @@ public class Chrono extends JPanel {
         cg.setColor(Color.white);
         cg.fillOval(xCenter - r, yCenter - r, 2 * r, 2 * r);
         cg.setColor(couleur);
-        //System.out.println("Temps: " + tempsRestant + " R: " + couleur.getRed() + " G: " + couleur.getGreen() + " B: " + couleur.getBlue());
         cg.fillArc(xCenter - r, yCenter - r, 2 * r, 2 * r, 90, -(360 - tempsRestant * 360 / (int)temps));
         cg.setColor(Color.black);
         cg.setFont(f);
@@ -197,7 +190,7 @@ public class Chrono extends JPanel {
     }
 
     /**
-     * Méthode qui retourne la durée actuelle du chrono en minute
+     * Méthode qui retourne la durée actuelle du chrono en minutes
      * @return la valeur en question
      */
     public int getTempsMin() {
@@ -205,7 +198,7 @@ public class Chrono extends JPanel {
     }
 
     /**
-     * Méthode qui retourne la durée actuelle du chrono en seconde
+     * Méthode qui retourne la durée actuelle du chrono en secondes
      * @return la valeur en question
      */
     public int getTempsSec() {
@@ -214,15 +207,15 @@ public class Chrono extends JPanel {
 
     /**
      * Méthode permetant de modifier la valeur de la durée du chrono
-     * @param temps : la nouvelle valeur souhaité pour la variable
+     * @param temps : la nouvelle valeur souhaitée pour la variable
      */
     public void setTemps(int temps) {
         this.temps = temps;
     }
 
     /**
-     * Méthode qui retourne si le chronometre est en actif ou en pause
-     * @return la valeur en question
+     * Méthode qui retourne si le chronometre est actif ou en pause
+     * @return true si il est actif, false si il est en pause
      */
     public boolean getActif() {
         return actif;

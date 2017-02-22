@@ -1,9 +1,9 @@
 package main.tournoi;
 
-/**Terrain est la classe représentant un terrain du main.tournoi.
- *
+/**
+ * Terrain est la classe représentant un terrain du main.tournoi.
  * @author OUAKRIM Yanis, RICHARD Nicolas, ORHON Paul, RIALET Yohann, NIVELAIS Quentin
- *
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Lucas, MARTINEAU Lucas
  * @version 0.1
  */
 public class Terrain{
