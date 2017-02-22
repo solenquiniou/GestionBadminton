@@ -3,7 +3,6 @@ package main.tournoi;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import main.exception.*;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -33,23 +32,20 @@ public class Tournoi {
 	private ArrayList<Tour> tour;
 	private int nbTour;
 
-	public void setNbrTerrains(int nbrTerrains) {
-		this.nbrTerrains = nbrTerrains;
-	}
-
 	/**
-	 * Constructeur d'un main.tournoi
-	 * @param nbrTerrains le nompbre de terrains disponibles pour le main.tournoi
-	 * @param leNom       le nom du main.tournoi
+	 * Constructeur d'un tournoi
+	 * @param nbrTerrains le nompbre de terrains disponibles pour le tournoi (peut être modifié par la suite)
+	 * @param leNom       le nom du tournoi
 	 * @throws NomVideException s'il n'y a pas de nom
-	 * @throws NbTerrainNeg     si le nombre des terrains est <=0
+	 * @throws NbTerrainNeg     si le nombre des terrains est <= 0
 	 */
 	public Tournoi(int nbrTerrains, String leNom) throws NomVideException, NbTerrainNeg {
-		if (leNom.equals("")) {
+
+		if (leNom.equals(""))
 			throw new NomVideException("Nom vide");
-		} else if (nbrTerrains < 1) {
-			throw new NbTerrainNeg("Nombre de terrain n�gatif");
-		}
+		else if (nbrTerrains < 1)
+			throw new NbTerrainNeg("Nombre de terrain négatif");
+
 		this.nouveauxJoueurs = new ArrayList<>();
 		this.anciensJoueurs = new ArrayList<>();
 		this.terrains = new ArrayList<>();
@@ -63,40 +59,50 @@ public class Tournoi {
 		Joueur.resetNbJoueur();
 	}
 
-	public Boolean tournoisVide(){
-		return this.nouveauxJoueurs.size() == 0 && this.anciensJoueurs.size() == 0;
-
-	}
-
+	/**
+	 *
+	 * @param nbrTerrains le nompbre de terrains disponibles pour le tournoi (peut être modifié par la suite)
+	 * @throws NomVideException s'il n'y a pas de nom
+	 * @throws NbTerrainNeg si le nombre des terrains est <= 0
+     */
 	public Tournoi(int nbrTerrains) throws NomVideException, NbTerrainNeg {
 		this(nbrTerrains, "Sans titre");
 	}
 
 	/**
-	 * Retourne le joueur avec son id
-	 * @return le joueur avec son id
+	 * Redéfinit l'attribut "nbrTerrains"
+	 * @param nbrTerrains le nouveau nombre de terrains du tournoi
 	 */
+	public void setNbrTerrains(int nbrTerrains) {
+		this.nbrTerrains = nbrTerrains;
+	}
 
-	public Joueur getJoueur(int Lid) {
+	/**
+	 * Renvoie si le tournoi est vide, c'est à dire s'il n'y a pas de joueurs dans le tournoi
+	 * @return true s'il n'y a pas de joueurs dans le tournoi, false s'il y a des joueurs
+     */
+	public Boolean tournoisVide(){
+		return this.nbJoueur() == 0;
+	}
+
+	/**
+	 * Trouve un joueur à l'aide de son id, ou null si on ne trouve pas de joueur avec cet id
+	 * @return le joueur, ou null
+	 */
+	public Joueur getJoueur(int id) {
+
 		Joueur j = null;
-		for (int i = 0; i < nouveauxJoueurs.size(); i++) {
-			if (Lid == (this.nouveauxJoueurs.get(i)).getId()) {
-				j = this.nouveauxJoueurs.get(i);
-			}
-		}
-		for (int i = 0; i < anciensJoueurs.size(); i++) {
-			if (Lid == (this.anciensJoueurs.get(i)).getId()) {
-				j = this.anciensJoueurs.get(i);
-			}
-		}
+
+		for (Joueur joueur : getAllJoueurs())
+			if (id == joueur.getId())
+				j = joueur;
+
 		return j;
 	}
 
-
-
 	/**
 	 * Retourne la liste de nouveaux joueurs
-	 * @return la liste des nouveaux adhérents joueurs
+	 * @return la liste des nouveaux joueurs adhérents
 	 */
 	public ArrayList<Joueur> getNouveauxJoueurs() {
 		return this.nouveauxJoueurs;
@@ -104,15 +110,15 @@ public class Tournoi {
 
 	/**
 	 * Retourne la liste des anciens joueurs
-	 * @return la liste des anciens adhérents joueurs
+	 * @return la liste des anciens joueurs adhérents
 	 */
 	public ArrayList<Joueur> getAnciensJoueurs() {
 		return this.anciensJoueurs;
 	}
 
 	/**
-	 * Retourne la liste des anciens joueurs
-	 * @return la liste des anciens adhérents joueurs
+	 * Retourne la liste de tous les joueurs
+	 * @return la liste de tous les joueurs adhérents
 	 */
 	public ArrayList<Joueur> getAllJoueurs() {
 		ArrayList<Joueur> allJoueurs = new ArrayList<>();
@@ -121,10 +127,14 @@ public class Tournoi {
 		allJoueurs.addAll(this.anciensJoueurs);
 		return allJoueurs;
 	}
+
+	/**
+	 * Retourne le nombre de joueur du tournoi
+	 * @return le nombre de joueur du tournoi
+     */
 	public int nbJoueur(){
 		return getAllJoueurs().size();
 	}
-
 
 	/**
 	 * Retourne la liste des terrains
@@ -135,9 +145,9 @@ public class Tournoi {
 	}
 
 	/**
-	 * Retourne la liste des terrains
+	 * Retourne le terrain à un index voulu
 	 * @param i l'index du terrain voulu
-	 * @return un terrain a un index
+	 * @return un terrain à l'index voulu
 	 */
 	public Terrain getTerrain(int i) {
 		return this.terrains.get(i);
@@ -167,7 +177,7 @@ public class Tournoi {
 	}
 
 	/**
-	 * Ajoute un joueur à la liste des joueurs d'un main.tournoi
+	 * Ajoute un joueur à la liste des joueurs du tournoi
 	 * @param joueur Le joueur que l'on souhaite ajouter
 	 */
 	public void ajouterJoueur(Joueur joueur) {
@@ -178,6 +188,10 @@ public class Tournoi {
 		}
 	}
 
+	/**
+	 * Supprime un joueur de la liste des joueurs du tournoi
+	 * @param joueur Le joueur que l'on souhaite supprimer
+     */
 	public void supprimerJoueur(Joueur joueur) {
 		if (joueur.getNouveau()) {
 			this.nouveauxJoueurs.remove(joueur);
@@ -186,10 +200,8 @@ public class Tournoi {
 		}
 	}
 
-
-
 	/**
-	 *Tri des nouveau joueurs par scores
+	 * Tri des nouveaux joueurs par scores
 	 */
 	private void trierNouveauxJoueurs() {
 		Collections.sort(this.nouveauxJoueurs, new ComparateurJoueurScore());
@@ -203,7 +215,7 @@ public class Tournoi {
 	}
 
 	/**
-	 * Appelée pour créer la liste des paires d'un main.tournoi
+	 * Appelée pour créer la liste des paires d'un tournoi
 	 * On attribue un partenaire uniquement aux joueurs actifs (ceux qui sont disponibles pour jouer)
 	 * On cherche d'abord à faire jouer ceux qui ont le moins participé
 	 * On cherche ensuite à faire jouer les joueurs qui n'ont pas joué au tour d'avant (les prios)
@@ -216,7 +228,7 @@ public class Tournoi {
 		this.paires.clear(); //Vide la liste des paires
 
 		if (this.getAllJoueurs().size() == 0) {
-			throw new TournoiVideException("Il n'y a pas de joueurs dans le main.tournoi");
+			throw new TournoiVideException("Il n'y a pas de joueurs dans le tournoi");
 		}
 
 		ArrayList<Paire> pairesCrees = MethodeTournoi.creerPaire(this.getAllJoueurs());
@@ -235,14 +247,12 @@ public class Tournoi {
 		Collections.sort(this.paires, new ComparateurPairePrio());
 	}
 
-	/* On attribue les match à des paires
-	 * Ce qui se passe : les paires les plus nulles sont les premières à avoir un terrain d'attribué
-	 * Ce qu'on veut faire : chaque paire a la même probabilité de se voir attribuer un terrain
-	 * Pour cela
-	 * On créée une liste de matchs avec les paires rangées par niveau
-	 * On mélange la liste de matchs
-	 * On attribue les terrains aux matchs prio
-	 * On attribue les terrains aux autres matchs
+	/**
+	 * On attribue les match à des paires
+	 * Ce qui se passe : les paires les plus nulles sont les premières à avoir un terrain d'attribué.
+	 * Ce qu'on veut faire : chaque paire a la même probabilité de se voir attribuer un terrain.
+	 * Pour cela on créé une liste de matchs avec les paires rangées par niveau, on mélange la liste de matchs,
+	 * on attribue les terrains aux matchs prio, puis on attribue les terrains aux autres matchs
 	 */
 	private void attribuerMatchs() {
 		trierPaires();
@@ -260,11 +270,7 @@ public class Tournoi {
 					matchs.add(new Match(paire1, paire2));
 					paire1.setDansMatch(true);
 					paire2.setDansMatch(true);
-
-
 				}
-
-
 			}
 		}
 		//on reparcours pour associer les dernières paires meme si elles ne tsont pas compatibles
@@ -279,8 +285,6 @@ public class Tournoi {
 					paire2.setDansMatch(true);
 
 				}
-
-
 			}
 		}
 		//range les match en untilisant prio comme comparateur
@@ -299,37 +303,36 @@ public class Tournoi {
 
 		if(PersonnePrio()){
 			ArrayList<Joueur> listJ = getAllJoueurs();
-			for (Joueur j :listJ){
+			for (Joueur j :listJ)
 				j.setPrio(true);
-			}
 		}
-
-
 	}
 
 	/**
-	 * Regarde si aucun des joueurs ne sont plus rios
-	 */
-	public Boolean PersonnePrio()  {
-		Boolean test = true;
-		ArrayList<Joueur> listJ = getAllJoueurs();
-		for (Joueur j :listJ){
-			if(j.getPrio()){
-				test = false;
-			}
-		}
-		return test;
+	 * Regarde si aucun des joueurs n'est prio
+	 * @return true si aucun joueur n'est prio, false sinon
+     */
+	public boolean PersonnePrio() {
+		for (Joueur j : getAllJoueurs())
+			if(j.getPrio())
+				return false;
+		return true;
 	}
 
 	/**
 	 * Lance les methodes de créations de paires
-	 */
+	 * @throws TournoiVideException s'il n'y a pas de joueurs
+     */
 	public void nouveauTour() throws TournoiVideException {
 		this.creerPaires();
 		this.attribuerMatchs();
 		this.nbTour++;
 	}
 
+	/**
+	 * Retourne le nombre de tour qui ont étés joués dans le tournoi
+	 * @return le nombre de tour
+     */
 	public int getNbTour() {
 		return this.nbTour;
 	}
@@ -362,13 +365,14 @@ public class Tournoi {
 
 
 	/**
-	 * pour rentrer les scores d'un match lors qu'il est cré de manière automatique
+	 * pour rentrer les scores d'un match lorsqu'il est crée de manière automatique
 	 * @param numTerrain le terrain sur lequel s'est déroulé le match
 	 * @param scoreP1    le score de la première paire
 	 * @param scoreP2    le score de la seconde paire
 	 */
 	public void setScore(int numTerrain, int scoreP1, int scoreP2) {
 		this.terrains.get(numTerrain).getMatch().modifierScores(scoreP1, scoreP2);
+
 		//enregistrement des anciens partenaires
 		this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur1().ajouterAnciensPart(this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur2());
 		this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur2().ajouterAnciensPart(this.terrains.get(numTerrain).getMatch().getPaire1().getJoueur1());
@@ -376,19 +380,19 @@ public class Tournoi {
 		this.terrains.get(numTerrain).getMatch().getPaire2().getJoueur2().ajouterAnciensPart(this.terrains.get(numTerrain).getMatch().getPaire2().getJoueur1());
 		this.terrains.get(numTerrain).getMatch().getPaire2().ajouterMatchJoue();
 		this.terrains.get(numTerrain).getMatch().getPaire1().ajouterMatchJoue();
-
 	}
 
 	/**
 	 * pour rentrer les scores d'un match lorsqu'il est ajouté de manière manuelle
-	 * @param paire   la première paire (celle de droite dans la main.vue)
-	 * @param paire2  la deuxième paire (celle de gauche dans la main.vue)
+	 * @param paire   la première paire (celle de droite dans la vue)
+	 * @param paire2  la deuxième paire (celle de gauche dans la vue)
 	 * @param scoreP1 le score de la première paire
 	 * @param scoreP2 le score de la seconde paire
 	 */
 	public void ajouterMatch(Paire paire, Paire paire2, int scoreP1, int scoreP2) {
 		this.paires.add(paire);
 		this.paires.add(paire2);
+
 		//comme les joueurs ont joués ils ne sont pas prioritaires
 		paire.getJoueur1().setPrio(false);
 		paire.getJoueur2().setPrio(false);
@@ -396,23 +400,25 @@ public class Tournoi {
 		paire2.getJoueur2().setPrio(false);
 		Match match = new Match(paire, paire2);
 		match.modifierScores(scoreP1, scoreP2);
-
 	}
 
+	/**
+	 * Retourne s'il y a des joueurs sur le terrain numéro i
+	 * @param i le terrain dont on veut savoir s'il est vide
+	 * @return true si le terrain est associé a un match (si il y a des joueurs dedans), faux sinon
+     */
+	public boolean terrainVide(int i) {
+		return this.terrains.get(i).getMatch() == null;
+	}
 
-
+	/**
+	 * Renvoie le classement des anciens joueurs
+	 * @return le classement des anciens joueurs adhérents
+	 */
 	public ArrayList getClassementAnciens() {
 		this.trierAnciensJoueurs();
 		return this.anciensJoueurs;
 	}
-
-	/**
-	 *Test si il y a des jouerurs sur le terrain
-	 *@return true si Le terrain est associé a un match (si il y a des joueurs dedans  faux sinon
-	 */
-	public boolean terrainVide(int i)
-	{ return this.terrains.get(i).getMatch() == null;}
-
 
 	/**
 	 * Renvoie le classement des nouveaux joueurs
@@ -437,18 +443,15 @@ public class Tournoi {
 	}
 
 	/**
-	 *Retourne le terrqin auquel un joueur est associé
+	 * Retourne le terrain auquel un joueur est associé
 	 * @param j le  joueur
-	 * @return tle terrain, null si le joueur ne joue pas a ce tour
+	 * @return le terrain ou null si le joueur ne joue pas a ce tour
 	 */
 	public Terrain getTerrainJoueur(Joueur j){
 		Terrain ret = null;
 		for (Terrain t : this.terrains)
-		{
-			if(t.j1()==j||t.j2()==j||t.j3()==j||t.j4()==j){
+			if(t.j1()==j||t.j2()==j||t.j3()==j||t.j4()==j)
 				ret = t;
-			}
-		}
 		return ret;
 	}
 
@@ -460,11 +463,9 @@ public class Tournoi {
 	 * @return true si l'opération est un succès, false sinon
 	 */
 	public Boolean changerJoueurs(Joueur jprec, Joueur jnouv) {
-		if(jprec.equals(jnouv)){
+		if(jprec.equals(jnouv))
 			return false;
-		}
-		Terrain tprec = getTerrainJoueur(jprec);
-		Terrain tnouv = getTerrainJoueur(jprec);
+
 		Paire pprec = this.getPaireContenant(jprec);
 		Paire pnouv = this.getPaireContenant(jnouv);
 		//si le nouveau joueur est J1 dans sa paire
@@ -478,79 +479,73 @@ public class Tournoi {
 					pprec.setJoueur2(jnouv);
 					pnouv.setJoueur1(jprec);
 				}
-			}else//si  le nouveau joueur est j2
-				if(pprec.getJoueur1() == jprec){
+			} else { //si  le nouveau joueur est j2
+				if (pprec.getJoueur1() == jprec) {
 					pprec.setJoueur1(jnouv);
 					pnouv.setJoueur2(jprec);
-				}
-				else{
+				} else {
 					pprec.setJoueur2(jnouv);
 					pnouv.setJoueur2(jprec);
 				}
-			{
-
-
-
-		}
+			}
 		return true;
-
 	}
 
-
 	/**
-	 * renvoie la paire contenant un joueur donné null sinon
+	 * renvoie la paire contenant un joueur donné, ou null si le joueur n'est pas dans une paire
 	 * @param j le joueur
-	 * @return null si le joueur n'est pas dans une paire la paire sinon
+	 * @return la paire dans lequel est le joueur, ou null
 	 */
 	public Paire getPaireContenant(Joueur j){
 		Paire ret = null;
-		for (int i = 0; i < this.paires.size(); i++) {
-			if (j == this.paires.get(i).getJoueur1() || j == this.paires.get(i).getJoueur2()) {
-				ret =  this.paires.get(i);
-			}
-		}
+		for (Paire paire : this.paires)
+			if (j == paire.getJoueur1() || j == paire.getJoueur2())
+				ret = paire;
 		return ret;
 	}
 
 	/**
-	 * pour obtenir l'id d'un joueur à partir de son nom et de son prénom
+	 * pour obtenir un joueur à partir de son nom et de son prénom
 	 * @param nomPrenom le nom plus un espace plus le prénom du joueur recherché
-	 * @return l'id du joueur recherché ou -1 si non trouvé
+	 * @return le joueur recherché ou null si non trouvé
 	 */
 	public Joueur chercherJoueur(String nomPrenom) {
 		Joueur ret = null;
-		for (int i = 0; i < anciensJoueurs.size(); i++) {
-			Joueur j = anciensJoueurs.get(i);
+		for (Joueur j : getAllJoueurs())
 			if ((j.getNom() + " " + j.getPrenom()).equals(nomPrenom))
 				ret = j;
-		}
-		for (int i = 0; i < nouveauxJoueurs.size(); i++) {
-			Joueur j = nouveauxJoueurs.get(i);
-			if ((j.getNom() + " " + j.getPrenom()).equals(nomPrenom))
-				ret =  j;
-		}
-		// Le joueur n'existe pas car les ID sont >=0
 		return ret;
 	}
 
 	/**
-	 * @return le nom du main.tournoi
+	 * Retour le nom du tournoi
+	 * @return le nom du tournoi
 	 */
 	public String getNom() {
 		return this.nom;
 	}
 
 	/**
-	 * @param nom le nouveua nom du main.tournoi
+	 * redéfini le nom du tournoi
+	 * @param nom le nouveau nom du tournoi
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
+	/**
+	 * Trouve un joueur avec un id et lui change ses informations
+	 * @param id l'id du joueur recherché
+	 * @param nom le nouveau nom du joueur
+	 * @param prenom le nouveau prenom du joueur
+	 * @param date la nouvelle date de naissance du joueur
+	 * @param sexe le nouveau sexe du joueur
+	 * @param nouveau la nouvelle ancienneté du joueur
+     * @param niveau la nouvelle catégorie de niveau du joueur
+     */
 	public void modifierJoueur(int id, String nom, String prenom, LocalDate date, boolean sexe,
 							   boolean nouveau, int niveau){
-		Joueur j = null;
-		j = this.getJoueur(id);
+		Joueur j = this.getJoueur(id);
 		j.modifierJoueur(nom, prenom, date, sexe, nouveau, niveau);
 	}
 
@@ -570,31 +565,19 @@ public class Tournoi {
 		//clear historique des paires
 		this.paires.clear();
 		//clear scores
-		for (int i = 0; i < anciensJoueurs.size(); i++) {
-			Joueur j = anciensJoueurs.get(i);
+		for (Joueur j : anciensJoueurs)
 			j.setScore(0);
 
-
-		}
-		for (int i = 0; i < nouveauxJoueurs.size(); i++) {
-			Joueur j = nouveauxJoueurs.get(i);
+		for (Joueur j : nouveauxJoueurs)
 			j.setScore(0);
-
-
-		}
 	}
 
 	/**
 	 * remet a faux le getdans paire des joueurs. Permet de liberer les joueurs pour l'algo des paires
 	 */
 	public void viderGetDansPaire(){
-		for (int i = 0; i < anciensJoueurs.size(); i++) {
-			anciensJoueurs.get(i).setDansPaire(false);
-
-		}
-		for (int i = 0; i < nouveauxJoueurs.size(); i++) {
-			nouveauxJoueurs.get(i).setDansPaire(false);
-
+		for (Joueur joueur : getAllJoueurs()) {
+			joueur.setDansPaire(false);
 		}
 	}
 
@@ -602,9 +585,8 @@ public class Tournoi {
 		return this.paires;
 	}
 
-
-
-	/** Retourne la liste des joueurs qu'on peut trouver dans le CSV
+	/**
+	 * Retourne la liste des joueurs qu'on peut trouver dans le CSV
 	 * @param fileDirectory le chemin pour accèder au CSV
 	 * @return une ArrayList avec tous les joueurs
 	 */
@@ -731,7 +713,7 @@ public class Tournoi {
 
 	/**
 	 * Exporte les classements dans un fichier CSV
-	 * @param filepath path d'un fichier
+	 * @param filepath le chemin du fichier où exporter le classement
 	 */
 	public void exportClassement(String filepath) throws IOException {
 		CSVWriter writer = new CSVWriter(new FileWriter(filepath), ',');
@@ -750,6 +732,10 @@ public class Tournoi {
 
 	}
 
+	/**
+	 * Exporte les joueurs dans un fichier CSV
+	 * @param filepath le chemin du fichier où enregistrer les joueurs
+     */
 	public void exportJoueurs(String filepath) throws IOException {
 		CSVWriter writer = new CSVWriter(new FileWriter(filepath), ',');
 		ArrayList<Joueur> all = getAllJoueurs();
@@ -764,6 +750,13 @@ public class Tournoi {
 		writer.close();
 	}
 
+	/**
+	 * Parse un String représentant une date du format "dd/MM/yyyy"
+	 * pour retourner la date correspondante de type LocalDate
+	 * @param datestr
+	 * @return la date
+	 * @throws DateParsingExeption si l'âge n'est pas au bon format
+     */
 	public LocalDate parseDate(String datestr) throws DateParsingExeption {
 		LocalDate date;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
@@ -776,12 +769,5 @@ public class Tournoi {
 		}
 		return date;
 	}
-
-	public void ajouterTour(Tour t)
-	{
-		this.tour.add(t);
-	}
-
-
 }
 
