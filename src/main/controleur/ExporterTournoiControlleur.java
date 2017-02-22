@@ -46,7 +46,7 @@ public class ExporterTournoiControlleur implements ActionListener {
         Frame fr = new Frame("Choississez un répertoire");
         FileDialog dial = new FileDialog(fr, "Enregistrer sous", FileDialog.SAVE);
         String titre = fenetre.getTitle();
-        titre = titre.replaceAll(" ","").replaceAll("/","-");
+        titre = titre.replaceAll(" ","_").replaceAll("/","-");
         dial.setFile(titre+".xml"); //Pré-écrit l'extension 'nom du tournoi'.xml dans la fenêtre de dialogue
         dial.setVisible(true);
         fr.setVisible(false);
