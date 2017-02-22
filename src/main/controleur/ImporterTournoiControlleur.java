@@ -1,8 +1,7 @@
 package main.controleur;
 
 import main.exception.DateParsingExeption;
-import main.tournoi.Joueur;
-import main.tournoi.Tournoi;
+import main.tournoi.*;
 import main.vue.FenetrePrincipale;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -109,18 +108,17 @@ public class ImporterTournoiControlleur implements ActionListener
                     }
                 }
 
-                int tourCourant = 1;
-                ArrayList<String> terrains = new ArrayList<>();
+                int terrainCourant = 1;
+                ArrayList<String> terrain = new ArrayList<>();
                 for(Node tourNode : listesTourNodes)
                 {
-                    System.out.println("Tour : "+ tourCourant++);
+                    Tour tour = new Tour();
                     NodeList terrainsNodes = tourNode.getChildNodes(); // Récupère les terrains d'un tour
                     int nbTerrain = terrainsNodes.getLength(); // compte le nombre de "terrain" dans le XML
                     for (int i = 0; i < nbTerrain; i++)
                     {
                         if (terrainsNodes.item(i).getNodeType() == Node.ELEMENT_NODE)
                         {
-                            System.out.println("               Début");
                             NodeList listeInfoTerrainNode = terrainsNodes.item(i).getChildNodes(); // Récupère toutes les informations d'un terrain du XML
                             int nbInfoTerrain = listeInfoTerrainNode.getLength(); // compte le nombre d'informations sur le terrain dans le XML
                             for (int z = 0; z < nbInfoTerrain; z++)
@@ -128,15 +126,14 @@ public class ImporterTournoiControlleur implements ActionListener
                                 if(listeInfoTerrainNode.item(z).getNodeType() == Node.ELEMENT_NODE)
                                 {
                                     Element info3 = (Element) listeInfoTerrainNode.item(z);
-                                    terrains.add(info3.getTextContent());
+                                    terrain.add(info3.getTextContent());
                                 }
                             }
-                            System.out.println("                            "+terrains);
-                            terrains.clear();
-                            System.out.println("               Fin");
-                            System.out.println("\n\n");
+                            ajouterTerrain(tour,terrain, terrainCourant);
+                            terrain.clear();
                         }
                     }
+                    terrainCourant = 1;
                 }
             }
             catch (Exception ex)
@@ -144,6 +141,7 @@ public class ImporterTournoiControlleur implements ActionListener
                 ex.printStackTrace();
             }
         }
+        fenetre.actualiserJoueurs();
     }
 
 
@@ -177,6 +175,34 @@ public class ImporterTournoiControlleur implements ActionListener
             tournoi.ajouterJoueur(j);
             fenetre.ajouterJoueurTable();
         }
+    }
+
+
+    public void ajouterTerrain(Tour t, ArrayList<String> terr, int numTerrain)
+    {
+        String nomPrenomJ1 = terr.get(0)+" "+terr.get(1);
+        String nomPrenomJ2 = terr.get(2)+" "+terr.get(3);
+        String nomPrenomJ3 = terr.get(5)+" "+terr.get(6);
+        String nomPrenomJ4 = terr.get(7)+" "+terr.get(8);
+        Joueur j1 = tournoi.chercherJoueur(nomPrenomJ1);
+        Joueur j2 = tournoi.chercherJoueur(nomPrenomJ2);
+        Joueur j3 = tournoi.chercherJoueur(nomPrenomJ3);
+        Joueur j4 = tournoi.chercherJoueur(nomPrenomJ4);
+
+        j1.ajouterAnciensPart(j2);
+        j2.ajouterAnciensPart(j1);
+        j3.ajouterAnciensPart(j4);
+        j4.ajouterAnciensPart(j3);
+
+        Paire p1 = new Paire(j1, j2);
+        Paire p2 = new Paire(j3, j4);
+
+        Match m = new Match(p1,p2);
+        m.modifierScores(Integer.parseInt(terr.get(4)),Integer.parseInt(terr.get(9)));
+        Terrain te = new Terrain(numTerrain,m);
+
+        t.addTerr(te);
+        fenetre.actualiserJoueurs();
     }
 
 }
