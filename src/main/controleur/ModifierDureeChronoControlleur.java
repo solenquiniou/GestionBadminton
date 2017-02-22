@@ -34,8 +34,13 @@ public class ModifierDureeChronoControlleur implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        chrono.setTempsRestant((int)min.getValue()*60 + (int)sec.getValue());
-        chrono.setTemps((int)min.getValue()*60 + (int)sec.getValue());
+        if((int) min.getValue()==0 && (int) sec.getValue()==0) {
+            chrono.setTempsRestant(1);
+            chrono.setTemps(1);
+        } else {
+            chrono.setTempsRestant((int) min.getValue() * 60 + (int) sec.getValue());
+            chrono.setTemps((int) min.getValue() * 60 + (int) sec.getValue());
+        }
         chrono.repaint();
         fenetre.dispose();
     }
