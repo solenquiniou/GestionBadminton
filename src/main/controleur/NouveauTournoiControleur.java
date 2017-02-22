@@ -1,16 +1,20 @@
 package main.controleur;
 
+import main.exception.NbTerrainNeg;
+import main.exception.NomVideException;
+import main.tournoi.Tournoi;
+import main.vue.FenetrePrincipale;
+import main.vue.NouveauTournoi;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-
-import main.exception.*;
-import main.tournoi.*;
-import main.vue.*;
-
+/**
+ * Controleur de création d'un nouveau tournoi
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
+ */
 public class NouveauTournoiControleur implements ActionListener {
 	private JSpinner nbTerrains;
 	private JTextField nom;
@@ -18,7 +22,7 @@ public class NouveauTournoiControleur implements ActionListener {
 	private NouveauTournoi nouveauTournoiFen;
 
 	/**
-	 * constructeur du main.controleur de la fenêtre de lancement
+	 * constructeur du controleur de la fenêtre de lancement
 	 * @param f la fenêtre principale associée
 	 * @param leNom le champs de saisie du nom du main.tournoi
 	 * @param leNbTerrains l'outil de sélection du nombre de terrains
@@ -29,12 +33,11 @@ public class NouveauTournoiControleur implements ActionListener {
 		this.nom = leNom;
 		this.nouveauTournoiFen = nt;
 		this.fenetre = f;
-
 	}
 
 	/**
-	 * pour créer un main.tournoi
-	 * @param e un clic sur me bouton de lancement du main.tournoi
+	 * pour créer un nouveau tournoi
+	 * @param e un clic sur le bouton d' un nouveau  tournoi ou au lancement de l'application
      */
 	@Override
 	public void actionPerformed(ActionEvent e){
@@ -46,16 +49,14 @@ public class NouveauTournoiControleur implements ActionListener {
 			//Fermeture de la fenetre
 			this.nouveauTournoiFen.dispose();
 		}
-		//On vérifie qu'on peut créer un main.tournoi avec les informations indiquées
+		//On vérifie qu'on peut créer un tournoi avec les informations indiquées
 		catch(NomVideException e1){
 			JOptionPane.showMessageDialog(null, "Entrez un nom de tournoi", "Erreur", JOptionPane.ERROR_MESSAGE);
 		} 
 		catch(NbTerrainNeg e1){
 			JOptionPane.showMessageDialog(null, "Entrez un nombre de terrain positif", "Erreur", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
-		
+
 
 	}
 }

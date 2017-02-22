@@ -8,16 +8,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 14/11/16.
+ * Controleur du nouveau Tour. Enregistre le tour précédent et lqance un nouveau toiur.
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
  */
 public class NouveauTourControleur implements ActionListener {
     private FenetrePrincipale vue;
     private Tournoi tournoi;
+
+    /**
+     * Constructeur du controlleur nouveau tour
+     * @param vue la vue principale du tournoi
+     */
     public NouveauTourControleur(FenetrePrincipale vue){
         this.vue = vue;
         this.tournoi = vue.getTournoi();
     }
 
+    /**
+     * Enregistre le tour précédent et lance le suivant
+     * @param e evènement du clique sur le boutton "valider" d'un terrain
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         try{

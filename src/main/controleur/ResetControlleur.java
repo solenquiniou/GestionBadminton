@@ -8,19 +8,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 02/11/16.
+ * Controleur de remise a zéro des scores (Permet d'avoir un nouveau tournoi tout en conservant les joueurs)
+ * @author DERNONCOURT Cyril, DROUARD Antoine, LE BERT Léa, MARTINEAU Lucas
+ * @version 1.1
  */
 public class ResetControlleur  implements ActionListener {
     private Tournoi tournoi;
     private FenetrePrincipale vue;
 
-
-
+    /**
+     * Constructeur de la classe VoirClassementControleur
+     * @param vue la vue principale du tournoi
+     */
     public ResetControlleur(FenetrePrincipale vue) {
         this.vue = vue;
         this.tournoi = vue.getTournoi();
     }
 
+    /**
+     * Remise a zéro de tout les scores
+     * @param e evènement du clique sur le boutton "reset" de la vue principale
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object[] options = { "OUI", "ANNULER" };
