@@ -7,14 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Antoine Drouard, Cyril Dernoncourt,MArtinneau Lucas, LE BErt Léa on 05/11/16.
+ * La classe ChronometreStartControlleur est appliquée au bouton "Lancer"/"Stopper" qui accompagne le chronometre. Elle lance ou stoppe le chronomètre en fonction de son état.
+ * @author DERNONCOURT Cyril , DROUARD Antoine, LE BERT Lea, MARTINEAU Lucas
  */
 public class ChronometreStartControlleur implements ActionListener {
     private Chrono temps;
     private JButton bouton;
 
     /**
-     * constructeur du controleur qui permet de lancer le chronometre
+     * Constructeur du controleur qui permet de lancer/stopper le chronometre
      * @param t le chrono
      * @param b le bouton auquel ce controleur est appliqué
      */
@@ -24,6 +25,10 @@ public class ChronometreStartControlleur implements ActionListener {
         this.bouton = b;
     }
 
+    /**
+     * Lance le chronomètre si il est stoppé, stoppe le chronomètre si il est lancé.
+     * @param e un appuie sur le bouton de lancement/arrêt du chronometre.
+     */
     public void actionPerformed(ActionEvent e) {
         if(temps.getActif()) {
             temps.stop();
