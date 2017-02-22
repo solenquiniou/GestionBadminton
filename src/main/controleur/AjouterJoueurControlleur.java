@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
+/**
+ * La classe AjouterJoueurControlleur est appliquée au bouton de validation de la fenêtre d'ajout de joueur. Ce controlleur fait en sorte d'ajouter un joueur une fois les valeurs le décrivant renseignée.
+ * @author DERNONCOURT Cyril , DROUARD Antoine, LE BERT Lea, MARTINEAU Lucas
+ */
 public class AjouterJoueurControlleur implements ActionListener {
 	
 	private FenetreAjoutJoueur vue;
@@ -18,8 +22,8 @@ public class AjouterJoueurControlleur implements ActionListener {
 	private LocalDate datej = null;
 
 	/**
-	 * constructeur du main.controleur
-	 * @param vue la fenetre principale
+	 * Constructeur de la classe AjouterJoueurControlleur
+	 * @param vue la fenetre sur laquelle le controlleur est appliqué
      */
 	public AjouterJoueurControlleur(FenetreAjoutJoueur vue){
 		this.vue = vue;
@@ -39,11 +43,10 @@ public class AjouterJoueurControlleur implements ActionListener {
 			FenetreAjoutJoueur.setDerniereFenetre(null);
 			JOptionPane.showMessageDialog(vue,"Joueur ajouté !");
 		}
-
 	}
 
 	/**
-	 * pour vérifier si les informations entrées sont valables
+	 * Méthode qui vérifie si les informations entrées sont valides
 	 * @return vrai si on peut ajouter le joueur, faux s'il y a un problème
      */
 	public boolean verifier(){
@@ -66,46 +69,38 @@ public class AjouterJoueurControlleur implements ActionListener {
 			return false;
 		}
 
-
 		return true;
 	}
 
-
 	/**
-	 * pour ajouter un joueur dans le main.tournoi et dans la liste de la fenetre principale
+	 * Méthode qui sert à ajouter un joueur dans le main.tournoi et dans la liste de la fenetre principale
 	 */
-	public void ajouterJoueur(){
+	public void ajouterJoueur() {
 		int id = Joueur.nbJoueursCrees;
-		if(!vue.getDateIndefinie().isSelected()) {
-			datej = datej.of((Integer) this.annee.getSelectedItem(), this.mois.getSelectedIndex() + 1, (Integer) this.jour.getSelectedItem()) ;
+		if (!vue.getDateIndefinie().isSelected()) {
+			datej = datej.of((Integer) this.annee.getSelectedItem(), this.mois.getSelectedIndex() + 1, (Integer) this.jour.getSelectedItem());
 		}
-			String nom = vue.getNom().getText(), prenom = vue.getPrenom().getText();
+		String nom = vue.getNom().getText(), prenom = vue.getPrenom().getText();
 
-			boolean sexe = vue.getHom().isSelected();
-			boolean nouveau = vue.getNouv().isSelected();
-			int niveau = vue.getNiveau().getSelectedIndex();
-			boolean pres = vue.getPresent().isSelected();
-			Joueur j = new Joueur(id, nom, prenom, datej, sexe, nouveau, niveau, pres);
-			vue.setNom("");
-			vue.setPrenom("");
-			this.setAge();
-			vue.getTournoi().ajouterJoueur(j);
-			vue.getFenetrePrincipale().ajouterJoueurTable();
-
-
-
-
-
+		boolean sexe = vue.getHom().isSelected();
+		boolean nouveau = vue.getNouv().isSelected();
+		int niveau = vue.getNiveau().getSelectedIndex();
+		boolean pres = vue.getPresent().isSelected();
+		Joueur j = new Joueur(id, nom, prenom, datej, sexe, nouveau, niveau, pres);
+		vue.setNom("");
+		vue.setPrenom("");
+		this.setAge();
+		vue.getTournoi().ajouterJoueur(j);
+		vue.getFenetrePrincipale().ajouterJoueurTable();
 	}
+
 	/**
-	 * réinitialise l'age
+	 * Méthode permettant de réinitialiser l'age
 	 */
 	public void setAge(){
-		LocalDate auj = LocalDate.now();
 		this.jour.setSelectedIndex(0);
 		this.mois.setSelectedIndex(0);
 		this.annee.setSelectedIndex(0);
 	}
-
 
 }

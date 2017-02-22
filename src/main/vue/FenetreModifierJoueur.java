@@ -1,6 +1,6 @@
 package main.vue;
 
-import main.controleur.DateInfefinieControlleur;
+import main.controleur.DateIndefinieControlleur;
 import main.controleur.ModifierJoueurBoutonControlleur;
 import main.controleur.SupprimerJoueurBoutonControlleur;
 import main.tournoi.Joueur;
@@ -90,7 +90,7 @@ public class FenetreModifierJoueur extends JFrame implements GestionJoueur {
 		};
 		jour = new JComboBox(jourCombobox.toArray());
 		dateIndefinie = new JCheckBox("indefini");
-		dateIndefinie.addActionListener(new DateInfefinieControlleur(dateIndefinie, this));
+		dateIndefinie.addActionListener(new DateIndefinieControlleur(dateIndefinie, this));
 		date.add(jour);
 		date.add(mois);
 		date.add(annee);

@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by lea on 09/10/16.
+ * La calsse AjouterMatchControlleur est appliquée au bouton de validation de la fenêtre d'ajout de match. Ce controlleur ajouter un match avec les informations renseignée dans la fenêtre d'ajout de match.
  * @author DERNONCOURT Cyril , DROUARD Antoine, LE BERT Lea, MARTINEAU Lucas
  */
 public class AjouterMatchControlleur implements ActionListener {
@@ -28,10 +28,10 @@ public class AjouterMatchControlleur implements ActionListener {
 
 
     /**
-     * constructeur du main.controleur
+     * Constructeur de la classe AjouterMatchControlleur
      * @param vue la fenetre FenetreAjoutMatch
-     * @param s1 JSpinner du score de la paire1
-     * @param s2 JSpinner du score de la paire1
+     * @param s1 JSpinner du score de la première paire
+     * @param s2 JSpinner du score de la seconde paire
      */
     public AjouterMatchControlleur(FenetreAjoutMatch vue,JSpinner s1,JSpinner s2){
         this.vue = vue;
@@ -43,6 +43,11 @@ public class AjouterMatchControlleur implements ActionListener {
          j3 = "none";
          j4 = "none";
     }
+
+    /**
+     * Ajoute un match
+     * @param e un changement de sélection de la valeur du JComboBox
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         score1 = (int)sp_score1.getValue();
@@ -74,8 +79,8 @@ public class AjouterMatchControlleur implements ActionListener {
     }
 
     /**
-     * pour vérifier si on peut entrer les scores
-     * @return true si les scores sont valables false sinon
+     * Méthode vérifiant la validité des informations renseignées
+     * @return true si les scores sont valibles false sinon
      */
     private boolean verifier(){
         boolean ret_val = true;
@@ -86,7 +91,6 @@ public class AjouterMatchControlleur implements ActionListener {
             ret_val= false;
         }
 
-
         test = score2;
         if(test<0){
             JOptionPane.showMessageDialog(vue, "Vous devez entrer un entier positif.","Erreur",JOptionPane.ERROR_MESSAGE);
@@ -96,8 +100,6 @@ public class AjouterMatchControlleur implements ActionListener {
             JOptionPane.showMessageDialog(vue, "Il y a deux fois le même Joueur","Erreur",JOptionPane.ERROR_MESSAGE);
             ret_val= false;
         }
-
-
 
         return ret_val;
     }
