@@ -167,17 +167,17 @@ public class TestTournoi {
     @Test
     public void TestDecouperJoueur() {
         //id 0, nom : testNom, prenom : testPrenom, âge : indéfini, sexe : homme, nouveau joueur, niveau : indéfini, peutJouer
-        Joueur j1 = new Joueur(0,"testNom", "testPrenom", LocalDate.now(), true, true, 0,true);
+        Joueur j1 = new Joueur(0,"testNom", "testPrenom", null, true, true, 0,true);
         //id 1, nom : testNom2, prenom : testPrenom2, âge : -18 jeune, sexe : femme, ancien joueur, niveau : débutant, peut pas jouer
-        Joueur j2 = new Joueur(1, "testNom2", "testPrenom2", LocalDate.now(), false, false, 1, false);
+        Joueur j2 = new Joueur(1, "testNom2", "testPrenom2", LocalDate.of(2000, 2, 23), false, false, 1, false);
         //id 2, nom : testNom3, prenom : testPrenom3, âge : 18-35 senior, sexe : femme, ancien joueur, niveau : Intermédiaire, peut pas jouer
-        Joueur j3 = new Joueur(2, "testNom3", "testPrenom3", LocalDate.now(), false, false, 2, false);
+        Joueur j3 = new Joueur(2, "testNom3", "testPrenom3", LocalDate.of(1992, 6, 9), false, false, 2, false);
         //id 2, nom : testNom3, prenom : testPrenom3, âge : 35+ veteran, sexe : femme, ancien joueur, niveau : Confirmé, peut pas jouer
-        Joueur j4 = new Joueur(3, "testNom4", "testPrenom4", LocalDate.now(), false, false, 3, false);
+        Joueur j4 = new Joueur(3, "testNom4", "testPrenom4",LocalDate.of(1982, 2, 1), false, false, 3, false);
         assertEquals(Tournoi.decouperJoueur(j1), "testPrenom,testNom,Homme,Nouveau,,");
-        assertEquals(Tournoi.decouperJoueur(j2), "testPrenom2,testNom2,Femme,Ancien,-18 ans,Débutant");
-        assertEquals(Tournoi.decouperJoueur(j3), "testPrenom3,testNom3,Femme,Ancien,18-35 ans,Intermédiaire");
-        assertEquals(Tournoi.decouperJoueur(j4), "testPrenom4,testNom4,Femme,Ancien,35+ ans,Confirmé");
+        assertEquals(Tournoi.decouperJoueur(j2), "testPrenom2,testNom2,Femme,Ancien,23/02/2000,Débutant");
+        assertEquals(Tournoi.decouperJoueur(j3), "testPrenom3,testNom3,Femme,Ancien,09/06/1992,Intermédiaire");
+        assertEquals(Tournoi.decouperJoueur(j4), "testPrenom4,testNom4,Femme,Ancien,01/02/1982,Confirmé");
     }
 
     @Test

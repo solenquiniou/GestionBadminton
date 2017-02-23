@@ -131,6 +131,7 @@ public class FenetrePrincipale extends JFrame {
 			}
 		};
 		listeJoueurs = new JTable(listeJoueursModele);
+		listeJoueurs.getTableHeader().setReorderingAllowed(false);
 		listeJoueurs.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);//selection multiple
 		//supression par la touche suppr
 		listeJoueurs.addKeyListener(new DeleteKeyListener(this,listeJoueurs));
