@@ -28,10 +28,13 @@ public class FenetrePrincipale extends JFrame {
 	//La fen�tre principale � un main.tournoi surlequel elle peut agir
 	private Tournoi tournoi;
 	private DefaultTableModel listeJoueursModele;//pour l'affichage des joueurs
+	private DefaultTableModel listeTourModel;
 	private JTable listeJoueurs;
+	private JTable listeTours;
 	private String[] joueurs;
 	private ArrayList<JComboBox> boxTerrains = new ArrayList<>();
 	private JPanel tournois;
+	private JPanel tours;
 	private JTabbedPane onglets;
 	private Chrono chronometre;
 	private int verif;
@@ -235,9 +238,16 @@ public class FenetrePrincipale extends JFrame {
 		tournois = new JPanel();
 		tournois.setLayout(new BorderLayout());
 
+		////Onglet historique des tours
+		tours = new JPanel();
+		tours.setLayout(new BorderLayout());
+		initialiserOngletTour();
+
+
 		//On ajoute tous les onglets
 		onglets.addTab("Joueurs", joueurs);
 		onglets.addTab("Tournois", tournois);
+		onglets.addTab("Tours Précédents", tours);
 		onglets.setOpaque(true);
 
 
@@ -515,6 +525,101 @@ public class FenetrePrincipale extends JFrame {
 		onglets.setSelectedIndex(1);
 	}
 
+	/**
+	 * Initialise l' onglet tour
+	 *
+	 */
+	public void initialiserOngletTour(){
+		ArrayList allTours = tournoi.getTours();
+		ArrayList<Integer> nbtours = new ArrayList<Integer>();
+		for (int i = 0; i < allTours.size(); i++)
+			nbtours.add(i+1);
+
+
+		//combobox de choix de quoi afficher
+
+		String  entetes[] = {"Tour","Paire 1", "Paire 1", "Paire 2","Paire 2","Score"};
+		listeTourModel = new DefaultTableModel(entetes, 0)
+		{
+			//bien redefinir les types des colones pour que l'autosort marche
+			public Class getColumnClass(int column)
+			{
+				switch (column)
+				{
+					case 0:
+						return Integer.class;
+					case 1:
+						return String.class;
+					case 2:
+						return String.class;
+					case 3:
+						return String.class;
+					case 4:
+						return String.class;
+					case 5:
+						return Integer.class;
+					default:
+						return String.class;
+				}
+			}
+		};
+		listeTours = new JTable(listeTourModel);
+		listeTours.setAutoCreateRowSorter(true);
+		JScrollPane panTour = new JScrollPane(listeTours);
+		tours.add(panTour,BorderLayout.CENTER);
+
+		//menu de choix de l'affichage
+		JPanel menuChoix = new JPanel();
+		menuChoix.setLayout(new GridLayout(1, 5));
+
+		JRadioButton tout = new JRadioButton("Tous");
+		JRadioButton selectJoueur = new JRadioButton("Tour");
+		JRadioButton selectTour = new JRadioButton("Joueur");
+		tout.setSelected(true);
+		selectJoueur.setSelected(false);
+		selectTour.setSelected(false);
+
+		ButtonGroup grChoix = new ButtonGroup();
+		grChoix.add(selectJoueur);
+		grChoix.add(selectTour);
+		grChoix.add(tout);
+
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		menuChoix.add(tout, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		menuChoix.add(selectJoueur, gbc);
+		ArrayList<Joueur> joueurDansCombo = tournoi.getAllJoueurs();
+		JComboBox listeTour = new JComboBox(nbtours.toArray());
+
+		//listeTour.setEnabled(false);
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		menuChoix.add(listeTour, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		menuChoix.add(selectTour, gbc);
+		JComboBox listeJoueur = new JComboBox(joueurDansCombo.toArray());
+		listeJoueur.setEnabled(false);
+		gbc.gridx = 0;
+		gbc.gridy = 5;
+		menuChoix.add(listeJoueur, gbc);
+
+
+
+
+
+
+		tours.add(menuChoix, BorderLayout.NORTH);
+
+
+
+
+
+
+	}
 	/**
 	 *
 	 * @return le chronomètre
