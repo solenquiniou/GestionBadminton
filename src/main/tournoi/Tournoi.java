@@ -769,5 +769,13 @@ public class Tournoi {
 		}
 		return date;
 	}
+
+	/**
+	 * Ajoute un tour dans la liste des tours
+	 * @param t le tour à ajouter
+     */
+	public void ajouterTour(Tour t) {
+		this.tour.add(t);
+	}
 }
 
