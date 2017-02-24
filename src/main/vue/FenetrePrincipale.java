@@ -2,9 +2,7 @@ package main.vue;
 
 import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 import main.controleur.*;
-import main.tournoi.Chrono;
-import main.tournoi.Joueur;
-import main.tournoi.Tournoi;
+import main.tournoi.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -38,6 +36,12 @@ public class FenetrePrincipale extends JFrame {
 	private JTabbedPane onglets;
 	private Chrono chronometre;
 	private int verif;
+	private JRadioButton tout;
+	private JRadioButton selectJoueur;
+	private JRadioButton selectTour;
+	private JComboBox listeTour;
+	private JComboBox<Joueur> listeJoueur;
+
 
 	/**
 	 * Constructeur de la classe FenetrePrincipale
@@ -298,6 +302,7 @@ public class FenetrePrincipale extends JFrame {
 			ajouterJoueurTable(j);
 		}
 
+
 	}
 
 	/**
@@ -306,8 +311,12 @@ public class FenetrePrincipale extends JFrame {
      */
 	public void ajouterJoueurTable(Joueur j)
 	{
+		//onglet joueur
 		Object[] tJ = {j.getNom(), j.getPrenom(), j.getScore(), j.getAnciennte(), j.statut()};
 		this.listeJoueursModele.addRow(tJ);
+
+		//onglet tour
+		this.listeJoueur.addItem(j);
 	}
 
 
@@ -527,7 +536,6 @@ public class FenetrePrincipale extends JFrame {
 
 	/**
 	 * Initialise l' onglet tour
-	 *
 	 */
 	public void initialiserOngletTour(){
 		ArrayList allTours = tournoi.getTours();
@@ -538,7 +546,7 @@ public class FenetrePrincipale extends JFrame {
 
 		//combobox de choix de quoi afficher
 
-		String  entetes[] = {"Tour","Paire 1", "Paire 1", "Paire 2","Paire 2","Score"};
+		String  entetes[] = {"Tour","Paire 1", "Paire 1","Score", "Paire 2","Paire 2","Score"};
 		listeTourModel = new DefaultTableModel(entetes, 0)
 		{
 			//bien redefinir les types des colones pour que l'autosort marche
@@ -553,10 +561,12 @@ public class FenetrePrincipale extends JFrame {
 					case 2:
 						return String.class;
 					case 3:
-						return String.class;
+						return Integer.class;
 					case 4:
 						return String.class;
 					case 5:
+						return String.class;
+					case 6:
 						return Integer.class;
 					default:
 						return String.class;
@@ -572,9 +582,9 @@ public class FenetrePrincipale extends JFrame {
 		JPanel menuChoix = new JPanel();
 		menuChoix.setLayout(new GridLayout(1, 5));
 
-		JRadioButton tout = new JRadioButton("Tous");
-		JRadioButton selectJoueur = new JRadioButton("Tour");
-		JRadioButton selectTour = new JRadioButton("Joueur");
+		tout = new JRadioButton("Tout");
+		selectJoueur = new JRadioButton("Tour");
+		selectTour = new JRadioButton("Joueur");
 		tout.setSelected(true);
 		selectJoueur.setSelected(false);
 		selectTour.setSelected(false);
@@ -591,9 +601,7 @@ public class FenetrePrincipale extends JFrame {
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		menuChoix.add(selectJoueur, gbc);
-		ArrayList<Joueur> joueurDansCombo = tournoi.getAllJoueurs();
-		JComboBox listeTour = new JComboBox(nbtours.toArray());
-
+		listeTour = new JComboBox();
 		//listeTour.setEnabled(false);
 		gbc.gridx = 0;
 		gbc.gridy = 3;
@@ -601,25 +609,76 @@ public class FenetrePrincipale extends JFrame {
 		gbc.gridx = 0;
 		gbc.gridy = 4;
 		menuChoix.add(selectTour, gbc);
-		JComboBox listeJoueur = new JComboBox(joueurDansCombo.toArray());
-		listeJoueur.setEnabled(false);
+		listeJoueur = new JComboBox();
+		//listeJoueur.setEnabled(false);
 		gbc.gridx = 0;
 		gbc.gridy = 5;
 		menuChoix.add(listeJoueur, gbc);
-
-
-
-
-
-
 		tours.add(menuChoix, BorderLayout.NORTH);
 
+	}
 
+	/**
+	 * Actualise l'affichage des tours en fonction du radio button que séléctionne l'utilisateur
+	 * @param selection la valeur de ce qui est séléctioné
+	 */
+	public void actualiserOngletTour(String selection){
+		switch (selection){
+				case "Tour":
+					afficherTourParTour(this.listeTour.getSelectedIndex()-1);
+				case "Joueur":
+					affichertourparjoueur((Joueur) this.listeJoueur.getSelectedItem());
+				default:
+					for (int i = 0; i < tournoi.getNbTour(); i++) {
+						afficherTourParTour(i);
+					}
+		}
 
+	}
 
+	/**
+	 * Actualise l'affichage avec le tour voulu
+	 * @param tour
+	 */
+	public void afficherTourParTour(int tour){
+		this.listeTourModel.setRowCount(0);
+		ArrayList<Terrain> allTerrain = tournoi.getTours().get(tour).getMatches();
+		//On rentre les joueurs anciens dans les X premières cases
+		for (Terrain terrain : allTerrain)
+		{
+			ajouterTourTable(terrain.getMatch());
+		}
 
 
 	}
+
+
+	/**
+	 * Actualise l'affichage avec  tout les tours joué par un joueur
+	 * @param joueur
+	 */
+	public void affichertourparjoueur(Joueur joueur){
+		this.listeTourModel.setRowCount(0);
+		ArrayList<Match> allMatch = tournoi.getTourJouePar(joueur);
+		//On rentre les joueurs anciens dans les X premières cases
+		for (Match match : allMatch)
+		{
+			ajouterTourTable(match);
+		}
+	}
+	
+	/**
+	 * pour insérer un match dans la liste des tours (onglet tours)
+	 * @param match
+	 */
+	public void ajouterTourTable(Match match){
+		//onglet joueur
+		Object[] matchLigne = {match.getPaire1().getJoueur1(),match.getPaire1().getJoueur2(),match.getScore1(),match.getPaire2().getJoueur1(),match.getPaire2().getJoueur2(),match.getScore2()};
+		this.listeTourModel.addRow(matchLigne);
+
+	}
+
+
 	/**
 	 *
 	 * @return le chronomètre

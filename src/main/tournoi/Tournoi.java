@@ -718,7 +718,7 @@ public class Tournoi {
 	public void exportClassement(String filepath) throws IOException {
 		CSVWriter writer = new CSVWriter(new FileWriter(filepath), ',');
 		ArrayList<Joueur> all = getAllJoueurs();
-		Collections.sort(all,new  ComparateurJoueurScore());
+		Collections.sort(all, new ComparateurJoueurScore());
 		String[] entries;
 		entries = ("Nom,Prenom,Score,Ancienneté").split(",");
 		writer.writeNext(entries);
@@ -776,6 +776,21 @@ public class Tournoi {
      */
 	public void ajouterTour(Tour t) {
 		this.tour.add(t);
+	}
+
+
+	/**
+	 * Recupère tout les tour ou un joueur donné a participé
+	 * @param joueur
+	 */
+	public ArrayList<Match> getTourJouePar(Joueur joueur){
+		ArrayList<Match> matches = new ArrayList<Match>();
+		for (Tour tour: this.tour){
+			if (tour.getMatchjouePar(joueur).size()!=0){
+				matches.addAll(tour.getMatchjouePar(joueur));
+			}
+		}
+	return matches;
 	}
 }
 

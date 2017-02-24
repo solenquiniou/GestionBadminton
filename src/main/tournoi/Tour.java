@@ -37,4 +37,18 @@ public class Tour {
     public ArrayList<Terrain> getMatches() {
         return matches;
     }
+
+    /**
+     * Retourne tout les maches du tour que le joeur a joué
+     * @param joueur
+     */
+    public ArrayList<Match> getMatchjouePar(Joueur joueur){
+        ArrayList<Match> matches = new ArrayList<Match>();
+        for (Terrain match:this.matches){
+            if(match.j1()==joueur||match.j2()==joueur||match.j3()==joueur||match.j4()==joueur){
+                matches.add(match.getMatch());
+            }
+        }
+      return matches;
+    }
 }

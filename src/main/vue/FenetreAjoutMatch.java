@@ -118,14 +118,8 @@ public class FenetreAjoutMatch extends JFrame {
             }
 
             valider.addActionListener(new AjouterMatchControlleur(this, score1, score2));
-
-            JLabel t1 = new JLabel("Terrain :");
-            terain = new JSpinner();
-
-
             JPanel sud = new JPanel();
-            sud.add(t1);
-            sud.add(terain);
+
             sud.add(valider);
             corePanel.add(sud, BorderLayout.SOUTH);
 
