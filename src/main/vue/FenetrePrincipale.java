@@ -530,7 +530,7 @@ public class FenetrePrincipale extends JFrame {
 
 		tournois.add(terrains, BorderLayout.CENTER);
 		onglets.removeTabAt(1);
-		onglets.addTab("Tournois", tournois);
+		onglets.insertTab("Tournois", null, tournois, null, 1);
 		onglets.setSelectedIndex(1);
 	}
 
@@ -539,7 +539,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	public void initialiserOngletTour(){
 		ArrayList allTours = tournoi.getTours();
-		ArrayList<Integer> nbtours = new ArrayList<Integer>();
+		ArrayList<Integer> nbtours = new ArrayList<>();
 		for (int i = 0; i < allTours.size(); i++)
 			nbtours.add(i+1);
 
