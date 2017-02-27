@@ -126,12 +126,12 @@ public class FenetreAjoutMatch extends JFrame {
 
             this.setContentPane(corePanel);
             this.pack();
-            this.setVisible(true);
             this.setTitle(titre);
             int tailleX = 600, tailleY = 200;
-            this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - tailleX) / 2, (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - tailleY) / 2);
             this.setSize(tailleX, tailleY);
+            this.setLocationRelativeTo(null);
             this.setResizable(false);
+            this.setVisible(true);
 
             derniereFenetre = this;
 

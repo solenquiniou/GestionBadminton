@@ -173,10 +173,10 @@ public class FenetreAjoutJoueur extends JFrame implements GestionJoueur {
 
 			this.setContentPane(corePanel);
 			this.pack();
-			this.setVisible(true);
 			this.setTitle(titre);
-			this.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()-corePanel.getWidth())/2,(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-corePanel.getHeight())/2);
+			this.setLocationRelativeTo(null);
 			this.setResizable(false);
+			this.setVisible(true);
 
 			derniereFenetre = this;
 

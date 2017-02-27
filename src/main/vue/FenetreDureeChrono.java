@@ -50,10 +50,10 @@ public class FenetreDureeChrono extends JDialog {
         //affichage final
         this.setContentPane(corePanel);
         this.pack();
-        this.setVisible(true);
         this.setTitle("Durée du chronomètre");
-        this.setLocationRelativeTo(null);
         this.setSize(410, 150);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setVisible(true);
     }
 }

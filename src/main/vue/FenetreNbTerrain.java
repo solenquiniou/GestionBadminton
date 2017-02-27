@@ -83,7 +83,7 @@ public class FenetreNbTerrain extends JDialog {
         boutonsAnVal.add(annuler);
         boutonsAnVal.add(valider);
         buttonContainer.add(boutonsAnVal, BorderLayout.EAST);
-        buttonContainer.setBorder(new EmptyBorder(10, 10, 10, 10));
+        buttonContainer.setBorder(new EmptyBorder(0, 10, 0, 10));
 
         //On ajoute le conteneur du haut au content pane
         container.add(topContainer, BorderLayout.NORTH);
@@ -97,10 +97,10 @@ public class FenetreNbTerrain extends JDialog {
 
         //affichage final
         this.pack();
-        this.setVisible(true);
         this.setTitle("Nouveau Tournoi");
+        this.setSize(410, 160);
         this.setLocationRelativeTo(null);
-        this.setSize(410, 150);
         this.setResizable(false);
+        this.setVisible(true);
     }
 }

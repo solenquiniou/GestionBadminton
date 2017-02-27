@@ -64,10 +64,10 @@ public class FenetrePrincipale extends JFrame {
 		//Les declarations de base
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
-		this.setVisible(true);
 		this.setTitle(titre);
 		this.setLocation(0, 0);
-		this.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setJMenuBar(new MenuDebut(this));
 	}
