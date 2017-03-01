@@ -39,8 +39,8 @@ public class FenetrePrincipale extends JFrame {
 	private JRadioButton tout;
 	private JRadioButton selectJoueur;
 	private JRadioButton selectTour;
-	private JComboBox listeTour;
-	private JComboBox<Joueur> listeJoueur;
+	private JComboBox combolisteTour;
+	private JComboBox<Joueur> combolisteJoueur;
 
 
 	/**
@@ -316,7 +316,7 @@ public class FenetrePrincipale extends JFrame {
 		this.listeJoueursModele.addRow(tJ);
 
 		//onglet tour
-		this.listeJoueur.addItem(j);
+		this.combolisteJoueur.addItem(j);
 	}
 
 
@@ -583,8 +583,8 @@ public class FenetrePrincipale extends JFrame {
 		menuChoix.setLayout(new GridLayout(1, 5));
 
 		tout = new JRadioButton("Tout");
-		selectJoueur = new JRadioButton("Tour");
-		selectTour = new JRadioButton("Joueur");
+		selectJoueur = new JRadioButton("Joueur");
+		selectTour = new JRadioButton("Tour");
 		tout.setSelected(true);
 		selectJoueur.setSelected(false);
 		selectTour.setSelected(false);
@@ -601,20 +601,25 @@ public class FenetrePrincipale extends JFrame {
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		menuChoix.add(selectJoueur, gbc);
-		listeTour = new JComboBox();
-		//listeTour.setEnabled(false);
+		combolisteJoueur = new JComboBox();
+		combolisteJoueur.setEnabled(false);
+
 		gbc.gridx = 0;
 		gbc.gridy = 3;
-		menuChoix.add(listeTour, gbc);
+		menuChoix.add(combolisteJoueur, gbc);
 		gbc.gridx = 0;
 		gbc.gridy = 4;
 		menuChoix.add(selectTour, gbc);
-		listeJoueur = new JComboBox();
-		//listeJoueur.setEnabled(false);
+		combolisteTour = new JComboBox();
+		combolisteTour.setEnabled(false);
 		gbc.gridx = 0;
 		gbc.gridy = 5;
-		menuChoix.add(listeJoueur, gbc);
+		menuChoix.add(combolisteTour, gbc);
 		tours.add(menuChoix, BorderLayout.NORTH);
+
+		tout.addActionListener(new HistoriqueTousControleur(this, combolisteTour, combolisteJoueur, tout));
+		selectJoueur.addActionListener(new HistoriqueTousControleur(this,combolisteTour,combolisteJoueur,selectJoueur));
+		selectTour.addActionListener(new HistoriqueTousControleur(this,combolisteTour,combolisteJoueur,selectTour));
 
 	}
 
@@ -625,9 +630,9 @@ public class FenetrePrincipale extends JFrame {
 	public void actualiserOngletTour(String selection){
 		switch (selection){
 				case "Tour":
-					afficherTourParTour(this.listeTour.getSelectedIndex()-1);
+					afficherTourParTour(this.combolisteTour.getSelectedIndex()-1);
 				case "Joueur":
-					affichertourparjoueur((Joueur) this.listeJoueur.getSelectedItem());
+					affichertourparjoueur((Joueur) this.combolisteJoueur.getSelectedItem());
 				default:
 					for (int i = 0; i < tournoi.getNbTour(); i++) {
 						afficherTourParTour(i);
@@ -687,4 +692,15 @@ public class FenetrePrincipale extends JFrame {
 		return chronometre;
 	}
 
+	public JRadioButton getSelectTour() {
+		return selectTour;
+	}
+
+	public JRadioButton getSelectJoueur() {
+		return selectJoueur;
+	}
+
+	public JRadioButton getTout() {
+		return tout;
+	}
 }

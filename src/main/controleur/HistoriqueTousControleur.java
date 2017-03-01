@@ -17,19 +17,21 @@ public class HistoriqueTousControleur implements ActionListener {
     private Tournoi tournoi;
     private JComboBox comboTour;
     private JComboBox comboJoueur;
+    private JRadioButton selected;
 
     /**
      *
      * @param v
-     * @param t
      * @param tour
      * @param joueur
+     * @parma selected
      */
-    public HistoriqueTousControleur(FenetrePrincipale v, Tournoi t, JComboBox tour, JComboBox joueur) {
+    public HistoriqueTousControleur(FenetrePrincipale v, JComboBox tour, JComboBox joueur, JRadioButton selected) {
         this.vue = v;
-        this.tournoi = t;
+        this.tournoi = v.getTournoi();
         this.comboTour = tour;
         this.comboJoueur = joueur;
+        this.selected = selected;
     }
 
     /**
@@ -38,6 +40,20 @@ public class HistoriqueTousControleur implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-
+            if (selected.equals(vue.getSelectJoueur())){
+                System.out.println("select j");
+                this.comboTour.setEnabled(false);
+                this.comboJoueur.setEnabled(true);
+            }else{
+                if (selected.equals(vue.getSelectTour())){
+                    System.out.println("select tour");
+                    this.comboJoueur.setEnabled(false);
+                    this.comboTour.setEnabled(true);
+                }else{
+                    System.out.println("all");
+                    this.comboTour.setEnabled(false);
+                    this.comboJoueur.setEnabled(false);
+                }
+            }
     }
 }
