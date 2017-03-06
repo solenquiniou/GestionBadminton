@@ -34,10 +34,13 @@ public class NouveauTourControleur implements ActionListener {
         try{
             if(tournoi.getNbTour()>0){
                 this.tournoi.finirTour();//enregistre le tour et nettoye les paires
+                this.vue.ajouterTourListe();
             }
 
             this.tournoi.nouveauTour();
             this.vue.actualiserTerrains();
+
+
             //this.main.vue.afficherTournoi();
 
         }

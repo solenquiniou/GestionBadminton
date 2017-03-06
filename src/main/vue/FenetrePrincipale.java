@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+
 /**
  * Fenêtre permettant l'ajout des joueurs. Implémente l'interface gestion joueur pour forcer l'existance des getteurs nécessaires au controlleurs de dates
  * @author OUAKRIM Yanis, RICHARD Nicolas, ORHON Paul, RIALET Yohann, NIVELAIS Quentin
@@ -618,8 +620,11 @@ public class FenetrePrincipale extends JFrame {
 		tours.add(menuChoix, BorderLayout.NORTH);
 
 		tout.addActionListener(new HistoriqueTousControleur(this, combolisteTour, combolisteJoueur, tout));
-		selectJoueur.addActionListener(new HistoriqueTousControleur(this,combolisteTour,combolisteJoueur,selectJoueur));
+		selectJoueur.addActionListener(new HistoriqueTousControleur(this, combolisteTour, combolisteJoueur, selectJoueur));
 		selectTour.addActionListener(new HistoriqueTousControleur(this,combolisteTour,combolisteJoueur,selectTour));
+
+		combolisteTour.addActionListener(new AfficherTourControleur(this, combolisteTour));
+		combolisteJoueur.addActionListener(new AfficherTourControleur(this, combolisteJoueur));
 
 	}
 
@@ -651,7 +656,7 @@ public class FenetrePrincipale extends JFrame {
 		//On rentre les joueurs anciens dans les X premières cases
 		for (Terrain terrain : allTerrain)
 		{
-			ajouterTourTable(terrain.getMatch());
+			ajouterTourTable(tour,terrain.getMatch());
 		}
 
 
@@ -664,11 +669,11 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	public void affichertourparjoueur(Joueur joueur){
 		this.listeTourModel.setRowCount(0);
-		ArrayList<Match> allMatch = tournoi.getTourJouePar(joueur);
+		HashMap<Integer,Match> allMatch = tournoi.getTourJouePar(joueur);
 		//On rentre les joueurs anciens dans les X premières cases
-		for (Match match : allMatch)
+		for (Integer nutour : allMatch.keySet())
 		{
-			ajouterTourTable(match);
+			ajouterTourTable(nutour,allMatch.get(nutour));
 		}
 	}
 	
@@ -676,12 +681,17 @@ public class FenetrePrincipale extends JFrame {
 	 * pour insérer un match dans la liste des tours (onglet tours)
 	 * @param match
 	 */
-	public void ajouterTourTable(Match match){
+	public void ajouterTourTable(int tour,Match match){
 		//onglet joueur
-		Object[] matchLigne = {match.getPaire1().getJoueur1(),match.getPaire1().getJoueur2(),match.getScore1(),match.getPaire2().getJoueur1(),match.getPaire2().getJoueur2(),match.getScore2()};
+		Object[] matchLigne = {tour,match.getPaire1().getJoueur1(),match.getPaire1().getJoueur2(),match.getScore1(),match.getPaire2().getJoueur1(),match.getPaire2().getJoueur2(),match.getScore2()};
 		this.listeTourModel.addRow(matchLigne);
 
 	}
+
+	public void ajouterTourListe(){
+		this.combolisteTour.addItem(tournoi.getNbTour());
+	}
+
 
 
 	/**
@@ -700,7 +710,5 @@ public class FenetrePrincipale extends JFrame {
 		return selectJoueur;
 	}
 
-	public JRadioButton getTout() {
-		return tout;
-	}
+
 }

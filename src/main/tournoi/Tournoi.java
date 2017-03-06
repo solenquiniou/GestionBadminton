@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
 
 /**
@@ -389,7 +390,7 @@ public class Tournoi {
 	 * @param scoreP1 le score de la première paire
 	 * @param scoreP2 le score de la seconde paire
 	 */
-	public void ajouterMatch(Paire paire, Paire paire2, int scoreP1, int scoreP2) {
+	public Match ajouterMatch(Paire paire, Paire paire2, int scoreP1, int scoreP2) {
 		this.paires.add(paire);
 		this.paires.add(paire2);
 
@@ -400,6 +401,7 @@ public class Tournoi {
 		paire2.getJoueur2().setPrio(false);
 		Match match = new Match(paire, paire2);
 		match.modifierScores(scoreP1, scoreP2);
+		return match;
 	}
 
 	/**
@@ -783,11 +785,15 @@ public class Tournoi {
 	 * Recupère tout les tour ou un joueur donné a participé
 	 * @param joueur
 	 */
-	public ArrayList<Match> getTourJouePar(Joueur joueur){
-		ArrayList<Match> matches = new ArrayList<Match>();
+	public HashMap<Integer,Match> getTourJouePar(Joueur joueur){
+		HashMap<Integer,Match> matches = new HashMap<Integer,Match>();
+		int nutour =0;
 		for (Tour tour: this.tour){
 			if (tour.getMatchjouePar(joueur).size()!=0){
-				matches.addAll(tour.getMatchjouePar(joueur));
+				nutour++;
+				for (Match match :tour.getMatchjouePar(joueur)){
+					matches.put(nutour,match);
+				}
 			}
 		}
 	return matches;

@@ -2,6 +2,7 @@ package main.controleur;
 
 import main.tournoi.Joueur;
 import main.tournoi.Paire;
+import main.tournoi.Terrain;
 import main.tournoi.Tournoi;
 import main.vue.FenetreAjoutMatch;
 
@@ -68,7 +69,9 @@ public class AjouterMatchControlleur implements ActionListener {
             Paire paire1 = new Paire(j11, j12);
             Paire paire2 = new Paire(j21,j22);
 
-            tournoi.ajouterMatch(paire1, paire2, score1, score2);
+            Terrain t =new Terrain(tournoi.getNbrTerrains()+1);
+            t.setMatch(tournoi.ajouterMatch(paire1, paire2, score1, score2));
+            tournoi.getTours().get(tournoi.getNbTour()).addTerr(t);
             vue.getVue().actualiserJoueurs();
             //Comme ça on pourra réouvrir la fenêtre
             FenetreAjoutMatch.setDerniereFenetre(null);
