@@ -798,5 +798,28 @@ public class Tournoi {
 		}
 	return matches;
 	}
+
+	/**
+	 * Verifie que tout les mach du tour en cours on été validé
+	 * @return true si tout les matchs sont validés
+	 */
+	public boolean tourFini(){
+		boolean ret = true;
+		for(Match matche : this.matchs){
+			if(matche.isEnCours()){
+				ret =false;
+			}
+		}
+		return ret;
+
+	}
+
+	public void supprMatchEncours(){
+		for(Match match : this.matchs){
+			if(match.isEnCours()){
+				this.matchs.remove(match);
+			}
+		}
+	}
 }
 

@@ -33,8 +33,19 @@ public class NouveauTourControleur implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try{
             if(tournoi.getNbTour()>0){
-                this.tournoi.finirTour();//enregistre le tour et nettoye les paires
-                this.vue.ajouterTourListe();
+                if(!tournoi.tourFini()){
+                    Object[] options = { "OUI", "ANNULER" };
+                    int choix = JOptionPane.showOptionDialog(null, "Certains matches n'ont pas été validés, ils ne seront pas enregistrés. Êtes vous sur de vouloir valider?", "Vérification",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+                    if(choix == 0) {
+                        this.tournoi.supprMatchEncours();
+                        this.tournoi.finirTour();//enregistre le tour et nettoye les paires
+                        this.vue.ajouterTourListe();
+                    }
+
+                }
+
+
             }
 
             this.tournoi.nouveauTour();
@@ -49,6 +60,7 @@ public class NouveauTourControleur implements ActionListener {
         }
 
     }
+
 }
 
 

@@ -576,7 +576,7 @@ public class FenetrePrincipale extends JFrame {
 			}
 		};
 		listeTours = new JTable(listeTourModel);
-		listeTours.setAutoCreateRowSorter(true);
+		listeTours.setAutoCreateRowSorter(false);
 		JScrollPane panTour = new JScrollPane(listeTours);
 		tours.add(panTour,BorderLayout.CENTER);
 
@@ -639,7 +639,7 @@ public class FenetrePrincipale extends JFrame {
 				case "Joueur":
 					affichertourparjoueur((Joueur) this.combolisteJoueur.getSelectedItem());
 				default:
-					for (int i = 0; i < tournoi.getNbTour(); i++) {
+					for (int i = 1; i < tournoi.getNbTour()+1; i++) {
 						afficherTourParTour(i);
 					}
 		}
@@ -658,6 +658,24 @@ public class FenetrePrincipale extends JFrame {
 		{
 			ajouterTourTable(tour,terrain.getMatch());
 		}
+
+
+	}
+	/**
+	 * Actualise l'affichage pour tout les tours tout les joueurs
+	 *
+	 */
+	public void afficherallTours(){
+		this.listeTourModel.setRowCount(0);
+		for (int i = 0; i < tournoi.getNbTour()-1; i++) {
+			ArrayList<Terrain> allTerrain = tournoi.getTours().get(i).getMatches();
+			//On rentre les joueurs anciens dans les X premières cases
+			for (Terrain terrain : allTerrain)
+			{
+				ajouterTourTable(i,terrain.getMatch());
+			}
+		}
+
 
 
 	}
@@ -683,7 +701,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	public void ajouterTourTable(int tour,Match match){
 		//onglet joueur
-		Object[] matchLigne = {tour,match.getPaire1().getJoueur1(),match.getPaire1().getJoueur2(),match.getScore1(),match.getPaire2().getJoueur1(),match.getPaire2().getJoueur2(),match.getScore2()};
+		Object[] matchLigne = {tour+1,match.getPaire1().getJoueur1(),match.getPaire1().getJoueur2(),match.getScore1(),match.getPaire2().getJoueur1(),match.getPaire2().getJoueur2(),match.getScore2()};
 		this.listeTourModel.addRow(matchLigne);
 
 	}

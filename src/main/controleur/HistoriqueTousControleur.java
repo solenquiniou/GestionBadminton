@@ -1,5 +1,6 @@
 package main.controleur;
 
+import main.tournoi.Joueur;
 import main.tournoi.Tournoi;
 import main.vue.FenetrePrincipale;
 
@@ -41,18 +42,27 @@ public class HistoriqueTousControleur implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
             if (selected.equals(vue.getSelectJoueur())){
-                System.out.println("select j");
+
                 this.comboTour.setEnabled(false);
                 this.comboJoueur.setEnabled(true);
+                vue.affichertourparjoueur((Joueur) this.comboJoueur.getSelectedItem());
             }else{
                 if (selected.equals(vue.getSelectTour())){
-                    System.out.println("select tour");
+
                     this.comboJoueur.setEnabled(false);
                     this.comboTour.setEnabled(true);
+                    if(tournoi.getNbTour()>1){
+                        vue.afficherTourParTour(this.comboTour.getSelectedIndex());
+                    }
+
+
+
                 }else{
-                    System.out.println("all");
+
                     this.comboTour.setEnabled(false);
                     this.comboJoueur.setEnabled(false);
+                    System.out.println("nb tours:" + tournoi.getNbTour());
+                    vue.afficherallTours();
                 }
             }
     }

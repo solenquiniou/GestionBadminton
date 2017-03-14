@@ -114,6 +114,7 @@ public class Match {
 	 * @param s2 le score de la paire 2
 	 */
 	public void determinerVainqueur(int s1,int s2){
+		this.enCours = false;
 		this.score1 = s1;
 		this.score2 = s2;
 		if(s1>s2){
@@ -173,6 +174,10 @@ public class Match {
      */
 	public int prio(){
 		return (paire1.prio() + paire2.prio());
+	}
+
+	public boolean isEnCours() {
+		return enCours;
 	}
 
 }
