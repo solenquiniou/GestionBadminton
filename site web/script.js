@@ -4,6 +4,8 @@ $().ready(function(){
   $("[name=prenom]").change(function(){
     if (this.value == "") {
       $("#texteNom").html("* Veuillez renseigner votre nom et votre prénom");
+    } else if (this.value.length>255) {
+      $("#texteNom").html("* Votre prenom est trop long");
     } else {
       $("#texteNom").html("*");
     }
@@ -13,6 +15,8 @@ $().ready(function(){
   $("[name=nom]").change(function(){
     if (this.value == "") {
       $("#texteNom").html("* Veuillez renseigner votre nom et votre prénom");
+    } else if (this.value.length>255) {
+      $("#texteNom").html("* Votre nom est trop long");
     } else {
       $("#texteNom").html("*");
     }
@@ -40,8 +44,18 @@ $().ready(function(){
       return false;
     }
 
+    if (prenom.length>255) {
+      $("#texteNom").html("* Votre prenom est trop long");
+      return false;
+    }
+
     if (nom  === '') {
       $("#texteNom").html("* Veuillez renseigner votre nom");
+      return false;
+    }
+
+    if (nom.length>255) {
+      $("#texteNom").html("* Votre prenom est trop long");
       return false;
     }
 
