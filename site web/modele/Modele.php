@@ -1,8 +1,10 @@
 <?php
 require_once __DIR__.'/../config.php';
 
-// Classe qui gère les accès à la base de données
-
+/**
+* Classe qui gère les accès à la base de données
+* Il faut renseigner dans le fichier config le nom de la base, le nom de compte et le mot de passe
+*/
 class Modele{
     private $connexion;
 
@@ -47,7 +49,7 @@ class Modele{
      */
     public function addJoueur($prenom, $nom, $sexe, $anciennete, $date, $niveau) {
         try{
-            $statement = $this->connexion->prepare("INSERT INTO joueurs VALUES (?,?,?,?,?,?);");
+            $statement = $this->connexion->prepare("INSERT INTO joueurs VALUES (NULL,?,?,?,?,?,?);");
             $statement->bindParam(1, $prenom);
             $statement->bindParam(2, $nom);
             $statement->bindParam(3, $sexe);
@@ -59,7 +61,6 @@ class Modele{
             return $result;
 
         } catch(PDOException $e){
-            echo $e->getMessage();
             $this->deconnexion();
             throw new TableAccesException("problème avec la table parties : Veuillez vérifier qu'elle existe bien");
         }

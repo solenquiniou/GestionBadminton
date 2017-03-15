@@ -1,16 +1,22 @@
 <?php
+require_once __DIR__.'/../config.php';
 /**
-Ce fichier sert à générer la base de données lors de l'installation, il suffit de changer les identifiants :
-host, username et password. Il suffit ensuite de lancer le script sur le serveur.
+* Ce fichier sert à générer la base de données lors de l'installation, il suffit de changer les identifiants :
+* host, username et password. Il suffit ensuite de lancer le script sur le serveur.
+* Il faut renseigner dans le fichier config le nom de la base, le nom de compte et le mot de passe 
 */
+
 	$host="localhost"; 
 
-	$username="root"; 
-	$password=""; 
+	$username=Config::$DB_USER; 
+	$password=Config::$DB_PASSWD; 
 
-    $dbname="adherents_badminton";
+    $dbname=Config::$DB_NAME;
 
-	$tb="CREATE TABLE joueurs(
+    $tablename="joueurs";
+
+	$tb="CREATE TABLE IF NOT EXISTS $tablename(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     prenom VARCHAR(255),
     nom VARCHAR(255),
     sexe ENUM('homme', 'femme'),
@@ -18,7 +24,7 @@ host, username et password. Il suffit ensuite de lancer le script sur le serveur
     ddn DATE,
     niveau ENUM('indefini', 'debutant', 'intermediaire', 'confirme')
     )";
-
+    
     try {
         $dbh = new PDO("mysql:host=$host", $username, $password);
 
@@ -33,10 +39,10 @@ host, username et password. Il suffit ensuite de lancer le script sur le serveur
             //S'il y a eu une erreur pendant la connection
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
-            } 
+            }
 
             if ($conn->query($tb)) {
-                echo "Table MyGuests created successfully";
+                echo "Table $tablename created successfully";
             } else {
                 echo "Error creating table: " . $conn->error;
             }
