@@ -1,3 +1,8 @@
+body {
+    padding: 0;
+    margin: 0;/
+}
+
 #champsObligatoire{
 	font-size : 0.8em;
 	font-style: italic;
@@ -7,17 +12,40 @@
 	color : red;
 }
 
+/* form -----------------------------------------------------------------------  */
+
+/* login.html */
+
+#loginFieldContainer {
+    width: 500px;
+    height: 250px;
+    margin: auto;
+    padding : 25px;
+    background-color: #eeeeee;
+    border: 1px solid gray;
+}
+
+#loginFieldContainer input[type=submit] {
+    float: right
+}
+
+/* fin login.html */
+
+/* index.html */
+
 #formContainer {
 	width: 500px;
     height: 500px;
     margin: auto;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-	display: block;
 	padding : 25px;
 	background-color: #eeeeee;
 	border: 1px solid gray;
 }
+
+/* fin index.html */
+
+
+/* style général */
 
 .form-style-1 {
     margin:10px auto;
@@ -38,6 +66,7 @@
     font-weight: bold;
 }
 .form-style-1 input[type=text],
+.form-style-1 input[type=password],
 .form-style-1 input[type=date],
 .form-style-1 input[type=datetime],
 .form-style-1 input[type=number],
@@ -60,6 +89,7 @@ select{
     outline: none; 
 }
 .form-style-1 input[type=text]:focus,
+.form-style-1 input[type=password]:focus,
 .form-style-1 input[type=date]:focus,
 .form-style-1 input[type=datetime]:focus,
 .form-style-1 input[type=number]:focus,
@@ -87,18 +117,55 @@ select{
 .form-style-1 .field-textarea{
     height: 100px;
 }
-.form-style-1 input[type=submit], .form-style-1 input[type=button]{
+input[type=submit], input[type=button]{
     background: #4B99AD;
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
 }
-.form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+input[type=submit]:hover, input[type=button]:hover{
     background: #4691A4;
     box-shadow:none;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
 }
+
+
 .form-style-1 .required{
     color:red;
+}
+
+/* fin style général */
+
+/* form end -----------------------------------------------------------------------  */
+
+#loginWrapper {
+    background-color: #eeeeee;
+    text-align: right;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid gray;
+}
+
+#retourWrapper {
+    background-color: #eeeeee;
+    text-align: left;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid gray;
+}
+
+@media screen and (max-width: 640px) {
+    .form-style-1 {
+        max-width: 100%;
+    }
+
+    #formContainer {
+        margin-top:50px;
+        width: 82%;
+        height: 82%;
+        margin: auto;
+        background-color: #eeeeee;
+        border: 1px solid gray;
+    }
 }

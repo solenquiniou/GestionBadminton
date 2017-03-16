@@ -1,5 +1,7 @@
 $().ready(function(){
 
+//Partie index.html ------------------------------------------------------------------------------------------
+
   //Lorsque l'on change l'input prenom, si le champs est vide on demande de renseigner le prenom
   $("[name=prenom]").change(function(){
     if (this.value == "") {
@@ -69,5 +71,20 @@ $().ready(function(){
       return false;
     }
   });
+
+  $("#loginWrapper input[type=button]").click(function() {
+    window.location.replace("login.html");
+  });
+
+//fin partie index.html ------------------------------------------------------------------------------------------
+
+//Partie login.html ----------------------------------------------------------------------------------------------
+  
+
+  $("#retourWrapper input[type=button]").click(function() {
+    window.location.replace("index.html");
+  });
+
+//fin partie login.html ----------------------------------------------------------------------------------------------
 
 });
