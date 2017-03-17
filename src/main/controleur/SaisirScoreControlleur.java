@@ -51,6 +51,7 @@ public class SaisirScoreControlleur implements ActionListener{
 
 		if (verifier()) {
 			tournoi.setScore(numeroTerrain, score1, score2);
+
 			vue.actualiserJoueurs();
 		}
 		//fermeture de la fenètre si

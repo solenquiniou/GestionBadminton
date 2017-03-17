@@ -805,9 +805,9 @@ public class Tournoi {
 	 */
 	public boolean tourFini(){
 		boolean ret = true;
-		for(Match matche : this.matchs){
-			if(matche.isEnCours()){
-				ret =false;
+		for (Terrain terrain : this.terrains){
+			if(terrain.getMatch().isEnCours()){
+				ret = false;
 			}
 		}
 		return ret;

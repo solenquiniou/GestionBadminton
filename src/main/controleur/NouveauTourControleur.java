@@ -38,11 +38,15 @@ public class NouveauTourControleur implements ActionListener {
                     int choix = JOptionPane.showOptionDialog(null, "Certains matches n'ont pas été validés, ils ne seront pas enregistrés. Êtes vous sur de vouloir valider?", "Vérification",
                             JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
                     if(choix == 0) {
-                        this.tournoi.supprMatchEncours();
+                       // this.tournoi.supprMatchEncours();
                         this.tournoi.finirTour();//enregistre le tour et nettoye les paires
                         this.vue.ajouterTourListe();
                     }
 
+                }else{
+                   // this.tournoi.supprMatchEncours();
+                    this.tournoi.finirTour();//enregistre le tour et nettoye les paires
+                    this.vue.ajouterTourListe();
                 }
 
 
