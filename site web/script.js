@@ -36,7 +36,7 @@ $().ready(function(){
     }
   });
 
-  $('form').submit(function () {
+  $('#formulaireJoueur').submit(function () {
     var prenom = $.trim($('[name=prenom]').val());
     var nom = $.trim($('[name=nom]').val());
     var date = $.trim($('[name=date]').val());

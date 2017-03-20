@@ -69,13 +69,12 @@ class Modele{
 
     public function getPass($pseudo) {
         try{
-
-            $statement = $this->connexion->prepare("SELECT password from " . Config::$DB_tableAdministrateurs . " where pseudo=?;");
+            $statement = $this->connexion->prepare("SELECT password from " . Config::$DB_tableAdministrateurs . " where login=?;");
             $statement->bindParam(1, $pseudo);
             $statement->execute();
             $result=$statement->fetch(PDO::FETCH_ASSOC);
 
-            return $result["motDePasse"];
+            return $result["password"];
         }
         catch(PDOException $e){
             $this->deconnexion();
