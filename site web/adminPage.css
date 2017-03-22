@@ -1,12 +1,54 @@
-preTableau input[type=button]{
+#loginWrapper input[type=button]{
+    background: #003A23;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    float: right;
+}
+#loginWrapper input[type=button]:hover{
+    background: #74AE97;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+#preTableau input[type=button]{
     background: #231858;
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
     float: right;
 }
-preTableau input[type=button]:hover{
+#preTableau input[type=button]:hover{
     background: #11073B;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+.plus input[type=button]{
+    background: #1F1959;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    float: right;
+
+}
+.plus input[type=button]:hover{
+    background: #837EB1;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+.del input[type=button]{
+    background: #781424;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    float: right;
+
+}
+.del input[type=button]:hover{
+    background: #F1A1AE;
     box-shadow:none;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
@@ -24,14 +66,16 @@ preTableau input[type=button]:hover{
 }
 table{
   width: 100%;
-
+  border-collapse: collapse;
 }
-
 .nom{
-  width: 40%;
-
+  width: 30%;
 }
 .prenom{
-  width: 40%;
-
+  width: 25%;
+}
+td{
+border-bottom: 1pt solid lightgrey;
+padding-bottom: 2vh;
+padding-top: 2vh;
 }
