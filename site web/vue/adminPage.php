@@ -1,6 +1,5 @@
 <?php
 
-
 class VueAdmin{
 
 //@param joueur = résultat de la requete getJoueur,
@@ -11,14 +10,16 @@ function afficher($joueur){
     <meta charset="UTF-8">
     <title>Administration</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet"  href="css/adminPage.css"/>
+    <link rel="stylesheet" type="text/css" href="vue/css/style.css"/>
+    <link rel="stylesheet"  href="vue/css/adminPage.css"/>
 
   </head>
 
   <body>
     <div id="loginWrapper">
-        <input id ="logout" type="button" value="logout">
+      <form method="post">
+        <input id ="logout" type="submit" value="logout">
+      </form>
     </div>
 
     <div id="tabContainer">
@@ -47,8 +48,8 @@ function afficher($joueur){
       </table>
 
     </div>
-    <script src="script/script.js"></script>
-    <script src="script/detail.js"></script>
+    <script src="vue/script/script.js"></script>
+    <script src="vue/script/detail.js"></script>
   </body>
 </html>
 <?php

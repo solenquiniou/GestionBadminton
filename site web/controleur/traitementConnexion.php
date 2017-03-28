@@ -1,38 +1,58 @@
 <?php
 require_once __DIR__."/../modele/Modele.php";
+require_once __DIR__."/../vue/login.php";
+require_once __DIR__."/../vue/adminPage.php";
+class TraitementConnexion {
 
-  	if(!empty($_POST))
-  	{
-    	if(empty($_POST['pseudo']) 
-            || empty($_POST['pass'])){
-            header('Location: ../login.html');
-    	} else {
-            try {
-                $modele = new Modele();
+    private $vueLogin;
+    private $vueAdmin;
+    private $modele;
 
-                $pseudo = $_POST['pseudo'];
-                if(strlen($pseudo)>255) {
-                    header('Location: ../login.html');
-                }
-
-                $pass = $_POST['pass'];
-                if(strlen($pass)>255) {
-                    header('Location: ../login.html');
-                }
-
-                $hashedPass = $modele->getPass($pseudo);
-
-                if (crypt($pass, $hashedPass) == $hashedPass) {
-                    $_SESSION["utilisateur"] = $pseudo;
-                    header('Location: ../gestionJoueurs.html', true);
-                }
-                
-            } catch (Exception $e) {
-                echo("problème");
-                exit;
-            }
+    function __construct() {
+        $this->vueLogin = new VueLogin();
+        $this->vueAdmin = new vueAdmin();
+        try {
+            $this->modele = new Modele();
+        } catch (ConnexionException $e) {
+            $this->vue->erreur("Échec de la connexion : " . $e->getMessage());
+            exit;
         }
-	} else {
-        header('Location: login.html');
     }
+
+    function checkPass($pseudo, $pass){
+
+        try {
+            $pseudo = $_POST['pseudo'];
+            if(strlen($pseudo)>255) {
+                $this->vueLogin->afficher(true);
+                return;
+            }
+
+            $pass = $_POST['pass'];
+            if(strlen($pass)>255) {
+                $this->vueLogin->afficher(true);
+                return;
+            }
+
+            $hashedPass = $this->modele->getPass($pseudo);
+
+            if (crypt($pass, $hashedPass) == $hashedPass) {
+                $_SESSION["utilisateur"] = $pseudo;
+                $this->vueAdmin->afficher(true);
+                return;
+            } else {
+                $this->vueAdmin->afficher(true);
+                return;
+            }
+            
+        } catch (Exception $e) {
+            echo("problème");
+            exit;
+        }
+    }
+
+    function accueil(){
+        $this->vueLogin->afficher(false);
+    }
+}
 ?>

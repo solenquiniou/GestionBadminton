@@ -72,19 +72,5 @@ $().ready(function(){
     }
   });
 
-  $("#loginWrapper input[type=button]").click(function() {
-    window.location.replace("login.html");
-  });
-
 //fin partie index.html ------------------------------------------------------------------------------------------
-
-//Partie login.html ----------------------------------------------------------------------------------------------
-  
-
-  $("#retourWrapper input[type=button]").click(function() {
-    window.location.replace("index.html");
-  });
-
-//fin partie login.html ----------------------------------------------------------------------------------------------
-
 });
