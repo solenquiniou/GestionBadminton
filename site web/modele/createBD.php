@@ -24,7 +24,7 @@ require_once __DIR__.'/../config.php';
 
     /* Ne pas modifier la suite */
 
-    $salt = "$6\$round=5000$".crypt($passwordAdministrateur)."$";
+    $salt = "$6\$round=5000$".md5($passwordAdministrateur)."$";
     $hashPasswordAdministrateur = crypt($passwordAdministrateur, $salt);
 
     //ligne de commande pour créer la base contenant les joueurs
@@ -45,7 +45,8 @@ require_once __DIR__.'/../config.php';
         password    VARCHAR(255)    NOT NULL
     )";
 
-    $cmdAjoutAdmin="INSERT INTO $tablename2 (login, password) VALUES('$loginAdministrateur','$hashPasswordAdministrateur')";
+    //Ignore fait en sorte que l'administrateur ne soit pas ajouté plusieurs fois si le script php est lancé plusieurs fois
+    $cmdAjoutAdmin="INSERT IGNORE INTO $tablename2 (login, password) VALUES('$loginAdministrateur','$hashPasswordAdministrateur')";
     
     //Connexion à MySQL, création de la base et des tables
     try {
