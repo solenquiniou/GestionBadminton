@@ -38,11 +38,17 @@ function afficher($joueur){
           <td class ="plus" >   <input class="plusb" id=<?php echo "button".$i ?> type="button" value="+"> </td>
           <td class ="del" >   <input class="delb" id=<?php echo "del".$i ?> type="button" value="X"> </td>
         </tr>
+        <tr class="detail noBorder" id=<?php echo"detailCol".$i ?> >
+          <td> Date </td>
+          <td> Genre </td>
+          <td> Ancienneté </td>
+          <td> Niveau </td>
+        </tr>
         <tr class="detail" id=<?php echo"detail".$i ?> >
-          <td class ="date de naissance">  <?php  echo $joueurCour['ddn'] ?> </td>
-          <td class ="genre"> <?php  echo $joueurCour['sexe'] ?> </td>
-          <td class ="nouveau"> <?php  echo $joueurCour['anciennete'] ?> </td>
-          <td class ="niveau"> niveau: <?php  echo $joueurCour['niveau'] ?> </td>
+          <td class ="date de naissance">  <input type="text" value="<?php  echo $joueurCour['ddn'] ?>" /></td>
+          <td class ="genre"> <input type="text" value="<?php  echo $joueurCour['sexe'] ?>" /></td>
+          <td class ="nouveau"> <input type="text" value="<?php echo $joueurCour['anciennete'] ?>" /></td>
+          <td class ="niveau"> <input type="text" value="<?php  echo $joueurCour['niveau'] ?>" /></td>
         </tr>
         <?php } ?>
       </table>

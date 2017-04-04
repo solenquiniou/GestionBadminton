@@ -62,20 +62,28 @@
 	border: 1px solid gray;
 }
 .detail{
-  display: none;
+    display: none;
+}
+.detail input {
+    width: 100%;
+}
+.noBorder td{
+    text-align: center;
+    height: 80%;
+    border: 0px !important;
 }
 table{
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 .nom{
-  width: 30%;
+    width: 30%;
 }
 .prenom{
-  width: 25%;
+    width: 25%;
 }
 td{
-border-bottom: 1pt solid lightgrey;
-padding-bottom: 2vh;
-padding-top: 2vh;
+    border-bottom: 1pt solid lightgrey;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
 }

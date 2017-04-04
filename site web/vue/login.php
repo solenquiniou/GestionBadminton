@@ -2,7 +2,7 @@
 
 class VueLogin{
 
-//@param joueur = Si le formulaire n'est pas bien renseigné
+//@param erreur = Si le formulaire n'est pas bien renseigné
 function afficher($erreur){
 ?>
 
@@ -31,6 +31,14 @@ function afficher($erreur){
                     <label>Mot de passe</label>
                     <input type="password" name="pass" class="field-long"/>
                 </li>
+                <?php
+                if ($erreur) {
+                ?>
+                    <li>
+                        <p style='color: red;'> Mauvais identifiant et/ou mot de passe</p>
+                    </li>
+
+                <?php } ?>
                 <li>
                     <input type="submit" name="soumettreLogin" value="Connexion"/>
                 </li>
