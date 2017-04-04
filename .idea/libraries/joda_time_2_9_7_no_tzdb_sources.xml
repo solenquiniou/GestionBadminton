@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="joda-time-2.9.7-no-tzdb-sources">
-    <CLASSES />
-    <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/lib/joda-time-2.9.7/joda-time-2.9.7-no-tzdb-sources.jar!/" />
-    </SOURCES>
-  </library>
-</component>

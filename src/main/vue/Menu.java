@@ -74,7 +74,7 @@ public class Menu extends JMenuBar{
 
 		//On creer le bouton enregister sous
 		JMenuItem enregistrerSous = new JMenuItem("Enregistrer sous...");
-		enregistrerSous.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()+KeyEvent.SHIFT_MASK));
+		enregistrerSous.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
 		enregistrerSous.setEnabled(false);
 		enregistrerSous.addActionListener(new ExporterTournoiControlleur(fen));
 		menuFichier.add(enregistrerSous);
