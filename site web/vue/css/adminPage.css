@@ -25,7 +25,16 @@
     -webkit-box-shadow:none;
 }
 
-.plus input[type=button]{
+.plus input[type=button] {
+    background: #1F1959;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    float: right;
+
+}
+.validerModifJoueur
+{
     background: #1F1959;
     padding: 8px 15px 8px 15px;
     border: none;
@@ -54,12 +63,14 @@
     -webkit-box-shadow:none;
 }
 #tabContainer {
-	width: 500px;
-    height: 500px;
-    margin: auto;
+	width: 700px;
+  max-width: 70vw;
+  height: 500px;
+  margin: auto;
 	padding : 25px;
 	background-color: #eeeeee;
 	border: 1px solid gray;
+  overflow-y: scroll;
 }
 .detail{
     display: none;
@@ -76,14 +87,10 @@ table{
     width: 100%;
     border-collapse: collapse;
 }
-.nom{
-    width: 30%;
-}
-.prenom{
-    width: 25%;
-}
+
 td{
     border-bottom: 1pt solid lightgrey;
     padding-bottom: 2vh;
     padding-top: 2vh;
+      width: 20%;
 }

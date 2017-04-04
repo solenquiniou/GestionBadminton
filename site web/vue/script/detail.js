@@ -17,16 +17,37 @@ $().ready(function(){
 
   $(".del").click(function(){
     var lign_num=this.id.slice(-1);
-    //TODO
-  
+    var nomJ = $("#ligneNomPrenom"+lign_num).closest(".nom");
+    var prenomJ = $("#ligneNomPrenom"+lign_num).closest(".prenom");
+    $.ajax({
+        url: 'controleur/traitementAdmin.php',
+        type: 'POST',
+        data: {delRow:"true",nom:nomJ,nom:prenomJ},
+        success: function(data) {
+            console.log(data); // Inspect this in your console
+        }
+    });
+
   });
 
   $("#ajouter").click(function(){
-    //// TODO:
+    //// TODO: formulaire d'ajout un peu comme le premier
   });
 
   $("#logout").click(function(){
-    //// TODO:
+    $.ajax({
+        type: 'POST',
+        url: 'controleur/routeur.php',
+        data: "logout=true",
+        success: function(response) { alert(response); }
+    });
+
+
+  });
+
+  $("#editer").click(function(){
+    ////TODO cf click mais en passant plus de paramètre
+
   });
 
 

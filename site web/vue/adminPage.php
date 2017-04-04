@@ -35,7 +35,10 @@ function afficher($joueur){
         <tr class="ligneNomPrenom" id=<?php echo"ligneNomPrenom".$i ?> >
           <td class ="nom"> <?php  echo $joueurCour['nom'] ?> </td>
           <td class ="prenom"> <?php  echo $joueurCour['prenom'] ?> </td>
+                <td>  </td>
+
           <td class ="plus" >   <input class="plusb" id=<?php echo "button".$i ?> type="button" value="+"> </td>
+          <td>  </td>
           <td class ="del" >   <input class="delb" id=<?php echo "del".$i ?> type="button" value="X"> </td>
         </tr>
         <tr class="detail noBorder" id=<?php echo"detailCol".$i ?> >
@@ -49,7 +52,10 @@ function afficher($joueur){
           <td class ="genre"> <input type="text" value="<?php  echo $joueurCour['sexe'] ?>" /></td>
           <td class ="nouveau"> <input type="text" value="<?php echo $joueurCour['anciennete'] ?>" /></td>
           <td class ="niveau"> <input type="text" value="<?php  echo $joueurCour['niveau'] ?>" /></td>
+
+          <td> <input type="button" value="editer"> </td>
         </tr>
+
         <?php } ?>
       </table>
 

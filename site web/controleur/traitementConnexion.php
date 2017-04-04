@@ -13,6 +13,7 @@ class TraitementConnexion {
         $this->vueAdmin = new vueAdmin();
         try {
             $this->modele = new Modele();
+
         } catch (ConnexionException $e) {
             $this->vue->erreur("Échec de la connexion : " . $e->getMessage());
             exit;
@@ -38,13 +39,13 @@ class TraitementConnexion {
 
             if (crypt($pass, $hashedPass) == $hashedPass) {
                 $_SESSION["utilisateur"] = $pseudo;
-                $this->vueAdmin->afficher(true);
+                $this->vueAdmin->afficher($this->modele->getJoueurs());
                 return;
             } else {
-                $this->vueAdmin->afficher(true);
+                $this->vueAdmin->afficher($this->modele->getJoueurs());
                 return;
             }
-            
+
         } catch (Exception $e) {
             echo("problème");
             exit;

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__."/traitementAdmin.php";
 require_once __DIR__."/traitementConnexion.php";
 require_once __DIR__."/traitementFormulaire.php";
 require_once __DIR__."/../modele/Modele.php";
@@ -8,19 +9,29 @@ class Routeur {
 	private $db;
 	private $traitementConnexion;
 	private $traitementFormulaire;
+	private $traitementAdmin;
 
 	public function __construct() {
 		$this->db = new Modele();
 		$this->traitementConnexion = new traitementConnexion();
-		$this->traitementFormulaire = new traitementFormulaire();		
+		$this->traitementFormulaire = new traitementFormulaire();
+		$this->traitementAdmin = new TraitementAdmin();
 	}
-	
+
 	// Traite une requête entrante
 	public function start() {
-		
-		if(isset($_POST["logout"])){
-		 $_SESSION['utilisateur']->reset();
-		 $this->traitementConnexion->accueil();
+
+		if(isset($_SESSION["utilisateur"])){
+			//if(isset($_POST['logout'])){
+				//print($_POST['logout']);
+				print(var_dump($_POST));
+		 				//$_SESSION['utilisateur']->reset();
+		 				//$this->traitementConnexion->accueil();
+				//	}else{
+						$this->traitementAdmin->start();
+				//	}
+
+
 		}
 
 		else if (isset($_POST['soumettreFormulaire'])) {
