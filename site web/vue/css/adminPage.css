@@ -94,3 +94,9 @@ td{
     padding-top: 2vh;
       width: 20%;
 }
+#wrapperButtonCsv {
+    text-align: center;
+}
+#buttonExportCsv {
+    margin: 20px;
+}

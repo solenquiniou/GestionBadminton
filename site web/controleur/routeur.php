@@ -21,20 +21,7 @@ class Routeur {
 	// Traite une requête entrante
 	public function start() {
 
-		if(isset($_SESSION["utilisateur"])){
-			//if(isset($_POST['logout'])){
-				//print($_POST['logout']);
-				print(var_dump($_POST));
-		 				//$_SESSION['utilisateur']->reset();
-		 				//$this->traitementConnexion->accueil();
-				//	}else{
-						$this->traitementAdmin->start();
-				//	}
-
-
-		}
-
-		else if (isset($_POST['soumettreFormulaire'])) {
+		if (isset($_POST['soumettreFormulaire'])) {
 			if(isset($_POST['prenom'])
 				 && isset($_POST['nom'])
 				 && isset($_POST['sexe'])
@@ -42,7 +29,9 @@ class Routeur {
 				 && isset($_POST['date'])
 				 && isset($_POST['niveau'])) {
 
-				$this->traitementFormulaire->verifierForm($_POST['prenom'],
+				$fromAdmin = isset($_POST['admin']);
+				$this->traitementFormulaire->verifierForm($fromAdmin,
+															$_POST['prenom'],
 															$_POST['nom'],
 															$_POST['sexe'],
 															$_POST['anciennete'],
@@ -61,6 +50,18 @@ class Routeur {
 			}
 		}
 
+		else if (isset($_POST['method'])) {
+			$method = $_POST['method'];
+			if ($method == "del") {
+				if (isset($_POST['prenomJ']) && isset($_POST['nomJ'])) {
+					$this->traitementAdmin->supprimerJoueur($_POST['prenomJ'], $_POST['nomJ']);
+				} else {
+					$this->traitementAdmin->afficher();
+				}
+			} else if ($method == "csv") {
+				$this->traitementAdmin->telechargerCsv();
+			}
+		}
 		else {
 			$this->traitementFormulaire->accueil();
 		}

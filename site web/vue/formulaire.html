@@ -1,27 +1,18 @@
-<?php
-
-class vueFormulaire {
-
-//@param ajout = si l'ajout a bien été effectué
-function afficher($ajout) {
-
-?>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <title>Formulaire d'inscription</title>
-    <link rel="stylesheet" type="text/css" href="vue/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
 
   <body>
     <div id="loginWrapper">
-        <form method="post">
-            <input type="submit" name="soumettreLogin" value="login">
-        </form>
+        <input type="button" value="login">
     </div>
     <div id="formContainer">
-     <form id="formulaireJoueur" method="post">
+     <form id="formulaireJoueur" action="controleur/traitementFormulaire.php" method="post">
         <ul class="form-style-1">
             <li><label>Nom complet<span class="required" id="texteNom">*</span></label><input type="text" name="prenom" class="field-divided" placeholder="Prénom" />&nbsp;<input type="text" name="nom" class="field-divided" placeholder="Nom" /></li>
             <li>
@@ -48,25 +39,11 @@ function afficher($ajout) {
                 </select>
             </li>
             <li>
-                <input type="submit" name="soumettreFormulaire" value="Envoyer" />
+                <input type="submit" value="Envoyer" />
             </li>
-            <?php if ($ajout) {
-            ?>
-                <!-- div qui apparait si l'ajout a bien eu lieu -->
-                <li>
-                <div id="popUp" style="display: none;"> L'ajout a bien été effectué ! </div>
-                </li>
-            <?php 
-            }
-            ?>
         </ul>
     </form>
     </div>
-   
-    <script src="vue/script/script.js"></script>
+    <script src="script/script.js"></script>
   </body>
 </html>
-<?php
- }
-}
-?>

@@ -46,7 +46,13 @@ body {
 
 
 /* style général */
-
+#popUp   {
+    text-align: center;
+    width: 100%;
+    background-color: #28b463;
+    border-radius: 25px;
+    padding: 10px;
+}
 .form-style-1 {
     margin:10px auto;
     max-width: 400px;

@@ -42,7 +42,7 @@ class TraitementConnexion {
                 $this->vueAdmin->afficher($this->modele->getJoueurs());
                 return;
             } else {
-                $this->vueAdmin->afficher($this->modele->getJoueurs());
+                $this->vueLogin->afficher(true);
                 return;
             }
 

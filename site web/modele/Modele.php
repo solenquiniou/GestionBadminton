@@ -36,14 +36,17 @@ class Modele{
             return($statement->fetchAll(PDO::FETCH_ASSOC));
         } catch(PDOException $e){
             $this->deconnexion();
-            throw new TableAccesException("problème avec la table parties : Veuillez vérifier qu'elle existe bien");
+            throw new TableAccesException("problème avec la table joueurs : Veuillez vérifier qu'elle existe bien");
         }
     }
 
     /** Ajoute un joueur à la base de données
-     * @param $pseudo Le pseudo du joueur jouant
-     * @param $partieGagnee 0 si la partie est perdu, 1 si elle est gagnée
-     * @param $nombreCoups Le nombre de coup si la partie est gagnée, 10 si elle est perdue
+     * @param $prenom Le prénom du joueur à ajouter
+     * @param $nom le nom du joueur à ajouter
+     * @param $sexe Le sexe du joueur à ajouter
+     * @param $anciennete L'ancienneté du joueur à ajouter
+     * @param $date La date de naissance du joueur à ajouter
+     * @param $niveau Le niveau de jeu du joueur à ajouter
      * @return bool Si l'ajout a bien été effectué
      * @throws TableAccesException si problèmme d'accès à la base
      */
@@ -62,9 +65,30 @@ class Modele{
 
         } catch(PDOException $e){
             $this->deconnexion();
-            throw new TableAccesException("problème avec la table parties : Veuillez vérifier qu'elle existe bien");
+            print($e->getMessage());
         }
 
+    }
+
+    /** Supprimer un joueur dans la base de données en utilisant son nom et son prénom
+     * @param $prenom Le prénom du joueur à supprimer
+     * @param $nom le nom du joueur à supprimer
+     * @throws TableAccesException si problèmme d'accès à la base
+     */
+    public function supprimerJoueur($prenom, $nom){
+        try{
+
+            $prenom = addslashes(trim($prenom));
+            $nom = addslashes(trim($nom));
+
+            $sql = "DELETE FROM `joueurs` WHERE prenom = '".$prenom."' AND nom = '".$nom."'";
+            $stmt = $this->connexion->prepare($sql);
+            $stmt->execute();
+            
+        } catch(PDOException $e){
+            $this->deconnexion();
+            print($e->getMessage());
+        }
     }
 
     public function getPass($pseudo) {
@@ -78,7 +102,7 @@ class Modele{
         }
         catch(PDOException $e){
             $this->deconnexion();
-            throw new TableAccesException("problème avec la table " . Config::$DB_tableAdministrateurs);
+            throw new Exception("problème avec la table " . Config::$DB_tableAdministrateurs);
         }
     }
 }

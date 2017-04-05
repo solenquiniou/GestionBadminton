@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Formulaire d'inscription</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div id="retourWrapper">
+        <input type="button" value="retour">
+    </div>
+    <div id="loginFieldContainer">
+        <form action="controleur/traitementConnexion.php" method="post">
+            <ul class="form-style-1">
+                <li>
+                    <label>Login</label>
+                    <input type="text" name="pseudo" class="field-long"/>
+                </li>
+                <li>
+                    <label>Mot de passe</label>
+                    <input type="password" name="pass" class="field-long"/>
+                </li>
+                <li>
+                    <input type="submit" value="Connexion"/>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <script src="script/script.js"></script>
+  </body>
+</html>
