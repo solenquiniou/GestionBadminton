@@ -32,7 +32,7 @@ class Modele{
      */
     public function getJoueurs(){
         try{
-            $statement=$this->connexion->query("SELECT * FROM joueurs");
+            $statement=$this->connexion->query("SELECT * FROM ".Config::$DB_tableJoueurs);
             return($statement->fetchAll(PDO::FETCH_ASSOC));
         } catch(PDOException $e){
             $this->deconnexion();
@@ -53,7 +53,7 @@ class Modele{
     public function addJoueur($prenom, $nom, $sexe, $anciennete, $date, $niveau) {
         try{
 
-            $statement = $this->connexion->prepare("SELECT count(*) as nbjoueurs FROM `joueurs` WHERE nom=? and prenom=?");
+            $statement = $this->connexion->prepare("SELECT count(*) as nbjoueurs FROM ".Config::$DB_tableJoueurs." WHERE nom=? and prenom=?");
             $statement->bindParam(1, $nom);
             $statement->bindParam(2, $prenom);
 
@@ -64,7 +64,7 @@ class Modele{
 
             if($result == 0) {
 
-                $statement = $this->connexion->prepare("INSERT INTO joueurs VALUES (NULL,?,?,?,?,?,?);");
+                $statement = $this->connexion->prepare("INSERT INTO ".Config::$DB_tableJoueurs." VALUES (NULL,?,?,?,?,?,?);");
                 $statement->bindParam(1, $prenom);
                 $statement->bindParam(2, $nom);
                 $statement->bindParam(3, $sexe);
@@ -100,7 +100,7 @@ class Modele{
             $prenom = addslashes(trim($prenom));
             $nom = addslashes(trim($nom));
 
-            $sql = "DELETE FROM `joueurs` WHERE prenom = '".$prenom."' AND nom = '".$nom."'";
+            $sql = "DELETE FROM ".Config::$DB_tableJoueurs." WHERE prenom = '".$prenom."' AND nom = '".$nom."'";
             $stmt = $this->connexion->prepare($sql);
             $stmt->execute();
             
@@ -122,7 +122,7 @@ class Modele{
     public function modifierJoueur($prenom, $nom, $ddn, $sexe, $anciennete, $niveau) {
         try{
 
-            $sql = "UPDATE joueurs SET sexe=?, anciennete=?, ddn=?, niveau=? WHERE prenom=? and nom=?";
+            $sql = "UPDATE ".Config::$DB_tableJoueurs." SET sexe=?, anciennete=?, ddn=?, niveau=? WHERE prenom=? and nom=?";
             $statement = $this->connexion->prepare($sql);
 
             $statement->bindParam(1, $sexe);
