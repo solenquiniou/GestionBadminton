@@ -51,20 +51,25 @@ public class DeleteKeyListener implements KeyListener {
      */
     @Override
     public void keyReleased(KeyEvent e) {
-        Object[] options = { "OUI", "ANNULER" };
-        int choix = JOptionPane.showOptionDialog(null, "Vous êtes sur le point de supprimer un joueur, êtes vous sur?", "Vérification",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
-        if(choix == 0) {
-            if(e.getKeyCode() == 127 && listeJoueur.getSelectedRow() != -1)
-            {
-                int[] index_lignes =  listeJoueur.getSelectedRows();
-                for (int ligne :index_lignes){
-                    String nom = (String)listeJoueur.getValueAt(ligne, 0)+" "+listeJoueur.getValueAt(ligne, 1);
-                    tournoi.supprimerJoueur(tournoi.chercherJoueur(nom));
+        if( e.getKeyCode()== KeyEvent.VK_DELETE){
+            Object[] options = { "OUI", "ANNULER" };
+            int choix = JOptionPane.showOptionDialog(null, "Vous êtes sur le point de supprimer un joueur, êtes vous sur?", "Vérification",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+            if(choix == 0) {
+                if(e.getKeyCode() == 127 && listeJoueur.getSelectedRow() != -1)
+                {
+                    int[] index_lignes =  listeJoueur.getSelectedRows();
+                    for (int ligne :index_lignes){
+                        String nom = (String)listeJoueur.getValueAt(ligne, 0)+" "+listeJoueur.getValueAt(ligne, 1);
+                        tournoi.supprimerJoueur(tournoi.chercherJoueur(nom));
+                    }
+                    vue.actualiserJoueurs();
                 }
-                vue.actualiserJoueurs();
             }
+
         }
+
+
 
 
 

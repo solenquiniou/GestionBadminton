@@ -61,7 +61,7 @@ public class HistoriqueTousControleur implements ActionListener {
 
                     this.comboTour.setEnabled(false);
                     this.comboJoueur.setEnabled(false);
-                    System.out.println("nb tours:" + tournoi.getNbTour());
+
                     vue.afficherallTours();
                 }
             }

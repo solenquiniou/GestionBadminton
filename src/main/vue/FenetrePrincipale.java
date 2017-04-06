@@ -667,6 +667,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	public void afficherallTours(){
 		this.listeTourModel.setRowCount(0);
+
 		for (int i = 0; i < tournoi.getNbTour()-1; i++) {
 			ArrayList<Terrain> allTerrain = tournoi.getTours().get(i).getMatches();
 			//On rentre les joueurs anciens dans les X premières cases
