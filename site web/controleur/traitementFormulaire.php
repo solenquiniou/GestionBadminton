@@ -53,7 +53,8 @@ class traitementFormulaire {
                 return;
             }
             if($fromAdmin) {
-            
+                
+                $modele->addJoueur($prenom, $nom, $sexe, $anciennete, $date, $niveau);
                 $this->vueAdmin->afficher($this->modele->getJoueurs());
 
             } else {
