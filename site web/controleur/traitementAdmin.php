@@ -22,13 +22,18 @@ class TraitementAdmin {
         $this->vueAdmin->afficher($this->modele->getJoueurs());
     }
     
-    function modifierJoueur() {
-        
+    function modifierJoueur($prenom, $nom, $ddn, $sexe, $anciennete, $niveau) {
+        $this->modele->modifierJoueur($prenom, $nom, $ddn, $sexe, $anciennete, $niveau);
+        $this->vueAdmin->afficher($this->modele->getJoueurs());
     }
 
     function telechargerCsv() {
         $joueurs = $this->modele->getJoueurs();
 
+        //  Dire au navigateur que c'est un fichier csv
+        header('Content-Type: application/csv');
+        // Dire au navigateur que l'on veut sauvegarder le fichier et non l'afficher
+        header('Content-Disposition: attachment; filename="joueurs.csv";');
         
         //Fichier temporaire dans lequel on va mettre tous les joueurs
         $f = fopen("php://output", "w");
@@ -59,10 +64,6 @@ class TraitementAdmin {
             fputcsv($f, $line);
         }
 
-        // tell the browser it's going to be a csv file
-        header('Content-Type: application/csv');
-        // tell the browser we want to save it instead of displaying it
-        header('Content-Disposition: attachment; filename="joueurs.csv";');
         // make php send the generated csv lines to the browser
         fpassthru($f);
     }

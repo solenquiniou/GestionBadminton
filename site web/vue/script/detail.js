@@ -82,6 +82,16 @@ $().ready(function(){
         var anciennete = $("#champsanciennete"+lign_num).val();
         var niveau = $("#champsniveau"+lign_num).val();
 
+        $.redirect('index.php', {
+            'method': 'modif',
+            'prenom': prenom,
+            'nom': nom,
+            'ddn': ddn,
+            'sexe': sexe,
+            'anciennete': anciennete,
+            'niveau': niveau
+        });
+        
     });
 
 });

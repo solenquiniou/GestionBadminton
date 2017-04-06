@@ -52,13 +52,22 @@ class traitementFormulaire {
                 $this->vueFormulaire->afficher(false);
                 return;
             }
+            if($fromAdmin) {
             
-            $modele->addJoueur($prenom, $nom, $sexe, $anciennete, $date, $niveau);
-            if(!$fromAdmin) {
-                $this->vueFormulaire->afficher(true);
-            } else {
                 $this->vueAdmin->afficher($this->modele->getJoueurs());
+
+            } else {
+                $retour = $modele->addJoueur($prenom, $nom, $sexe, $anciennete, $date, $niveau);
+                if ($retour) {
+                    $this->vueFormulaire->afficher(true);
+                } else {
+                    $this->vueFormulaire->afficher(false);
+                }
+
             }
+
+
+            
             return;
 
         } catch (Exception $e) {

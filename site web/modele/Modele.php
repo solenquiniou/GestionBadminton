@@ -52,16 +52,35 @@ class Modele{
      */
     public function addJoueur($prenom, $nom, $sexe, $anciennete, $date, $niveau) {
         try{
-            $statement = $this->connexion->prepare("INSERT INTO joueurs VALUES (NULL,?,?,?,?,?,?);");
-            $statement->bindParam(1, $prenom);
-            $statement->bindParam(2, $nom);
-            $statement->bindParam(3, $sexe);
-            $statement->bindParam(4, $anciennete);
-            $statement->bindParam(5, $date);
-            $statement->bindParam(6, $niveau);
 
-            $result = $statement->execute();
-            return $result;
+            $statement = $this->connexion->prepare("SELECT count(*) as nbjoueurs FROM `joueurs` WHERE nom=? and prenom=?");
+            $statement->bindParam(1, $nom);
+            $statement->bindParam(2, $prenom);
+
+            $statement->execute();
+            $resultQuery=$statement->fetch(PDO::FETCH_ASSOC);
+
+            $result = $resultQuery["nbjoueurs"];
+
+            if($result == 0) {
+
+                $statement = $this->connexion->prepare("INSERT INTO joueurs VALUES (NULL,?,?,?,?,?,?);");
+                $statement->bindParam(1, $prenom);
+                $statement->bindParam(2, $nom);
+                $statement->bindParam(3, $sexe);
+                $statement->bindParam(4, $anciennete);
+                $statement->bindParam(5, $date);
+                $statement->bindParam(6, $niveau);
+
+                $result = $statement->execute();
+                   
+                return true;
+
+            } else {
+
+                return false;
+
+            }
 
         } catch(PDOException $e){
             $this->deconnexion();
@@ -89,6 +108,37 @@ class Modele{
             $this->deconnexion();
             print($e->getMessage());
         }
+    }
+
+    /** Supprimer un joueur dans la base de données en utilisant son nom et son prénom
+     * @param $prenom Le prénom du joueur à modifier
+     * @param $nom le nom du joueur à modifier
+     * @param $ddn la date de naissance du joueur à modifier
+     * @param $sexe le sexe du joueur à modifier
+     * @param $anciennete l'ancienneté du joueur à modifier
+     * @param $niveau le niveau du joueur à modifier
+     * @throws TableAccesException si problèmme d'accès à la base
+     */
+    public function modifierJoueur($prenom, $nom, $ddn, $sexe, $anciennete, $niveau) {
+        try{
+
+            $sql = "UPDATE joueurs SET sexe=?, anciennete=?, ddn=?, niveau=? WHERE prenom=? and nom=?";
+            $statement = $this->connexion->prepare($sql);
+
+            $statement->bindParam(1, $sexe);
+            $statement->bindParam(2, $anciennete);
+            $statement->bindParam(3, $ddn);
+            $statement->bindParam(4, $niveau);
+            $statement->bindParam(5, $prenom);
+            $statement->bindParam(6, $nom);
+
+            $statement->execute();
+            
+        } catch(PDOException $e){
+            $this->deconnexion();
+            print($e->getMessage());
+        }
+
     }
 
     public function getPass($pseudo) {

@@ -57,12 +57,22 @@ function afficher($joueur){
           <td> Niveau </td>
         </tr>
         <tr class="detail" id=<?php echo"detail".$i ?> >
-          <td class ="date de naissance">  <input id="<?php echo 'champsddn'.$i ?>" type="text" value="<?php  echo $joueurCour['ddn'] ?>" /></td>
-          <td class ="genre"> <input id="<?php echo 'champssexe'.$i ?>" type="text" value="<?php  echo $joueurCour['sexe'] ?>" /></td>
-          <td class ="nouveau"> <input id="<?php echo 'champsanciennete'.$i ?>" type="text" value="<?php echo $joueurCour['anciennete'] ?>" /></td>
-          <td class ="niveau"> <input id="<?php echo 'champsniveau'.$i ?>" type="text" value="<?php  echo $joueurCour['niveau'] ?>" /></td>
+
+          <td class ="date de naissance">
+            <input id="<?php echo 'champsddn'.$i ?>" type="text" value="<?php  echo $joueurCour['ddn'] ?>" />
+          </td>
+          <td class ="genre">
+            <input id="<?php echo 'champssexe'.$i ?>" type="text" value="<?php  echo $joueurCour['sexe'] ?>" />
+          </td>
+          <td class ="nouveau">
+            <input id="<?php echo 'champsanciennete'.$i ?>" type="text" value="<?php echo $joueurCour['anciennete'] ?>" />
+          </td>
+          <td class ="niveau">
+            <input id="<?php echo 'champsniveau'.$i ?>" type="text" value="<?php  echo $joueurCour['niveau'] ?>" />
+          </td>
 
           <td> <input class="editer" id=<?php echo "edit".$i ?> type="button" value="editer"> </td>
+          
         </tr>
 
         <?php } ?>

@@ -53,13 +53,34 @@ class Routeur {
 		else if (isset($_POST['method'])) {
 			$method = $_POST['method'];
 			if ($method == "del") {
+
 				if (isset($_POST['prenomJ']) && isset($_POST['nomJ'])) {
 					$this->traitementAdmin->supprimerJoueur($_POST['prenomJ'], $_POST['nomJ']);
 				} else {
 					$this->traitementAdmin->afficher();
 				}
+
 			} else if ($method == "csv") {
+
 				$this->traitementAdmin->telechargerCsv();
+
+			} else if ($method == "modif") {
+
+				if (isset($_POST['prenom']) 
+					&& isset($_POST['nom'])
+					&& isset($_POST['ddn'])
+					&& isset($_POST['sexe'])
+					&& isset($_POST['anciennete'])
+					&& isset($_POST['niveau'])) {
+					
+					$this->traitementAdmin->modifierJoueur($_POST['prenom'], $_POST['nom'], $_POST['ddn'], $_POST['sexe'], $_POST['anciennete'], $_POST['niveau']);
+
+				}
+				
+			} else {
+
+				$this->traitementAdmin->afficher();
+
 			}
 		}
 		else {
