@@ -3,7 +3,7 @@
   <listeJoueurs>
     <joueur>
       <prenom>Maxime</prenom>
-      <nom>BILY</nom>
+      <nom>BI</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -11,7 +11,7 @@
     </joueur>
     <joueur>
       <prenom>Hermann</prenom>
-      <nom>BOAGNO</nom>
+      <nom>BO</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance/>
@@ -19,7 +19,7 @@
     </joueur>
     <joueur>
       <prenom>Franck</prenom>
-      <nom>CORNUAULT</nom>
+      <nom>CO</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -27,7 +27,7 @@
     </joueur>
     <joueur>
       <prenom>Jeremy</prenom>
-      <nom>ETIENNE</nom>
+      <nom>ET</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -35,7 +35,7 @@
     </joueur>
     <joueur>
       <prenom>Luc</prenom>
-      <nom>FOUIN</nom>
+      <nom>FO</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -43,7 +43,7 @@
     </joueur>
     <joueur>
       <prenom>Aurelien</prenom>
-      <nom>FRANCOIS</nom>
+      <nom>FR</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -51,7 +51,7 @@
     </joueur>
     <joueur>
       <prenom>Gwenael</prenom>
-      <nom>HOUSSIN</nom>
+      <nom>HO</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -59,7 +59,7 @@
     </joueur>
     <joueur>
       <prenom>Nicolas</prenom>
-      <nom>KOUDOTA</nom>
+      <nom>KO</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -67,7 +67,7 @@
     </joueur>
     <joueur>
       <prenom>Alexandre</prenom>
-      <nom>MARTIN</nom>
+      <nom>MA</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -75,7 +75,7 @@
     </joueur>
     <joueur>
       <prenom>Ghislain</prenom>
-      <nom>MENARD</nom>
+      <nom>ME</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -83,7 +83,7 @@
     </joueur>
     <joueur>
       <prenom>Yann</prenom>
-      <nom>MISSER</nom>
+      <nom>MI</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -91,7 +91,7 @@
     </joueur>
     <joueur>
       <prenom>Ewan</prenom>
-      <nom>PROUST</nom>
+      <nom>PR</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -99,7 +99,7 @@
     </joueur>
     <joueur>
       <prenom>Clément</prenom>
-      <nom>Rabeau</nom>
+      <nom>RA</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance/>
@@ -107,7 +107,7 @@
     </joueur>
     <joueur>
       <prenom>Philippe</prenom>
-      <nom>REDIEN</nom>
+      <nom>RE</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -115,7 +115,7 @@
     </joueur>
     <joueur>
       <prenom>Solene</prenom>
-      <nom>SAMSON</nom>
+      <nom>SA</nom>
       <sexe>Femme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -123,7 +123,7 @@
     </joueur>
     <joueur>
       <prenom>Benjamin</prenom>
-      <nom>SOURISSE</nom>
+      <nom>SO</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -131,7 +131,7 @@
     </joueur>
     <joueur>
       <prenom>Gabrielle</prenom>
-      <nom>THOLLON</nom>
+      <nom>TH</nom>
       <sexe>Femme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -139,7 +139,7 @@
     </joueur>
     <joueur>
       <prenom>Simon</prenom>
-      <nom>TOURRAINE</nom>
+      <nom>TO</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -147,7 +147,7 @@
     </joueur>
     <joueur>
       <prenom>Elodie</prenom>
-      <nom/>
+      <nom>TE<nom/>
       <sexe>Femme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -155,7 +155,7 @@
     </joueur>
     <joueur>
       <prenom>Loïc</prenom>
-      <nom>MASSON</nom>
+      <nom>MA</nom>
       <sexe>Homme</sexe>
       <anciennete>Nouveau</anciennete>
       <dateDeNaissance/>
@@ -163,7 +163,7 @@
     </joueur>
     <joueur>
       <prenom>Pascal</prenom>
-      <nom>ANDRE</nom>
+      <nom>AN</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -171,7 +171,7 @@
     </joueur>
     <joueur>
       <prenom>Sidney</prenom>
-      <nom>BARDY</nom>
+      <nom>BA</nom>
       <sexe>Femme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -179,7 +179,7 @@
     </joueur>
     <joueur>
       <prenom>Arnaud</prenom>
-      <nom>BAUMARD</nom>
+      <nom>BA</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -187,7 +187,7 @@
     </joueur>
     <joueur>
       <prenom>Tangi</prenom>
-      <nom>BERTRAND</nom>
+      <nom>BE</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -195,7 +195,7 @@
     </joueur>
     <joueur>
       <prenom>Clementine</prenom>
-      <nom>CHEVRIER</nom>
+      <nom>CH</nom>
       <sexe>Femme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -203,7 +203,7 @@
     </joueur>
     <joueur>
       <prenom>Jeremy</prenom>
-      <nom>CHIBOUST</nom>
+      <nom>CH</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -211,7 +211,7 @@
     </joueur>
     <joueur>
       <prenom>Audrey</prenom>
-      <nom>COQUET</nom>
+      <nom>CO</nom>
       <sexe>Femme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -219,7 +219,7 @@
     </joueur>
     <joueur>
       <prenom>Vanessa</prenom>
-      <nom>EPIARD</nom>
+      <nom>EP</nom>
       <sexe>Femme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -227,7 +227,7 @@
     </joueur>
     <joueur>
       <prenom>Shaimad</prenom>
-      <nom>GADALLAH</nom>
+      <nom>GA</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -235,7 +235,7 @@
     </joueur>
     <joueur>
       <prenom>Sophiane</prenom>
-      <nom>GUENINECHE</nom>
+      <nom>GU</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -243,7 +243,7 @@
     </joueur>
     <joueur>
       <prenom>Mathieu</prenom>
-      <nom>HELIAS</nom>
+      <nom>HE</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -251,7 +251,7 @@
     </joueur>
     <joueur>
       <prenom>Yoann</prenom>
-      <nom>HERVE</nom>
+      <nom>HE</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -259,7 +259,7 @@
     </joueur>
     <joueur>
       <prenom>Alexis</prenom>
-      <nom>LANDAIS</nom>
+      <nom>LA</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -267,7 +267,7 @@
     </joueur>
     <joueur>
       <prenom>Audrey</prenom>
-      <nom>LE MORVAN</nom>
+      <nom>LE</nom>
       <sexe>Femme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -275,7 +275,7 @@
     </joueur>
     <joueur>
       <prenom>Helena</prenom>
-      <nom>LEMERCIER</nom>
+      <nom>LE</nom>
       <sexe>Femme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -283,7 +283,7 @@
     </joueur>
     <joueur>
       <prenom>Pierrick</prenom>
-      <nom>LIMOUSIN</nom>
+      <nom>LI</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -291,7 +291,7 @@
     </joueur>
     <joueur>
       <prenom>Geoffrey</prenom>
-      <nom>LOBJOIS</nom>
+      <nom>LO</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -299,7 +299,7 @@
     </joueur>
     <joueur>
       <prenom>Jean-Yves</prenom>
-      <nom>MARTIN</nom>
+      <nom>MA</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -307,7 +307,7 @@
     </joueur>
     <joueur>
       <prenom>Maryse</prenom>
-      <nom>MONNIER</nom>
+      <nom>MO</nom>
       <sexe>Femme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -315,7 +315,7 @@
     </joueur>
     <joueur>
       <prenom>Herve</prenom>
-      <nom>PETIT</nom>
+      <nom>PE</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -323,7 +323,7 @@
     </joueur>
     <joueur>
       <prenom>Solen</prenom>
-      <nom>QUINIOU</nom>
+      <nom>QU</nom>
       <sexe>Femme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -331,7 +331,7 @@
     </joueur>
     <joueur>
       <prenom>Emile</prenom>
-      <nom>SAURAT</nom>
+      <nom>SA</nom>
       <sexe>Homme</sexe>
       <anciennete>Ancien</anciennete>
       <dateDeNaissance>01/01/1980</dateDeNaissance>
@@ -341,42 +341,42 @@
   <listeTours>
     <tour>
       <terrain>
-        <nomJoueur1>BILY</nomJoueur1>
+        <nomJoueur1>BI</nomJoueur1>
         <prenomJoueur1>Maxime</prenomJoueur1>
-        <nomJoueur2>BARDY</nomJoueur2>
+        <nomJoueur2>BA</nomJoueur2>
         <prenomJoueur2>Sidney</prenomJoueur2>
         <score1>4</score1>
-        <nomJoueur3>BOAGNO</nomJoueur3>
+        <nomJoueur3>BO</nomJoueur3>
         <prenomJoueur3>Hermann</prenomJoueur3>
-        <nomJoueur4>CHEVRIER</nomJoueur4>
+        <nomJoueur4>CH</nomJoueur4>
         <prenomJoueur4>Clementine</prenomJoueur4>
         <score2>0</score2>
       </terrain>
     </tour>
     <tour>
       <terrain>
-        <nomJoueur1>CORNUAULT</nomJoueur1>
+        <nomJoueur1>CO</nomJoueur1>
         <prenomJoueur1>Franck</prenomJoueur1>
-        <nomJoueur2>COQUET</nomJoueur2>
+        <nomJoueur2>CO</nomJoueur2>
         <prenomJoueur2>Audrey</prenomJoueur2>
         <score1>6</score1>
-        <nomJoueur3>ETIENNE</nomJoueur3>
+        <nomJoueur3>ET</nomJoueur3>
         <prenomJoueur3>Jeremy</prenomJoueur3>
-        <nomJoueur4>EPIARD</nomJoueur4>
+        <nomJoueur4>EP</nomJoueur4>
         <prenomJoueur4>Vanessa</prenomJoueur4>
         <score2>0</score2>
       </terrain>
     </tour>
     <tour>
       <terrain>
-        <nomJoueur1>BILY</nomJoueur1>
+        <nomJoueur1>BI</nomJoueur1>
         <prenomJoueur1>Maxime</prenomJoueur1>
-        <nomJoueur2>CHEVRIER</nomJoueur2>
+        <nomJoueur2>CH</nomJoueur2>
         <prenomJoueur2>Clementine</prenomJoueur2>
         <score1>4</score1>
-        <nomJoueur3>CORNUAULT</nomJoueur3>
+        <nomJoueur3>CO</nomJoueur3>
         <prenomJoueur3>Franck</prenomJoueur3>
-        <nomJoueur4>EPIARD</nomJoueur4>
+        <nomJoueur4>EP</nomJoueur4>
         <prenomJoueur4>Vanessa</prenomJoueur4>
         <score2>0</score2>
       </terrain>
