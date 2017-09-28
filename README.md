@@ -3,7 +3,9 @@ IUT Nantes
 See below for English version
 
 
-Fichier de Lancement projet/src/main/app/App.java
+Fichier de Lancement : Badminton.jar
+
+
 ## Manuel d'utilisation
 #### Au commencement: 
  - Le nom du tournoi par défaut est a la date du jour. Sinon entrez le nom voulu, celui ci ne pourra plus ëtre changé.
